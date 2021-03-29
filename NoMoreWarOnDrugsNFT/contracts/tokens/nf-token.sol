@@ -5,12 +5,14 @@ import "./erc721.sol";
 import "./erc721-token-receiver.sol";
 import "../utils/supports-interface.sol";
 import "../utils/address-utils.sol";
+import "../utils/context.sol";
 
 /**
  * @dev Implementation of ERC-721 non-fungible token standard.
  */
 contract NFToken is
   ERC721,
+  Context,
   SupportsInterface
 {
   using AddressUtils for address;
@@ -55,7 +57,7 @@ contract NFToken is
   mapping (address => mapping (address => bool)) internal ownerToOperators;
 
   /**
-   * @dev Guarantees that the msg.sender is an owner or operator of the given NFT.
+   * @dev Guarantees that the_msgSender() is an owner or operator of the given NFT.
    * @param _tokenId ID of the NFT to validate.
    */
   modifier canOperate(
@@ -64,14 +66,14 @@ contract NFToken is
   {
     address tokenOwner = idToOwner[_tokenId];
     require(
-      tokenOwner == msg.sender || ownerToOperators[tokenOwner][msg.sender],
+      tokenOwner ==_msgSender() || ownerToOperators[tokenOwner][msg.sender],
       NOT_OWNER_OR_OPERATOR
     );
     _;
   }
 
   /**
-   * @dev Guarantees that the msg.sender is allowed to transfer NFT.
+   * @dev Guarantees that the_msgSender() is allowed to transfer NFT.
    * @param _tokenId ID of the NFT to transfer.
    */
   modifier canTransfer(
@@ -80,8 +82,8 @@ contract NFToken is
   {
     address tokenOwner = idToOwner[_tokenId];
     require(
-      tokenOwner == msg.sender
-      || idToApproval[_tokenId] == msg.sender
+      tokenOwner ==_msgSender()
+      || idToApproval[_tokenId] ==_msgSender()
       || ownerToOperators[tokenOwner][msg.sender],
       NOT_OWNER_APPROVED_OR_OPERATOR
     );
@@ -321,7 +323,7 @@ contract NFToken is
    * mint function. Its purpose is to show and properly initialize data structures when using this
    * implementation.
    * @param _to The address that will own the minted NFT.
-   * @param _tokenId of the NFT to be minted by the msg.sender.
+   * @param _tokenId of the NFT to be minted by the_msgSender().
    */
   function _mint(
     address _to,
