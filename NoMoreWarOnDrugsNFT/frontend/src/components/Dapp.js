@@ -30,8 +30,9 @@ import { Approve } from "./Approve";
 import { SetApprovalForAll } from "./SetApprovalForAll";
 import { TransferNMWD } from "./TransferNMWD";
 import { TransferFrom } from "./TransferFrom";
-import { TokenOwnerAlias } from "./TokenOwnerAlias";
+//import { TokenOwnerAlias } from "./TokenOwnerAlias";
 import { TokenMessage } from "./TokenMessage";
+import { SetTokenMessage } from "./SetTokenMessage";
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
 // Here's a list of network ids https://docs.metamask.io/guide/ethereum-provider.html#properties
@@ -233,14 +234,14 @@ export class Dapp extends React.Component {
                } 
                />
             }
-            {
+            {/*
               <TokenOwnerAlias
               tokenOwnerAlias={  (id) => {
                   return this.tokenOwnerAlias(id);
                 } 
                } 
                />
-            }
+              */}
             {
               <TokenURI
               tokenURI={ (_tokenId ) => {
@@ -251,11 +252,17 @@ export class Dapp extends React.Component {
            />
             }
             {
+              <SetTokenMessage
+              setTokenMessage={ (_tokenId, _msg ) => {
+               return this.setTokenMessage(_tokenId, _msg );
+             } 
+            }
+           />
+            }
+            {
               <Mint
-                 mint={ (_to, _tokenId, _uri
-                  , _alias, _msg
-                  ) => {
-                  return this._mint(_to, _tokenId, _uri, _alias, _msg);
+                 mint={ (_to, _tokenId, _uri) => {
+                  return this._mint(_to, _tokenId, _uri);
                 } }
                 owner = {this.state.owner}
               />
@@ -421,12 +428,12 @@ export class Dapp extends React.Component {
      }
    }
 
-   async tokenOwnerAlias(id){
+   async setTokenMessage(tokenId, msg ){
     try{
-      return await this._nmwd.tokenOwnerAlias(id);
+      return await this._nmwd.setTokenMessage(tokenId, msg);
     }catch(error){
       console.log(error);
-      return {error: "Invalid Id"} 
+      return {error: "Invalid Input"} 
     }
   }
 
@@ -533,9 +540,9 @@ export class Dapp extends React.Component {
     }
   }
 
-  async _mint(_to, _tokenId, _uri, _alias, _msg ){
+  async _mint(_to, _tokenId, _uri ){
     try{
-      const tx = await this._nmwd.mint(_to, _tokenId, _uri , _alias, _msg);
+      const tx = await this._nmwd.mint(_to, _tokenId, _uri );
       console.log(tx);
       await tx.wait();
       return tx;

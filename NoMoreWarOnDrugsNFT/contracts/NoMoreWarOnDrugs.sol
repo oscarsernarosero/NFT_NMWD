@@ -18,6 +18,12 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
     string constant MAX_TOKENS_MINTED = "20001";
 
     /** 
+    * @dev The error code for when an NFT is attempted to be minted after the max
+    * supply of NFTs has been already reached.
+    */
+    string constant MESSAGE_ALREADY_SET = "20002";
+
+    /** 
     * @dev The maximum amount of NFTs that can be minted in this collection
     */
     uint8 constant MAX_TOKENS = 222;
@@ -31,7 +37,7 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
     /**
     * @dev Mapping from NFT ID to alias.
     */
-    mapping (uint256 => string) private idToOwnerAlias;
+    mapping (uint256 => bool) private msgSet;
 
     /**
     * @dev Mapping from NFT ID to message.
@@ -55,15 +61,10 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
         
     }
 
-    function mint(address _to, uint256 _tokenId, 
-    string memory _uri
-    ,  string memory _alias,  string memory _msg
-    ) 
-    public onlyOwner {
+    function mint(address _to, uint256 _tokenId,  string memory _uri) 
+      public onlyOwner {
         _mint(_to, _tokenId);
         idToUri[_tokenId] = _uri;
-        idToOwnerAlias[_tokenId] = _alias;
-        idToMsg[_tokenId] = _msg;
     }
 
     /**
@@ -131,26 +132,27 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
   }
 
   /**
-   * @dev A custom alias for the owner of the NFT given by 
-   * the first buyer.
+   * @dev returns true if the message of the NFT has already 
+   * been set. The message of an NMWD can only be set once,
+   * and it is set for perpetuity.
    * @param _tokenId Id for which we want the owner alias.
-   * @return URI of _tokenId.
+   * @return bool representing if the message has been set.
    */
-  function tokenOwnerAlias(
+  function tokenMsgSet(
     uint256 _tokenId
   )
     external
     view
     validNFToken(_tokenId)
-    returns (string memory)
+    returns (bool)
   {
-    return idToOwnerAlias[_tokenId];
+    return msgSet[_tokenId];
   }
 
   /**
    * @dev A custom message given for the first NFT buyer.
    * @param _tokenId Id for which we want the message.
-   * @return URI of _tokenId.
+   * @return Message of _tokenId.
    */
   function tokenMessage(
     uint256 _tokenId
@@ -161,6 +163,27 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
     returns (string memory)
   {
     return idToMsg[_tokenId];
+  }
+
+  /**
+   * @dev Sets a custom message for the NFT with _tokenId.
+   * @notice only the owner of the NFT can do this. Not even approved or 
+   * operators can execute this function.
+   * @param _tokenId Id for which we want the message.
+   * @param _msg the custom message.
+   */
+  function setTokenMessage(
+    uint256 _tokenId,
+    string memory _msg
+  )
+    external
+    validNFToken(_tokenId)
+  { 
+    address tokenOwner = idToOwner[_tokenId];
+    require(_msgSender() == tokenOwner, NOT_OWNER);
+    require(!msgSet[_tokenId], MESSAGE_ALREADY_SET);
+    idToMsg[_tokenId] = _msg;
+    msgSet[_tokenId] = true;
   }
 
 }
