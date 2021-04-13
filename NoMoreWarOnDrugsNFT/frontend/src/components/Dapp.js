@@ -11,6 +11,9 @@ import contractAddress from "../contracts/contract-address-token.json";
 import NMWDArtifact from "../contracts/Token_NoMoreWarOnDrugs.json";
 import NMWDAddress from "../contracts/contract-address-NoMoreWarOnDrugs.json";
 
+import MarketPlaceArtifact from "../contracts/Token_NMWDMarketPlace.json";
+import MarketPlaceAddress from "../contracts/contract-address-NMWDMarketPlace.json";
+
 // All the logic of this dapp is contained in the Dapp component.
 // These other components are just presentational ones: they don't have any
 // logic. They just render HTML.
@@ -33,12 +36,20 @@ import { TransferFrom } from "./TransferFrom";
 //import { TokenOwnerAlias } from "./TokenOwnerAlias";
 import { TokenMessage } from "./TokenMessage";
 import { SetTokenMessage } from "./SetTokenMessage";
+import { TransferOwnership } from  "./TransferOwnership";
+import { MarketPlaceApprove } from "./MarketPlaceApprove";
+import { Purchase } from "./Purchase";
+import { SetPrice } from "./SetPrice";
+import { MintThroughPurchase } from "./MintThroughPurchase";
+import { UpdateNMWDContract } from "./UpdateNMWDContract";
+
+
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
 // Here's a list of network ids https://docs.metamask.io/guide/ethereum-provider.html#properties
 // to use when deploying to other networks.
-//const HARDHAT_NETWORK_ID = '31337';
-const HARDHAT_NETWORK_ID = '1337';
+const HARDHAT_NETWORK_ID = '31337';
+//const HARDHAT_NETWORK_ID = '1337';
 
 // This is an error code that indicates that the user canceled a transaction
 const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
@@ -267,6 +278,52 @@ export class Dapp extends React.Component {
                 owner = {this.state.owner}
               />
             }
+            {
+              <UpdateNMWDContract
+                updateNMWDContract={ (address) => {
+                  return this.updateNMWDContract(address);
+                } }
+              />
+            }
+            {
+              <TransferOwnership
+                transferOwnership = { (to) => {
+                  return this.transferOwnership(to);
+                }}
+              />
+            }
+            {
+              <SetPrice
+                setPrice = { (price, tokenId) => {
+                  return this.setPrice(price, tokenId);
+                }}
+              />
+            }
+            {
+              <MarketPlaceApprove
+                marketPlaceApprove={ (_tokenId) => {
+                  return this.approveNMWD(_tokenId);
+                } }
+              />
+            }
+            {
+              <Purchase
+                purchase={ (_tokenId) => {
+                  return this.purchaseToken(_tokenId);
+                } }
+              />
+            }
+            {
+              <MintThroughPurchase
+                mintThroughPurchase={ (_to, _tokenId, _uri) => {
+                  return this._mintThroughPurchase(_to, _tokenId, _uri);
+                } }
+                to = {this.state.selectedAddress}
+                marketPlaceAddress = {MarketPlaceAddress.Token}
+                value = {"0x6F05B59D3B20000"}
+
+              />
+            }
           </div>
         </div>
       </div>
@@ -291,9 +348,9 @@ export class Dapp extends React.Component {
     // Once we have the address, we can initialize the application.
 
     // First we check the network
-    if (!this._checkNetwork()) {
-      return;
-    }
+    // if (!this._checkNetwork()) {
+    //   return;
+    // }
 
     this._initialize(selectedAddress);
 
@@ -355,7 +412,13 @@ export class Dapp extends React.Component {
       NMWDAddress.Token,
       NMWDArtifact.abi,
       this._provider.getSigner(0)
-    )
+    );
+
+    this.marketPlace = new ethers.Contract(
+      MarketPlaceAddress.Token,
+      MarketPlaceArtifact.abi,
+      this._provider.getSigner(0)
+    );
 
   }
 
@@ -445,6 +508,66 @@ export class Dapp extends React.Component {
       return {error: "Invalid Id"} 
     }
   }
+
+  async transferOwnership(to){
+    try{
+      const tx = await this._nmwd.transferOwnership(to);
+      console.log(tx);
+      await tx.wait();
+      return tx;
+    }catch(error){
+      console.log(error);
+      return {error: "error while transfering ownership"} 
+    }
+  }
+
+  async _mintThroughPurchase(_to, _tokenId, _uri ){
+    try{
+      const tx = await this.marketPlace.mintThroughPurchase(_to, _tokenId, _uri );
+      console.log(tx);
+      await tx.wait();
+      return tx;
+    }catch(error){
+      console.log(error);
+      return {error: "couldn't mint"} 
+    }
+  }
+
+  async purchaseToken(id){
+    try{
+      return await this.marketPlace.purchaseToken(id);
+    }catch(error){
+      console.log(error);
+      return {error: "Invalid Id"} 
+    }
+  }
+
+  async approveNMWD(tokenId){
+    try{
+      return await this.marketPlace.approveNMWD(tokenId);
+     }catch(error){
+      console.log(error);
+       return {error: error.message};
+     }
+   }
+
+   async setPrice(price, tokenId){
+    try{
+      return await this.marketPlace.setPrice(price, tokenId);
+     }catch(error){
+      console.log(error);
+       return {error: error.message};
+     }
+   }
+
+   async updateNMWDContract(address){
+    try{
+      return await this.marketPlace.updateNMWDcontract(address);
+     }catch(error){
+      console.log(error);
+       return {error: error.message};
+     }
+   }
 
 
   // The next to methods are needed to start and stop polling data. While

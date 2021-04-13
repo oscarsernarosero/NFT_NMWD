@@ -22,8 +22,8 @@ module.exports = {
       }
     ]
   },
-  //defaultNetwork: "ropsten",
-  defaultNetwork: "hardhat",
+  defaultNetwork: "ropsten",
+  //defaultNetwork: "hardhat",
    networks: {
       hardhat: {
         chainId: 1337, ///this is not hardhat default and is a temporary solution.
