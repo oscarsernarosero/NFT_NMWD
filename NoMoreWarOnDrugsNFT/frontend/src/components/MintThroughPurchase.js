@@ -30,55 +30,46 @@ import { ethers } from "ethers";
       const uri = this.state.uri;
 
       console.log(tokenId, uri);
-      
       console.log(this.props);
-      console.log(this.props.mintThroughPurchase);
+
+      const rawPrice = await this.props.getPrice(tokenId);
+      console.log("rawPrice: ",rawPrice);
+
+      //const price = "0" + rawPrice.toString(16);
+      const price = rawPrice._hex;
+      console.log("price: ",price);
 
       const abi = [
         "function mintThroughPurchase(address _to, uint _tokenId, string memory _uri) external payable"
-    ];
-    const iface = new ethers.utils.Interface(abi);
-    const data = iface.encodeFunctionData("mintThroughPurchase", [this.props.to, tokenId, uri]);
-      //////////////////////////////////////////
-      const params = [
-        {
-          from: this.props.to,
-          to: this.props.marketPlaceAddress,
-          value: this.props.value, 
-          data: data
-        },
       ];
-      await window.ethereum
-        .request({
-          method: 'eth_sendTransaction',
-          params,
-        })
-        .then((result) => {
-          console.log(result);
-          this.idInput.current.value = "";
-          this.uriInput.current.value = "";
-          // The result varies by by RPC method.
-          // For example, this method will return a transaction hash hexadecimal string on success.
-        })
-        .catch((error) => {
-          console.log(error);
-          // If the request fails, the Promise will reject with an error.
-        });
-      /////////////////////////////////////////
-
-      /*
-      const tx =  await this.props.mintThroughPurchase(this.props.to, tokenId, uri);
-      console.log(tx);
-      if(tx.error){
-          this.setState({txHash: tx.error});
-          console.log("failed.");
-      }else{
-          this.setState({txHash: "Last minting succeded with tx hash: "+tx.hash});
-          console.log("success!", tx.hash);
-          this.idInput.current.value = "";
-          this.uriInput.current.value = "";
-      }
-      */
+      const iface = new ethers.utils.Interface(abi);
+      const data = iface.encodeFunctionData("mintThroughPurchase", [this.props.to, tokenId, uri]);
+        
+        const params = [
+          {
+            from: this.props.to,
+            to: this.props.marketPlaceAddress,
+            value: price, 
+            data: data
+          },
+        ];
+        await window.ethereum
+          .request({
+            method: 'eth_sendTransaction',
+            params,
+          })
+          .then((result) => {
+            console.log(result);
+            this.idInput.current.value = "";
+            this.uriInput.current.value = "";
+            // The result varies by by RPC method.
+            // For example, this method will return a transaction hash hexadecimal string on success.
+          })
+          .catch((error) => {
+            console.log(error);
+            // If the request fails, the Promise will reject with an error.
+          });
+        
       
     }
 

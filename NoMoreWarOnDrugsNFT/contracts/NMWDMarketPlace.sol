@@ -38,7 +38,7 @@ contract NMWDMarketPlace is Owned {
     string constant INVALID_ADDRESS = "003001";
     string constant CONTRACT_ADDRESS_NOT_SETUP = "003002";
     string constant NOT_APPROVED= "003003";
-    string constant NOT_VALID_NFT = "003002";
+    string constant NOT_VALID_NFT = "003004";
 
     event Sent(address indexed payee, uint amount, uint balance);
     event Received(address indexed payer, uint tokenId, uint amount, uint balance);
@@ -48,7 +48,7 @@ contract NMWDMarketPlace is Owned {
     /**
     * @dev Mapping from token ID to its pirce.
     */
-    mapping(uint => uint256) public price;
+    mapping(uint => uint256) internal price;
 
     /**
     * @dev contract balance
@@ -72,39 +72,20 @@ contract NMWDMarketPlace is Owned {
     * @param nmwdAddress address of NoMoreWarOnDrugs tokens 
     */
     function updateNMWDcontract(address nmwdAddress) external onlyOwner{
-        //require(address(NMWDcontract) == address(0));
-        console.log("msg.sender ",msg.sender);
-        console.log("address(NMWDcontract): ",address(NMWDcontract));
         require(nmwdAddress != address(0) && nmwdAddress != address(this),INVALID_ADDRESS);
         NMWDcontract = NoMoreWarOnDrugs(nmwdAddress);
         console.log("address(NMWDcontract): ",address(NMWDcontract));
     }
 
     /**
-    * @dev approve _tokenId for market operations
-    * @param _tokenId uint token ID 
+    * @dev transfers ownership of the NFT contract to the owner of 
+    * the marketplace contract. Only if the marketplace owns the NFT
     */
-    function approveNMWD(uint _tokenId) public {
-        console.log("msg.sender: ",msg.sender);
+    function getBackOwnership() external onlyOwner{
         require(address(NMWDcontract) != address(0),CONTRACT_ADDRESS_NOT_SETUP);
-        NMWDcontract.approve(address(this), _tokenId);
+        NMWDcontract.transferOwnership(address(owner));
     }
 
-    /**
-    * @dev approve all NMWD tokens for market operations
-    */
-    function approveAllNMWD() public {
-        require(address(NMWDcontract) != address(0),CONTRACT_ADDRESS_NOT_SETUP);
-        NMWDcontract.setApprovalForAll(address(this), true);
-    }
-
-     /**
-    * @dev remove approval for all NMWD tokens for this market place
-    */
-    function removeApprovalForAllNMWD() public {
-        require(address(NMWDcontract) != address(0),CONTRACT_ADDRESS_NOT_SETUP);
-        NMWDcontract.setApprovalForAll(address(this), false);
-    }
 
     /**
     * @dev Purchase _tokenId
@@ -132,6 +113,7 @@ contract NMWDMarketPlace is Owned {
     */
     function mintThroughPurchase(address _to, uint _tokenId, string memory _uri) external payable  {
         console.log("price[_tokenId] ",price[_tokenId]);
+        require(price[_tokenId] != 0);
         require(msg.value >= price[_tokenId], "Not enough Ehter");
         require(msg.sender != address(0) && msg.sender != address(this));
         contractBalance += msg.value;
@@ -180,6 +162,15 @@ contract NMWDMarketPlace is Owned {
            require(owner == msg.sender, "Not owner"); 
         }
         price[_tokenId] = _price;
-    }        
+    } 
+
+    /**
+    * @dev get _tokenId price in wei
+    * @param _tokenId uint token ID 
+    */
+    function getPrice(uint _tokenId) external view returns (uint256){
+        return price[_tokenId];
+        //return _price;
+    }       
 
 }

@@ -71,7 +71,7 @@ export class SetPrice extends React.Component{
           <label >Tx Hash: {this.state.txHash}</label>
         </div>
         <div className="form-group">
-          <input className="btn btn-primary" type="submit" value="Set Message" />
+          <input className="btn btn-primary" type="submit" value="Set Price" />
         </div>
       </form>
     </div>

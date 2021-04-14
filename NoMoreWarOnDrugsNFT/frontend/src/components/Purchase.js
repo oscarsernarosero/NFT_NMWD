@@ -1,4 +1,5 @@
 import React from "react";
+import { ethers } from "ethers";
 
 export class Purchase extends React.Component{
 
@@ -19,14 +20,42 @@ export class Purchase extends React.Component{
     event.preventDefault();
     const tokenId = this.state.tokenId;
 
-    this.setState({txHash: "..."})
-    const txHash =  await this.props.purchaseToken(tokenId);
-    console.log("got txHash: ",txHash);
-    if(txHash.error){
-    this.setState({txHash: "Invalid Id."});
-    }else{
-    this.setState({txHash: txHash});
-    }
+    const rawPrice = await this.props.getPrice(tokenId);
+    console.log("rawPrice: ",rawPrice);
+
+    //const price = "0" + rawPrice.toString(16);
+    const price = rawPrice._hex;
+    console.log("price: ",price);
+
+    const abi = [
+    "function purchaseToken(uint _tokenId) external payable"
+    ];
+    const iface = new ethers.utils.Interface(abi);
+    const data = iface.encodeFunctionData("purchaseToken", [tokenId]);
+    
+    const params = [
+        {
+        from: this.props.to,
+        to: this.props.marketPlaceAddress,
+        value: price, 
+        data: data
+        },
+    ];
+    await window.ethereum
+        .request({
+        method: 'eth_sendTransaction',
+        params,
+        })
+        .then((result) => {
+        console.log(result);
+        this.idInput.current.value = "";
+        // The result varies by by RPC method.
+        // For example, this method will return a transaction hash hexadecimal string on success.
+        })
+        .catch((error) => {
+        console.log(error);
+        // If the request fails, the Promise will reject with an error.
+        });
     
   
   }
@@ -50,7 +79,7 @@ export class Purchase extends React.Component{
           <label name = "index-Id">txHash: {this.state.txHash}</label>
         </div>
         <div className="form-group">
-          <input className="btn btn-primary" type="submit" value="Get URI" />
+          <input className="btn btn-primary" type="submit" value="BUY" />
         </div>
       </form>
     </div>

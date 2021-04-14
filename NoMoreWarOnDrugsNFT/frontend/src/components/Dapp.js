@@ -42,6 +42,9 @@ import { Purchase } from "./Purchase";
 import { SetPrice } from "./SetPrice";
 import { MintThroughPurchase } from "./MintThroughPurchase";
 import { UpdateNMWDContract } from "./UpdateNMWDContract";
+import { MarketPlaceHead } from "./MarketPlaceHead";
+import { GetPrice } from "./GetPrice";
+import { GetBackOwnership } from "./GetBackOwnership";
 
 
 
@@ -245,14 +248,6 @@ export class Dapp extends React.Component {
                } 
                />
             }
-            {/*
-              <TokenOwnerAlias
-              tokenOwnerAlias={  (id) => {
-                  return this.tokenOwnerAlias(id);
-                } 
-               } 
-               />
-              */}
             {
               <TokenURI
               tokenURI={ (_tokenId ) => {
@@ -279,6 +274,9 @@ export class Dapp extends React.Component {
               />
             }
             {
+              <MarketPlaceHead/>
+            }
+            {
               <UpdateNMWDContract
                 updateNMWDContract={ (address) => {
                   return this.updateNMWDContract(address);
@@ -300,6 +298,13 @@ export class Dapp extends React.Component {
               />
             }
             {
+              <GetPrice
+                getPrice = { (tokenId) => {
+                  return this.getPrice( tokenId);
+                }}
+              />
+              }
+            {
               <MarketPlaceApprove
                 marketPlaceApprove={ (_tokenId) => {
                   return this.approveNMWD(_tokenId);
@@ -308,20 +313,28 @@ export class Dapp extends React.Component {
             }
             {
               <Purchase
-                purchase={ (_tokenId) => {
-                  return this.purchaseToken(_tokenId);
-                } }
+                getPrice = { (tokenId) => {
+                  return this.getPrice( tokenId);
+                }}
+                to = {this.state.selectedAddress}
+                marketPlaceAddress = {MarketPlaceAddress.Token}
               />
             }
             {
               <MintThroughPurchase
-                mintThroughPurchase={ (_to, _tokenId, _uri) => {
-                  return this._mintThroughPurchase(_to, _tokenId, _uri);
-                } }
                 to = {this.state.selectedAddress}
                 marketPlaceAddress = {MarketPlaceAddress.Token}
-                value = {"0x6F05B59D3B20000"}
+                getPrice = { (tokenId) => {
+                  return this.getPrice( tokenId);
+                }}
 
+              />
+            }
+            {
+              <GetBackOwnership
+                getBackOwnership ={ () => {
+                  return this.getBackOwnership();
+                }}
               />
             }
           </div>
@@ -394,6 +407,11 @@ export class Dapp extends React.Component {
     this.getContractOwner();
     this._getTokenData();
     this._startPollingData();
+
+    //automating the process of loading the address of the token to the market place
+    //and transfering ownership of the NFT contract to the market place.
+    this.updateNMWDContract(NMWDAddress.Token);
+    this.transferOwnership(MarketPlaceAddress.Token);
   }
 
   async _intializeEthers() {
@@ -521,26 +539,38 @@ export class Dapp extends React.Component {
     }
   }
 
-  async _mintThroughPurchase(_to, _tokenId, _uri ){
+  async getBackOwnership(){
     try{
-      const tx = await this.marketPlace.mintThroughPurchase(_to, _tokenId, _uri );
+      const tx = await this.marketPlace.getBackOwnership();
       console.log(tx);
       await tx.wait();
       return tx;
     }catch(error){
       console.log(error);
-      return {error: "couldn't mint"} 
+      return {error: "error while transfering ownership"} 
     }
   }
 
-  async purchaseToken(id){
-    try{
-      return await this.marketPlace.purchaseToken(id);
-    }catch(error){
-      console.log(error);
-      return {error: "Invalid Id"} 
-    }
-  }
+  // async _mintThroughPurchase(_to, _tokenId, _uri ){
+  //   try{
+  //     const tx = await this.marketPlace.mintThroughPurchase(_to, _tokenId, _uri );
+  //     console.log(tx);
+  //     await tx.wait();
+  //     return tx;
+  //   }catch(error){
+  //     console.log(error);
+  //     return {error: "couldn't mint"} 
+  //   }
+  // }
+
+  // async purchaseToken(id){
+  //   try{
+  //     return await this.marketPlace.purchaseToken(id);
+  //   }catch(error){
+  //     console.log(error);
+  //     return {error: "Invalid Id"} 
+  //   }
+  // }
 
   async approveNMWD(tokenId){
     try{
@@ -568,6 +598,17 @@ export class Dapp extends React.Component {
        return {error: error.message};
      }
    }
+
+   async getPrice(tokenId){
+    try{
+      return await this.marketPlace.getPrice(tokenId);
+     }catch(error){
+      console.log(error);
+       return {error: error.message};
+     }
+   }
+
+   
 
 
   // The next to methods are needed to start and stop polling data. While
