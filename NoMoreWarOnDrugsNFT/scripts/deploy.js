@@ -19,22 +19,22 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
   */ 
-  const Token = await ethers.getContractFactory("Token");
+  //const Token = await ethers.getContractFactory("Token");
   const NMWDToken = await ethers.getContractFactory("NoMoreWarOnDrugs");
   const MarketPlace = await ethers.getContractFactory("NMWDMarketPlace");
-  const token = await Token.deploy();
+  //const token = await Token.deploy();
   const nmwdToken = await NMWDToken.deploy("NoMoreWarOnDrugs", "NMWD" );
   const marketPlace = await MarketPlace.deploy();
-  await token.deployed();
+  //await token.deployed();
   await nmwdToken.deployed();
   await marketPlace.deployed();
 
-  console.log("Token address:", token.address);
+  //console.log("Token address:", token.address);
   console.log("nmwdToken address:", nmwdToken.address);
   console.log("marketPlace address:", marketPlace.address);
 
   // We also save the contract's artifacts and address in the frontend directory
-  saveFrontendFiles(token, "token");
+  //saveFrontendFiles(token, "token");
   saveFrontendFiles(nmwdToken, "NoMoreWarOnDrugs");
   saveFrontendFiles(marketPlace, "NMWDMarketPlace");
 }

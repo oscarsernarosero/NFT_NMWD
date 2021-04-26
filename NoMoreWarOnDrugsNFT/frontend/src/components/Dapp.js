@@ -116,7 +116,8 @@ export class Dapp extends React.Component {
 
     // If the token data or the user's balance hasn't loaded yet, we show
     // a loading component.
-    if (!this.state.tokenData || !this.state.balance) {
+    //if (!this.state.tokenData || !this.state.balance) {
+      if (!this.state.tokenData ) {
       return <Loading />;
     }
 
@@ -129,11 +130,7 @@ export class Dapp extends React.Component {
               {this.state.tokenData.name} ({this.state.tokenData.symbol})
             </h1>
             <p>
-              Welcome <b>{this.state.selectedAddress}</b>, you have{" "}
-              <b>
-                {this.state.balance.toString()} {this.state.tokenData.symbol}
-              </b>
-              .
+              Welcome <b>{this.state.selectedAddress}</b>
             </p>
           </div>
         </div>
@@ -169,9 +166,9 @@ export class Dapp extends React.Component {
             {/*
               If the user has no tokens, we don't show the Tranfer form
             */}
-            {this.state.balance.eq(0) && (
+            {/* {this.state.balance.eq(0) && (
               <NoTokensMessage selectedAddress={this.state.selectedAddress} />
-            )}
+            )} */}
 
             {/*
               This component displays a form that the user can use to send a 
@@ -179,13 +176,13 @@ export class Dapp extends React.Component {
               The component doesn't have logic, it just calls the transferTokens
               callback.
             */}
-            {this.state.balance.gt(0) && (
+            {/* {this.state.balance.gt(0) && (
               <Transfer
                 transferTokens={(to, amount) =>
                   this._transferTokens(to, amount)
                 }
                 tokenSymbol={this.state.tokenData.symbol} />
-            )}
+            )} */}
             {
               <TransferNMWD 
               safeTransferFrom={ (owner, to, tokenId) => {
@@ -346,7 +343,7 @@ export class Dapp extends React.Component {
   componentWillUnmount() {
     // We poll the user's balance, so we have to stop doing that when Dapp
     // gets unmounted
-    this._stopPollingData();
+    //this._stopPollingData();
   }
 
   async _connectWallet() {
@@ -357,7 +354,7 @@ export class Dapp extends React.Component {
     // It returns a promise that will resolve to the user's address.
     //const [selectedAddress] = await window.ethereum.enable();
     const [selectedAddress] = await window.ethereum.request({ method: 'eth_requestAccounts' }) 
-
+    console.log(selectedAddress);
     // Once we have the address, we can initialize the application.
 
     // First we check the network
@@ -366,10 +363,11 @@ export class Dapp extends React.Component {
     // }
 
     this._initialize(selectedAddress);
+    
 
     // We reinitialize it whenever the user changes their account.
     window.ethereum.on("accountsChanged", ([newAddress]) => {
-      this._stopPollingData();
+      //this._stopPollingData();
       // `accountsChanged` event can be triggered with an undefined newAddress.
       // This happens when the user removes the Dapp from the "Connected
       // list of sites allowed access to your addresses" (Metamask > Settings > Connections)
@@ -385,7 +383,7 @@ export class Dapp extends React.Component {
     //window.ethereum.on("networkChanged", ([networkId]) => {
     window.ethereum.on("chainChanged", (_chainId) => {
       console.log("chain changed: ",_chainId);
-      this._stopPollingData();
+      //this._stopPollingData();
       this._resetState();
     });
   }
@@ -404,14 +402,17 @@ export class Dapp extends React.Component {
     // Fetching the token data and the user's balance are specific to this
     // sample project, but you can reuse the same initialization pattern.
     this._intializeEthers();
+    console.log("initialized");
     this.getContractOwner();
+    console.log("got contract owner");
     this._getTokenData();
-    this._startPollingData();
+    console.log("got token data");
+    //this._startPollingData();
 
     //automating the process of loading the address of the token to the market place
     //and transfering ownership of the NFT contract to the market place.
-    this.updateNMWDContract(NMWDAddress.Token);
-    this.transferOwnership(MarketPlaceAddress.Token);
+    //this.updateNMWDContract(NMWDAddress.Token);
+    //this.transferOwnership(MarketPlaceAddress.Token);
   }
 
   async _intializeEthers() {
@@ -420,11 +421,11 @@ export class Dapp extends React.Component {
 
     // When, we initialize the contract using that provider and the token's
     // artifact. You can do this same thing with your contracts.
-    this._token = new ethers.Contract(
-      contractAddress.Token,
-      TokenArtifact.abi,
-      this._provider.getSigner(0)
-    );
+    // this._token = new ethers.Contract(
+    //   contractAddress.Token,
+    //   TokenArtifact.abi,
+    //   this._provider.getSigner(0)
+    // );
 
     this._nmwd = new ethers.Contract(
       NMWDAddress.Token,
@@ -633,8 +634,9 @@ export class Dapp extends React.Component {
   // The next two methods just read from the contract and store the results
   // in the component state.
   async _getTokenData() {
-    const name = await this._token.name();
-    const symbol = await this._token.symbol();
+    //const name = await this._token.name();
+    const name = "dummy_token";
+    const symbol = "DUMMY";
 
    this.setState({ tokenData: { name: name, symbol: symbol } });
   }
