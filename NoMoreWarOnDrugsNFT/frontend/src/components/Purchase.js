@@ -48,7 +48,7 @@ export class Purchase extends React.Component{
         })
         .then((result) => {
         console.log(result);
-        this.idInput.current.value = "";
+        //this.idInput.current.value = "";
         // The result varies by by RPC method.
         // For example, this method will return a transaction hash hexadecimal string on success.
         })

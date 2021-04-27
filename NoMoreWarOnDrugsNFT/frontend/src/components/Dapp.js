@@ -45,6 +45,11 @@ import { UpdateNMWDContract } from "./UpdateNMWDContract";
 import { MarketPlaceHead } from "./MarketPlaceHead";
 import { GetPrice } from "./GetPrice";
 import { GetBackOwnership } from "./GetBackOwnership";
+import { GetUserBalance } from "./GetUserBalance";
+import { GetContractBalance } from "./GetContractBalance";
+import { WithdrawUserFunds } from "./WithdrawUserFunds";
+import { SetForSale } from "./SetForSale";
+import { GetForSale } from "./GetForSale";
 
 
 
@@ -163,26 +168,6 @@ export class Dapp extends React.Component {
 
         <div className="row">
           <div className="col-12">
-            {/*
-              If the user has no tokens, we don't show the Tranfer form
-            */}
-            {/* {this.state.balance.eq(0) && (
-              <NoTokensMessage selectedAddress={this.state.selectedAddress} />
-            )} */}
-
-            {/*
-              This component displays a form that the user can use to send a 
-              transaction and transfer some tokens.
-              The component doesn't have logic, it just calls the transferTokens
-              callback.
-            */}
-            {/* {this.state.balance.gt(0) && (
-              <Transfer
-                transferTokens={(to, amount) =>
-                  this._transferTokens(to, amount)
-                }
-                tokenSymbol={this.state.tokenData.symbol} />
-            )} */}
             {
               <TransferNMWD 
               safeTransferFrom={ (owner, to, tokenId) => {
@@ -324,9 +309,48 @@ export class Dapp extends React.Component {
                 getPrice = { (tokenId) => {
                   return this.getPrice( tokenId);
                 }}
-
               />
             }
+            {
+              <GetUserBalance
+                getUserBalance = { (_address) => {
+                  return this.getUserBalance(_address);
+                }
+              }
+              address = {this.state.selectedAddress}
+              />
+            }
+            {
+              <WithdrawUserFunds
+                withdrawUserFunds = { (amount) => {
+                  return this.withdrawUserFunds( amount);
+                }}
+              />
+              }
+              {
+              <SetForSale
+                setForSale = { (tokenId, forSale) => {
+                  return this.setForSale(tokenId, forSale);
+                }}
+              />
+            }
+            {
+              <GetForSale
+                getForSale = { (tokenId) => {
+                  return this.getForSale( tokenId);
+                }}
+              />
+              }
+              {
+              <GetContractBalance
+                getContractBalance = { () => {
+                  return this.getContractBalance();
+                }
+              }
+              address = {MarketPlaceAddress.Token}
+              />
+            }
+              
             {
               <GetBackOwnership
                 getBackOwnership ={ () => {
@@ -411,8 +435,8 @@ export class Dapp extends React.Component {
 
     //automating the process of loading the address of the token to the market place
     //and transfering ownership of the NFT contract to the market place.
-    //this.updateNMWDContract(NMWDAddress.Token);
-    //this.transferOwnership(MarketPlaceAddress.Token);
+    this.updateNMWDContract(NMWDAddress.Token);
+    this.transferOwnership(MarketPlaceAddress.Token);
   }
 
   async _intializeEthers() {
@@ -509,6 +533,7 @@ export class Dapp extends React.Component {
        return {error: error.message};
      }
    }
+   
 
    async setTokenMessage(tokenId, msg ){
     try{
@@ -539,6 +564,33 @@ export class Dapp extends React.Component {
       return {error: "error while transfering ownership"} 
     }
   }
+
+  async getUserBalance(address){
+    try{
+      return await this.marketPlace.getUserBalance(address);
+     }catch(error){
+      console.log(error);
+       return {error: error.message};
+     }
+   }
+
+   async withdrawUserFunds(amount){
+    try{
+      return await this.marketPlace.withdrawUserFunds(amount);
+     }catch(error){
+      console.log(error);
+       return {error: error.message};
+     }
+   }
+
+   async getContractBalance(){
+    try{
+      return await this.marketPlace.getMarketPlaceBalance();
+     }catch(error){
+      console.log(error);
+       return {error: error.message};
+     }
+   }
 
   async getBackOwnership(){
     try{
@@ -609,7 +661,24 @@ export class Dapp extends React.Component {
      }
    }
 
-   
+   async setForSale(tokenId, forSale){
+    try{
+      return await this.marketPlace.setForSale(tokenId, forSale);
+      
+     }catch(error){
+      console.log(error);
+       return {error: error.message};
+     }
+   }
+
+   async getForSale(tokenId){
+    try{
+      return await this.marketPlace.getForSale(tokenId);
+     }catch(error){
+      console.log(error);
+       return {error: error.message};
+     }
+   }
 
 
   // The next to methods are needed to start and stop polling data. While

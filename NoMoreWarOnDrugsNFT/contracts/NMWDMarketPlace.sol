@@ -1,30 +1,5 @@
 // SPDX-License-Identifier: MIT
 
-// contract NoMoreWarOnDrugs{
-//     function ownerOf(uint256 _tokenId) viewreturns (address){}
-//     function mint(address _to, uint256 _tokenId,  string memory _uri) public  {}
-//     function safeTransferFrom(address _from,address _to,uint256 _tokenId) external{}
-//     function getApproved( uint256 _tokenId) external view (_tokenId) returns (address){}
-//     function isApprovedForAll(
-//     address _owner,
-//     address _operator
-//   )
-//     external
-//     override
-//     view
-//     returns (bool)
-//   {
-//     function approve(
-//     address _approved,
-//     uint256 _tokenId
-//   )
-//     external
-//     override
-//     canOperate(_tokenId)
-//     validNFToken(_tokenId)
-//   {
-// }
-
 pragma solidity 0.8.0;
 
 import "./utils/owned.sol";
@@ -35,10 +10,15 @@ import "hardhat/console.sol";
 contract NMWDMarketPlace is Owned {
 
     //REVIEW ALL THESE CODES. MIGHT BE VERY WRONG
-    string constant INVALID_ADDRESS = "003001";
-    string constant CONTRACT_ADDRESS_NOT_SETUP = "003002";
-    string constant NOT_APPROVED= "003003";
-    string constant NOT_VALID_NFT = "003004";
+    string constant INVALID_ADDRESS = "004001";
+    string constant CONTRACT_ADDRESS_NOT_SETUP = "004002";
+    string constant NOT_APPROVED= "004003";
+    string constant NOT_VALID_NFT = "004004";
+    string constant NOT_FOR_SALE = "004005";
+    string constant NOT_EHOUGH_ETHER = "004006";
+    string constant NEGATIVE_VALUE = "004007";
+    string constant NO_CHANGES_INTENDED = "004008";
+    string constant NOT_NFT_OWNER = "004009";
 
     event Sent(address indexed payee, uint amount, uint balance);
     event Received(address indexed payer, uint tokenId, uint amount, uint balance);
@@ -49,6 +29,12 @@ contract NMWDMarketPlace is Owned {
     * @dev Mapping from token ID to its pirce.
     */
     mapping(uint => uint256) internal price;
+
+    /**
+    * @dev Mapping from NFT ID to boolean representing
+    * if it is for sale or not.
+    */
+    mapping(uint => bool) internal forSale;
 
     /**
     * @dev contract balance
@@ -63,7 +49,7 @@ contract NMWDMarketPlace is Owned {
     /**
     * @dev Contract Constructor
     */
-    constructor() public { 
+    constructor() { 
         isOwned();
     }
 
@@ -92,6 +78,7 @@ contract NMWDMarketPlace is Owned {
     * @param _tokenId uint token ID (painting number)
     */
     function purchaseToken(uint _tokenId) external payable  {
+        require(forSale[_tokenId], NOT_FOR_SALE);
         require(msg.sender != address(0) && msg.sender != address(this));
         require(msg.value >= price[_tokenId]);
         require(NMWDcontract.ownerOf(_tokenId) != address(0), NOT_VALID_NFT);
@@ -104,6 +91,7 @@ contract NMWDMarketPlace is Owned {
         console.log("contractBalance: ", contractBalance);
         ethBalance[tokenSeller] += (msg.value / 1000) * 998;
         contractBalance += (msg.value / 1000) * 2;
+        forSale[_tokenId] = false;
         emit Received(msg.sender, _tokenId, msg.value, address(this).balance);
     }
 
@@ -114,11 +102,12 @@ contract NMWDMarketPlace is Owned {
     function mintThroughPurchase(address _to, uint _tokenId, string memory _uri) external payable  {
         console.log("price[_tokenId] ",price[_tokenId]);
         require(price[_tokenId] != 0);
-        require(msg.value >= price[_tokenId], "Not enough Ehter");
+        require(msg.value >= price[_tokenId],NOT_EHOUGH_ETHER);
         require(msg.sender != address(0) && msg.sender != address(this));
         contractBalance += msg.value;
         NMWDcontract.mint(_to, _tokenId, _uri);
         console.log("msg.value ",msg.value);
+        console.log("forSale[_tokenId]  ",forSale[_tokenId] );
         emit Received(_to, _tokenId, msg.value, address(this).balance);
     }
 
@@ -152,13 +141,11 @@ contract NMWDMarketPlace is Owned {
     * @param _tokenId uint token ID (painting number)
     */
     function setPrice(uint _price, uint _tokenId) public {
-        require(_price > 10000000000000);
-        console.log("address(NMWDcontract): ",address(NMWDcontract));
-        console.log("owner: ",owner);
-        console.log("msg.sender: ",msg.sender);
+        require(_price > 0, NEGATIVE_VALUE);
+        require(_price != price[_tokenId], NO_CHANGES_INTENDED)
         try NMWDcontract.ownerOf(_tokenId) returns (address _address) {
             require(_address == msg.sender);
-        }catch Error(string memory reason){
+        }catch {
            require(owner == msg.sender, "Not owner"); 
         }
         price[_tokenId] = _price;
@@ -170,7 +157,47 @@ contract NMWDMarketPlace is Owned {
     */
     function getPrice(uint _tokenId) external view returns (uint256){
         return price[_tokenId];
-        //return _price;
-    }       
+    }    
+
+    /**
+    * @dev get user's balance held in the marketplace (weis)
+    * @param userAddress user's address
+    */
+    function getUserBalance(address userAddress) external view returns (uint256){
+        //require(msg.sender == userAddres || msg.sender == owner,"Only user can check this balance.");
+        return ethBalance[userAddress];
+    } 
+
+    /**
+    * @dev get marketplace's balance (weis)
+    */
+    function getMarketPlaceBalance() external view returns (uint256){
+        return contractBalance;
+    }   
+
+    /**
+    * @dev sets the token with _tokenId a boolean representing if it's for sale or not.
+    * @param _tokenId uint token ID 
+    * @param _forSale is it or not for sale? (true/false)
+    */
+    function setForSale(uint _tokenId, bool _forSale) external returns (bool){
+        
+        try NMWDcontract.ownerOf(_tokenId) returns (address _address) {
+            require(_address == msg.sender,NOT_NFT_OWNER);
+        }catch {
+           return false;
+        }
+        require(_forSale != forSale[_tokenId],NO_CHANGES_INTENDED);
+        forSale[_tokenId] = _forSale;
+        return true;
+    } 
+
+    /**
+    * @dev gets the token with _tokenId forSale variable.
+    * @param _tokenId uint token ID 
+    */
+    function getForSale(uint _tokenId) external view returns (bool){
+        return forSale[_tokenId];
+    } 
 
 }
