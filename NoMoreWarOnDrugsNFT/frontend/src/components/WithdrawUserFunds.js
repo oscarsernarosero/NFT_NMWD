@@ -4,15 +4,23 @@ export class WithdrawUserFunds extends React.Component{
 
   constructor(props){
     super(props);
-    this.state = {amount: " ", txHash: " "};
+    this.state = {amount: "", txHash: ""};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getMax = this.getMax.bind(this);
  
   }
   handleChange(event) {
     this.setState({amount: event.target.value});
   }
+
+  async getMax(event){
+    console.log("getMax activated");
+    let max = await this.props.getUserBalance(this.props.address);
+    max-=500;
+    this.setState({amount: parseInt(max)});
+}
 
 
   async handleSubmit(event) {
@@ -28,30 +36,32 @@ export class WithdrawUserFunds extends React.Component{
     if(txHash.error){
     this.setState({txHash: "Oops! Somethig went wrong. Try again later."});
     }else{
-    this.setState({txHash: txHash});
+    this.setState({txHash: txHash.hash});
     }
   }
 
   render(){
   return (
     <div>
-      <h4>Owner Alias by NFT Id: </h4>
+      <h4>Withdraw funds (User): </h4>
+      <button onClick ={this.getMax}>Withdraw Max Value</button>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
         
-          <label>Id: </label>
+          <label>Amount</label>
           <input
             className="form-control"
             type="number"
             step="1"
             name="amount"
             onChange={this.handleChange}
+            value={this.state.amount}
             required
           />
           <label name = "txHash">txHash: {this.state.txHash}</label>
         </div>
         <div className="form-group">
-          <input className="btn btn-primary" type="submit" value="Get Owner Alias" />
+          <input className="btn btn-primary" type="submit" value="Withdraw From Marketplace" />
         </div>
       </form>
     </div>

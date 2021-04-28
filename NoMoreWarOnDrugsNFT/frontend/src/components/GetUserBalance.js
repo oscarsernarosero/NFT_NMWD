@@ -12,7 +12,6 @@ export class GetUserBalance extends React.Component{
   async handleSubmit(event) {
     event.preventDefault();
 
-    //this.setState({balance: "..."});
     console.log(this.props);
     const balance =  await this.props.getUserBalance(this.state.address);
     console.log("got balance: ",parseInt(balance._hex));

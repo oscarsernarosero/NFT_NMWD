@@ -120,6 +120,7 @@ contract NMWDMarketPlace is Owned {
         require(_payee != address(0) && _payee != address(this));
         require(_amount > 0 && _amount <= address(this).balance);
         payable(_payee).transfer(_amount);
+        contractBalance -= _amount;
         emit Sent(_payee, _amount, address(this).balance);
     }   
 
@@ -142,7 +143,7 @@ contract NMWDMarketPlace is Owned {
     */
     function setPrice(uint _price, uint _tokenId) public {
         require(_price > 0, NEGATIVE_VALUE);
-        require(_price != price[_tokenId], NO_CHANGES_INTENDED)
+        require(_price != price[_tokenId], NO_CHANGES_INTENDED);
         try NMWDcontract.ownerOf(_tokenId) returns (address _address) {
             require(_address == msg.sender);
         }catch {

@@ -32,7 +32,7 @@ export class GetContractBalance extends React.Component{
         <label name = "balance">Balance: {this.state.balance}</label>
         </div>
         <div className="form-group">
-          <input className="btn btn-primary" type="submit" value="Get My Balance" />
+          <input className="btn btn-primary" type="submit" value="Get Contract's Balance" />
         </div>
       </form>
     </div>

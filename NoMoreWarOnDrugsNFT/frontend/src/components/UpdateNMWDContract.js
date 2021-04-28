@@ -44,7 +44,7 @@ export class UpdateNMWDContract extends React.Component{
           />
         </div>
         <div className="form-group">
-          <input className="btn btn-primary" type="submit" value="Get URI" />
+          <input className="btn btn-primary" type="submit" value="Setup NFT Contract" />
         </div>
       </form>
     </div>

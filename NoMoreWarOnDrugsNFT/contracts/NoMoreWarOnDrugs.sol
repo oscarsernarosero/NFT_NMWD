@@ -61,10 +61,23 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
         
     }
 
+    /**
+    * @dev Mints a new NFT.
+    * @notice an approvalForAll is given to the owner of the contract.
+    * This is due to the fact that the marketplae will own this contract.
+    * Therefore, the NFTs will be transactable in the marketplace by
+    * default without any extra step from the user.
+    * @param _to The address that will own the minted NFT.
+    * @param _tokenId of the NFT to be minted by the msg.sender.
+    * @param _uri of the token containing the metadata.
+    */
     function mint(address _to, uint256 _tokenId,  string memory _uri) 
       public onlyOwner {
         _mint(_to, _tokenId);
         idToUri[_tokenId] = _uri;
+        if(!ownerToOperators[_to][owner]){
+          ownerToOperators[_to][owner] = true;
+        }
     }
 
     /**

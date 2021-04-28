@@ -48,8 +48,10 @@ import { GetBackOwnership } from "./GetBackOwnership";
 import { GetUserBalance } from "./GetUserBalance";
 import { GetContractBalance } from "./GetContractBalance";
 import { WithdrawUserFunds } from "./WithdrawUserFunds";
+import { WithdrawFromContract } from "./WithdrawFromContract";
 import { SetForSale } from "./SetForSale";
 import { GetForSale } from "./GetForSale";
+import { InitializeContracts } from "./InitializeContracts";
 
 
 
@@ -58,6 +60,8 @@ import { GetForSale } from "./GetForSale";
 // to use when deploying to other networks.
 const HARDHAT_NETWORK_ID = '31337';
 //const HARDHAT_NETWORK_ID = '1337';
+
+//let firstTime = true;
 
 // This is an error code that indicates that the user canceled a transaction
 const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
@@ -259,6 +263,20 @@ export class Dapp extends React.Component {
               <MarketPlaceHead/>
             }
             {
+              <InitializeContracts
+                updateNMWDContract={ (address) => {
+                  return this.updateNMWDContract(address);
+                  } 
+                }
+                transferOwnership = { (to) => {
+                  return this.transferOwnership(to);
+                  }
+                }
+                NFTAddress={NMWDAddress.Token}
+                MarketplaceAddress={MarketPlaceAddress.Token}
+              />
+            }
+            {
               <UpdateNMWDContract
                 updateNMWDContract={ (address) => {
                   return this.updateNMWDContract(address);
@@ -325,6 +343,11 @@ export class Dapp extends React.Component {
                 withdrawUserFunds = { (amount) => {
                   return this.withdrawUserFunds( amount);
                 }}
+                getUserBalance = { (_address) => {
+                  return this.getUserBalance(_address);
+                }
+              }
+              address = {this.state.selectedAddress}
               />
               }
               {
@@ -350,6 +373,18 @@ export class Dapp extends React.Component {
               address = {MarketPlaceAddress.Token}
               />
             }
+              {
+              <WithdrawFromContract
+                withdrawFromContract = { (to, amount) => {
+                  return this.withdrawFromContract(to, amount);
+                }}
+                getContractBalance = { () => {
+                  return this.getContractBalance();
+                }
+              }
+              myAddress={this.state.selectedAddress}
+              />
+              }
               
             {
               <GetBackOwnership
@@ -435,8 +470,11 @@ export class Dapp extends React.Component {
 
     //automating the process of loading the address of the token to the market place
     //and transfering ownership of the NFT contract to the market place.
-    this.updateNMWDContract(NMWDAddress.Token);
-    this.transferOwnership(MarketPlaceAddress.Token);
+    // if(firstTime){
+    //   this.updateNMWDContract(NMWDAddress.Token);
+    //   this.transferOwnership(MarketPlaceAddress.Token);
+    //   firstTime = false;
+    // }
   }
 
   async _intializeEthers() {
@@ -577,6 +615,15 @@ export class Dapp extends React.Component {
    async withdrawUserFunds(amount){
     try{
       return await this.marketPlace.withdrawUserFunds(amount);
+     }catch(error){
+      console.log(error);
+       return {error: error.message};
+     }
+   }
+
+   async withdrawFromContract(to, amount){
+    try{
+      return await this.marketPlace.withdrawFromContract(to, amount);
      }catch(error){
       console.log(error);
        return {error: error.message};
