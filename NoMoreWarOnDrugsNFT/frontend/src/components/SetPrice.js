@@ -24,7 +24,7 @@ export class SetPrice extends React.Component{
 
   async handleSubmit(event) {
     event.preventDefault();
-    const price = this.state.price;
+    const price = (+this.state.price*1000000000000000000).toString();
     const tokenId = this.state.tokenId;
     console.log("price: ",price," tokenId: ",tokenId);
 
@@ -38,9 +38,6 @@ export class SetPrice extends React.Component{
         this.priceInput.current.value = "";
         this.idInput.current.value = "";
     }
-        
-    
-  
   }
 
   render(){
@@ -49,11 +46,12 @@ export class SetPrice extends React.Component{
       <h4>Set the price for your NFT</h4>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
-        <label>price: </label>
+        <label>price (ETH): </label>
           <input
             className="form-control"
             type="number"
             name="price"
+            step="0.00001"
             onChange={this.handleChangePrice}
             ref={this.priceInput}
             required
@@ -62,7 +60,7 @@ export class SetPrice extends React.Component{
           <input
             className="form-control"
             type="number"
-            step="1"
+            
             name="id"
             onChange={this.handleChangeId}
             ref={this.idInput}

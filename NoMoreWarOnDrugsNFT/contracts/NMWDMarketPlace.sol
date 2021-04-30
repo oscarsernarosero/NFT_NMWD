@@ -4,10 +4,11 @@ pragma solidity 0.8.0;
 
 import "./utils/owned.sol";
 import "./NoMoreWarOnDrugs.sol";
+import "./utils/context.sol";
 // We import this library to be able to use ////console.log
 import "hardhat/console.sol";
 
-contract NMWDMarketPlace is Owned {
+contract NMWDMarketPlace is Owned, Context {
 
     //REVIEW ALL THESE CODES. MIGHT BE VERY WRONG
     string constant INVALID_ADDRESS = "004001";
@@ -79,20 +80,20 @@ contract NMWDMarketPlace is Owned {
     */
     function purchaseToken(uint _tokenId) external payable  {
         require(forSale[_tokenId], NOT_FOR_SALE);
-        require(msg.sender != address(0) && msg.sender != address(this));
+        require(_msgSender() != address(0) && _msgSender() != address(this));
         require(msg.value >= price[_tokenId]);
         require(NMWDcontract.ownerOf(_tokenId) != address(0), NOT_VALID_NFT);
         address tokenSeller = NMWDcontract.ownerOf(_tokenId);
         require(NMWDcontract.getApproved(_tokenId) == address(this) || 
                 NMWDcontract.isApprovedForAll(tokenSeller, address(this)), 
                 NOT_APPROVED);
-        NMWDcontract.safeTransferFrom(tokenSeller, msg.sender, _tokenId);
+        NMWDcontract.safeTransferFrom(tokenSeller, _msgSender(), _tokenId);
         console.log("ethBalance[tokenSeller]: ",ethBalance[tokenSeller]);
         console.log("contractBalance: ", contractBalance);
         ethBalance[tokenSeller] += (msg.value / 1000) * 998;
         contractBalance += (msg.value / 1000) * 2;
         forSale[_tokenId] = false;
-        emit Received(msg.sender, _tokenId, msg.value, address(this).balance);
+        emit Received(_msgSender(), _tokenId, msg.value, address(this).balance);
     }
 
     /**
@@ -103,7 +104,7 @@ contract NMWDMarketPlace is Owned {
         console.log("price[_tokenId] ",price[_tokenId]);
         require(price[_tokenId] != 0);
         require(msg.value >= price[_tokenId],NOT_EHOUGH_ETHER);
-        require(msg.sender != address(0) && msg.sender != address(this));
+        require(_msgSender() != address(0) && _msgSender() != address(this));
         contractBalance += msg.value;
         NMWDcontract.mint(_to, _tokenId, _uri);
         console.log("msg.value ",msg.value);
@@ -129,10 +130,10 @@ contract NMWDMarketPlace is Owned {
     * @param _amount the amount of Ether that will be sent
     */
     function withdrawUserFunds(uint _amount) public {
-        require(_amount > 0 && _amount <= ethBalance[msg.sender]);
-        payable(msg.sender).transfer(_amount);
-        emit Sent(msg.sender, _amount, ethBalance[msg.sender]);
-        ethBalance[msg.sender] -=  _amount;
+        require(_amount > 0 && _amount <= ethBalance[_msgSender()]);
+        payable(_msgSender()).transfer(_amount);
+        emit Sent(_msgSender(), _amount, ethBalance[_msgSender()]);
+        ethBalance[_msgSender()] -=  _amount;
    }
 
     /**
@@ -145,9 +146,9 @@ contract NMWDMarketPlace is Owned {
         require(_price > 0, NEGATIVE_VALUE);
         require(_price != price[_tokenId], NO_CHANGES_INTENDED);
         try NMWDcontract.ownerOf(_tokenId) returns (address _address) {
-            require(_address == msg.sender);
+            require(_address == _msgSender());
         }catch {
-           require(owner == msg.sender, "Not owner"); 
+           require(owner == _msgSender(), "Not owner"); 
         }
         price[_tokenId] = _price;
     } 
@@ -165,7 +166,7 @@ contract NMWDMarketPlace is Owned {
     * @param userAddress user's address
     */
     function getUserBalance(address userAddress) external view returns (uint256){
-        //require(msg.sender == userAddres || msg.sender == owner,"Only user can check this balance.");
+        //require(_msgSender() == userAddres || _msgSender() == owner,"Only user can check this balance.");
         return ethBalance[userAddress];
     } 
 
@@ -184,7 +185,7 @@ contract NMWDMarketPlace is Owned {
     function setForSale(uint _tokenId, bool _forSale) external returns (bool){
         
         try NMWDcontract.ownerOf(_tokenId) returns (address _address) {
-            require(_address == msg.sender,NOT_NFT_OWNER);
+            require(_address == _msgSender(),NOT_NFT_OWNER);
         }catch {
            return false;
         }

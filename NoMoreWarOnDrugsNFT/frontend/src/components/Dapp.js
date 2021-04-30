@@ -52,6 +52,7 @@ import { WithdrawFromContract } from "./WithdrawFromContract";
 import { SetForSale } from "./SetForSale";
 import { GetForSale } from "./GetForSale";
 import { InitializeContracts } from "./InitializeContracts";
+import { Gallery } from "./Gallery";
 
 
 
@@ -94,6 +95,7 @@ export class Dapp extends React.Component {
       networkError: undefined,
       owner: undefined,
       index_Id: undefined,
+      nfts: undefined
     };
 
     this.state = this.initialState;
@@ -393,6 +395,14 @@ export class Dapp extends React.Component {
                 }}
               />
             }
+            {
+              <Gallery
+              getAllNFTs = { () => {
+                return this.getAllNFTs();
+                }
+                }
+              />
+            }
           </div>
         </div>
       </div>
@@ -447,7 +457,7 @@ export class Dapp extends React.Component {
     });
   }
 
-  _initialize(userAddress) {
+  async _initialize(userAddress) {
     // This method initializes the dapp
 
     // We first store the user's address in the component's state
@@ -466,6 +476,7 @@ export class Dapp extends React.Component {
     console.log("got contract owner");
     this._getTokenData();
     console.log("got token data");
+    //this.getAllNFTs();
     //this._startPollingData();
 
     //automating the process of loading the address of the token to the market place
@@ -725,6 +736,53 @@ export class Dapp extends React.Component {
       console.log(error);
        return {error: error.message};
      }
+   }
+
+   async getAllNFTs(){
+     let more=true;
+     let i=4;
+     const nfts = [];
+     let id;
+     let _id;
+     console.log("starting iteration of NFTs...");
+      while(more){
+        try{
+          _id = await this._nmwd.tokenByIndex(i);
+          id = parseInt(_id._hex);
+        }
+        catch{
+          more=false;
+          break;
+        }
+        const uri = await this._nmwd.tokenURI(id);
+        const response = await fetch(uri,);
+        console.log("response",response);
+        const jsonData = await response.text();
+        console.log("jsonData ",jsonData);
+        const data = JSON.parse(jsonData);
+        // fetch(uri, {
+        //   headers : { 
+        //     'Accept': 'application/json'
+        //    }
+    
+        // })
+        // .then((response) => {
+        //   console.log("response ",response);
+        //   response.text()
+        // })
+        // .then((messages) => {
+        //   console.log("messages",messages);
+        //   nfts.push(messages);
+          
+        // });
+        nfts.push(data);
+        console.log("data.image: ",data.image);
+        i+=1;
+      }
+      console.log("finished itereation of nfts at index ",i);
+      console.log("final uri list: ",nfts);
+       this.setState({nfts: nfts});
+       return nfts;
    }
 
 

@@ -18,7 +18,7 @@ export class WithdrawUserFunds extends React.Component{
   async getMax(event){
     console.log("getMax activated");
     let max = await this.props.getUserBalance(this.props.address);
-    max-=500;
+    max-=9;
     this.setState({amount: parseInt(max)});
 }
 
@@ -31,7 +31,7 @@ export class WithdrawUserFunds extends React.Component{
     
     this.setState({txHash: "..."});
     console.log(this.props);
-    const txHash =  await this.props.withdrawUserFunds(amount);
+    const txHash =  await this.props.withdrawUserFunds(amount.toString());
     console.log("got txHash: ",txHash);
     if(txHash.error){
     this.setState({txHash: "Oops! Somethig went wrong. Try again later."});

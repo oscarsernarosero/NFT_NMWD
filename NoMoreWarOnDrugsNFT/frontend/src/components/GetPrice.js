@@ -14,7 +14,6 @@ export class GetPrice extends React.Component{
     this.setState({tokenId: event.target.value});
   }
 
-
   async handleSubmit(event) {
     event.preventDefault();
     const tokenId = this.state.tokenId;
@@ -45,7 +44,7 @@ export class GetPrice extends React.Component{
             onChange={this.handleChange}
             required
           />
-          <label name = "price">Price: {this.state.price}</label>
+          <label name = "price">Price: {(this.state.price)/1000000000000000000} ETH</label>
         </div>
         <div className="form-group">
           <input className="btn btn-primary" type="submit" value="Get Price" />

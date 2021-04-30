@@ -27,7 +27,7 @@ export class WithdrawFromContract extends React.Component{
 
   async getMax(event){
       let max = await this.props.getContractBalance();
-      max-=500;
+      max-=9;
       console.log("max: ",max);
       this.setState({amount: parseInt(max)});
   }
