@@ -22,24 +22,9 @@ import { NoWalletDetected } from "./NoWalletDetected";
 import { ConnectWallet } from "./ConnectWallet";
 import { Loading } from "./Loading";
 import {TokenContract} from "./TokenContract/TokenContract"
-import { TransferOwnership } from  "./Marketplace/TransferOwnership";
-import { MarketPlaceApprove } from "./Marketplace/MarketPlaceApprove";
-import { Purchase } from "./Marketplace/Purchase";
-import { SetPrice } from "./Marketplace/SetPrice";
-import { MintThroughPurchase } from "./Marketplace/MintThroughPurchase";
-import { UpdateNMWDContract } from "./Marketplace/UpdateNMWDContract";
-import { MarketPlaceHead } from "./Marketplace/MarketPlaceHead";
-import { GetPrice } from "./Marketplace/GetPrice";
-import { GetBackOwnership } from "./Marketplace/GetBackOwnership";
-import { GetUserBalance } from "./Marketplace/GetUserBalance";
-import { GetContractBalance } from "./Marketplace/GetContractBalance";
-import { WithdrawUserFunds } from "./Marketplace/WithdrawUserFunds";
-import { WithdrawFromContract } from "./Marketplace/WithdrawFromContract";
-import { SetForSale } from "./Marketplace/SetForSale";
-import { GetForSale } from "./Marketplace/GetForSale";
-import { InitializeContracts } from "./Marketplace/InitializeContracts";
-import { Gallery } from "./Marketplace/Gallery";
+
 import { NavBar } from "./Header/NavBar";
+import { Marketplace } from "./Marketplace/Marketplace";
 
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
@@ -137,9 +122,6 @@ export class Dapp extends React.Component {
               safeTransferFrom={ (owner, to, tokenId) => {
                   return this.safeTransferFrom(owner, to, tokenId);
               }}
-              safeTransferFrom={ (owner, to, tokenId) => {
-                return this.safeTransferFrom(owner, to, tokenId);
-              }}
               getOwnerOf={ (id) => {
                 return this.getOwnerOf(id);
               }}
@@ -170,153 +152,65 @@ export class Dapp extends React.Component {
               owner = {this.state.owner}
 
 
-          />
-        }
+              />
+            }
         
             {
-              <MarketPlaceHead
-              
-              />
-            }
-            {
-              <InitializeContracts
-                updateNMWDContract={ (address) => {
-                  return this.updateNMWDContract(address);
-                  } 
-                }
-                transferOwnership = { (to) => {
-                  return this.transferOwnership(to);
-                  }
-                }
-                NFTAddress={NMWDAddress.Token}
-                MarketplaceAddress={MarketPlaceAddress.Token}
-              />
-            }
-            {
-              <UpdateNMWDContract
-                updateNMWDContract={ (address) => {
-                  return this.updateNMWDContract(address);
-                } }
-              />
-            }
-            {
-              <TransferOwnership
-                transferOwnership = { (to) => {
-                  return this.transferOwnership(to);
-                }}
-              />
-            }
-            {
-              <SetPrice
-                setPrice = { (price, tokenId) => {
-                  return this.setPrice(price, tokenId);
-                }}
-              />
-            }
-            {
-              <GetPrice
-                getPrice = { (tokenId) => {
-                  return this.getPrice( tokenId);
-                }}
-              />
+              <Marketplace
+              updateNMWDContract={ (address) => {
+                return this.updateNMWDContract(address);
+                } 
               }
-            {
-              <MarketPlaceApprove
-                marketPlaceApprove={ (_tokenId) => {
-                  return this.approveNMWD(_tokenId);
-                } }
-              />
-            }
-            {
-              <Purchase
-                getPrice = { (tokenId) => {
-                  return this.getPrice( tokenId);
-                }}
-                to = {this.state.selectedAddress}
-                marketPlaceAddress = {MarketPlaceAddress.Token}
-              />
-            }
-            {
-              <MintThroughPurchase
-                to = {this.state.selectedAddress}
-                marketPlaceAddress = {MarketPlaceAddress.Token}
-                getPrice = { (tokenId) => {
-                  return this.getPrice( tokenId);
-                }}
-              />
-            }
-            {
-              <GetUserBalance
-                getUserBalance = { (_address) => {
-                  return this.getUserBalance(_address);
+              transferOwnership = { (to) => {
+                return this.transferOwnership(to);
                 }
               }
-              address = {this.state.selectedAddress}
-              />
+              NFTAddress={NMWDAddress.Token}
+              MarketplaceAddress={MarketPlaceAddress.Token}
+              setPrice = { (price, tokenId) => {
+                return this.setPrice(price, tokenId);
+              }}
+              getPrice = { (tokenId) => {
+                return this.getPrice( tokenId);
+              }}
+              marketPlaceApprove={ (_tokenId) => {
+                return this.props.approveNMWD(_tokenId);
+              } }
+              of = {this.state.selectedAddress}
+              marketPlaceAddress = {MarketPlaceAddress.Token}
+              to = {this.state.selectedAddress}
+              withdrawUserFunds = { (amount) => {
+                return this.withdrawUserFunds( amount);
+              }}
+              getUserBalance = { (_address) => {
+                return this.getUserBalance(_address);
+              }
             }
-            {
-              <WithdrawUserFunds
-                withdrawUserFunds = { (amount) => {
-                  return this.withdrawUserFunds( amount);
-                }}
-                getUserBalance = { (_address) => {
-                  return this.getUserBalance(_address);
-                }
-              }
-              address = {this.state.selectedAddress}
-              />
-              }
-              {
-              <SetForSale
-                setForSale = { (tokenId, forSale) => {
+              selectedAddress = {this.state.selectedAddress}
+              setForSale = { (tokenId, forSale) => {
                   return this.setForSale(tokenId, forSale);
                 }}
-              />
-            }
-            {
-              <GetForSale
                 getForSale = { (tokenId) => {
                   return this.getForSale( tokenId);
                 }}
-              />
-              }
-              {
-              <GetContractBalance
                 getContractBalance = { () => {
                   return this.getContractBalance();
-                }
-              }
-              address = {MarketPlaceAddress.Token}
-              />
-            }
-              {
-              <WithdrawFromContract
+                }}
                 withdrawFromContract = { (to, amount) => {
                   return this.withdrawFromContract(to, amount);
                 }}
                 getContractBalance = { () => {
                   return this.getContractBalance();
-                }
-              }
-              myAddress={this.state.selectedAddress}
-              />
-              }
-              
-            {
-              <GetBackOwnership
+                }}
                 getBackOwnership ={ () => {
                   return this.getBackOwnership();
                 }}
-              />
-            }
-            {
-              <Gallery
-              getAllNFTs = { () => {
+                getAllNFTs = { () => {
                 return this.getAllNFTs();
                 }
                 }
-              />
-           }
+                />
+              }
           </div>
     );
   }
