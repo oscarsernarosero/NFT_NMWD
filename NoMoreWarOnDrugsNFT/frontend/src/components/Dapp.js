@@ -8,8 +8,6 @@ import { ethers } from "ethers";
 
 // We import the contract's artifacts and address here, as we are going to be
 // using them with ethers
-import TokenArtifact from "../contracts/Token_token.json";
-import contractAddress from "../contracts/contract-address-token.json";
 
 import NMWDArtifact from "../contracts/Token_NoMoreWarOnDrugs.json";
 import NMWDAddress from "../contracts/contract-address-NoMoreWarOnDrugs.json";
@@ -23,41 +21,25 @@ import MarketPlaceAddress from "../contracts/contract-address-NMWDMarketPlace.js
 import { NoWalletDetected } from "./NoWalletDetected";
 import { ConnectWallet } from "./ConnectWallet";
 import { Loading } from "./Loading";
-import { Transfer } from "./Transfer";
-import { TransactionErrorMessage } from "./TransactionErrorMessage";
-import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
-import { NoTokensMessage } from "./NoTokensMessage";
-import { Mint } from "./mint";
-import { TokenByIndex } from "./TokenByIndex";
-import { IdToOwnerIndex } from "./IdToOwnerIndex";
-import { GetOwnerOf } from "./GetOwnerOf";
-import { TokenURI } from "./TokenURI";
-import { Approve } from "./Approve";
-import { SetApprovalForAll } from "./SetApprovalForAll";
-import { TransferNMWD } from "./TransferNMWD";
-import { TransferFrom } from "./TransferFrom";
-//import { TokenOwnerAlias } from "./TokenOwnerAlias";
-import { TokenMessage } from "./TokenMessage";
-import { SetTokenMessage } from "./SetTokenMessage";
-import { TransferOwnership } from  "./TransferOwnership";
-import { MarketPlaceApprove } from "./MarketPlaceApprove";
-import { Purchase } from "./Purchase";
-import { SetPrice } from "./SetPrice";
-import { MintThroughPurchase } from "./MintThroughPurchase";
-import { UpdateNMWDContract } from "./UpdateNMWDContract";
-import { MarketPlaceHead } from "./MarketPlaceHead";
-import { GetPrice } from "./GetPrice";
-import { GetBackOwnership } from "./GetBackOwnership";
-import { GetUserBalance } from "./GetUserBalance";
-import { GetContractBalance } from "./GetContractBalance";
-import { WithdrawUserFunds } from "./WithdrawUserFunds";
-import { WithdrawFromContract } from "./WithdrawFromContract";
-import { SetForSale } from "./SetForSale";
-import { GetForSale } from "./GetForSale";
-import { InitializeContracts } from "./InitializeContracts";
-import { Gallery } from "./Gallery";
-import { NavBar } from "./NavBar";
-
+import {TokenContract} from "./TokenContract/TokenContract"
+import { TransferOwnership } from  "./Marketplace/TransferOwnership";
+import { MarketPlaceApprove } from "./Marketplace/MarketPlaceApprove";
+import { Purchase } from "./Marketplace/Purchase";
+import { SetPrice } from "./Marketplace/SetPrice";
+import { MintThroughPurchase } from "./Marketplace/MintThroughPurchase";
+import { UpdateNMWDContract } from "./Marketplace/UpdateNMWDContract";
+import { MarketPlaceHead } from "./Marketplace/MarketPlaceHead";
+import { GetPrice } from "./Marketplace/GetPrice";
+import { GetBackOwnership } from "./Marketplace/GetBackOwnership";
+import { GetUserBalance } from "./Marketplace/GetUserBalance";
+import { GetContractBalance } from "./Marketplace/GetContractBalance";
+import { WithdrawUserFunds } from "./Marketplace/WithdrawUserFunds";
+import { WithdrawFromContract } from "./Marketplace/WithdrawFromContract";
+import { SetForSale } from "./Marketplace/SetForSale";
+import { GetForSale } from "./Marketplace/GetForSale";
+import { InitializeContracts } from "./Marketplace/InitializeContracts";
+import { Gallery } from "./Marketplace/Gallery";
+import { NavBar } from "./Header/NavBar";
 
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
@@ -142,132 +124,59 @@ export class Dapp extends React.Component {
         {
           <NavBar/>
         }
-        
-        <div className="row">
-          <div className="col-12">
-            <p>
-              Welcome <b>{this.state.selectedAddress}</b>
-            </p>
-          </div>
-        </div>
-
-        <hr />
-
-        <div className="row">
-          <div className="col-12">
-            {/* 
-              Sending a transaction isn't an immidiate action. You have to wait
-              for it to be mined.
-              If we are waiting for one, we show a message here.
-            */}
-            {this.state.txBeingSent && (
-              <WaitingForTransactionMessage txHash={this.state.txBeingSent} />
-            )}
-
-            {/* 
-              Sending a transaction can fail in multiple ways. 
-              If that happened, we show a message here.
-            */}
-            {this.state.transactionError && (
-              <TransactionErrorMessage
-                message={this._getRpcErrorMessage(this.state.transactionError)}
-                dismiss={() => this._dismissTransactionError()}
-              />
-            )}
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-12">
-            {
-              <TransferNMWD 
+        {
+          <TokenContract
+          selectedAddress = {this.state.selectedAddress}
+              txBeingSent={this.state.txBeingSent}
+              transactionError={this.state.transactionError}
+              _getRpcErrorMessage={(error)=>{
+                return this._getRpcErrorMessage(error)}}
+              _dismissTransactionError={()=>{
+                  return this._dismissTransactionError();
+                }} 
               safeTransferFrom={ (owner, to, tokenId) => {
                   return this.safeTransferFrom(owner, to, tokenId);
               }}
-              owner={this.state.selectedAddress}
-              />
-            }
-            {
-              <TransferFrom 
               safeTransferFrom={ (owner, to, tokenId) => {
-                  return this.safeTransferFrom(owner, to, tokenId);
+                return this.safeTransferFrom(owner, to, tokenId);
               }}
-              />
-            }
-            {
-              <GetOwnerOf 
               getOwnerOf={ (id) => {
-                  return this.getOwnerOf(id);
+                return this.getOwnerOf(id);
               }}
-              />
-            }
-            {
-              <Approve 
               approve={ (address, id) => {
-                  return this.approve(address, id);
+                return this.approve(address, id);
               }}
-              />
-            }
-            {
-              <SetApprovalForAll 
               setApprovalForAll={ (address, approve) => {
-                  return this.setApprovalForAll(address, approve);
+                return this.setApprovalForAll(address, approve);
               }}
-              />
-            }
-            {
-              <IdToOwnerIndex
-                idToOwnerIndex={ (owner, index) => {
-                  return this.idToOwnerIndex(owner, index);
-                } 
-              }/>
-            }
-            {
-
-            }
-            {
-              <TokenByIndex
+              idToOwnerIndex={ (owner, index) => {
+                return this.idToOwnerIndex(owner, index);
+              }}
               tokenByIndex={  (index) => {
-                  return this.tokenByIndex(index);
-                } 
-               } 
-               />
-            }
-            {
-              <TokenMessage
+                return this.tokenByIndex(index);
+              }} 
               tokenMessage={  (id) => {
-                  return this.tokenMessage(id);
-                } 
-               } 
-               />
-            }
-            {
-              <TokenURI
-              tokenURI={ (_tokenId ) => {
-               return this.tokenURI(_tokenId);
-             } 
-            }
-             owner = {this.state.owner}
-           />
-            }
-            {
-              <SetTokenMessage
+                return this.tokenMessage(id);
+             }}
+             tokenURI={ (_tokenId ) => {
+              return this.tokenURI(_tokenId);
+              }}
               setTokenMessage={ (_tokenId, _msg ) => {
-               return this.setTokenMessage(_tokenId, _msg );
-             } 
-            }
-           />
-            }
+                return this.setTokenMessage(_tokenId, _msg );
+              }}
+              mint={ (_to, _tokenId, _uri) => {
+                return this._mint(_to, _tokenId, _uri);
+              } }
+              owner = {this.state.owner}
+
+
+          />
+        }
+        
             {
-              <Mint
-                 mint={ (_to, _tokenId, _uri) => {
-                  return this._mint(_to, _tokenId, _uri);
-                } }
-                owner = {this.state.owner}
+              <MarketPlaceHead
+              
               />
-            }
-            {
-              <MarketPlaceHead/>
             }
             {
               <InitializeContracts
@@ -407,10 +316,8 @@ export class Dapp extends React.Component {
                 }
                 }
               />
-            }
+           }
           </div>
-        </div>
-      </div>
     );
   }
 
