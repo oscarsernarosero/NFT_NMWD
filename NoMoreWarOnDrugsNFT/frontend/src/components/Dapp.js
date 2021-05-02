@@ -1,5 +1,8 @@
 import React from "react";
 
+//import Navbar from 'react-bootstrap/Navbar'
+
+
 // We'll use ethers to interact with the Ethereum network and our contract
 import { ethers } from "ethers";
 
@@ -53,6 +56,7 @@ import { SetForSale } from "./SetForSale";
 import { GetForSale } from "./GetForSale";
 import { InitializeContracts } from "./InitializeContracts";
 import { Gallery } from "./Gallery";
+import { NavBar } from "./NavBar";
 
 
 
@@ -135,11 +139,12 @@ export class Dapp extends React.Component {
     // If everything is loaded, we render the application.
     return (
       <div className="container p-4">
+        {
+          <NavBar/>
+        }
+        
         <div className="row">
           <div className="col-12">
-            <h1>
-              {this.state.tokenData.name} ({this.state.tokenData.symbol})
-            </h1>
             <p>
               Welcome <b>{this.state.selectedAddress}</b>
             </p>
@@ -809,8 +814,8 @@ export class Dapp extends React.Component {
   // in the component state.
   async _getTokenData() {
     //const name = await this._token.name();
-    const name = "dummy_token";
-    const symbol = "DUMMY";
+    const name = "No More War On Drugs";
+    const symbol = "NMWD";
 
    this.setState({ tokenData: { name: name, symbol: symbol } });
   }
