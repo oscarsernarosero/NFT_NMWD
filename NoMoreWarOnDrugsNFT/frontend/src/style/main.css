@@ -7,8 +7,12 @@ h1 {
 }
 
 body{
-    background-color: white;
+    background-color: black;
     color: black;
     font-family: 'Rajdhani', sans-serif;
     font-size:25px;
+}
+
+*{
+    line-height: 1.5;
 }

@@ -4,16 +4,16 @@ import React from "react";
 export class SupportArtists extends React.Component {
     render(){
         return (
-            <div className="">
+            <div className="support-artists">
                 <div>
                 <img 
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/1200px-Ethereum-icon-purple.svg.png"
                 alt="image"
-                className="history-image"
+                className="support-artists-image"
                 
                 />
                 </div>
-                <h2>Be part of history</h2>
+                <h2>You are supporting artists and my Youtube channel</h2>
                 <p>
                     By getting one or more of the No-More-War-On-Drugs NFTs you are not only supporting my channel and the artists who create \
                     these peaces of art, but you are also immortalizing yourself in the Ethereum blockchain. These NFTs offer the possibility \

@@ -1,3 +1,10 @@
+.home-container{
+    background-image: url("../../images/channel_photo_low_ql.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .history-image{
     float: left;
     max-width: 40%;
@@ -8,6 +15,54 @@
 
 .home{
     min-height:600px;
-    padding: 15px 20px;
-    background-color: rgb(205, 255,225);
+    padding: 15px 60px;
+    background-color: black;
+    color: white
+}
+
+.support-artists-image{
+    float: right;
+    max-width: 40%;
+    min-width: 300px;
+    padding: 30px;
+    overflow: scroll;
+    
+}
+
+.support-artists{
+    background-color: black;
+    color: white;
+    min-height:600px;
+    padding: 15px 60px;
+}
+
+.home-buttons{
+    min-height:400px;
+    padding: 15px 100px;
+    background-color:#08293baa;
+    color: #ffffffff;
+    align-content: center;
+}
+
+.explore-nft{
+    text-align: center;
+    padding: 5px 20px 5px 20px;
+    margin: 50px 300px 100px 300px;
+    background-color: #222288aa;
+}
+
+.explore-nft-button{
+    padding: 20px 10px;
+    text-align: center;
+    font-size: 40px;
+    min-width: 55%;
+    max-width:80%;
+    border-radius: 15px;
+    position: relative;
+}
+
+.test{
+    display: grid;
+    place-items: center;
+    
 }

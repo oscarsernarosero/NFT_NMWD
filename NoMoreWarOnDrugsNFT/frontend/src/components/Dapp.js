@@ -107,7 +107,6 @@ export class Dapp extends React.Component {
       <Router>
         <div> 
           <NavBar/>
-          <hr/>
           <div>
             <switch>
               <Route path="/" exact 

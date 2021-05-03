@@ -3,13 +3,16 @@ import './Home.css'
 
 import { BePartOfHistory } from "./BePartOfHistory";
 import { SupportArtists } from "./SupportArtists";
+import { Buttons } from "./Buttons";
 
 export class Home extends React.Component {
     render(){
         return (
-            <div>
+            <div className="home-container">
             <BePartOfHistory/>
+            <Buttons/>
             <SupportArtists/>
+            
             </div>
         );
     }
