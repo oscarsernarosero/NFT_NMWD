@@ -32,9 +32,6 @@ export class TokenContract extends React.Component{
                 </p>
                 </div>
             </div>
-
-            <hr />
-
             <div className="row">
                 <div className="col-12">
                 {/* 

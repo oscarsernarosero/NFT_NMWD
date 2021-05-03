@@ -1,0 +1,13 @@
+.history-image{
+    float: left;
+    max-width: 40%;
+    min-width: 300px;
+    padding: 30px;
+    overflow: scroll;
+}
+
+.home{
+    min-height:600px;
+    padding: 15px 20px;
+    background-color: rgb(205, 255,225);
+}

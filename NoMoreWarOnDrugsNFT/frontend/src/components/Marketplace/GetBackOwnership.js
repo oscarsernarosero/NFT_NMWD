@@ -1,7 +1,5 @@
 import React from "react";
 
-import { NetworkErrorMessage } from "../NetworkErrorMessage";
-
 export function GetBackOwnership({getBackOwnership}) {
   return (
     <div className="container">

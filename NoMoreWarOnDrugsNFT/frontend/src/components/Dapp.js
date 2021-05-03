@@ -1,30 +1,29 @@
 import React from "react";
 
-//import Navbar from 'react-bootstrap/Navbar'
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 // We'll use ethers to interact with the Ethereum network and our contract
 import { ethers } from "ethers";
 
 // We import the contract's artifacts and address here, as we are going to be
 // using them with ethers
-
 import NMWDArtifact from "../contracts/Token_NoMoreWarOnDrugs.json";
 import NMWDAddress from "../contracts/contract-address-NoMoreWarOnDrugs.json";
-
 import MarketPlaceArtifact from "../contracts/Token_NMWDMarketPlace.json";
 import MarketPlaceAddress from "../contracts/contract-address-NMWDMarketPlace.json";
 
-// All the logic of this dapp is contained in the Dapp component.
-// These other components are just presentational ones: they don't have any
-// logic. They just render HTML.
+// components
 import { NoWalletDetected } from "./NoWalletDetected";
 import { ConnectWallet } from "./ConnectWallet";
-import { Loading } from "./Loading";
 import {TokenContract} from "./TokenContract/TokenContract"
-
 import { NavBar } from "./Header/NavBar";
 import { Marketplace } from "./Marketplace/Marketplace";
+import { Home } from "./Home/Home";
 
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
@@ -98,120 +97,131 @@ export class Dapp extends React.Component {
 
     // If the token data or the user's balance hasn't loaded yet, we show
     // a loading component.
-    //if (!this.state.tokenData || !this.state.balance) {
-      if (!this.state.tokenData ) {
-      return <Loading />;
-    }
+    // //if (!this.state.tokenData || !this.state.balance) {
+    //   if (!this.state.tokenData ) {
+    //   return <Loading />;
+    // }
 
     // If everything is loaded, we render the application.
     return (
-      <div className="container p-4">
-        {
+      <Router>
+        <div> 
           <NavBar/>
-        }
-        {
-          <TokenContract
-          selectedAddress = {this.state.selectedAddress}
-              txBeingSent={this.state.txBeingSent}
-              transactionError={this.state.transactionError}
-              _getRpcErrorMessage={(error)=>{
-                return this._getRpcErrorMessage(error)}}
-              _dismissTransactionError={()=>{
-                  return this._dismissTransactionError();
-                }} 
-              safeTransferFrom={ (owner, to, tokenId) => {
-                  return this.safeTransferFrom(owner, to, tokenId);
-              }}
-              getOwnerOf={ (id) => {
-                return this.getOwnerOf(id);
-              }}
-              approve={ (address, id) => {
-                return this.approve(address, id);
-              }}
-              setApprovalForAll={ (address, approve) => {
-                return this.setApprovalForAll(address, approve);
-              }}
-              idToOwnerIndex={ (owner, index) => {
-                return this.idToOwnerIndex(owner, index);
-              }}
-              tokenByIndex={  (index) => {
-                return this.tokenByIndex(index);
-              }} 
-              tokenMessage={  (id) => {
-                return this.tokenMessage(id);
-             }}
-             tokenURI={ (_tokenId ) => {
-              return this.tokenURI(_tokenId);
-              }}
-              setTokenMessage={ (_tokenId, _msg ) => {
-                return this.setTokenMessage(_tokenId, _msg );
-              }}
-              mint={ (_to, _tokenId, _uri) => {
-                return this._mint(_to, _tokenId, _uri);
-              } }
-              owner = {this.state.owner}
-
-
-              />
-            }
-        
-            {
-              <Marketplace
-              updateNMWDContract={ (address) => {
-                return this.updateNMWDContract(address);
-                } 
-              }
-              transferOwnership = { (to) => {
-                return this.transferOwnership(to);
-                }
-              }
-              NFTAddress={NMWDAddress.Token}
-              MarketplaceAddress={MarketPlaceAddress.Token}
-              setPrice = { (price, tokenId) => {
-                return this.setPrice(price, tokenId);
-              }}
-              getPrice = { (tokenId) => {
-                return this.getPrice( tokenId);
-              }}
-              marketPlaceApprove={ (_tokenId) => {
-                return this.props.approveNMWD(_tokenId);
-              } }
-              of = {this.state.selectedAddress}
-              marketPlaceAddress = {MarketPlaceAddress.Token}
-              to = {this.state.selectedAddress}
-              withdrawUserFunds = { (amount) => {
-                return this.withdrawUserFunds( amount);
-              }}
-              getUserBalance = { (_address) => {
-                return this.getUserBalance(_address);
-              }
-            }
-              selectedAddress = {this.state.selectedAddress}
-              setForSale = { (tokenId, forSale) => {
-                  return this.setForSale(tokenId, forSale);
-                }}
-                getForSale = { (tokenId) => {
-                  return this.getForSale( tokenId);
-                }}
-                getContractBalance = { () => {
-                  return this.getContractBalance();
-                }}
-                withdrawFromContract = { (to, amount) => {
-                  return this.withdrawFromContract(to, amount);
-                }}
-                getContractBalance = { () => {
-                  return this.getContractBalance();
-                }}
-                getBackOwnership ={ () => {
-                  return this.getBackOwnership();
-                }}
-                getAllNFTs = { () => {
-                return this.getAllNFTs();
-                }
-                }
+          <hr/>
+          <div>
+            <switch>
+              <Route path="/" exact 
+                component={Home}/>
+              <Router path="/" exact render = {()=>{ 
+                    return(
+                      <h1>home</h1> 
+                    );
+                  }
+                }/>
+              <Route path="/tokenContract"
+                render = {
+                  (props)=>
+                  <TokenContract 
+                    selectedAddress = {this.state.selectedAddress}
+                    txBeingSent={this.state.txBeingSent}
+                    transactionError={this.state.transactionError}
+                    _getRpcErrorMessage={(error)=>{
+                      return this._getRpcErrorMessage(error)}}
+                    _dismissTransactionError={()=>{
+                        return this._dismissTransactionError();
+                      }} 
+                    safeTransferFrom={ (owner, to, tokenId) => {
+                        return this.safeTransferFrom(owner, to, tokenId);
+                    }}
+                    getOwnerOf={ (id) => {
+                      return this.getOwnerOf(id);
+                    }}
+                    approve={ (address, id) => {
+                      return this.approve(address, id);
+                    }}
+                    setApprovalForAll={ (address, approve) => {
+                      return this.setApprovalForAll(address, approve);
+                    }}
+                    idToOwnerIndex={ (owner, index) => {
+                      return this.idToOwnerIndex(owner, index);
+                    }}
+                    tokenByIndex={  (index) => {
+                      return this.tokenByIndex(index);
+                    }} 
+                    tokenMessage={  (id) => {
+                      return this.tokenMessage(id);
+                    }}
+                    tokenURI={ (_tokenId ) => {
+                    return this.tokenURI(_tokenId);
+                    }}
+                    setTokenMessage={ (_tokenId, _msg ) => {
+                      return this.setTokenMessage(_tokenId, _msg );
+                    }}
+                    mint={ (_to, _tokenId, _uri) => {
+                      return this._mint(_to, _tokenId, _uri);
+                    } }
+                    owner = {this.state.owner}
+                    />
+                 }
                 />
-              }
+              <Route path="/marketplace" 
+                render={(props)=>
+                  <Marketplace
+                    updateNMWDContract={ (address) => {
+                      return this.updateNMWDContract(address);
+                      } 
+                    }
+                    transferOwnership = { (to) => {
+                      return this.transferOwnership(to);
+                      }
+                    }
+                    NFTAddress={NMWDAddress.Token}
+                    MarketplaceAddress={MarketPlaceAddress.Token}
+                    setPrice = { (price, tokenId) => {
+                      return this.setPrice(price, tokenId);
+                    }}
+                    getPrice = { (tokenId) => {
+                      return this.getPrice( tokenId);
+                    }}
+                    marketPlaceApprove={ (_tokenId) => {
+                      return this.props.approveNMWD(_tokenId);
+                    } }
+                    of = {this.state.selectedAddress}
+                    marketPlaceAddress = {MarketPlaceAddress.Token}
+                    to = {this.state.selectedAddress}
+                    withdrawUserFunds = { (amount) => {
+                      return this.withdrawUserFunds( amount);
+                    }}
+                    getUserBalance = { (_address) => {
+                      return this.getUserBalance(_address);
+                    }}
+                    selectedAddress = {this.state.selectedAddress}
+                    setForSale = { (tokenId, forSale) => {
+                      return this.setForSale(tokenId, forSale);
+                    }}
+                    getForSale = { (tokenId) => {
+                      return this.getForSale( tokenId);
+                    }}
+                    getContractBalance = { () => {
+                      return this.getContractBalance();
+                    }}
+                    withdrawFromContract = { (to, amount) => {
+                      return this.withdrawFromContract(to, amount);
+                    }}
+                    getBackOwnership ={ () => {
+                      return this.getBackOwnership();
+                    }}
+                    getAllNFTs = { () => {
+                    return this.getAllNFTs();
+                    }
+                    }
+                  />
+                }
+              />
+            </switch>
+            </div>
           </div>
+        </Router>
     );
   }
 
@@ -267,6 +277,7 @@ export class Dapp extends React.Component {
     // This method initializes the dapp
 
     // We first store the user's address in the component's state
+    console.log(userAddress);
     this.setState({
       selectedAddress: userAddress,
     });

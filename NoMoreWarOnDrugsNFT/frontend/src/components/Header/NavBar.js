@@ -2,6 +2,8 @@ import React from "react";
 import {NavItems} from "./NavItems";
 import '../../style/NavBar.css'
 
+import { Link} from "react-router-dom";
+
 export class NavBar extends React.Component{
 
     state = {clicked: false};
@@ -12,24 +14,30 @@ export class NavBar extends React.Component{
 
   render(){
     return (
-        <nav className="NavItems">
-            <h1>No More War On Drugs</h1>
-            <div className="menu-icon" onClick={this.handleClick}>
-               {this.state.clicked ? " X" : ". . ."}
-            </div>
-            <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
-                {NavItems.map( (item, index) => {
-                    return (
-                        <li key={index}>
-                            <a className={item.className} href={item.link}>
-                                {item.title}
-                                </a>
-                            </li>
-                    );} )}
-            </ul>
-            
-
-        </nav>
+            <nav className="NavItems">
+                <div className="neon">
+                    <span class="title-header" data-text="">
+                        No More War On Drugs</span>
+                    <span class="gradient"></span>
+                    <span class="spotlight"></span>
+                </div>
+                <div className="menu-icon" onClick={this.handleClick}>
+                {this.state.clicked ? " X" : ". . ."}
+                </div>
+                <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
+                    {NavItems.map( (item, index) => {
+                        return (
+                            <li key={index}>
+                               {/*<a className={item.className} href={item.link}>*/}
+                                <Link to={item.link} className={item.className}>
+                                    {item.title}
+                                    </Link>
+                                {/*{item.title}
+                                     </a> */}
+                                </li>
+                        );} )}
+                </ul>
+            </nav>
         
     );
     }

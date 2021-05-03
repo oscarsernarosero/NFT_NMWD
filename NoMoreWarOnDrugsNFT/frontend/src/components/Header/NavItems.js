@@ -1,27 +1,27 @@
 export const  NavItems = [
     {
         title: "home",
-        link: "#",
+        link: "/",
         className: "nav-link"
     },
     {
         title: "Overview",
-        link: "#",
+        link: "/overview",
         className: "nav-link"
     },
     {
         title: "Gallery",
-        link: "#",
+        link: "/gallery",
         className: "nav-link"
     },
     {
         title: "Wallet",
-        link: "#",
+        link: "marketplace",
         className: "nav-link"
     },
     {
         title: "Channel",
-        link: "#",
+        link: "channel",
         className: "nav-link"
     }
 
