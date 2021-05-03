@@ -31,7 +31,7 @@ export class GetPrice extends React.Component{
   render(){
   return (
     <div>
-      <h4>Get The Price Of The NFT With Id: </h4>
+      <h4 className="component-title">Get The Price Of The NFT With Id: </h4>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
         

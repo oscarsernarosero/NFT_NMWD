@@ -8,11 +8,81 @@ h1 {
 
 body{
     background-color: black;
-    color: black;
+    color: white;
     font-family: 'Rajdhani', sans-serif;
     font-size:25px;
 }
 
 *{
     line-height: 1.5;
+}
+
+.justify-content-md-center{
+    align-content: center;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.btn-warning{
+    border-radius: 4px;
+    background-color: #dddd00;
+    border-style: hidden;
+    padding: 5px 20px;
+    font-size: 22px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: bolder;
+}
+
+.form-control{
+    min-width: 60%;
+    max-width: 40rem;
+    margin: 10px 0px 10px 0px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 22px;
+    border-radius: 10px;
+}
+
+.form-group{
+    margin: 5px 140px;
+    display:grid;
+}
+
+.btn{
+    border-radius: 10px;
+    border-style: hidden;
+    padding: 5px 20px;
+    font-size: 22px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: bolder;
+    max-width:300px;
+}
+
+.btn-primary{
+    background-color: #2255bb;
+}
+
+.btn-helper{
+    margin: 0px 140px;
+    background-color: #11dd99;
+}
+
+.component-title{
+    padding: 20px 30px 0px 90px;
+    font-size:30px
+}
+
+.component-subtitle{
+    padding: 0px 20px 0px 140px;
+    font-size:26px
+}
+
+.select-menu{
+    border-radius: 10px;
+    border-style: hidden;
+    margin: 0px 20px;
+    padding: 2px 15px;
+    font-size: 22px;
+    font-family: 'Rajdhani', sans-serif;
 }

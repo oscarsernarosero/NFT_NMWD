@@ -25,7 +25,7 @@ export class GetUserBalance extends React.Component{
   render(){
   return (
     <div>
-      <h4>Consult your balance held in the MarketPlace: </h4>
+      <h4 className="component-title">Consult your balance held in the MarketPlace: </h4>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
         <label name = "balance">Balance: {this.state.balance}</label>

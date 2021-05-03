@@ -43,8 +43,9 @@ export class WithdrawUserFunds extends React.Component{
   render(){
   return (
     <div>
-      <h4>Withdraw funds (User): </h4>
-      <button onClick ={this.getMax}>Withdraw Max Value</button>
+      <h4 className="component-title">Withdraw funds (User): </h4>
+      <button onClick ={this.getMax} className="btn btn-helper">
+        Withdraw Max Value</button>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
         

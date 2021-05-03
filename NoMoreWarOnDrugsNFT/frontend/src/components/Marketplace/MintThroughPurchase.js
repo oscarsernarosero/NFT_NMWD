@@ -77,8 +77,8 @@ import { ethers } from "ethers";
       
       return (
         <div>
-          <h4>Mint through purchase</h4>
-          <h5>Owner: {this.props.owner}</h5>
+          <h4 className="component-title">Mint through purchase</h4>
+          <h5 className="component-subtitle">Owner: {this.props.owner}</h5>
           <form
             onSubmit={this.handleSubmit} >
             <div className="form-group">

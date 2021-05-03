@@ -43,7 +43,7 @@ export class SetPrice extends React.Component{
   render(){
   return (
     <div>
-      <h4>Set the price for your NFT</h4>
+      <h4 className="component-title">Set the price for your NFT</h4>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
         <label>price (ETH): </label>

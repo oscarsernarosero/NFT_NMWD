@@ -36,7 +36,7 @@ export class GetForSale extends React.Component{
   render(){
   return (
     <div>
-      <h4>is this NFT for sale? </h4>
+      <h4 className="component-title">is this NFT for sale? </h4>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
         <label>NFT Id: </label>

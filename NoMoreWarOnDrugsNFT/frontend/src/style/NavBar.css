@@ -24,7 +24,7 @@
     grid-gap: 1px;
     list-style: none;
     text-align: end;
-    width: 60%;
+    width: 50%;
     justify-content: end;
 }
 
@@ -110,11 +110,13 @@
     text-transform: uppercase;
     position: relative;
     user-select: none;
-    padding: 20px;
+    padding: 40px;
 
+    /*color: #00aa5c;*/
     color: white;
     font-size:45px;
     font-family: 'Sedgwick Ave Display', cursive;
     text-align: center;
-    -webkit-text-stroke: 0.4px #555555; /* width and color */
+    /*-webkit-text-stroke: 2px #668888;  width and color */
+    text-shadow: 1px 1px 15px black;
 }

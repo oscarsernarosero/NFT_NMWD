@@ -40,7 +40,7 @@ export class MarketPlaceApprove extends React.Component{
   render(){
   return (
     <div>
-      <h4>Approve address to transact NFT by Id: </h4>
+      <h4 className="component-title">Approve address to transact NFT by Id: </h4>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
         

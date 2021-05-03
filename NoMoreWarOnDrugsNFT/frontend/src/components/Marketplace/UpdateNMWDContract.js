@@ -29,7 +29,7 @@ export class UpdateNMWDContract extends React.Component{
   render(){
   return (
     <div>
-      <h4>Setup the market place with the address of NoMoreWarOnDrugs' contract: </h4>
+      <h4 className="component-title">Setup the market place with the address of NoMoreWarOnDrugs' contract: </h4>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
         

@@ -26,7 +26,7 @@ export class GetContractBalance extends React.Component{
   render(){
   return (
     <div>
-      <h4>Consult the MarketPlace's Balance: </h4>
+      <h4 className="component-title">Consult the MarketPlace's Balance: </h4>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
         <label name = "balance">Balance: {this.state.balance}</label>

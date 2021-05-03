@@ -53,7 +53,8 @@ export class WithdrawFromContract extends React.Component{
   render(){
   return (
     <div>
-      <h4>Withdraw funds from the MarketPlace (Only marketplace owner) </h4>
+      <h4 className="component-title">
+        Withdraw funds from the MarketPlace (Only marketplace owner) </h4>
       
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
@@ -68,7 +69,8 @@ export class WithdrawFromContract extends React.Component{
             required
             value={this.state.amount}
           />
-          <button onClick ={this.getMax} type="button">All available funds</button>
+          <button onClick ={this.getMax} type="button" className="btn btn-helper">
+            All available funds</button>
           <br></br>
           <label>To: </label>
           <input
@@ -80,7 +82,8 @@ export class WithdrawFromContract extends React.Component{
             required
             value={this.state.to}
           />
-          <button onClick ={this.getMyAddress} type="button">My address</button>
+          <button onClick ={this.getMyAddress} type="button" className="btn btn-helper">
+            My address</button>
           <br></br>
           <label name = "txHash">txHash: {this.state.txHash}</label>
         </div>

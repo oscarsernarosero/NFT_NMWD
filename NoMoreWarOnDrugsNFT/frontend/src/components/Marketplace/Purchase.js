@@ -63,7 +63,7 @@ export class Purchase extends React.Component{
   render(){
   return (
     <div>
-      <h4>Purchase NFT with ID: </h4>
+      <h4 className="component-title">Purchase NFT with ID: </h4>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
         

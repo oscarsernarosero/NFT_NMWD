@@ -34,7 +34,7 @@ import React from "react";
   render(){
   return (
     <div>
-      <h4>Trnasfer The Ownership Of The NoMoreWarOnDrugs Contract: </h4>
+      <h4 className="component-title">Trnasfer The Ownership Of The NoMoreWarOnDrugs Contract: </h4>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
         

@@ -44,11 +44,12 @@ export class SetForSale extends React.Component{
   render(){
   return (
     <div>
-      <h4>Turn On/Off the sale of your NFT (it is off by default!)</h4>
+      <h4 className="component-title">Turn On/Off the sale of your NFT (it is off by default!)</h4>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
         <label>for sale? 
-          <select value={this.state.forSale} onChange={this.handleChangeForSale}>
+          <select value={this.state.forSale} onChange={this.handleChangeForSale}
+          className="select-menu">
             <option value="true">Yes! Sell it.</option>
             <option value="">No! I want to keep this one.</option>
           </select>

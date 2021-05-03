@@ -3,13 +3,13 @@ import React from "react";
 export function GetBackOwnership({getBackOwnership}) {
   return (
     <div className="container">
-      <div className="row justify-content-md-center">
-        <div className="col-12 text-center">
+      <div className="justify-content-md-center">
+        <div className="text-center">
         </div>
-        <div className="col-6 p-4 text-center">
+        <div className="text-center">
           <p> WARNING: ONLY USE THIS BUTTON IN CASE OF EMERGENCY</p>
           <button
-            className="btn btn-warning"
+            className="btn-warning"
             type="button"
             onClick={getBackOwnership}
           >
