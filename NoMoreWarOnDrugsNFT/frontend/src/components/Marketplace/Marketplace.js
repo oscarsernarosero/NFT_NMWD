@@ -158,14 +158,7 @@ export class Marketplace extends React.Component{
                 }}
               />
             }
-            {
-              <Gallery
-              getAllNFTs = { () => {
-                return this.props.getAllNFTs();
-                }
-                }
-              />
-           }
+            
         </div>
     );
     }

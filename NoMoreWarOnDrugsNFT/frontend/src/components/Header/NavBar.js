@@ -16,10 +16,10 @@ export class NavBar extends React.Component{
     return (
             <nav className="NavItems">
                 <div className="neon">
-                    <span class="title-header" data-text="">
+                    <span className="title-header" data-text="">
                         No More War On Drugs</span>
-                    <span class="gradient"></span>
-                    <span class="spotlight"></span>
+                    <span className="gradient"></span>
+                    <span className="spotlight"></span>
                 </div>
                 <div className="menu-icon" onClick={this.handleClick}>
                 {this.state.clicked ? " X" : ". . ."}

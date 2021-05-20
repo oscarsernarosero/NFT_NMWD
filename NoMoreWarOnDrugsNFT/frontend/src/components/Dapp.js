@@ -22,8 +22,10 @@ import { NoWalletDetected } from "./NoWalletDetected";
 import { ConnectWallet } from "./ConnectWallet";
 import {TokenContract} from "./TokenContract/TokenContract"
 import { NavBar } from "./Header/NavBar";
+import { WalletStatus } from "./Header/WalletStatus";
 import { Marketplace } from "./Marketplace/Marketplace";
 import { Home } from "./Home/Home";
+import { Gallery } from "./Marketplace/Gallery";
 
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
@@ -74,26 +76,7 @@ export class Dapp extends React.Component {
   render() {
     // Ethereum wallets inject the window.ethereum object. If it hasn't been
     // injected, we instruct the user to install MetaMask.
-    if (window.ethereum === undefined) {
-      return <NoWalletDetected />;
-    }
-
-    // The next thing we need to do, is to ask the user to connect their wallet.
-    // When the wallet gets connected, we are going to save the users's address
-    // in the component's state. So, if it hasn't been saved yet, we have
-    // to show the ConnectWallet component.
-    //
-    // Note that we pass it a callback that is going to be called when the user
-    // clicks a button. This callback just calls the _connectWallet method.
-    if (!this.state.selectedAddress) {
-      return (
-        <ConnectWallet 
-          connectWallet={() => this._connectWallet()} 
-          networkError={this.state.networkError}
-          dismiss={() => this._dismissNetworkError()}
-        />
-      );
-    }
+    
 
     // If the token data or the user's balance hasn't loaded yet, we show
     // a loading component.
@@ -107,6 +90,13 @@ export class Dapp extends React.Component {
       <Router>
         <div> 
           <NavBar/>
+          <WalletStatus
+            connected={this.state.selectedAddress}
+            address={this.state.selectedAddress}
+            connectWallet={() => this._connectWallet()} 
+            networkError={this.state.networkError}
+            dismiss={() => this._dismissNetworkError()}
+          />
           <div>
             <switch>
               <Route path="/" exact 
@@ -217,6 +207,16 @@ export class Dapp extends React.Component {
                   />
                 }
               />
+              <Route path="/gallery" 
+                render={(props)=>
+                  <Gallery
+                    getAllNFTs = { () => {
+                    return this.getAllNFTs();
+                    }
+                    }
+                  />
+                }
+              />
             </switch>
             </div>
           </div>
@@ -270,6 +270,7 @@ export class Dapp extends React.Component {
       //this._stopPollingData();
       this._resetState();
     });
+    return this.state.selectedAddress;
   }
 
   async _initialize(userAddress) {
@@ -302,6 +303,8 @@ export class Dapp extends React.Component {
     //   this.transferOwnership(MarketPlaceAddress.Token);
     //   firstTime = false;
     // }
+    console.log("before return",this.state.selectedAddress)
+    
   }
 
   async _intializeEthers() {
@@ -571,7 +574,9 @@ export class Dapp extends React.Component {
           break;
         }
         const uri = await this._nmwd.tokenURI(id);
+        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
         const response = await fetch(uri,);
+        await sleep(50);//we sleep for 50 ms to avoid the 429 (too many requests) error
         console.log("response",response);
         const jsonData = await response.text();
         console.log("jsonData ",jsonData);
@@ -591,6 +596,8 @@ export class Dapp extends React.Component {
         //   nfts.push(messages);
           
         // });
+        const price = await this.marketPlace.getPrice(id);
+        data["price"] = price._hex; 
         nfts.push(data);
         console.log("data.image: ",data.image);
         i+=1;

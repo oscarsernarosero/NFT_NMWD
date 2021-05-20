@@ -1,0 +1,19 @@
+.galleryItem{
+    max-width: 400px;
+    display:inline-flex;
+    list-style-type: none;
+    margin: 4px ;
+    align-content: center;
+    border-width: 2px;
+    border-color: lavender;
+}
+
+.gallery{
+
+    justify-content: right;
+}
+
+.list{
+    display: flex;
+  justify-content: right;
+}
