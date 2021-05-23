@@ -8,7 +8,7 @@ export class BePartOfHistory extends React.Component {
                 <div>
                 <img 
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/1200px-Ethereum-icon-purple.svg.png"
-                alt="image"
+                alt="image2"
                 className="history-image"
                 />
                 </div>

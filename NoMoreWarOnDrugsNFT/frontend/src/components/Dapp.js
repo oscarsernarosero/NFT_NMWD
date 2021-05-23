@@ -2,9 +2,7 @@ import React from "react";
 
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 // We'll use ethers to interact with the Ethereum network and our contract
@@ -18,14 +16,13 @@ import MarketPlaceArtifact from "../contracts/Token_NMWDMarketPlace.json";
 import MarketPlaceAddress from "../contracts/contract-address-NMWDMarketPlace.json";
 
 // components
-import { NoWalletDetected } from "./NoWalletDetected";
-import { ConnectWallet } from "./ConnectWallet";
 import {TokenContract} from "./TokenContract/TokenContract"
 import { NavBar } from "./Header/NavBar";
 import { WalletStatus } from "./Header/WalletStatus";
 import { Marketplace } from "./Marketplace/Marketplace";
 import { Home } from "./Home/Home";
 import { Gallery } from "./Marketplace/Gallery";
+import { MyWallet} from "./MyWallet/MyWallet"
 
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
@@ -214,6 +211,22 @@ export class Dapp extends React.Component {
                     return this.getAllNFTs();
                     }
                     }
+                  />
+                }
+              />
+              <Route path="/wallet" 
+                render={(props)=>
+                  <MyWallet
+                    getNFTsByAddress = {(address) => {
+                      return this.getNFTsByAddress(address);
+                  }}
+                  address = {this.state.selectedAddress}
+                  setTokenMessage={ (_tokenId, _msg ) => {
+                    return this.setTokenMessage(_tokenId, _msg );
+                  }}
+                  setForSale = { (tokenId, forSale) => {
+                    return this.setForSale(tokenId, forSale);
+                  }}
                   />
                 }
               />
@@ -433,6 +446,48 @@ export class Dapp extends React.Component {
     }
   }
 
+
+  async getNFTsByAddress(address){
+    const nfts = [];
+    try{
+      const ids= await this._nmwd.getNFTsByAddress(address);
+     
+      for (let i=0;i<ids.length;i++){
+
+        const data = await this.getNFTData(ids[i]);
+        
+        nfts.push(data);
+        console.log("data.image: ",data.image);
+      }
+      console.log("final uri list owned by this address: ",nfts);
+      return nfts;
+
+      }catch(error){
+        console.log(error);
+         return {error: error.message};
+       }
+    
+   }
+
+   async getNFTData(id){
+        const uri = await this._nmwd.tokenURI(id);
+        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+        const response = await fetch(uri,);
+        await sleep(50);//we sleep for 50 ms to avoid the 429 (too many requests) error
+        console.log("response",response);
+        const jsonData = await response.text();
+        console.log("jsonData ",jsonData);
+        const data = JSON.parse(jsonData);
+        const price = await this.marketPlace.getPrice(id);
+        data["price"] = price._hex; 
+        const message = await this._nmwd.tokenMessage(id);
+        data["message"] = message;
+        data["id"] = id;
+        const forSale = await this.marketPlace.getForSale(id);
+        data["forSale"] = forSale;
+        return data
+   }
+
   async getUserBalance(address){
     try{
       return await this.marketPlace.getUserBalance(address);
@@ -480,28 +535,6 @@ export class Dapp extends React.Component {
       return {error: "error while transfering ownership"} 
     }
   }
-
-  // async _mintThroughPurchase(_to, _tokenId, _uri ){
-  //   try{
-  //     const tx = await this.marketPlace.mintThroughPurchase(_to, _tokenId, _uri );
-  //     console.log(tx);
-  //     await tx.wait();
-  //     return tx;
-  //   }catch(error){
-  //     console.log(error);
-  //     return {error: "couldn't mint"} 
-  //   }
-  // }
-
-  // async purchaseToken(id){
-  //   try{
-  //     return await this.marketPlace.purchaseToken(id);
-  //   }catch(error){
-  //     console.log(error);
-  //     return {error: "Invalid Id"} 
-  //   }
-  // }
-
   async approveNMWD(tokenId){
     try{
       return await this.marketPlace.approveNMWD(tokenId);
@@ -513,6 +546,7 @@ export class Dapp extends React.Component {
 
    async setPrice(price, tokenId){
     try{
+      console.log("about to set price..", price)
       return await this.marketPlace.setPrice(price, tokenId);
      }catch(error){
       console.log(error);
@@ -557,12 +591,37 @@ export class Dapp extends React.Component {
      }
    }
 
+
    async getAllNFTs(){
      let more=true;
-     let i=4;
+     let i=0;
      const nfts = [];
      let id;
      let _id;
+     let myIds = [];
+
+     //first we need to know if I own some NFTs so I can desable 
+     //the "buy" button
+     try{
+      let counter = 0;
+      console.log("this.state.selectedAddress ",this.state.selectedAddress);
+      console.log("counter: ",counter);
+      while (!this.state.selectedAddress && counter<10){
+        console.log("in while");
+        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+        await sleep(100);
+        counter++;
+      }
+      myIds = await this._nmwd.getNFTsByAddress(this.state.selectedAddress);
+      console.log(myIds);
+      myIds = myIds.map( (_id) => {return parseInt(_id._hex);});
+      console.log(myIds);
+      
+      
+     }catch{
+       console.log("there was a problem while consulting NFTs owned by address ",
+       this.state.selectedAddress);
+     }
      console.log("starting iteration of NFTs...");
       while(more){
         try{
@@ -573,31 +632,11 @@ export class Dapp extends React.Component {
           more=false;
           break;
         }
-        const uri = await this._nmwd.tokenURI(id);
-        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-        const response = await fetch(uri,);
-        await sleep(50);//we sleep for 50 ms to avoid the 429 (too many requests) error
-        console.log("response",response);
-        const jsonData = await response.text();
-        console.log("jsonData ",jsonData);
-        const data = JSON.parse(jsonData);
-        // fetch(uri, {
-        //   headers : { 
-        //     'Accept': 'application/json'
-        //    }
-    
-        // })
-        // .then((response) => {
-        //   console.log("response ",response);
-        //   response.text()
-        // })
-        // .then((messages) => {
-        //   console.log("messages",messages);
-        //   nfts.push(messages);
-          
-        // });
-        const price = await this.marketPlace.getPrice(id);
-        data["price"] = price._hex; 
+        const data = await this.getNFTData(id);
+        console.log(myIds);
+        console.log(id);
+        data["owned"] = myIds.includes(id);
+        console.log("owned?",data["owned"]);
         nfts.push(data);
         console.log("data.image: ",data.image);
         i+=1;

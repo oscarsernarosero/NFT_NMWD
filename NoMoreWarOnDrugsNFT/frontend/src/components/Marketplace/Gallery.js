@@ -7,7 +7,7 @@ export class Gallery extends React.Component{
   constructor(props){
     super(props);
     const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}]}
-    this.state = {nfts: [demo_NFT]};
+    this.state = {nfts: [demo_NFT], mounted: false};
     console.log(this.state);
     
     
@@ -15,6 +15,16 @@ export class Gallery extends React.Component{
   componentDidMount() {
     this.getNFTs = this.getNFTs.bind(this);
     this.getNFTs();
+    this.setState({mounted: true});
+}
+
+
+async componentDidUpdate(prevProps){
+  if(prevProps.address !== this.props.address && this.state.mounted === true){
+      const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+      await sleep(350);    
+      await this.getNFTs();
+  }
 }
 
   async getNFTs(){
@@ -25,12 +35,14 @@ export class Gallery extends React.Component{
   render(){
     return (
       <div className="gallery">
-        <ul classnName="list">
+        <ul className="list">
+          
             {this.state.nfts.map((item,index)=>{
                 return <li className="galleryItem"
                 key={index}>
                     <ImageNFT
                         uri = {item}
+                        mywallet = {false}
                     /></li>
             })}
             </ul>

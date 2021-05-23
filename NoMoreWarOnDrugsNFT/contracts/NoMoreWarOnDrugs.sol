@@ -199,6 +199,20 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
     msgSet[_tokenId] = true;
   }
 
-}
+  
+
+ /**
+   * @dev returns the list of NFTs owned by certain address.
+   * @param _address Id for which we want the message.
+   */
+  function getNFTsByAddress(
+    address _address
+  )
+    view external returns (uint256[] memory)
+  { 
+    return ownerToIds[_address];
+  }
+
+} 
 
 

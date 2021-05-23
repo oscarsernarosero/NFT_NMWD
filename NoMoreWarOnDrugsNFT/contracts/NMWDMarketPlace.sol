@@ -117,7 +117,7 @@ contract NMWDMarketPlace is Owned, Context {
     * @param _payee the address where the funds are going to go
     * @param _amount the amount of Ether that will be sent
     */
-    function withdrawFromContract(address _payee, uint _amount) public onlyOwner {
+    function withdrawFromContract(address _payee, uint _amount) external onlyOwner {
         require(_payee != address(0) && _payee != address(this));
         require(_amount > 0 && _amount <= address(this).balance);
         payable(_payee).transfer(_amount);
@@ -129,7 +129,7 @@ contract NMWDMarketPlace is Owned, Context {
     * @dev user's method to withdraw the funds held in the market place.
     * @param _amount the amount of Ether that will be sent
     */
-    function withdrawUserFunds(uint _amount) public {
+    function withdrawUserFunds(uint _amount) external {
         require(_amount > 0 && _amount <= ethBalance[_msgSender()]);
         payable(_msgSender()).transfer(_amount);
         emit Sent(_msgSender(), _amount, ethBalance[_msgSender()]);
@@ -142,7 +142,7 @@ contract NMWDMarketPlace is Owned, Context {
     * @param _price the price in wei for the NFT
     * @param _tokenId uint token ID (painting number)
     */
-    function setPrice(uint _price, uint _tokenId) public {
+    function setPrice(uint _price, uint _tokenId) external {
         require(_price > 0, NEGATIVE_VALUE);
         require(_price != price[_tokenId], NO_CHANGES_INTENDED);
         try NMWDcontract.ownerOf(_tokenId) returns (address _address) {

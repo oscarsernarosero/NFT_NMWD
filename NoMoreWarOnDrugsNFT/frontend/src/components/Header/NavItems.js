@@ -21,7 +21,7 @@ export const  NavItems = [
     },
     {
         title: "Channel",
-        link: "channel",
+        link: "wallet",
         className: "nav-link"
     }
 

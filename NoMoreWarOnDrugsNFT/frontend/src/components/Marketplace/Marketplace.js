@@ -16,7 +16,6 @@ import { WithdrawFromContract } from "./WithdrawFromContract";
 import { SetForSale } from "./SetForSale";
 import { GetForSale } from "./GetForSale";
 import { InitializeContracts } from "./InitializeContracts";
-import { Gallery } from "./Gallery";
 
 export class Marketplace extends React.Component{
 

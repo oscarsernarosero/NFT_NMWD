@@ -28,7 +28,7 @@ export class SetPrice extends React.Component{
     const tokenId = this.state.tokenId;
     console.log("price: ",price," tokenId: ",tokenId);
 
-    
+    console.log("method: ",this.props.setPrice);
     const tx =  await this.props.setPrice(price , tokenId);
     console.log(tx);
     if (tx.error){
