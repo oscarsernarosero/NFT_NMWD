@@ -157,6 +157,9 @@ export class Dapp extends React.Component {
                       return this.updateNMWDContract(address);
                       } 
                     }
+                    approveNMWD = {() => {
+                      return this.approveNMWD();
+                    }}
                     transferOwnership = { (to) => {
                       return this.transferOwnership(to);
                       }
@@ -211,6 +214,8 @@ export class Dapp extends React.Component {
                     return this.getAllNFTs();
                     }
                     }
+                    address = {this.state.selectedAddress}
+                    marketPlaceAddress = {MarketPlaceAddress.Token}
                   />
                 }
               />

@@ -78,8 +78,9 @@ export class Marketplace extends React.Component{
             {
               <Purchase
                 getPrice = { (tokenId) => {
-                  return this.getPrice( tokenId);
+                  return this.props.getPrice( tokenId);
                 }}
+                to = {this.props.to}
                 of = {this.props.of}
                 marketPlaceAddress = {this.props.MarketplaceAddress}
               />
@@ -149,7 +150,6 @@ export class Marketplace extends React.Component{
               myAddress={this.props.selectedAddress}
               />
               }
-              
             {
               <GetBackOwnership
                 getBackOwnership ={ () => {

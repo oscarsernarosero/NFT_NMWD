@@ -1,5 +1,6 @@
 import React from "react";
-import "../../style/imageNFT.css"
+import "../../style/imageNFT.css";
+import { ethers } from "ethers";
 
 export class ImageNFT extends React.Component{
 
@@ -7,8 +8,54 @@ export class ImageNFT extends React.Component{
     super(props);
     this.state ={forSale : this.props.uri.forSale};
     this.setForSale = this.setForSale.bind(this);
+    this.buy = this.buy.bind(this);
+    this.buyDisable = this.buyDisable.bind(this);
     console.log("state in NFTImage: ",this.state);
     
+  }
+
+  buyDisable(){
+    console.log("buy button disable");
+  }
+
+  async buy() {
+    const tokenId = this.props.uri.id;
+    console.log("id: ",tokenId);
+    const price = this.props.uri.price;
+    console.log("price: ",price);
+
+    const abi = [
+    "function purchaseToken(uint _tokenId) external payable"
+    ];
+    const iface = new ethers.utils.Interface(abi);
+    const data = iface.encodeFunctionData("purchaseToken", [tokenId]);
+    
+    const params = [
+        {
+        from: this.props.address,
+        to: this.props.marketPlaceAddress,
+        value: price, 
+        data: data
+        },
+    ];
+    console.log("params:",params);
+    await window.ethereum
+        .request({
+        method: 'eth_sendTransaction',
+        params,
+        })
+        .then((result) => {
+        console.log(result);
+        //this.idInput.current.value = "";
+        // The result varies by by RPC method.
+        // For example, this method will return a transaction hash hexadecimal string on success.
+        })
+        .catch((error) => {
+        console.log(error);
+        // If the request fails, the Promise will reject with an error.
+        });
+    
+  
   }
 
 async setForSale()
@@ -66,7 +113,8 @@ async setForSale()
         Price: ${parseInt(this.props.uri.price)/1000000000000000000} ETH
       </div>  
       <div className={this.props.mywallet ? "dont-show" : "text-center"}>
-        <button onClick="" className={this.props.uri.owned ? "button-owned"  : "button" }>
+        <button onClick={this.props.mywallet ? this.buyDisable : this.buy}
+        className={this.props.uri.owned ? "button-owned"  : "button" }>
           {this.props.uri.owned ? "You Own This NFT !" : "BUY"}
           </button>
       </div>

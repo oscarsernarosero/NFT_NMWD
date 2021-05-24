@@ -9,6 +9,7 @@ export class Gallery extends React.Component{
     const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}]}
     this.state = {nfts: [demo_NFT], mounted: false};
     console.log(this.state);
+    console.log("marketplace address: ",this.props.marketPlaceAddress);
     
     
   }
@@ -43,6 +44,8 @@ async componentDidUpdate(prevProps){
                     <ImageNFT
                         uri = {item}
                         mywallet = {false}
+                        address = {this.props.address}
+                        marketPlaceAddress = {this.props.marketPlaceAddress}
                     /></li>
             })}
             </ul>
