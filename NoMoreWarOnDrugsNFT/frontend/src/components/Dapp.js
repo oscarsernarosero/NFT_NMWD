@@ -24,6 +24,7 @@ import { Home } from "./Home/Home";
 import { Gallery } from "./Marketplace/Gallery";
 import { MyWallet} from "./MyWallet/MyWallet";
 import { SetMessage } from "./MyWallet/SetMessage";
+import { ChangePrice } from "./MyWallet/ChangePrice"
 
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
@@ -233,28 +234,35 @@ export class Dapp extends React.Component {
                   setForSale = { (tokenId, forSale) => {
                     return this.setForSale(tokenId, forSale);
                   }}
-                  setSelectedId = {(id) => {
-                    this.setSelectedId(id);
-                  }
-
-                  }
+                  setSelectedId = {(id, imageUrl, price) => {
+                    this.setSelectedId(id, imageUrl, price);
+                  }}
+                  setPrice = { (price, tokenId) => {
+                    return this.setPrice(price, tokenId);
+                  }}
                   />
                 }
               />
               <Route path="/setmessage" 
                 render={(props)=>
                   <SetMessage
-                    getNFTsByAddress = {(address) => {
-                      return this.getNFTsByAddress(address);
-                  }}
                   address = {this.state.selectedAddress}
                   setTokenMessage={ (_tokenId, _msg ) => {
                     return this.setTokenMessage(_tokenId, _msg );
                   }}
-                  setForSale = { (tokenId, forSale) => {
-                    return this.setForSale(tokenId, forSale);
+                  id = {this.state.selectedId}
+                  imageUrl = {this.state.imageUrl}
+                  />
+                }
+              />
+              <Route path="/changeprice" 
+                render={(props)=>
+                  <ChangePrice
+                  setPrice = { (price, tokenId) => {
+                    return this.setPrice(price, tokenId);
                   }}
                   id = {this.state.selectedId}
+                  price = {this.state.price}
                   />
                 }
               />
@@ -374,8 +382,8 @@ export class Dapp extends React.Component {
 
   }
 
-  setSelectedId(id){
-    this.setState({selectedId:id});
+  setSelectedId(id, imageUrl, price){
+    this.setState({selectedId:id, imageUrl: imageUrl, price: price});
   }
 
   async getContractOwner(){

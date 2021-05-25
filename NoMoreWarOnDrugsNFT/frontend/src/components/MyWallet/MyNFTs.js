@@ -1,7 +1,8 @@
 import React from "react";
 //import { MyNFT } from "./MyNFT";
 import "../../style/myNFTs.css";
-import { ImageNFT } from "../Marketplace/ImageNFT"
+import { ImageNFT } from "../Marketplace/ImageNFT";
+
 
   export class MyNFTs extends React.Component{
 
@@ -64,9 +65,12 @@ import { ImageNFT } from "../Marketplace/ImageNFT"
                             setForSale = { (tokenId, forSale) => {
                                 return this.props.setForSale(tokenId, forSale);
                               }}
-                              setSelectedId = {(id) => {
-                                return this.props.setSelectedId(id);
+                              setSelectedId = {(id, imageUrl, price) => {
+                                return this.props.setSelectedId(id, imageUrl), price;
                             }}
+                            setPrice = { (price, tokenId) => {
+                                return this.props.setPrice(price, tokenId);
+                              }}
                         /></li>
                 })}
                 </ul>

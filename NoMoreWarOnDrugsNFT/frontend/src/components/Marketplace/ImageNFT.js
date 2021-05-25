@@ -1,6 +1,6 @@
 import React from "react";
 import "../../style/imageNFT.css";
-import { SetMessage } from "../MyWallet/SetMessage"
+import { ChangePrice } from "../MyWallet/ChangePrice";
 import { ethers } from "ethers";
 import {
   BrowserRouter as Router,
@@ -14,11 +14,13 @@ export class ImageNFT extends React.Component{
 
   constructor(props){
     super(props);
-    this.state ={forSale : this.props.uri.forSale};
+    this.state ={forSale : this.props.uri.forSale, visible:false};
     this.setForSale = this.setForSale.bind(this);
     this.buy = this.buy.bind(this);
     this.setSelectedId = this.setSelectedId.bind(this);
     this.buyDisable = this.buyDisable.bind(this);
+    this.changePrice = this.changePrice.bind(this);
+    this.close = this.close.bind(this);
     console.log("state in NFTImage: ",this.state);
     
   }
@@ -27,8 +29,16 @@ export class ImageNFT extends React.Component{
     console.log("buy button disable");
   }
 
+  close(){
+    this.setState({visible:false});
+  }
+
+  changePrice(){
+    this.setState({visible:true});
+  }
+
   setSelectedId(){
-      this.props.setSelectedId(parseInt(this.props.uri.id._hex));
+      this.props.setSelectedId(parseInt(this.props.uri.id._hex),this.props.uri.image, this.props.uri.price);
     }
   
 
@@ -141,7 +151,17 @@ async setForSale()
       
       </div>  
       <div className={!this.props.mywallet ? "dont-show" : "text-center"}>
-        <button className="setPrice"> $ Change Price $</button>
+      
+        <button className="setPrice" onClick={this.changePrice}> $ Change Price $</button>
+        <ChangePrice 
+          id = {this.props.uri.id}
+          price = {this.props.uri.price}
+          visible = {this.state.visible}
+          close = {()=>{this.close()}}
+          setPrice = { (price, tokenId) => {
+            return this.props.setPrice(price, tokenId);
+          }}
+        />
       </div>  
       <div className={!this.props.mywallet ? "dont-show" : "text-center"}>
       For sale? 

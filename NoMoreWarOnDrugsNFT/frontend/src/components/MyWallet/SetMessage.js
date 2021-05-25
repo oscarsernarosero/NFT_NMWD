@@ -52,7 +52,7 @@ export class SetMessage extends React.Component{
     return (
         <div style={
             {backgroundImage: 
-                'url(' + "https://gateway.pinata.cloud/ipfs/QmZZm8zUcThQKxDwtYUAquscqnyRqjgGKMJf8Wt2533pAd" + ') ',
+                'url(' + this.props.imageUrl + ') ',
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundAttachment: "fixed"
@@ -90,7 +90,7 @@ export class SetMessage extends React.Component{
                     </div>
                 </div>
                 <div className="form-group">
-                    <input className="button" type="submit" value="Set Message" />
+                    <input className="mybutton" type="submit" value="Set Message" />
                 </div>
             </form>
         </div>
