@@ -64,6 +64,9 @@ import { ImageNFT } from "../Marketplace/ImageNFT"
                             setForSale = { (tokenId, forSale) => {
                                 return this.props.setForSale(tokenId, forSale);
                               }}
+                              setSelectedId = {(id) => {
+                                return this.props.setSelectedId(id);
+                            }}
                         /></li>
                 })}
                 </ul>

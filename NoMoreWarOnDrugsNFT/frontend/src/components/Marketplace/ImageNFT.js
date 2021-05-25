@@ -1,6 +1,14 @@
 import React from "react";
 import "../../style/imageNFT.css";
+import { SetMessage } from "../MyWallet/SetMessage"
 import { ethers } from "ethers";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from "react-router-dom";
+
 
 export class ImageNFT extends React.Component{
 
@@ -9,6 +17,7 @@ export class ImageNFT extends React.Component{
     this.state ={forSale : this.props.uri.forSale};
     this.setForSale = this.setForSale.bind(this);
     this.buy = this.buy.bind(this);
+    this.setSelectedId = this.setSelectedId.bind(this);
     this.buyDisable = this.buyDisable.bind(this);
     console.log("state in NFTImage: ",this.state);
     
@@ -17,6 +26,11 @@ export class ImageNFT extends React.Component{
   buyDisable(){
     console.log("buy button disable");
   }
+
+  setSelectedId(){
+      this.props.setSelectedId(parseInt(this.props.uri.id._hex));
+    }
+  
 
   async buy() {
     const tokenId = this.props.uri.id;
@@ -113,13 +127,18 @@ async setForSale()
         Price: ${parseInt(this.props.uri.price)/1000000000000000000} ETH
       </div>  
       <div className={this.props.mywallet ? "dont-show" : "text-center"}>
-        <button onClick={this.props.mywallet ? this.buyDisable : this.buy}
+        <button onClick={this.props.mywallet||!this.props.uri.forSale ? this.buyDisable : this.buy}
         className={this.props.uri.owned ? "button-owned"  : "button" }>
-          {this.props.uri.owned ? "You Own This NFT !" : "BUY"}
+          {this.props.uri.owned ? "You Own This NFT !" : 
+          this.props.uri.forSale ? "BUY" : "Not For Sale"}
           </button>
       </div>
       <div className={!this.props.mywallet||this.props.uri.message!=="" ? "dont-show" : "text-center"}>
-        <button className="setMessage"> Set The Message!</button>
+      
+      <Link to={{ pathname: "/setmessage" }}>
+        <button className="setMessage" onClick={this.setSelectedId}> Set The Message!</button>
+      </Link>
+      
       </div>  
       <div className={!this.props.mywallet ? "dont-show" : "text-center"}>
         <button className="setPrice"> $ Change Price $</button>
@@ -128,7 +147,7 @@ async setForSale()
       For sale? 
         <label class="switch">
           <input type="checkbox" checked={this.props.uri.forSale} onChange={this.setForSale}/>
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
       </div>  
     </div>

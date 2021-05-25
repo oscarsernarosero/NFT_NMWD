@@ -22,7 +22,8 @@ import { WalletStatus } from "./Header/WalletStatus";
 import { Marketplace } from "./Marketplace/Marketplace";
 import { Home } from "./Home/Home";
 import { Gallery } from "./Marketplace/Gallery";
-import { MyWallet} from "./MyWallet/MyWallet"
+import { MyWallet} from "./MyWallet/MyWallet";
+import { SetMessage } from "./MyWallet/SetMessage";
 
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
@@ -232,6 +233,28 @@ export class Dapp extends React.Component {
                   setForSale = { (tokenId, forSale) => {
                     return this.setForSale(tokenId, forSale);
                   }}
+                  setSelectedId = {(id) => {
+                    this.setSelectedId(id);
+                  }
+
+                  }
+                  />
+                }
+              />
+              <Route path="/setmessage" 
+                render={(props)=>
+                  <SetMessage
+                    getNFTsByAddress = {(address) => {
+                      return this.getNFTsByAddress(address);
+                  }}
+                  address = {this.state.selectedAddress}
+                  setTokenMessage={ (_tokenId, _msg ) => {
+                    return this.setTokenMessage(_tokenId, _msg );
+                  }}
+                  setForSale = { (tokenId, forSale) => {
+                    return this.setForSale(tokenId, forSale);
+                  }}
+                  id = {this.state.selectedId}
                   />
                 }
               />
@@ -349,6 +372,10 @@ export class Dapp extends React.Component {
       this._provider.getSigner(0)
     );
 
+  }
+
+  setSelectedId(id){
+    this.setState({selectedId:id});
   }
 
   async getContractOwner(){

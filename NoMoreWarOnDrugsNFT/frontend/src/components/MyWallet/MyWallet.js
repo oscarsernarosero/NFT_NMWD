@@ -25,6 +25,9 @@ export class MyWallet extends React.Component{
                 setForSale = { (tokenId, forSale) => {
                     return this.props.setForSale(tokenId, forSale);
                   }}
+                setSelectedId = {(id) => {
+                    return this.props.setSelectedId(id);
+                }}
             />
         </div>
         );
