@@ -1,0 +1,49 @@
+.balance-component-container{
+    display: grid;
+    grid-template-columns: 50%;
+    grid-template-rows: 1;
+    grid-template-areas: "left right";
+    width: 100%;
+    padding: 60px;
+    height: fit-content;
+}
+
+.balance-container{
+    margin-left: auto;
+    margin-right: auto;
+    display: left;
+    width:50%;
+    padding: 20px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: steelblue;
+}
+
+.label-balance{
+    display: block;
+    padding: 3px;
+    text-align: center ;
+}
+
+.balance-display{
+    display: block;
+    padding: 3px;
+    text-align: center;
+    font-size: 50px;
+    color: rgb(189, 188, 188);
+    text-shadow: 0px 0px 10px steelblue;
+}
+
+.form-control-withdraw{
+    display: block;
+}
+
+.withdraw-container{
+    display:  right;
+    padding: 5px;
+}
+
+.button-center{
+    display: block;
+    align-content: center;
+}

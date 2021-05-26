@@ -52,6 +52,9 @@ import { ImageNFT } from "../Marketplace/ImageNFT";
       render(){
         return (
             <div className="gallery">
+                <div className="title-my-nfts">
+                    My NFTs
+                </div>
             <ul className="list">
                 {this.state.nfts.map((item,index)=>{
                     return <li className="galleryItem"

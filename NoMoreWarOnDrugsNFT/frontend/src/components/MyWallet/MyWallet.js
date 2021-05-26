@@ -1,5 +1,6 @@
 import React from "react";
 import { MyNFTs } from "./MyNFTs";
+import { Balance } from "./Balance";
 //import "../../style/gallery.css";
 
 export class MyWallet extends React.Component{
@@ -31,6 +32,15 @@ export class MyWallet extends React.Component{
                 setPrice = { (price, tokenId) => {
                     return this.props.setPrice(price, tokenId);
                   }}
+            />
+            <Balance 
+                getUserBalance = { (_address) => {
+                    return this.props.getUserBalance(_address);
+                  }}
+                  withdrawUserFunds = { (amount) => {
+                    return this.props.withdrawUserFunds( amount);
+                  }}
+                  address = {this.props.address}
             />
         </div>
         );

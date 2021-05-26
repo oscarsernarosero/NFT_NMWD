@@ -17,3 +17,9 @@
 .list{
     display: table;
 }
+
+.title-my-nfts{
+    font-size: 50px;
+    justify-content: center;
+    text-align: center;
+}

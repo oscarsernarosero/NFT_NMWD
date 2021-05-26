@@ -240,6 +240,12 @@ export class Dapp extends React.Component {
                   setPrice = { (price, tokenId) => {
                     return this.setPrice(price, tokenId);
                   }}
+                  getUserBalance = { (_address) => {
+                    return this.getUserBalance(_address);
+                  }}
+                  withdrawUserFunds = { (amount) => {
+                    return this.withdrawUserFunds( amount);
+                  }}
                   />
                 }
               />
