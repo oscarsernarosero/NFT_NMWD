@@ -38,7 +38,7 @@ export class ImageNFT extends React.Component{
   }
 
   setSelectedId(){
-      this.props.setSelectedId(parseInt(this.props.uri.id._hex),this.props.uri.image, this.props.uri.price);
+      this.props.setSelectedId(parseInt(this.props.uri.id),this.props.uri.image, this.props.uri.price);
     }
   
 

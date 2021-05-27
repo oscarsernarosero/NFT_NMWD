@@ -10,7 +10,7 @@ export class Gallery extends React.Component{
     return (
       <div className="gallery">
           <PaginationNFTs
-            
+          marketPlaceAddress = {this.props.marketPlaceAddress}
           address = {this.props.address}
           getNFTData={ (id) => {
               return this.props.getNFTData(id);

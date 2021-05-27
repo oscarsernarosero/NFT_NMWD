@@ -1,6 +1,6 @@
 export const  NavItems = [
     {
-        title: "home",
+        title: "Home",
         link: "/",
         className: "nav-link"
     },

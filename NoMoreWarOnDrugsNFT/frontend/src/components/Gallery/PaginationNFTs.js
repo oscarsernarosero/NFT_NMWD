@@ -20,8 +20,10 @@ import "../../style/pagination.css"
 
     async componentDidMount(){
         const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-        await sleep(1000);   
-        await this.getNFTids();
+        await sleep(1000);  
+        if(!this.state.mywallet){
+          await this.getNFTids();
+        }
         let myIds = await this.props.getNFTidsByAddress(this.props.address);
         console.log("myIds raw ",myIds);
         if(myIds.length>0){
@@ -37,7 +39,6 @@ import "../../style/pagination.css"
             console.log("from pagination ",this.state);
             }
         
-        
     }
 
     componentDidCatch(){
@@ -49,7 +50,16 @@ import "../../style/pagination.css"
         if(prevProps.address !== this.props.address && this.state.mounted === true){
             const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
             await sleep(50);    
-            await this.getNFTids();
+            if(!this.state.mywallet ){
+              await this.getNFTids();
+            }
+            let myIds = await this.props.getNFTidsByAddress(this.props.address);
+            console.log("myIds raw ",myIds);
+            if(myIds.length>0){
+                myIds = myIds.map( (_id) => {return parseInt(_id._hex);});
+                console.log("myIds ",myIds);
+                this.setState({myIds: myIds});
+            }
             await this.getPageData();
         }
     }
@@ -67,14 +77,22 @@ import "../../style/pagination.css"
     async getPageData(){
         const startAt = this.state.pageSize * (this.state.page-1);
         const endAt = startAt + this.state.pageSize;
-        const pageIds = this.state.ids.slice(startAt,endAt);
+        let pageIds;
+        if(this.props.mywallet){
+          pageIds = this.state.myIds.slice(startAt,endAt);
+        }else{
+          pageIds = this.state.ids.slice(startAt,endAt);
+        }
         const nfts = [];
         for(let i=0; i<pageIds.length;i++){
             const data = await this.props.getNFTData(pageIds[i]);
-            data["owned"] = this.state.myIds.includes(pageIds[i]);
+            if(!this.props.mywallet){
+              data["owned"] = this.state.myIds.includes(pageIds[i]);
+            }
             nfts.push(data);
         }
         this.setState({nfts: nfts});
+        console.log("nfts final pagination: ",this.state.nfts);
     }
     
       async getNFTids(){
@@ -99,6 +117,8 @@ import "../../style/pagination.css"
                     return <li className="galleryItem"
                     key={index}>
                         <ImageNFT
+                            address = {this.props.address}
+                            marketPlaceAddress = {this.props.marketPlaceAddress}
                             uri = {item}
                             setTokenMessage={ (_tokenId, _msg ) => {
                                 return this.props.setTokenMessage(_tokenId, _msg );
@@ -120,7 +140,7 @@ import "../../style/pagination.css"
                     <Pagination
                     currentPage={this.state.page}
                     sizePerPage={this.state.pageSize}
-                    totalSize={this.state.ids.length}
+                    totalSize={this.props.mywallet ? this.state.myIds.length : this.state.ids.length}
                     changeCurrentPage={this.changeCurrentPage}
                     />
                     </div>

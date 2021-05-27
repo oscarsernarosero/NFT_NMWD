@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.0rem;
+    font-size: 2.3rem;
     font-family: 'Rajdhani', sans-serif;
 }
 
@@ -33,7 +33,7 @@
 .nav-link{
     color: white;
     text-decoration: none;
-    padding: 0.5rem 1.2rem;
+    padding: 0.5rem 1rem;
     border-radius: 10px;
 }
 

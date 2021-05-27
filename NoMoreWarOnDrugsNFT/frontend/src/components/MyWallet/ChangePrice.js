@@ -34,7 +34,7 @@ export class ChangePrice extends React.Component{
       async handleSubmit(event) {
         event.preventDefault();
         const newPrice = (+this.state.newPrice*1000000000000000000).toString();
-        const tokenId = parseInt(this.props.id._hex);
+        const tokenId = parseInt(this.props.id);
         console.log("price: ",newPrice," tokenId: ",tokenId);
     
         console.log("about to send tx: ");
@@ -76,6 +76,7 @@ export class ChangePrice extends React.Component{
                             ref={this.priceInput}
                             required
                             type="number"
+                            step={0.000000000000000001}
                             />
                     </div>
                     <div className="tx-hash-price">
