@@ -38,6 +38,10 @@
     display: block;
 }
 
+.tx-hash-balance{
+    font-size: 8px;
+}
+
 .withdraw-container{
     display:  right;
     padding: 5px;

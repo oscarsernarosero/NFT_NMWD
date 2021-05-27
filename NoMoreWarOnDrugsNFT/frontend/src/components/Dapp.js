@@ -21,7 +21,7 @@ import { NavBar } from "./Header/NavBar";
 import { WalletStatus } from "./Header/WalletStatus";
 import { Marketplace } from "./Marketplace/Marketplace";
 import { Home } from "./Home/Home";
-import { Gallery } from "./Marketplace/Gallery";
+import { Gallery } from "./Gallery/Gallery";
 import { MyWallet} from "./MyWallet/MyWallet";
 import { SetMessage } from "./MyWallet/SetMessage";
 import { ChangePrice } from "./MyWallet/ChangePrice"
@@ -212,12 +212,19 @@ export class Dapp extends React.Component {
               <Route path="/gallery" 
                 render={(props)=>
                   <Gallery
-                    getAllNFTs = { () => {
-                    return this.getAllNFTs();
-                    }
-                    }
+                    
                     address = {this.state.selectedAddress}
                     marketPlaceAddress = {MarketPlaceAddress.Token}
+
+                    getNFTData={ (id) => {
+                      return this.getNFTData(id);
+                    }}
+                    getNFTidsByAddress={(address) => {
+                      return this.getNFTidsByAddress(address);
+                    }}
+                    getAllNFTsIdsOnly = { () => {
+                      return this.getAllNFTsIdsOnly();
+                    }}
                   />
                 }
               />
@@ -246,6 +253,16 @@ export class Dapp extends React.Component {
                   withdrawUserFunds = { (amount) => {
                     return this.withdrawUserFunds( amount);
                   }}
+                  getNFTData={ (id) => {
+                    return this.getNFTData(id);
+                  }}
+                  getNFTidsByAddress={(address) => {
+                    return this.getNFTidsByAddress(address);
+                  }}
+                  getAllNFTsIdsOnly = { () => {
+                    return this.getAllNFTsIdsOnly();
+                  }}
+                
                   />
                 }
               />
@@ -492,6 +509,15 @@ export class Dapp extends React.Component {
     }
   }
 
+ async getNFTidsByAddress(address){
+  try{
+    const ids= await this._nmwd.getNFTsByAddress(address);
+    return ids;
+  }catch{
+    return {error: "erro"};
+  }
+  
+ }
 
   async getNFTsByAddress(address){
     const nfts = [];
@@ -637,6 +663,29 @@ export class Dapp extends React.Component {
      }
    }
 
+   async getAllNFTsIdsOnly(){
+
+    let more=true;
+    let i=0;
+    const ids = [];
+    let id;
+    let _id;
+
+    while(more){
+      try{
+        _id = await this._nmwd.tokenByIndex(i);
+        id = parseInt(_id._hex);
+      }
+      catch{
+        more=false;
+        break;
+      }
+      ids.push(id);
+      i+=1;
+    }
+    console.log("from getAllNFTsIdsOnly; ids: ",ids);
+    return ids;
+   }
 
    async getAllNFTs(){
      let more=true;
@@ -650,19 +699,14 @@ export class Dapp extends React.Component {
      //the "buy" button
      try{
       let counter = 0;
-      console.log("this.state.selectedAddress ",this.state.selectedAddress);
-      console.log("counter: ",counter);
+      //this is just me waiting for the wallet to get connected
       while (!this.state.selectedAddress && counter<10){
-        console.log("in while");
         const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
         await sleep(100);
         counter++;
       }
       myIds = await this._nmwd.getNFTsByAddress(this.state.selectedAddress);
-      console.log(myIds);
       myIds = myIds.map( (_id) => {return parseInt(_id._hex);});
-      console.log(myIds);
-      
       
      }catch{
        console.log("there was a problem while consulting NFTs owned by address ",
@@ -679,12 +723,8 @@ export class Dapp extends React.Component {
           break;
         }
         const data = await this.getNFTData(id);
-        console.log(myIds);
-        console.log(id);
         data["owned"] = myIds.includes(id);
-        console.log("owned?",data["owned"]);
         nfts.push(data);
-        console.log("data.image: ",data.image);
         i+=1;
       }
       console.log("finished itereation of nfts at index ",i);

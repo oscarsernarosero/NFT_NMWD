@@ -34,17 +34,16 @@ export class SetMessage extends React.Component{
         const tokenId = this.props.id;
         console.log("msg: ",msg," tokenId: ",tokenId);
     
-        if (msg && tokenId) {
-            const tx =  await this.props.setTokenMessage(tokenId, msg );
-            console.log(tx);
-            if (tx.error){
-                this.setState({txHash: tx.error});
-            }else{
-                this.setState({txHash: tx.hash});
-                this.msgInput.current.value = "";
-            }
-            
+        const tx =  await this.props.setTokenMessage(tokenId, msg );
+        console.log(tx);
+        if (tx.error){
+            this.setState({txHash: tx.error});
+        }else{
+            this.setState({txHash: tx.hash});
+            this.msgInput.current.value = "";
         }
+            
+        
       
       }
   

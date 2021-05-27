@@ -19,6 +19,13 @@ export class Balance extends React.Component{
       this.getBalance();
 }
 
+componentDidUpdate(prevProps){
+if(prevProps.address !== this.props.address){
+    this.getBalance();
+    console.log("update address");
+}
+}
+
     async getBalance(){
         console.log(this.props);
         const balance =  await this.props.getUserBalance(this.props.address);
@@ -88,7 +95,7 @@ handleChange(event) {
                         value={this.state.amount}
                         required
                         />
-                        <label name = "txHash">txHash: {this.state.txHash}</label>
+                        <label ClassName = "tx-hash-balance">txHash: {this.state.txHash}</label>
                     </div>
                     <div className="form-withdraw">
                         <input className="button-center" type="submit" value="Withdraw From Marketplace" />

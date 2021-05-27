@@ -1,7 +1,7 @@
 import React from "react";
 //import { MyNFT } from "./MyNFT";
 import "../../style/myNFTs.css";
-import { ImageNFT } from "../Marketplace/ImageNFT";
+import { ImageNFT } from "../Gallery/ImageNFT";
 
 
   export class MyNFTs extends React.Component{
