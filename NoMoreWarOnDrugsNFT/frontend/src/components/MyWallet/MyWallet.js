@@ -40,6 +40,9 @@ export class MyWallet extends React.Component{
                 getAllNFTsIdsOnly = { () => {
                     return this.props.getAllNFTsIdsOnly();
                 }}
+                waitForMinedConfirmation={ (tx_hash, func) => {
+                    return this.props.waitForMinedConfirmation(tx_hash, func);
+                  }}
             />
             
             <Balance 

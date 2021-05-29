@@ -1,5 +1,7 @@
 import React from "react";
+import { ViewOnEtherscan } from "../Generics/ViewOnEtherscan"
 import "../../style/change-price.css"
+import { WaitingForComfirmation } from "../Generics/WaitingForComfirmation";
 
 
 export class ChangePrice extends React.Component{
@@ -8,7 +10,7 @@ export class ChangePrice extends React.Component{
         super(props);
         console.log(props);
         
-        this.state = {newPrice: "", txHash: ""};
+        this.state = {newPrice: "", txHash: "", waiting: false, successful: false};
     
         this.handleChangenewPrice = this.handleChangenewPrice.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,18 +35,29 @@ export class ChangePrice extends React.Component{
 
       async handleSubmit(event) {
         event.preventDefault();
+        
         const newPrice = (+this.state.newPrice*1000000000000000000).toString();
         const tokenId = parseInt(this.props.id);
         console.log("price: ",newPrice," tokenId: ",tokenId);
     
         console.log("about to send tx: ");
         const tx =  await this.props.setPrice( newPrice, tokenId );
+        this.setState({waiting: true});
         console.log(tx);
         if (tx.error){
-            this.setState({txHash: tx.error});
+            this.setState({txHash: tx});
+            this.setState({waiting: false});
         }else{
             this.setState({txHash: tx.hash});
             this.priceInput.current.value = "";
+            const res = await this.props.waitForMinedConfirmation(tx.hash, (tx) => {
+                this.setState({waiting: false});
+                this.setState({successful: true});
+                console.log("tx mined: ", tx.hash);
+            })
+            console.log("res: ",res);
+            
+            
         }
         
       
@@ -55,7 +68,7 @@ export class ChangePrice extends React.Component{
         <div className = {this.props.visible ? "visible" : "not-visible" }> 
         <div  className="change-price">
             <div className="close-button">
-                <button onClick={this.close}>x</button>
+                <button onClick={this.close} className="button-close-button">x</button>
             </div>
             <div className="title-price justify-center">
                 Change The Price Of Your NFT
@@ -80,14 +93,26 @@ export class ChangePrice extends React.Component{
                             />
                     </div>
                     <div className="tx-hash-price">
-                        <label >Tx Hash: {this.state.txHash}</label>
+                        <ViewOnEtherscan
+                            txHash={this.state.txHash}
+                        />
+                        {/* <label >Tx Hash: {this.state.txHash}</label> */}
                     </div>
+      
+                    <WaitingForComfirmation
+                        waiting={this.state.waiting}
+                        txHash = {this.state.txHash}
+                    />
+                    <div className={this.state.successful ? "success" : "not-visible"}>
+                    Your transaction was successful!
+                    </div>     
                         
                 </div>
                 <div className="form-group-price">
                     <input className="mybutton-price" type="submit" value="Change Price" />
                 </div>
             </form>
+            
         </div>
         </div>
         );

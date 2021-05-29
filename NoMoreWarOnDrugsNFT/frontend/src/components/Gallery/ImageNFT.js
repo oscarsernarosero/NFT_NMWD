@@ -161,6 +161,9 @@ async setForSale()
           setPrice = { (price, tokenId) => {
             return this.props.setPrice(price, tokenId);
           }}
+          waitForMinedConfirmation={ (tx_hash, func) => {
+            return this.props.waitForMinedConfirmation(tx_hash, func);
+          }}
         />
       </div>  
       <div className={!this.props.mywallet ? "dont-show" : "text-center"}>

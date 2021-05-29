@@ -1,0 +1,44 @@
+.waiting-container{
+    display: block;
+    padding: 4px;
+    max-width: inherit;
+    margin-bottom: 10px;
+    
+}
+
+.popup{
+    font-size: .7rem;
+    border-radius: 20px;
+    align-content: center;
+    display: block;
+    max-width:fit-content;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color:rgb(116, 222, 255, .3);
+}
+
+.msg-loading{
+    display: inline-block;
+    width: 80%
+}
+
+.loading{
+    display: inline-block;
+    align-content: right;
+    width: 15%;
+    height: 15%;
+
+}
+
+.success{
+    font-size: .9rem;
+    display: block;
+    max-width:fit-content;
+    text-align: center;
+}
+
+  .not-visible{
+      display: none;
+  }

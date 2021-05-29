@@ -73,18 +73,7 @@ export class Dapp extends React.Component {
   }
 
   render() {
-    // Ethereum wallets inject the window.ethereum object. If it hasn't been
-    // injected, we instruct the user to install MetaMask.
     
-
-    // If the token data or the user's balance hasn't loaded yet, we show
-    // a loading component.
-    // //if (!this.state.tokenData || !this.state.balance) {
-    //   if (!this.state.tokenData ) {
-    //   return <Loading />;
-    // }
-
-    // If everything is loaded, we render the application.
     return (
       <Router>
         <div> 
@@ -262,7 +251,9 @@ export class Dapp extends React.Component {
                   getAllNFTsIdsOnly = { () => {
                     return this.getAllNFTsIdsOnly();
                   }}
-                
+                  waitForMinedConfirmation={ (tx_hash, func) => {
+                    return this.waitForMinedConfirmation(tx_hash, func);
+                  }}
                   />
                 }
               />
@@ -383,14 +374,6 @@ export class Dapp extends React.Component {
     // We first initialize ethers by creating a provider using window.ethereum
     this._provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    // When, we initialize the contract using that provider and the token's
-    // artifact. You can do this same thing with your contracts.
-    // this._token = new ethers.Contract(
-    //   contractAddress.Token,
-    //   TokenArtifact.abi,
-    //   this._provider.getSigner(0)
-    // );
-
     this._nmwd = new ethers.Contract(
       NMWDAddress.Token,
       NMWDArtifact.abi,
@@ -407,6 +390,10 @@ export class Dapp extends React.Component {
 
   setSelectedId(id, imageUrl, price){
     this.setState({selectedId:id, imageUrl: imageUrl, price: price});
+  }
+
+  async waitForMinedConfirmation(tx_hash, func){
+    return this._provider.once(tx_hash, func);
   }
 
   async getContractOwner(){

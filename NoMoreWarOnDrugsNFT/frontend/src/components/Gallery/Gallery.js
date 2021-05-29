@@ -1,5 +1,4 @@
 import React from "react";
-//import { ImageNFT } from "./ImageNFT";
 import { PaginationNFTs } from "./PaginationNFTs"
 import "../../style/gallery.css";
 
@@ -23,6 +22,7 @@ export class Gallery extends React.Component{
           }}
           mywallet = {false}
           />
+         
           </div>
         );
     }

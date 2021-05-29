@@ -12,7 +12,7 @@ import "../../style/pagination.css"
         super(props);
         console.log("from pagination",props);
         const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
-        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [0], myIds: [0],pageSize:3};
+        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1],pageSize:6};
         this.changeCurrentPage = this.changeCurrentPage.bind(this);
         console.log(this.state);
         
@@ -20,7 +20,10 @@ import "../../style/pagination.css"
 
     async componentDidMount(){
         const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-        await sleep(1000);  
+        while(!this.props.address){
+          await sleep(500);  
+        }
+        
         if(!this.state.mywallet){
           await this.getNFTids();
         }
@@ -34,10 +37,10 @@ import "../../style/pagination.css"
             if(this.props.pageSize){
                 if(this.props.pageSize != this.state.pageSize){
                     this.setState({pageSize: this.props.pageSize});
-            }}
+            }}}
             await this.getPageData();
             console.log("from pagination ",this.state);
-            }
+            
         
     }
 
@@ -49,12 +52,12 @@ import "../../style/pagination.css"
     async componentDidUpdate(prevProps){
         if(prevProps.address !== this.props.address && this.state.mounted === true){
             const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-            await sleep(50);    
+            await sleep(1500);    
             if(!this.state.mywallet ){
               await this.getNFTids();
             }
             let myIds = await this.props.getNFTidsByAddress(this.props.address);
-            console.log("myIds raw ",myIds);
+            console.log("myIds raw didupdatw",myIds);
             if(myIds.length>0){
                 myIds = myIds.map( (_id) => {return parseInt(_id._hex);});
                 console.log("myIds ",myIds);
@@ -132,6 +135,9 @@ import "../../style/pagination.css"
                             }}
                             setPrice = { (price, tokenId) => {
                                 return this.props.setPrice(price, tokenId);
+                              }}
+                              waitForMinedConfirmation={ (tx_hash, func) => {
+                                return this.props.waitForMinedConfirmation(tx_hash, func);
                               }}
                         /></li>
                 })}
