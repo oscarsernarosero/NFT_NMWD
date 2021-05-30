@@ -4,6 +4,8 @@ import "react-pagination-js/dist/styles.css"; // import css
 import { ImageNFT } from "./ImageNFT";
 import "../../style/pagination.css"
 
+import { Carousel } from "../Gallery/Carousel";
+
 
   export class PaginationNFTs extends React.Component{
 
@@ -150,7 +152,10 @@ import "../../style/pagination.css"
                     changeCurrentPage={this.changeCurrentPage}
                     />
                     </div>
-                 </div>           
+                 </div> 
+                 <Carousel
+                    nfts={this.state.nfts}
+                  />          
               </div>
             );
         }

@@ -1,5 +1,5 @@
 import React from "react";
-import { PaginationNFTs } from "./PaginationNFTs"
+import { PaginationNFTs } from "./PaginationNFTs";
 import "../../style/gallery.css";
 
 export class Gallery extends React.Component{
@@ -24,6 +24,7 @@ export class Gallery extends React.Component{
           />
          
           </div>
+
         );
     }
 }
