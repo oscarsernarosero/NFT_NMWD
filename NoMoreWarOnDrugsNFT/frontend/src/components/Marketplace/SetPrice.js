@@ -24,9 +24,14 @@ export class SetPrice extends React.Component{
 
   async handleSubmit(event) {
     event.preventDefault();
-    const price = (+this.state.price*1000000000000000000).toString();
+    let price;
+    if(this.state.price>999){
+      price = (this.state.price).toString()+"000000000000000000";
+    }else{
+      price = (this.state.price*1000000000000000000).toString();
+    }
     const tokenId = this.state.tokenId;
-    console.log("price: ",price," tokenId: ",tokenId);
+    console.log(" aaa price: ",price," tokenId: ",tokenId);
 
     console.log("method: ",this.props.setPrice);
     const tx =  await this.props.setPrice(price , tokenId);

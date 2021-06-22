@@ -20,9 +20,11 @@ contract NMWDMarketPlace is Owned, Context {
     string constant NEGATIVE_VALUE = "004007";
     string constant NO_CHANGES_INTENDED = "004008";
     string constant NOT_NFT_OWNER = "004009";
+    string constant INSUFICIENT_BALANCE = "004010";
 
-    event Sent(address indexed payee, uint amount, uint balance);
-    event Received(address indexed payer, uint tokenId, uint amount, uint balance);
+    event Sent(address indexed payee, uint amount);
+    event SecurityWithdrawal(address indexed payee, uint amount);
+    event Received(address indexed payer, uint tokenId, uint amount);
 
     NoMoreWarOnDrugs public NMWDcontract;
 
@@ -42,10 +44,6 @@ contract NMWDMarketPlace is Owned, Context {
     */
     uint internal contractBalance;
 
-    /**
-    * @dev user address balance in ETH weis held in the market place.
-    */
-    mapping(address => uint256) public ethBalance;
 
     /**
     * @dev Contract Constructor
@@ -83,17 +81,26 @@ contract NMWDMarketPlace is Owned, Context {
         require(_msgSender() != address(0) && _msgSender() != address(this));
         require(msg.value >= price[_tokenId]);
         require(NMWDcontract.ownerOf(_tokenId) != address(0), NOT_VALID_NFT);
+
         address tokenSeller = NMWDcontract.ownerOf(_tokenId);
         require(NMWDcontract.getApproved(_tokenId) == address(this) || 
                 NMWDcontract.isApprovedForAll(tokenSeller, address(this)), 
                 NOT_APPROVED);
-        NMWDcontract.safeTransferFrom(tokenSeller, _msgSender(), _tokenId);
-        console.log("ethBalance[tokenSeller]: ",ethBalance[tokenSeller]);
-        console.log("contractBalance: ", contractBalance);
-        ethBalance[tokenSeller] += (msg.value / 1000) * 998;
-        contractBalance += (msg.value / 1000) * 2;
+
+        //avoid reentrancy
         forSale[_tokenId] = false;
-        emit Received(_msgSender(), _tokenId, msg.value, address(this).balance);
+
+        //transfer the NFT to the buyer
+        NMWDcontract.safeTransferFrom(tokenSeller, _msgSender(), _tokenId);
+
+        //tranfer the Ether to the seller
+        uint _amount = (msg.value / 1000)  * 997;
+        payable(tokenSeller).transfer( _amount );
+        // this is the fee of the contract per transaction
+        contractBalance += (msg.value / 1000) * 3;
+
+        emit Sent(tokenSeller, _amount);
+        emit Received(_msgSender(), _tokenId, msg.value);
     }
 
     /**
@@ -101,15 +108,15 @@ contract NMWDMarketPlace is Owned, Context {
     * @param _tokenId uint token ID (painting number)
     */
     function mintThroughPurchase(address _to, uint _tokenId, string memory _uri) external payable  {
-        console.log("price[_tokenId] ",price[_tokenId]);
+        
         require(price[_tokenId] != 0);
         require(msg.value >= price[_tokenId],NOT_EHOUGH_ETHER);
         require(_msgSender() != address(0) && _msgSender() != address(this));
+
         contractBalance += msg.value;
+
         NMWDcontract.mint(_to, _tokenId, _uri);
-        console.log("msg.value ",msg.value);
-        console.log("forSale[_tokenId]  ",forSale[_tokenId] );
-        emit Received(_to, _tokenId, msg.value, address(this).balance);
+        emit Received(_to, _tokenId, msg.value);
     }
 
     /**
@@ -119,22 +126,21 @@ contract NMWDMarketPlace is Owned, Context {
     */
     function withdrawFromContract(address _payee, uint _amount) external onlyOwner {
         require(_payee != address(0) && _payee != address(this));
-        require(_amount > 0 && _amount <= address(this).balance);
-        payable(_payee).transfer(_amount);
-        contractBalance -= _amount;
-        emit Sent(_payee, _amount, address(this).balance);
-    }   
+        require(contractBalance >= _amount, INSUFICIENT_BALANCE);
+        require(_amount > 0 && _amount <= address(this).balance, NOT_EHOUGH_ETHER);
+        require(tx.origin == _msgSender());
 
-    /**
-    * @dev user's method to withdraw the funds held in the market place.
-    * @param _amount the amount of Ether that will be sent
-    */
-    function withdrawUserFunds(uint _amount) external {
-        require(_amount > 0 && _amount <= ethBalance[_msgSender()]);
-        payable(_msgSender()).transfer(_amount);
-        emit Sent(_msgSender(), _amount, ethBalance[_msgSender()]);
-        ethBalance[_msgSender()] -=  _amount;
-   }
+        //we check if somebody has hacked the contract, in which case we send all the funds to 
+        //the owner of the contract
+        if(contractBalance != address(this).balance){
+            payable(owner).transfer(address(this).balance);
+            emit SecurityWithdrawal(owner, _amount);
+        }else{
+            contractBalance -= _amount;
+            payable(_payee).transfer(_amount);
+            emit Sent(_payee, _amount);
+        }
+    }   
 
     /**
     * @dev Updates price for the _tokenId NFT
@@ -160,15 +166,6 @@ contract NMWDMarketPlace is Owned, Context {
     function getPrice(uint _tokenId) external view returns (uint256){
         return price[_tokenId];
     }    
-
-    /**
-    * @dev get user's balance held in the marketplace (weis)
-    * @param userAddress user's address
-    */
-    function getUserBalance(address userAddress) external view returns (uint256){
-        //require(_msgSender() == userAddres || _msgSender() == owner,"Only user can check this balance.");
-        return ethBalance[userAddress];
-    } 
 
     /**
     * @dev get marketplace's balance (weis)

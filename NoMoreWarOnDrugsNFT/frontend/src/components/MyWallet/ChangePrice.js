@@ -35,10 +35,19 @@ export class ChangePrice extends React.Component{
 
       async handleSubmit(event) {
         event.preventDefault();
-        
-        const newPrice = (+this.state.newPrice*1000000000000000000).toString();
+
+        let newPrice;
+        console.log("this.state.price: ",this.state.price);
+        if(+this.state.newPrice>999){
+            newPrice = (Math.floor(+this.state.newPrice)).toString()+"000000000000000000";
+            console.log("newPrice: ",newPrice);
+        }else{
+            newPrice = (+this.state.newPrice*1000000000000000000).toString();
+            console.log("newPrice: ",newPrice);
+        }
         const tokenId = parseInt(this.props.id);
-        console.log("price: ",newPrice," tokenId: ",tokenId);
+        console.log(" aaa price: ",newPrice," tokenId: ",tokenId);
+    
     
         console.log("about to send tx: ");
         const tx =  await this.props.setPrice( newPrice, tokenId );

@@ -26,18 +26,21 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
     /** 
     * @dev The maximum amount of NFTs that can be minted in this collection
     */
-    uint8 constant MAX_TOKENS = 222;
+    string constant NOT_VALID_MSG = "20003";
+
+    /** 
+    * @dev The maximum amount of NFTs that can be minted in this collection
+    */
+    uint16 constant MAX_TOKENS = 1000;
+
+
+    
 
     /** 
     * @dev Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
     * which can be also obtained as `IERC721Receiver(0).onERC721Received.selector`
     */
     bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
-
-    /**
-    * @dev Mapping from NFT ID to alias.
-    */
-    mapping (uint256 => bool) private msgSet;
 
     /**
     * @dev Mapping from NFT ID to message.
@@ -144,23 +147,6 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
       _removeNFToken(_from, _tokenId);
   }
 
-  /**
-   * @dev returns true if the message of the NFT has already 
-   * been set. The message of an NMWD can only be set once,
-   * and it is set for perpetuity.
-   * @param _tokenId Id for which we want the owner alias.
-   * @return bool representing if the message has been set.
-   */
-  function tokenMsgSet(
-    uint256 _tokenId
-  )
-    external
-    view
-    validNFToken(_tokenId)
-    returns (bool)
-  {
-    return msgSet[_tokenId];
-  }
 
   /**
    * @dev A custom message given for the first NFT buyer.
@@ -194,10 +180,22 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
   { 
     address tokenOwner = idToOwner[_tokenId];
     require(_msgSender() == tokenOwner, NOT_OWNER);
-    require(!msgSet[_tokenId], MESSAGE_ALREADY_SET);
+    require(bytes(idToMsg[_tokenId]).length == 0, MESSAGE_ALREADY_SET);
+    bool valid_msg = validateMsg(_msg);
+    require(valid_msg, NOT_VALID_MSG);
     idToMsg[_tokenId] = _msg;
-    msgSet[_tokenId] = true;
   }
+
+  /**
+     * @dev Check if the message string has a valid length
+     * @param _msg the custom message.
+     */
+    function validateMsg(string memory _msg) public pure returns (bool){
+        bytes memory b = bytes(_msg);
+        if(b.length < 1) return false;
+        if(b.length > 200) return false; // Cannot be longer than 200 characters
+        return true;
+    }
 
   
 

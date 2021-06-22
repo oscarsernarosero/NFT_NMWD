@@ -141,10 +141,10 @@ export class Marketplace extends React.Component{
               {
               <WithdrawFromContract
                 withdrawFromContract = { (to, amount) => {
-                  return this.withdrawFromContract(to, amount);
+                  return this.props.withdrawFromContract(to, amount);
                 }}
                 getContractBalance = { () => {
-                  return this.getContractBalance();
+                  return this.props.getContractBalance();
                 }
               }
               myAddress={this.props.selectedAddress}
