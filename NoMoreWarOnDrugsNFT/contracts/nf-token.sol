@@ -3,9 +3,9 @@ pragma solidity 0.8.0;
 
 import "./erc721.sol";
 import "./erc721-token-receiver.sol";
-import "../utils/supports-interface.sol";
-import "../utils/address-utils.sol";
-import "../utils/context.sol";
+import "./supports-interface.sol";
+import "./address-utils.sol";
+import "./context.sol";
 
 /**
  * @dev Implementation of ERC-721 non-fungible token standard.
@@ -21,14 +21,14 @@ contract NFToken is
    * @dev List of revert message codes. Implementing dApp should handle showing the correct message.
    * Based on 0xcert framework error codes.
    */
-  string constant ZERO_ADDRESS = "003001";
-  string constant NOT_VALID_NFT = "003002";
-  string constant NOT_OWNER_OR_OPERATOR = "003003";
-  string constant NOT_OWNER_APPROVED_OR_OPERATOR = "003004";
-  string constant NOT_ABLE_TO_RECEIVE_NFT = "003005";
-  string constant NFT_ALREADY_EXISTS = "003006";
-  string constant NOT_OWNER = "003007";
-  string constant IS_OWNER = "003008";
+  string constant ZERO_ADDRESS = "0301";
+  string constant NOT_VALID_NFT = "0302";
+  string constant NOT_OWNER_OR_OPERATOR = "0303";
+  string constant NOT_OWNER_APPROVED_OR_OPERATOR = "0304";
+  string constant NOT_ABLE_TO_RECEIVE_NFT = "0305";
+  string constant NFT_ALREADY_EXISTS = "0306";
+  string constant NOT_OWNER = "0307";
+  string constant IS_OWNER = "0308";
 
   /**
    * @dev Magic value of a smart contract that can recieve NFT.

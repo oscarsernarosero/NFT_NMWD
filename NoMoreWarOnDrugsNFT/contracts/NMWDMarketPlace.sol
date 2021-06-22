@@ -2,11 +2,9 @@
 
 pragma solidity 0.8.0;
 
-import "./utils/owned.sol";
+import "./owned.sol";
 import "./NoMoreWarOnDrugs.sol";
-import "./utils/context.sol";
-// We import this library to be able to use ////console.log
-import "hardhat/console.sol";
+import "./context.sol";
 
 contract NMWDMarketPlace is Owned, Context {
 
@@ -59,7 +57,6 @@ contract NMWDMarketPlace is Owned, Context {
     function updateNMWDcontract(address nmwdAddress) external onlyOwner{
         require(nmwdAddress != address(0) && nmwdAddress != address(this),INVALID_ADDRESS);
         NMWDcontract = NoMoreWarOnDrugs(nmwdAddress);
-        console.log("address(NMWDcontract): ",address(NMWDcontract));
     }
 
     /**
@@ -128,11 +125,13 @@ contract NMWDMarketPlace is Owned, Context {
         require(_payee != address(0) && _payee != address(this));
         require(contractBalance >= _amount, INSUFICIENT_BALANCE);
         require(_amount > 0 && _amount <= address(this).balance, NOT_EHOUGH_ETHER);
+        //this is kinda xtra, but security is top priority
         require(tx.origin == _msgSender());
 
         //we check if somebody has hacked the contract, in which case we send all the funds to 
         //the owner of the contract
         if(contractBalance != address(this).balance){
+            contractBalance = 0;
             payable(owner).transfer(address(this).balance);
             emit SecurityWithdrawal(owner, _amount);
         }else{

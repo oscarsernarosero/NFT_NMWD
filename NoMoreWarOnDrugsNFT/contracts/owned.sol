@@ -7,8 +7,8 @@ contract Owned {
     /**
     * @dev Error constants.
     */
-    string public constant NOT_CURRENT_OWNER = "018001";
-    string public constant CANNOT_TRANSFER_TO_ZERO_ADDRESS = "018002";
+    string public constant NOT_CURRENT_OWNER = "0101";
+    string public constant CANNOT_TRANSFER_TO_ZERO_ADDRESS = "0102";
 
     /**
     * @dev Current owner address.

@@ -5,9 +5,7 @@ pragma solidity 0.8.0;
 
 import "./tokens/nf-token-enumerable.sol";
 import "./tokens/nf-token-metadata.sol";
-import "./utils/address-utils.sol";
-import "./utils/address-utils.sol";
-import "./utils/owned.sol";
+import "./owned.sol";
 
 contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
 
@@ -59,14 +57,14 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
     * @param _tokenId of the NFT to be minted by the msg.sender.
     */
     function _mint( address _to, uint256 _tokenId ) internal override (NFTokenEnumerable, NFToken){
-        require( tokens.length < (MAX_TOKENS-1) , MAX_TOKENS_MINTED );
+        require( tokens.length < MAX_TOKENS, MAX_TOKENS_MINTED );
         super._mint(_to, _tokenId);
         
     }
 
     /**
     * @dev Mints a new NFT.
-    * @notice an approvalForAll is given to the owner of the contract.
+    * @notice an approval is given to the owner of the contract.
     * This is due to the fact that the marketplae will own this contract.
     * Therefore, the NFTs will be transactable in the marketplace by
     * default without any extra step from the user.
@@ -78,9 +76,7 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
       public onlyOwner {
         _mint(_to, _tokenId);
         idToUri[_tokenId] = _uri;
-        if(!ownerToOperators[_to][owner]){
-          ownerToOperators[_to][owner] = true;
-        }
+        approve(owner,_tokenId);
     }
 
     /**
