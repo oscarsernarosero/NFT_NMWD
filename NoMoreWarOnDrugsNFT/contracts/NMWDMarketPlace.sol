@@ -9,16 +9,16 @@ import "./context.sol";
 contract NMWDMarketPlace is Owned, Context {
 
     //REVIEW ALL THESE CODES. MIGHT BE VERY WRONG
-    string constant INVALID_ADDRESS = "004001";
-    string constant CONTRACT_ADDRESS_NOT_SETUP = "004002";
-    string constant NOT_APPROVED= "004003";
-    string constant NOT_VALID_NFT = "004004";
-    string constant NOT_FOR_SALE = "004005";
-    string constant NOT_EHOUGH_ETHER = "004006";
-    string constant NEGATIVE_VALUE = "004007";
-    string constant NO_CHANGES_INTENDED = "004008";
-    string constant NOT_NFT_OWNER = "004009";
-    string constant INSUFICIENT_BALANCE = "004010";
+    string constant INVALID_ADDRESS = "0501";
+    string constant CONTRACT_ADDRESS_NOT_SETUP = "0502";
+    string constant NOT_APPROVED= "0503";
+    string constant NOT_VALID_NFT = "0504";
+    string constant NOT_FOR_SALE = "0505";
+    string constant NOT_EHOUGH_ETHER = "0506";
+    string constant NEGATIVE_VALUE = "0507";
+    string constant NO_CHANGES_INTENDED = "0508";
+    string constant NOT_NFT_OWNER = "0509";
+    string constant INSUFICIENT_BALANCE = "0510";
 
     event Sent(address indexed payee, uint amount);
     event SecurityWithdrawal(address indexed payee, uint amount);

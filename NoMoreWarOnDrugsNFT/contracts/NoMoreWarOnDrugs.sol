@@ -3,36 +3,34 @@
 pragma solidity 0.8.0;
 
 
-import "./tokens/nf-token-enumerable.sol";
-import "./tokens/nf-token-metadata.sol";
+import "./nf-token-enumerable.sol";
+import "./nf-token-metadata.sol";
 import "./owned.sol";
+import "./erc2981-per-token-royalties";
 
-contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
-
-    /** 
-    * @dev The error code for when an NFT is attempted to be minted after the max
-    * supply of NFTs has been already reached.
-    */
-    string constant MAX_TOKENS_MINTED = "20001";
+contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981PerTokenRoyalties {
 
     /** 
     * @dev The error code for when an NFT is attempted to be minted after the max
     * supply of NFTs has been already reached.
     */
-    string constant MESSAGE_ALREADY_SET = "20002";
+    string constant MAX_TOKENS_MINTED = "0401";
+
+    /** 
+    * @dev The error code for when an NFT is attempted to be minted after the max
+    * supply of NFTs has been already reached.
+    */
+    string constant MESSAGE_ALREADY_SET = "0402";
 
     /** 
     * @dev The maximum amount of NFTs that can be minted in this collection
     */
-    string constant NOT_VALID_MSG = "20003";
+    string constant NOT_VALID_MSG = "0403";
 
     /** 
     * @dev The maximum amount of NFTs that can be minted in this collection
     */
     uint16 constant MAX_TOKENS = 1000;
-
-
-    
 
     /** 
     * @dev Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
@@ -72,11 +70,21 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
     * @param _tokenId of the NFT to be minted by the msg.sender.
     * @param _uri of the token containing the metadata.
     */
-    function mint(address _to, uint256 _tokenId,  string memory _uri) 
-      public onlyOwner {
+    function mint(address _to, uint256 _tokenId,  string memory _uri, 
+                  address royaltyRecipient, uint256 royaltyValue) 
+      external onlyOwner 
+      {
         _mint(_to, _tokenId);
+        //uri setup
         idToUri[_tokenId] = _uri;
-        approve(owner,_tokenId);
+        //royalties setup
+         if (royaltyValue > 0) {
+            _setTokenRoyalty(_tokenId, royaltyRecipient, royaltyValue);
+        }
+        //approve marketplace
+        if(!ownerToOperators[_to][owner]){
+           ownerToOperators[_to][owner] = true;
+         }
     }
 
     /**
@@ -107,6 +115,10 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned {
 
   function burn(uint256 _tokenId ) public onlyOwner {
       _burn( _tokenId);
+      //clearing the uri
+      idToUri[_tokenId] = "";
+      //clearing the royalties
+      _setTokenRoyalty(_tokenId, address(0), 0);
   }
 
   /**

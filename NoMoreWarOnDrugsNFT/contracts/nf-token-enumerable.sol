@@ -3,7 +3,6 @@ pragma solidity 0.8.0;
 
 import "./nf-token.sol";
 import "./erc721-enumerable.sol";
-import "./nf-token.sol";
 
 /**
  * @dev Optional enumeration implementation for ERC-721 non-fungible token standard.

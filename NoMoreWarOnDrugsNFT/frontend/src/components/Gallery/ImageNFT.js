@@ -144,7 +144,8 @@ async setForSale()
           </button>
       </div>
       <div className={!this.props.mywallet||this.props.uri.message!=="" ? "dont-show" : "text-center"}>
-      
+      {/* the following line is just for testing puroposes. DELETE THIS LINE LATER AND UNCOMMENT THE ONE ABOVE*/ }
+      {/* <div className="text-center">  */}
       <Link to={{ pathname: "/setmessage" }}>
         <button className="setMessage" onClick={this.setSelectedId}> Set The Message!</button>
       </Link>
