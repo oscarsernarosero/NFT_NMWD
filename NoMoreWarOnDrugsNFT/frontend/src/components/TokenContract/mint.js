@@ -1,3 +1,4 @@
+import { isAddress } from "ethers/lib/utils";
 import React from "react";
 
 //export function Mint({ mint, owner}) {
@@ -5,19 +6,20 @@ import React from "react";
 
     constructor(props){
       super(props);
-      this.state = {tokenId: "", uri: "", msg: "", ownerAlias: "" ,to: "", txHash: ""};
+      this.state = {tokenId: "", uri: "", to: "", txHash: "", 
+                    royaltyRecipient: 0, royaltyValue: 0};
   
       this.handleChangeId = this.handleChangeId.bind(this);
       this.handleChangeTo = this.handleChangeTo.bind(this);
-      //this.handleChangeOwnerAlias = this.handleChangeOwnerAlias.bind(this);
+      this.handleChangeRoyaltyRecipient = this.handleChangeRoyaltyRecipient.bind(this);
       this.handleChangeUri = this.handleChangeUri.bind(this);
-      //this.handleChangeMsg = this.handleChangeMsg.bind(this);
+      this.handleChangeRoyaltyValue = this.handleChangeRoyaltyValue.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
   
       this.toInput = React.createRef();
       this.idInput = React.createRef();
-      //this.ownerAliasInput = React.createRef();
-      // this.msgInput = React.createRef();
+      this.royaltyRecepientInput = React.createRef();
+      this.royaltyValueInput = React.createRef();
        this.uriInput = React.createRef();
    
     }
@@ -30,31 +32,31 @@ import React from "react";
       this.setState({to: event.target.value});
     }
   
-    // handleChangeOwnerAlias(event) {
-    //   this.setState({ownerAlias: event.target.value});
-    // }
+    handleChangeRoyaltyRecipient(event) {
+      this.setState({royaltyRecepient: event.target.value});
+    }
 
     handleChangeUri(event) {
       this.setState({uri: event.target.value});
     }
   
-    // handleChangeMsg(event) {
-    //   this.setState({msg: event.target.value});
-    // }
+    handleChangeRoyaltyValue(event) {
+      this.setState({royaltyValue: event.target.value});
+    }
 
     async handleSubmit(event) {
       event.preventDefault();
       const tokenId = this.state.tokenId;
-      // const ownerAlias = this.state.ownerAlias;
+      const royaltyRecepient = this.state.royaltyRecepient;
       const to = this.state.to;
       const uri = this.state.uri;
-      // const msg = this.state.msg;
+      const royaltyValue = this.state.royaltyValue.toFixed(2) * 100;
 
       console.log(to, tokenId, uri);
       
       console.log(this.props);
       console.log(this.props.mint)
-      const tx =  await this.props.mint(to, tokenId, uri);
+      const tx =  await this.props.mint(to, tokenId, uri, royaltyRecepient, royaltyValue);
       console.log(tx);
       if(tx.error){
           this.setState({txHash: tx.error});
@@ -64,9 +66,9 @@ import React from "react";
           console.log("success!", tx.hash);
           this.toInput.current.value = "";
           this.idInput.current.value = "";
-          // this.ownerAliasInput.current.value = "";
+           this.royaltyRecepientInput.current.value = "";
           this.uriInput.current.value = "";
-          // this.msgInput.current.value = "";
+          this.royaltyValueInput.current.value = "";
       }
       
     }
@@ -98,10 +100,10 @@ import React from "react";
             <div className="form-group">
               <label>Uri</label>
               <input className="form-control" type="text" name="uri" ref={this.uriInput} onChange={this.handleChangeUri} required />
-              {/* <label>Alias</label>
-              <input className="form-control" type="text" name="alias" ref={this.ownerAliasInput} onChange={this.handleChangeOwnerAlias} required />
-              <label>Message</label>
-              <input className="form-control" type="text" name="msg" ref={this.msgInput}  onChange={this.handleChangeMsg} required /> */}
+               <label>Royalty address</label>
+              <input className="form-control" type="text" name="alias" ref={this.royaltyRecepientInput} onChange={this.handleChangeRoyaltyRecipient} required />
+              <label>Royalty Value (Percentage. MAX 2 decimals)</label>
+              <input className="form-control" type="number" step="0.01" name="royaltyValue" ref={this.royaltyValueInput}  onChange={this.handleChangeRoyaltyValue} required /> 
               <label name = "response"> {this.state.txHash}</label>
             </div>
             <div className="form-group">

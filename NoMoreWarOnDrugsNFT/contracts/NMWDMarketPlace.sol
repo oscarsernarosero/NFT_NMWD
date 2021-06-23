@@ -22,8 +22,9 @@ contract NMWDMarketPlace is Owned, Context {
     string constant INSUFICIENT_BALANCE = "0510";
 
     event Sent(address indexed payee, uint amount);
+    event RoyaltyPaid(address indexed payee, uint amount);
     event SecurityWithdrawal(address indexed payee, uint amount);
-    event Received(address indexed payer, uint tokenId, uint amount);
+    //event Received(address indexed payer, uint tokenId, uint amount);
 
     NoMoreWarOnDrugs public NMWDcontract;
 
@@ -109,8 +110,8 @@ contract NMWDMarketPlace is Owned, Context {
 
         //notifying the blockchain
         emit Sent(tokenSeller, toPaySeller);
-        emit Sent(royaltyReceiver, royaltyAmount);
-        emit Received(_msgSender(), _tokenId, msg.value);
+        emit RoyaltyPaid(royaltyReceiver, royaltyAmount);
+        //emit Received(_msgSender(), _tokenId, msg.value);
     }
 
     /**

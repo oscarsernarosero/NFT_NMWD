@@ -134,8 +134,8 @@ export class Dapp extends React.Component {
                     setTokenMessage={ (_tokenId, _msg ) => {
                       return this.setTokenMessage(_tokenId, _msg );
                     }}
-                    mint={ (_to, _tokenId, _uri) => {
-                      return this._mint(_to, _tokenId, _uri);
+                    mint={ (_to, _tokenId, _uri, royaltyRecipient, royaltyValue) => {
+                      return this._mint(_to, _tokenId, _uri, royaltyRecipient, royaltyValue);
                     } }
                     owner = {this.state.owner}
                     />
@@ -815,9 +815,9 @@ export class Dapp extends React.Component {
     }
   }
 
-  async _mint(_to, _tokenId, _uri ){
+  async _mint(_to, _tokenId, _uri, royaltyRecipient, royaltyValue ){
     try{
-      const tx = await this._nmwd.mint(_to, _tokenId, _uri );
+      const tx = await this._nmwd.mint(_to, _tokenId, _uri, royaltyRecipient, royaltyValue );
       console.log(tx);
       await tx.wait();
       return tx;

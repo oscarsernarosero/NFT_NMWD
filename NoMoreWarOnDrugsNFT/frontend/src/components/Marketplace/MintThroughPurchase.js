@@ -5,14 +5,19 @@ import { ethers } from "ethers";
 
     constructor(props){
       super(props);
-      this.state = {tokenId: "", uri: "", msg: "",to: "", txHash: ""};
+      this.state = {tokenId: "", uri: "",to: "", txHash: "",
+                      royaltyRecipient: 0, royaltyValue: 0};
   
       this.handleChangeId = this.handleChangeId.bind(this);
       this.handleChangeUri = this.handleChangeUri.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChangeRoyaltyRecipient = this.handleChangeRoyaltyRecipient.bind(this);
+      this.handleChangeRoyaltyValue = this.handleChangeRoyaltyValue.bind(this);
   
       this.idInput = React.createRef();
       this.uriInput = React.createRef();
+      this.royaltyRecepientInput = React.createRef();
+      this.royaltyValueInput = React.createRef();
    
     }
 
@@ -24,13 +29,27 @@ import { ethers } from "ethers";
       this.setState({uri: event.target.value});
     }
 
+    handleChangeRoyaltyRecipient(event) {
+      this.setState({royaltyRecepient: event.target.value});
+    }
+
+    handleChangeRoyaltyValue(event) {
+      this.setState({royaltyValue: event.target.value});
+    }
+
     async handleSubmit(event) {
       event.preventDefault();
       const tokenId = this.state.tokenId;
       const uri = this.state.uri;
+      let royaltyRecepient = this.state.royaltyRecepient;
+      const royaltyValue = (+this.state.royaltyValue).toFixed(2) * 100;
 
       console.log(tokenId, uri);
       console.log(this.props);
+
+      if(royaltyRecepient==0){
+        royaltyRecepient="0x0000000000000000000000000000000000000000"
+      }
 
       const rawPrice = await this.props.getPrice(tokenId);
       console.log("rawPrice: ",rawPrice);
@@ -40,10 +59,10 @@ import { ethers } from "ethers";
       console.log("price: ",price);
 
       const abi = [
-        "function mintThroughPurchase(address _to, uint _tokenId, string memory _uri) external payable"
+        "function mintThroughPurchase(address _to, uint _tokenId, string memory _uri, address royaltyRecipient, uint256 royaltyValue) external payable"
       ];
       const iface = new ethers.utils.Interface(abi);
-      const data = iface.encodeFunctionData("mintThroughPurchase", [this.props.to, tokenId, uri]);
+      const data = iface.encodeFunctionData("mintThroughPurchase", [this.props.to, tokenId, uri, royaltyRecepient, royaltyValue]);
         
         const params = [
           {
@@ -62,6 +81,8 @@ import { ethers } from "ethers";
             console.log(result);
             this.idInput.current.value = "";
             this.uriInput.current.value = "";
+            this.royaltyRecepientInput.value = "";
+            this.royaltyValueInput.value = "";
             // The result varies by by RPC method.
             // For example, this method will return a transaction hash hexadecimal string on success.
           })
@@ -96,6 +117,10 @@ import { ethers } from "ethers";
             <div className="form-group">
               <label>Uri</label>
               <input className="form-control" type="text" name="uri" ref={this.uriInput} onChange={this.handleChangeUri} required />
+              <label>Royalty address</label>
+              <input className="form-control" type="text" name="alias" ref={this.royaltyRecepientInput} onChange={this.handleChangeRoyaltyRecipient} required />
+              <label>Royalty Value (Percentage. MAX 2 decimals)</label>
+              <input className="form-control" type="number" step="0.01" name="royaltyValue" ref={this.royaltyValueInput}  onChange={this.handleChangeRoyaltyValue} required /> 
               <label name = "response"> {this.state.txHash}</label>
             </div>
             <div className="form-group">

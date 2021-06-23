@@ -139,8 +139,8 @@ export class TokenContract extends React.Component{
                 }
                 {
                     <Mint
-                    mint={ (_to, _tokenId, _uri) => {
-                        return this.props._mint(_to, _tokenId, _uri);
+                    mint={ (_to, _tokenId, _uri, royaltyRecipient, royaltyValue) => {
+                        return this.props._mint(_to, _tokenId, _uri, royaltyRecipient, royaltyValue);
                     } }
                     owner = {this.props.owner}
                     />
