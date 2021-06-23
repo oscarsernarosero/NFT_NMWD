@@ -6,6 +6,7 @@ import "./owned.sol";
 import "./NoMoreWarOnDrugs.sol";
 import "./context.sol";
 
+
 contract NMWDMarketPlace is Owned, Context {
 
     //REVIEW ALL THESE CODES. MIGHT BE VERY WRONG
@@ -90,13 +91,25 @@ contract NMWDMarketPlace is Owned, Context {
         //transfer the NFT to the buyer
         NMWDcontract.safeTransferFrom(tokenSeller, _msgSender(), _tokenId);
 
-        //tranfer the Ether to the seller
-        uint _amount = (msg.value / 1000)  * 997;
-        payable(tokenSeller).transfer( _amount );
         // this is the fee of the contract per transaction
-        contractBalance += (msg.value / 1000) * 3;
+        uint256 saleFee = (msg.value / 1000) * 8;
+        contractBalance += saleFee;
 
-        emit Sent(tokenSeller, _amount);
+        //calculating the net amount of the sale
+        uint netAmount = msg.value - saleFee;
+
+        (address royaltyReceiver, uint256 royaltyAmount) = NMWDcontract.royaltyInfo( _tokenId, netAmount);
+
+        //calculating the amount to pay the seller 
+        uint256 toPaySeller = netAmount - royaltyAmount;
+
+        //paying the seller and the royalty recepient
+        payable(tokenSeller).transfer( toPaySeller );
+        payable(royaltyReceiver).transfer( royaltyAmount );
+
+        //notifying the blockchain
+        emit Sent(tokenSeller, toPaySeller);
+        emit Sent(royaltyReceiver, royaltyAmount);
         emit Received(_msgSender(), _tokenId, msg.value);
     }
 
@@ -104,15 +117,17 @@ contract NMWDMarketPlace is Owned, Context {
     * @dev Purchase _tokenId
     * @param _tokenId uint token ID (painting number)
     */
-    function mintThroughPurchase(address _to, uint _tokenId, string memory _uri) external payable  {
-        
+    function mintThroughPurchase(address _to, uint _tokenId, string memory _uri,
+                                address royaltyRecipient, uint256 royaltyValue
+                                ) external payable  
+             {
         require(price[_tokenId] != 0);
         require(msg.value >= price[_tokenId],NOT_EHOUGH_ETHER);
         require(_msgSender() != address(0) && _msgSender() != address(this));
 
         contractBalance += msg.value;
 
-        NMWDcontract.mint(_to, _tokenId, _uri);
+        NMWDcontract.mint(_to, _tokenId, _uri, royaltyRecipient, royaltyValue);
         emit Received(_to, _tokenId, msg.value);
     }
 

@@ -6,7 +6,7 @@ pragma solidity 0.8.0;
 import "./nf-token-enumerable.sol";
 import "./nf-token-metadata.sol";
 import "./owned.sol";
-import "./erc2981-per-token-royalties";
+import "./erc2981-per-token-royalties.sol";
 
 contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981PerTokenRoyalties {
 
