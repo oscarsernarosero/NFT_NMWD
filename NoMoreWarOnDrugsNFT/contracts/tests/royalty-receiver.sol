@@ -2,14 +2,13 @@
 
 pragma solidity 0.8.0;
 
-//import "./owned.sol";
-import "../context.sol";
+import "../NMWD/context.sol";
 
 contract NMWDRoyaltyReceiver is Context{
 
-    address public nmwd;
-    address public artist;
-    uint public ptc_artist;
+    address immutable public nmwd;
+    address immutable public artist;
+    uint immutable public ptc_artist;
     mapping(address => uint) private balance;
 
     event Sent(address payee, uint amount);
@@ -30,6 +29,7 @@ contract NMWDRoyaltyReceiver is Context{
         balance[artist] += amountArtist;
         balance[nmwd] += amountNmwd;
     }
+
 
     function withdraw(uint amount) external{
 
@@ -57,18 +57,6 @@ contract NMWDRoyaltyReceiver is Context{
 
     function getBalance(address _address) external view returns(uint){
         return balance[_address];
-    }
-
-    function getArtist() external view returns(address){
-        return artist;
-    }
-
-    function getNMWD() external view returns(address){
-        return nmwd;
-    }
-
-    function getArtistPercentage() external view returns(uint){
-        return ptc_artist;
     }
 
 }

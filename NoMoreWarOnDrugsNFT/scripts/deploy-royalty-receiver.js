@@ -13,7 +13,11 @@ async function main() {
     //gas price setup
     let overrides = { 
       // The price (in wei) per unit of gas
-      gasPrice: '0x12A05F200'
+
+    // 10 Gwei: 0x2540BE400
+    // 8 Gwei: 0x1DCD65000
+    // 5 Gwei: 0x12A05F200
+      gasPrice: '0x1DCD65000'
     };
   
     const RoyaltyReceiver = await ethers.getContractFactory("NMWDRoyaltyReceiver");
@@ -23,7 +27,7 @@ async function main() {
     // _pct_artist is a percentage multiplied by 100.
     const royaltyReceiver = await RoyaltyReceiver.deploy("0xB85ea1C62FD5CC6F081F047eCA0BD5aFDd5c5cD5",//this is me
                                                         "0x44E2c3503572B9bb359DA5b38c7B057c95D7CD01",// this is the artist
-                                                        5000, overrides );//50%
+                                                        4000, overrides );//50%
     await royaltyReceiver.deployed();
   
     //console.log("Token address:", token.address);
@@ -31,20 +35,30 @@ async function main() {
   
     // We also save the contract's artifacts and address in the frontend directory
     //saveFrontendFiles(token, "token");
-    saveFrontendFiles(royaltyReceiver, "RoyaltyReceiver", "Test0");
+    saveFrontendFiles(royaltyReceiver, "RoyaltyReceiver", "Artist000");
   }
   
   function saveFrontendFiles(token, name, artist) {
     const fs = require("fs");
     const contractsDir = __dirname + "/../royalty-contracts";
+    const contractsDirArt = __dirname + "/../frontend/src/contracts";
   
     if (!fs.existsSync(contractsDir)) {
       fs.mkdirSync(contractsDir);
     }
   
+    //fs.writeFileSync(
+      //contractsDir + "/contract-address-"+artist+".json",
+      fs.appendFileSync(
+      contractsDir + "/royalty-contract-addresses.json",
+      JSON.stringify({ contract_address: token.address, artist: artist }, undefined, 2)
+    );
+
+    let TokenArtifact = artifacts.readArtifactSync("RoyaltyReceiver");
+      
     fs.writeFileSync(
-      contractsDir + "/contract-address-"+artist+".json",
-      JSON.stringify({ contract_address: token.address }, undefined, 2)
+        contractsDirArt + "/Contract_"+name+".json",
+      JSON.stringify(TokenArtifact, null, 2)
     );
   }
   

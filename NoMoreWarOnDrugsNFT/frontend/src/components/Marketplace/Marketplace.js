@@ -153,7 +153,7 @@ export class Marketplace extends React.Component{
             {
               <GetBackOwnership
                 getBackOwnership ={ () => {
-                  return this.getBackOwnership();
+                  return this.props.getBackOwnership();
                 }}
               />
             }

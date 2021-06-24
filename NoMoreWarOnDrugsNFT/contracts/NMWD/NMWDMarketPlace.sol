@@ -5,11 +5,13 @@ pragma solidity 0.8.0;
 import "./owned.sol";
 import "./NoMoreWarOnDrugs.sol";
 import "./context.sol";
+import "./address-utils.sol";
 
 
 contract NMWDMarketPlace is Owned, Context {
 
-    //REVIEW ALL THESE CODES. MIGHT BE VERY WRONG
+    using AddressUtils for address;
+
     string constant INVALID_ADDRESS = "0501";
     string constant CONTRACT_ADDRESS_NOT_SETUP = "0502";
     string constant NOT_APPROVED= "0503";
@@ -106,7 +108,9 @@ contract NMWDMarketPlace is Owned, Context {
 
         //paying the seller and the royalty recepient
         payable(tokenSeller).transfer( toPaySeller );
-        payable(royaltyReceiver).transfer( royaltyAmount );
+        (bool success, ) =royaltyReceiver.call{value: royaltyAmount, gas: 100000}("");
+        require( success, "Paying Royalties failed");
+        
 
         //notifying the blockchain
         emit Sent(tokenSeller, toPaySeller);
