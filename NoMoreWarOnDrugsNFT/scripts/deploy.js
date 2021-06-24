@@ -19,12 +19,19 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
   */ 
-  //const Token = await ethers.getContractFactory("Token");
+
+    
+  //gas price setup
+  let overrides = { 
+    // The price (in wei) per unit of gas
+    gasPrice: '0x12A05F200'
+  };
+
   const NMWDToken = await ethers.getContractFactory("NoMoreWarOnDrugs");
   const MarketPlace = await ethers.getContractFactory("NMWDMarketPlace");
   //const token = await Token.deploy();
-  const nmwdToken = await NMWDToken.deploy("NoMoreWarOnDrugs", "NMWD" );
-  const marketPlace = await MarketPlace.deploy();
+  const nmwdToken = await NMWDToken.deploy("NoMoreWarOnDrugs", "NMWD",overrides );
+  const marketPlace = await MarketPlace.deploy(overrides);
   //await token.deployed();
   await nmwdToken.deployed();
   await marketPlace.deployed();

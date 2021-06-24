@@ -24,7 +24,7 @@ contract NMWDMarketPlace is Owned, Context {
     event Sent(address indexed payee, uint amount);
     event RoyaltyPaid(address indexed payee, uint amount);
     event SecurityWithdrawal(address indexed payee, uint amount);
-    //event Received(address indexed payer, uint tokenId, uint amount);
+    event NFTSent(address indexed payer, uint tokenId, uint amount);
 
     NoMoreWarOnDrugs public NMWDcontract;
 
@@ -111,7 +111,7 @@ contract NMWDMarketPlace is Owned, Context {
         //notifying the blockchain
         emit Sent(tokenSeller, toPaySeller);
         emit RoyaltyPaid(royaltyReceiver, royaltyAmount);
-        //emit Received(_msgSender(), _tokenId, msg.value);
+        emit NFTSent(_msgSender(), _tokenId, msg.value);
     }
 
     /**
@@ -129,7 +129,7 @@ contract NMWDMarketPlace is Owned, Context {
         contractBalance += msg.value;
 
         NMWDcontract.mint(_to, _tokenId, _uri, royaltyRecipient, royaltyValue);
-        emit Received(_to, _tokenId, msg.value);
+        emit NFTSent(_to, _tokenId, msg.value);
     }
 
     /**
