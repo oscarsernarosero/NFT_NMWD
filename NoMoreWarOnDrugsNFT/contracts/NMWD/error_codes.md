@@ -44,6 +44,7 @@ The full list of the errors are in the following list:
 | 0401 | MAX_TOKENS_MINTED | The maximum amount permited of NFTs has already been minted |
 | 0402 | MESSAGE_ALREADY_SET | The message of an NFT can only be set once for life |
 | 0403 | NOT_VALID_MSG | A message must be more than 0 characters long and less or equal to 200 characters long |
+| 0404 | ZERO_VALUE | Can't pass 0 as value for argument |
 | 0501 | INVALID_ADDRESS | Not a valid Ethereum address |
 | 0502 | CONTRACT_ADDRESS_NOT_SETUP | The address of the NFT hasn't been initalized |
 | 0503 | NOT_APPROVED | NFT not approved to transact, neither allowed as an operator |
@@ -54,6 +55,7 @@ The full list of the errors are in the following list:
 | 0508 | NO_CHANGES_INTENDED | You are trying to change a value, but you are setting it to the old value |
 | 0509 | NOT_NFT_OWNER | You need to own the NFT to carry out this operation | 
 | 0510 | INSUFICIENT_BALANCE | Your Ether balance is insuficient to withdraw the requested amount | 
+| 0511 | STILL_OWN_NFT_CONTRACT | operation not permitted while the marketplace owns the NFT contract. Simply make sure to transfer ownership of the NFT contract. |
 
 <br>
 

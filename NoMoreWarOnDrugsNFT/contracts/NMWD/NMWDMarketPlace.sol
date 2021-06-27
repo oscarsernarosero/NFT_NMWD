@@ -22,6 +22,7 @@ contract NMWDMarketPlace is Owned, Context {
     string constant NO_CHANGES_INTENDED = "0508";
     string constant NOT_NFT_OWNER = "0509";
     string constant INSUFICIENT_BALANCE = "0510";
+    string constant STILL_OWN_NFT_CONTRACT = "0511";
 
     event Sent(address indexed payee, uint amount);
     event RoyaltyPaid(address indexed payee, uint amount);
@@ -80,6 +81,7 @@ contract NMWDMarketPlace is Owned, Context {
     function purchaseToken(uint _tokenId) external payable  {
         require(forSale[_tokenId], NOT_FOR_SALE);
         require(_msgSender() != address(0) && _msgSender() != address(this));
+        require(price[_tokenId] > 0);
         require(msg.value >= price[_tokenId]);
         require(NMWDcontract.ownerOf(_tokenId) != address(0), NOT_VALID_NFT);
 
@@ -122,17 +124,17 @@ contract NMWDMarketPlace is Owned, Context {
     * @dev Purchase _tokenId
     * @param _tokenId uint token ID (painting number)
     */
-    function mintThroughPurchase(address _to, uint _tokenId, string memory _uri,
+    function mintThroughPurchase(address _to, uint _tokenId,
                                 address royaltyRecipient, uint256 royaltyValue
                                 ) external payable  
              {
-        require(price[_tokenId] != 0);
+        require(price[_tokenId] > 0);
         require(msg.value >= price[_tokenId],NOT_EHOUGH_ETHER);
         require(_msgSender() != address(0) && _msgSender() != address(this));
 
         contractBalance += msg.value;
 
-        NMWDcontract.mint(_to, _tokenId, _uri, royaltyRecipient, royaltyValue);
+        NMWDcontract.mint(_to, _tokenId, royaltyRecipient, royaltyValue);
         emit NFTSent(_to, _tokenId, msg.value);
     }
 

@@ -26,8 +26,8 @@ async function main() {
     //the arguments are: address _nmwd, address _artist,  uint _ptc_artist
     // _pct_artist is a percentage multiplied by 100.
     const royaltyReceiver = await RoyaltyReceiver.deploy("0xB85ea1C62FD5CC6F081F047eCA0BD5aFDd5c5cD5",//this is me
-                                                        "0x44E2c3503572B9bb359DA5b38c7B057c95D7CD01",// this is the artist
-                                                        4000, overrides );//50%
+                                                        "0x04F2612a826c88017Fa3e447D291462d56449a7F",// this is the artist
+                                                        4000, overrides );
     await royaltyReceiver.deployed();
   
     //console.log("Token address:", token.address);

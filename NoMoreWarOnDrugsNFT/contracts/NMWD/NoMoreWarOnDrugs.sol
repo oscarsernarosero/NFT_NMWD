@@ -11,21 +11,26 @@ import "./erc2981-per-token-royalties.sol";
 contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981PerTokenRoyalties {
 
     /** 
-    * @dev The error code for when an NFT is attempted to be minted after the max
+    * @dev error when an NFT is attempted to be minted after the max
     * supply of NFTs has been already reached.
     */
     string constant MAX_TOKENS_MINTED = "0401";
 
     /** 
-    * @dev The error code for when an NFT is attempted to be minted after the max
-    * supply of NFTs has been already reached.
+    * @dev error when the message for an NFT is trying to be set afet
+    * it has been already set.
     */
     string constant MESSAGE_ALREADY_SET = "0402";
 
     /** 
-    * @dev The maximum amount of NFTs that can be minted in this collection
+    * @dev The message doesn't comply with the size restrictions
     */
     string constant NOT_VALID_MSG = "0403";
+
+    /** 
+    * @dev Can't pass 0 as value for the argument
+    */
+    string constant ZERO_VALUE = "0404";
 
     /** 
     * @dev The maximum amount of NFTs that can be minted in this collection
@@ -43,10 +48,44 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981P
     */
     mapping (uint256 => string) private idToMsg;
 
+
     constructor(string memory _name, string memory _symbol){
         isOwned();
         nftName = _name;
         nftSymbol = _symbol;
+    }
+
+    /**
+    * @dev Mints a new NFT.
+    * @notice an approveForAll is given to the owner of the contract.
+    * This is due to the fact that the marketplae of this project will 
+    * own this contract. Therefore, the NFTs will be transactable in 
+    * the marketplace by default without any extra step from the user.
+    * @param _to The address that will own the minted NFT.
+    * @param _tokenId of the NFT to be minted by the msg.sender.
+    * @param royaltyRecipient the address that will be entitled for the royalties.
+    * @param royaltyValue the percentage (from 0 - 10000) of the royalties
+    * @notice royaltyValue is amplified 100 times to be able to write a percentage
+    * with 2 decimals of precision. Therefore, 1 => 0.01%; 100 => 1%; 10000 => 100%
+    * @notice the URI is build from the tokenId since it is the SHA2-256 of the
+    * URI content in IPFS.
+    */
+    function mint(address _to, uint256 _tokenId, 
+                  address royaltyRecipient, uint256 royaltyValue) 
+      external onlyOwner 
+      {
+        _mint(_to, _tokenId);
+        //uri setup
+        string memory _uri = getURI(_tokenId);
+        idToUri[_tokenId] = _uri;
+        //royalties setup
+         if (royaltyValue > 0) {
+            _setTokenRoyalty(_tokenId, royaltyRecipient, royaltyValue);
+        }
+        //approve marketplace
+        if(!ownerToOperators[_to][owner]){
+           ownerToOperators[_to][owner] = true;
+         }
     }
 
     /**
@@ -60,32 +99,6 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981P
         
     }
 
-    /**
-    * @dev Mints a new NFT.
-    * @notice an approval is given to the owner of the contract.
-    * This is due to the fact that the marketplae will own this contract.
-    * Therefore, the NFTs will be transactable in the marketplace by
-    * default without any extra step from the user.
-    * @param _to The address that will own the minted NFT.
-    * @param _tokenId of the NFT to be minted by the msg.sender.
-    * @param _uri of the token containing the metadata.
-    */
-    function mint(address _to, uint256 _tokenId,  string memory _uri, 
-                  address royaltyRecipient, uint256 royaltyValue) 
-      external onlyOwner 
-      {
-        _mint(_to, _tokenId);
-        //uri setup
-        idToUri[_tokenId] = _uri;
-        //royalties setup
-         if (royaltyValue > 0) {
-            _setTokenRoyalty(_tokenId, royaltyRecipient, royaltyValue);
-        }
-        //approve marketplace
-        if(!ownerToOperators[_to][owner]){
-           ownerToOperators[_to][owner] = true;
-         }
-    }
 
     /**
    * @dev Assignes a new NFT to an address.
@@ -114,11 +127,12 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981P
   }
 
   function burn(uint256 _tokenId ) public onlyOwner {
-      _burn( _tokenId);
       //clearing the uri
       idToUri[_tokenId] = "";
       //clearing the royalties
       _setTokenRoyalty(_tokenId, address(0), 0);
+      //burning the token for good
+      _burn( _tokenId);
   }
 
   /**
@@ -205,8 +219,6 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981P
         return true;
     }
 
-  
-
  /**
    * @dev returns the list of NFTs owned by certain address.
    * @param _address Id for which we want the message.
@@ -218,6 +230,55 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981P
   { 
     return ownerToIds[_address];
   }
+
+  /**
+    * @dev Builds and return the URL string from the tokenId.
+    * @notice the tokenId is the SHA2-256 of the URI content in IPFS.
+    * This ensures the complete authenticity of the token minted. The URL is
+    * therefore an IPFS URL which follows the pattern: 
+    * ipfs://<CID>
+    * And the CID can be constructed as follows:
+    * CID = F01701220<ID>  
+    * F signals that the CID is in hexadecimal format. 01 means CIDv1. 70 signals   
+    * dag-pg link-data coding used. 12 references the hashing algorith SHA2-256.
+    * 20 is the length in bytes of the hash. In decimal, 32 bytes as specified
+    * in the SHA2-256 protocol. Finally, <ID> is the tokenId (the hash).
+    * @param _tokenId of the NFT (the SHA2-256 of the URI content).
+    */
+  function getURI(uint _tokenId) internal returns(string memory){
+        string memory _hex = uintToHexStr(_tokenId);
+        string memory prefix = "ipfs://F01701220";
+        string memory result = string(abi.encodePacked(prefix,_hex ));
+        return result;
+    }
+
+    /**
+    * @dev Converts a uint into a hex string of 64 characters. Throws if 0 is passed.
+    * @notice that the returned string doesn't prepend the usual "0x".
+    * @param _uint number to convert to string.
+    */
+    function uintToHexStr(uint _uint) external pure returns (string memory) {
+        require(_uint != 0, ZERO_VALUE);
+        bytes memory byteStr = new bytes(64);
+        for (uint j = 0; j < 64 ;j++){
+            uint curr = (_uint & 15); //mask that allows us to filter only the last 4 bits (last character)
+            byteStr[63-j] = curr > 9 ? bytes1( uint8(55) + uint8(curr) ) :
+                                        bytes1( uint8(48) + uint8(curr) ); // 55 = 65 - 10
+            _uint = _uint >> 4;   
+        }
+        return string(byteStr);
+      }
+
+    /**
+    * @dev Destroys the contract
+    * @notice that, due to the danger that the call of this contract poses, it is required
+    * to pass a specific integer value to effectively call this method.
+    * @param security_value number to pass security restriction (192837).
+    */
+      function seflDestruct(uint security_value) external onlyOwner { 
+        require(security_value == 192837); //this is just to make sure that this method was not called by accident
+        selfdestruct(owner); 
+      }
 
 } 
 

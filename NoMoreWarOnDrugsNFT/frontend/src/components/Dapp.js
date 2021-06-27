@@ -464,6 +464,15 @@ export class Dapp extends React.Component {
        return {error: error.message};
      }
    }
+
+   async royaltyInfo(tokenId){
+    try{
+      return await this._nmwd.royaltyInfo(tokenId, 10000);
+     }catch(error){
+      console.log(error);
+       return {error: error.message};
+     }
+   }
    
 
    async setTokenMessage(tokenId, msg ){
@@ -541,6 +550,11 @@ export class Dapp extends React.Component {
         data["price"] = price._hex; 
         const message = await this._nmwd.tokenMessage(id);
         data["message"] = message;
+        data["royaltyInfo"] = await this.royaltyInfo(id);
+        console.log("token with id: ",id);
+        console.log("Royalty info: ",data["royaltyInfo"]);
+        console.log("Royalty info: ",data["royaltyInfo"][0]);
+        console.log("Royalty info: ",data["royaltyInfo"][1]._hex);
         data["id"] = id;
         const forSale = await this.marketPlace.getForSale(id);
         data["forSale"] = forSale;

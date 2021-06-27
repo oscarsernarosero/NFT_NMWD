@@ -27,7 +27,7 @@ async function main() {
     // 10 Gwei: 0x2540BE400
     // 8 Gwei: 0x1DCD65000
     // 5 Gwei: 0x12A05F200
-    gasPrice: '0x2540BE400'
+    gasPrice: '0x12A05F200'
   };
 
   const NMWDToken = await ethers.getContractFactory("NoMoreWarOnDrugs");

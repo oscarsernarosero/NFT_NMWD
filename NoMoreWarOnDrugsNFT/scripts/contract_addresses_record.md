@@ -13,3 +13,12 @@ marketPlace address: 0xba82490efCb38dD5FB904D3a75919AFeAcd3131C
 10:40
 nmwdToken address: 0x550E948ac5F50265BE7F18F41b1a440c1A6bC869
 marketPlace address: 0x4c3dB2cEaF27FEA5f5aD7e80F474f575cda80DD6
+
+
+# MAINNET NETWORK
+
+### Jun 25th, 2021
+
+nmwdToken address: 0x84dAfE3529152c27DCc591daDe5BC40a6d960Ae5
+marketPlace address: 0x6F5e314bc11895e219f2Fd4a4fA6742A8bf42A1A
+

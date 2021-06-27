@@ -8,7 +8,7 @@ require("@nomiclabs/hardhat-ethers");
 // testing the frontend.
 require("./tasks/faucet");
 
-const { API_URL, PRIVATE_KEY } = process.env;
+const { API_URL, API_URL_MAINNET, PRIVATE_KEY, PRIVATE_KEY2 } = process.env;
 
 module.exports = {
   solidity:{
@@ -32,6 +32,10 @@ module.exports = {
       ropsten: {
          url: API_URL,
          accounts: [`0x${PRIVATE_KEY}`]
+      },
+      mainnet:{
+        url: API_URL_MAINNET,
+        accounts: [`0x${PRIVATE_KEY2}`]
       }
    },
 };
