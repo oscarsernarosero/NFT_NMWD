@@ -45,7 +45,7 @@ export class ChangePrice extends React.Component{
             newPrice = (+this.state.newPrice*1000000000000000000).toString();
             console.log("newPrice: ",newPrice);
         }
-        const tokenId = parseInt(this.props.id);
+        const tokenId = this.props.id;
         console.log(" aaa price: ",newPrice," tokenId: ",tokenId);
     
     

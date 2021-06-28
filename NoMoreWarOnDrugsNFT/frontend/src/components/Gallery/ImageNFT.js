@@ -39,9 +39,9 @@ export class ImageNFT extends React.Component{
 
   setSelectedId(){
     const CID = (this.props.uri.image).substring(7);
-    console.log("CID: ",pinata_image_url);
+    console.log("CID: ",CID);
     const pinata_image_url = "https://gateway.pinata.cloud/ipfs/"+CID;
-      this.props.setSelectedId(parseInt(this.props.uri.id),pinata_image_url, this.props.uri.price);
+      this.props.setSelectedId(this.props.uri.id,pinata_image_url, this.props.uri.price);
     }
   
 
