@@ -64,8 +64,7 @@ export class SetPrice extends React.Component{
           <label>NFT Id: </label>
           <input
             className="form-control"
-            type="number"
-            
+            type="text"
             name="id"
             onChange={this.handleChangeId}
             ref={this.idInput}

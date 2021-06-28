@@ -32,7 +32,7 @@ import { Carousel } from "../Gallery/Carousel";
         let myIds = await this.props.getNFTidsByAddress(this.props.address);
         console.log("myIds raw ",myIds);
         if(myIds.length>0){
-            myIds = myIds.map( (_id) => {return parseInt(_id._hex);});
+            //myIds = myIds.map( (_id) => {return parseInt(_id._hex);});
             console.log("myIds ",myIds);
             this.setState({mounted: true, myIds: myIds});
 

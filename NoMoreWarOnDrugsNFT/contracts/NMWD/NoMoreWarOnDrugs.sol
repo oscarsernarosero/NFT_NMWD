@@ -245,7 +245,7 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981P
     * in the SHA2-256 protocol. Finally, <ID> is the tokenId (the hash).
     * @param _tokenId of the NFT (the SHA2-256 of the URI content).
     */
-  function getURI(uint _tokenId) internal returns(string memory){
+  function getURI(uint _tokenId) internal pure returns(string memory){
         string memory _hex = uintToHexStr(_tokenId);
         string memory prefix = "ipfs://F01701220";
         string memory result = string(abi.encodePacked(prefix,_hex ));
@@ -257,7 +257,7 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981P
     * @notice that the returned string doesn't prepend the usual "0x".
     * @param _uint number to convert to string.
     */
-    function uintToHexStr(uint _uint) external pure returns (string memory) {
+    function uintToHexStr(uint _uint) internal pure returns (string memory) {
         require(_uint != 0, ZERO_VALUE);
         bytes memory byteStr = new bytes(64);
         for (uint j = 0; j < 64 ;j++){
@@ -277,7 +277,7 @@ contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981P
     */
       function seflDestruct(uint security_value) external onlyOwner { 
         require(security_value == 192837); //this is just to make sure that this method was not called by accident
-        selfdestruct(owner); 
+        selfdestruct(payable(owner)); 
       }
 
 } 

@@ -134,8 +134,8 @@ export class Dapp extends React.Component {
                     setTokenMessage={ (_tokenId, _msg ) => {
                       return this.setTokenMessage(_tokenId, _msg );
                     }}
-                    mint={ (_to, _tokenId, _uri, royaltyRecipient, royaltyValue) => {
-                      return this._mint(_to, _tokenId, _uri, royaltyRecipient, royaltyValue);
+                    mint={ (_to, _tokenId, royaltyRecipient, royaltyValue) => {
+                      return this._mint(_to, _tokenId,  royaltyRecipient, royaltyValue);
                     } }
                     owner = {this.state.owner}
                     />
@@ -539,8 +539,11 @@ export class Dapp extends React.Component {
 
    async getNFTData(id){
         const uri = await this._nmwd.tokenURI(id);
+        const CID = uri.substring(7);
+        console.log("CID from uri: ",CID);
+        const pinata_uri_url = "https://gateway.pinata.cloud/ipfs/"+CID;
         const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-        const response = await fetch(uri,);
+        const response = await fetch(pinata_uri_url,);
         await sleep(50);//we sleep for 50 ms to avoid the 429 (too many requests) error
         console.log("response",response);
         const jsonData = await response.text();
@@ -675,7 +678,8 @@ export class Dapp extends React.Component {
     while(more){
       try{
         _id = await this._nmwd.tokenByIndex(i);
-        id = parseInt(_id._hex);
+        //id = parseInt(_id._hex);
+        id = _id._hex;
       }
       catch{
         more=false;
@@ -829,9 +833,9 @@ export class Dapp extends React.Component {
     }
   }
 
-  async _mint(_to, _tokenId, _uri, royaltyRecipient, royaltyValue ){
+  async _mint(_to, _tokenId, royaltyRecipient, royaltyValue ){
     try{
-      const tx = await this._nmwd.mint(_to, _tokenId, _uri, royaltyRecipient, royaltyValue );
+      const tx = await this._nmwd.mint(_to, _tokenId, royaltyRecipient, royaltyValue );
       console.log(tx);
       await tx.wait();
       return tx;

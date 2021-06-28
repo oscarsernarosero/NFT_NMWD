@@ -5,17 +5,15 @@ import { ethers } from "ethers";
 
     constructor(props){
       super(props);
-      this.state = {tokenId: "", uri: "",to: "", txHash: "",
+      this.state = {tokenId: "", to: "", txHash: "",
                       royaltyRecipient: 0, royaltyValue: 0};
   
       this.handleChangeId = this.handleChangeId.bind(this);
-      this.handleChangeUri = this.handleChangeUri.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleChangeRoyaltyRecipient = this.handleChangeRoyaltyRecipient.bind(this);
       this.handleChangeRoyaltyValue = this.handleChangeRoyaltyValue.bind(this);
   
       this.idInput = React.createRef();
-      this.uriInput = React.createRef();
       this.royaltyRecepientInput = React.createRef();
       this.royaltyValueInput = React.createRef();
    
@@ -23,10 +21,6 @@ import { ethers } from "ethers";
 
     handleChangeId(event) {
       this.setState({tokenId: event.target.value});
-    }
-
-    handleChangeUri(event) {
-      this.setState({uri: event.target.value});
     }
 
     handleChangeRoyaltyRecipient(event) {
@@ -40,11 +34,10 @@ import { ethers } from "ethers";
     async handleSubmit(event) {
       event.preventDefault();
       const tokenId = this.state.tokenId;
-      const uri = this.state.uri;
       let royaltyRecepient = this.state.royaltyRecepient;
       const royaltyValue = (+this.state.royaltyValue).toFixed(2) * 100;
 
-      console.log(tokenId, uri);
+      console.log(tokenId);
       console.log(this.props);
 
       if(royaltyRecepient==0){
@@ -59,10 +52,10 @@ import { ethers } from "ethers";
       console.log("price: ",price);
 
       const abi = [
-        "function mintThroughPurchase(address _to, uint _tokenId, string memory _uri, address royaltyRecipient, uint256 royaltyValue) external payable"
+        "function mintThroughPurchase(address _to, uint _tokenId, address royaltyRecipient, uint256 royaltyValue) external payable"
       ];
       const iface = new ethers.utils.Interface(abi);
-      const data = iface.encodeFunctionData("mintThroughPurchase", [this.props.to, tokenId, uri, royaltyRecepient, royaltyValue]);
+      const data = iface.encodeFunctionData("mintThroughPurchase", [this.props.to, tokenId, royaltyRecepient, royaltyValue]);
         
         const params = [
           {
@@ -80,7 +73,6 @@ import { ethers } from "ethers";
           .then((result) => {
             console.log(result);
             this.idInput.current.value = "";
-            this.uriInput.current.value = "";
             this.royaltyRecepientInput.value = "";
             this.royaltyValueInput.value = "";
             // The result varies by by RPC method.
@@ -106,8 +98,7 @@ import { ethers } from "ethers";
               <label>Token Id: </label>
               <input
                 className="form-control"
-                type="number"
-                step="1"
+                type="text"
                 name="Id"
                 onChange={this.handleChangeId}
                 ref={this.idInput}
@@ -115,8 +106,6 @@ import { ethers } from "ethers";
               />
             </div>
             <div className="form-group">
-              <label>Uri</label>
-              <input className="form-control" type="text" name="uri" ref={this.uriInput} onChange={this.handleChangeUri} required />
               <label>Royalty address</label>
               <input className="form-control" type="text" name="alias" ref={this.royaltyRecepientInput} onChange={this.handleChangeRoyaltyRecipient} required />
               <label>Royalty Value (Percentage. MAX 2 decimals)</label>

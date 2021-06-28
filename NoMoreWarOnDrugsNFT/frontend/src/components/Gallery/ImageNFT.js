@@ -38,7 +38,10 @@ export class ImageNFT extends React.Component{
   }
 
   setSelectedId(){
-      this.props.setSelectedId(parseInt(this.props.uri.id),this.props.uri.image, this.props.uri.price);
+    const CID = (this.props.uri.image).substring(7);
+    console.log("CID: ",pinata_image_url);
+    const pinata_image_url = "https://gateway.pinata.cloud/ipfs/"+CID;
+      this.props.setSelectedId(parseInt(this.props.uri.id),pinata_image_url, this.props.uri.price);
     }
   
 
@@ -98,15 +101,18 @@ async setForSale()
 }
   
   render(){
+    const CID = (this.props.uri.image).substring(7);
+    console.log("CID: ",CID);
+    const pinata_image_url = "https://gateway.pinata.cloud/ipfs/"+CID;
   return (
     <div>
       <div className="NFTTitle">
         {this.props.uri.name}
       </div>
       <div className="imageContainer">
-        <a href={this.props.uri.image} target="_blank" rel="noopener noreferrer">
+        <a href={pinata_image_url} target="_blank" rel="noopener noreferrer">
          <img 
-          src={this.props.uri.image }
+          src={pinata_image_url}
           alt={this.props.uri.name}
           className="imageNFT"
           />
@@ -125,8 +131,8 @@ async setForSale()
         <h6 className="artist">
          artist: 
         </h6>
-        <a href={this.props.uri.attributes[1].webpage} className="link" target="_blank" rel="noopener noreferrer">
-          {this.props.uri.attributes[0].artist}
+        <a href={this.props.uri.attributes.webpage} className="link" target="_blank" rel="noopener noreferrer">
+          {this.props.uri.attributes.artist}
         </a>
       </div>
       <div className="description">

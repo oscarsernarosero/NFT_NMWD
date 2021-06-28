@@ -70,8 +70,7 @@ export class Purchase extends React.Component{
           <label>Id: </label>
           <input
             className="form-control"
-            type="number"
-            step="1"
+            type="text"
             name="id"
             onChange={this.handleChange}
             required

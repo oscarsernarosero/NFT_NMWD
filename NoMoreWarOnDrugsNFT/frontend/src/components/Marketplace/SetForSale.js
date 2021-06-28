@@ -57,8 +57,7 @@ export class SetForSale extends React.Component{
         <label>NFT Id: </label>
           <input
             className="form-control"
-            type="number"
-            step="1"
+            type="text"
             name="id"
             onChange={this.handleChangeId}
             ref={this.idInput}
