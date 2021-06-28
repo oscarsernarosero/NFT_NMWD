@@ -10,13 +10,13 @@ async function main(){
     const contractsDir = __dirname + "/";
 
     //############### MODIFY THE PARAMETERS HERE: ###############
-    const description="this is when they were protesting about beer";
+    const description="Anti immigrant wave in the US at the beginning of XX century";
     const external_url="warondrugsisasham.eth.link";
-    const image="ipfs://QmQ2dyeZANz8DLFUfLrJ1YUxka8Sr1RBDphu59DmuZwtDs";
-    const name="We Want Beer";
-    const artist="Who Knows";
+    const image="ipfs://QmTupo3sCz6DFKKJpbMi5KEngpKwjUPWGZzZCMaRm3tep2";
+    const name="Anti immigrant";
+    const artist="magazin";
     const artist_webpage="https://youtu.be/rBooOvKESNk";
-    const topics= [TOPIC.ALCOHOL, TOPIC.US, TOPIC.POLITICS, TOPIC.HISTORY];
+    const topics= [TOPIC.US, TOPIC.POLITICS, TOPIC.HISTORY];
     const language = LANGUAGE.EN;
     //############################################################
 

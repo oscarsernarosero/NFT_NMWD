@@ -140,7 +140,7 @@ async setForSale()
       </div>
       
       <div className="price">
-        Price: ${parseInt(this.props.uri.price)/1000000000000000000} ETH
+        Price: {parseInt(this.props.uri.price)/1000000000000000000} ETH
       </div>  
       <div className={this.props.mywallet ? "dont-show" : "text-center"}>
         <button onClick={this.props.mywallet||!this.props.uri.forSale ? this.buyDisable : this.buy}
@@ -159,7 +159,7 @@ async setForSale()
       </div>  
       <div className={!this.props.mywallet ? "dont-show" : "text-center"}>
       
-        <button className="setPrice" onClick={this.changePrice}> $ Change Price $</button>
+        <button className="setPrice" onClick={this.changePrice}> Change Price </button>
         <ChangePrice 
           id = {this.props.uri.id}
           price = {this.props.uri.price}

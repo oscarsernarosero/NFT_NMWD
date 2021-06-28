@@ -7,7 +7,7 @@ import "../../style/pagination.css"
 import { Carousel } from "../Gallery/Carousel";
 
 
-  export class PaginationNFTs extends React.Component{
+  export class PaginationForMinting extends React.Component{
 
 
     constructor(props){
@@ -28,20 +28,24 @@ import { Carousel } from "../Gallery/Carousel";
         if(!this.state.mywallet){
           await this.getNFTids();
         }
-        let myIds = await this.props.getNFTidsByAddress(this.props.address);
-        console.log("myIds raw ",myIds);
-        if(myIds.length>0){
-            //myIds = myIds.map( (_id) => {return parseInt(_id._hex);});
-            console.log("myIds ",myIds);
-            this.setState({mounted: true, myIds: myIds});
 
-            if(this.props.pageSize){
-                if(this.props.pageSize != this.state.pageSize){
-                    this.setState({pageSize: this.props.pageSize});
-            }}}
-            await this.getPageData();
-            console.log("from pagination ",this.state);
-            
+        const ids_to_mint =[];
+        for (const [key, value] of Object.entries(this.props.forMint)) {
+            if(!(this.state.ids).includes(key)){
+                ids_to_mint.push(key);
+            }
+        }
+
+        this.setState({ids: ids_to_mint});
+        this.setState({mounted: true});
+
+        if(this.props.pageSize){
+            if(this.props.pageSize != this.state.pageSize){
+                this.setState({pageSize: this.props.pageSize});
+        }}
+        await this.getPageData();
+        console.log("from pagination ",this.state);
+        
         
     }
 
@@ -81,18 +85,11 @@ import { Carousel } from "../Gallery/Carousel";
     async getPageData(){
         const startAt = this.state.pageSize * (this.state.page-1);
         const endAt = startAt + this.state.pageSize;
-        let pageIds;
-        if(this.props.mywallet){
-          pageIds = this.state.myIds.slice(startAt,endAt);
-        }else{
-          pageIds = this.state.ids.slice(startAt,endAt);
-        }
+        const pageIds = this.state.ids.slice(startAt,endAt);
+        
         const nfts = [];
         for(let i=0; i<pageIds.length;i++){
             const data = await this.props.getNFTData(pageIds[i]);
-            if(!this.props.mywallet){
-              data["owned"] = this.state.myIds.includes(pageIds[i]);
-            }
             nfts.push(data);
         }
         this.setState({nfts: nfts});
