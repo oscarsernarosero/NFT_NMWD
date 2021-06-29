@@ -28,10 +28,9 @@ import { Carousel } from "../Gallery/Carousel";
         if(!this.state.mywallet){
           await this.getNFTids();
         }
-
         const ids_to_mint =[];
         for (const [key, value] of Object.entries(this.props.forMint)) {
-            if(!(this.state.ids).includes(key)){
+            if( !( this.state.ids.includes(key.toLowerCase()) ) ){
                 ids_to_mint.push(key);
             }
         }
@@ -54,23 +53,6 @@ import { Carousel } from "../Gallery/Carousel";
         this.setState({nfts: [demo_NFT]});
       }
 
-    async componentDidUpdate(prevProps){
-        if(prevProps.address !== this.props.address && this.state.mounted === true){
-            const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-            await sleep(1500);    
-            if(!this.state.mywallet ){
-              await this.getNFTids();
-            }
-            let myIds = await this.props.getNFTidsByAddress(this.props.address);
-            console.log("myIds raw didupdatw",myIds);
-            if(myIds.length>0){
-                myIds = myIds.map( (_id) => {return parseInt(_id._hex);});
-                console.log("myIds ",myIds);
-                this.setState({myIds: myIds});
-            }
-            await this.getPageData();
-        }
-    }
 
     async changeCurrentPage(numPage) {
         this.setState({ page: numPage });
@@ -89,7 +71,11 @@ import { Carousel } from "../Gallery/Carousel";
         
         const nfts = [];
         for(let i=0; i<pageIds.length;i++){
-            const data = await this.props.getNFTData(pageIds[i]);
+            const data = this.props.forMint[pageIds[i]];
+            const price = await this.props.getPrice(pageIds[i]);
+            data["price"] = price._hex; 
+            data["id"] = pageIds[i];
+            data["forSale"] = true;
             nfts.push(data);
         }
         this.setState({nfts: nfts});
@@ -97,16 +83,10 @@ import { Carousel } from "../Gallery/Carousel";
     }
     
       async getNFTids(){
-        let ids = [];
-         if(this.props.address) {
-            ids = await this.props.getAllNFTsIdsOnly();
-            this.setState({ids: ids});
-            console.log("getNFTids: ",ids);
+        let ids = await this.props.getAllNFTsIdsOnly();
+        this.setState({ids: ids});
+        console.log("getNFTids formint: ",ids);
 
-         }else{
-            this.state = {ids: [0]};
-        }
-        
       }
       
       render(){
@@ -137,6 +117,9 @@ import { Carousel } from "../Gallery/Carousel";
                               waitForMinedConfirmation={ (tx_hash, func) => {
                                 return this.props.waitForMinedConfirmation(tx_hash, func);
                               }}
+                              forMint={true}
+                              marketPlaceAddress = {this.props.marketPlaceAddress}
+                              to = {this.props.to}
                         /></li>
                 })}
                 </ul>

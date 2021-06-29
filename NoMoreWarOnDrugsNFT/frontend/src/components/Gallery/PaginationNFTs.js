@@ -5,6 +5,7 @@ import { ImageNFT } from "./ImageNFT";
 import "../../style/pagination.css"
 
 import { Carousel } from "../Gallery/Carousel";
+import { BigNumber } from "ethers";
 
 
   export class PaginationNFTs extends React.Component{
@@ -31,7 +32,7 @@ import { Carousel } from "../Gallery/Carousel";
         let myIds = await this.props.getNFTidsByAddress(this.props.address);
         console.log("myIds raw ",myIds);
         if(myIds.length>0){
-            //myIds = myIds.map( (_id) => {return parseInt(_id._hex);});
+            myIds = myIds.map( (_id) => {return _id._hex;});
             console.log("myIds ",myIds);
             this.setState({mounted: true, myIds: myIds});
 
@@ -60,7 +61,7 @@ import { Carousel } from "../Gallery/Carousel";
             let myIds = await this.props.getNFTidsByAddress(this.props.address);
             console.log("myIds raw didupdatw",myIds);
             if(myIds.length>0){
-                myIds = myIds.map( (_id) => {return parseInt(_id._hex);});
+                myIds = myIds.map( (_id) => {return _id._hex;});
                 console.log("myIds ",myIds);
                 this.setState({myIds: myIds});
             }
@@ -92,6 +93,7 @@ import { Carousel } from "../Gallery/Carousel";
             const data = await this.props.getNFTData(pageIds[i]);
             if(!this.props.mywallet){
               data["owned"] = this.state.myIds.includes(pageIds[i]);
+
             }
             nfts.push(data);
         }
@@ -140,6 +142,8 @@ import { Carousel } from "../Gallery/Carousel";
                               waitForMinedConfirmation={ (tx_hash, func) => {
                                 return this.props.waitForMinedConfirmation(tx_hash, func);
                               }}
+                              
+                              forMint={false}
                         /></li>
                 })}
                 </ul>

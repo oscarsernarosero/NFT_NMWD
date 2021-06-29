@@ -7,22 +7,23 @@ async function main(){
     const CONST = require('./uri_constants');
     const TOPIC = CONST.TOPIC;
     const LANGUAGE = CONST.LANGUAGE;
-    const contractsDir = __dirname + "/";
+    const contractsDir = __dirname + "/../frontend/src/uris/";
 
     //############### MODIFY THE PARAMETERS HERE: ###############
-    const description="Anti immigrant wave in the US at the beginning of XX century";
+    const description="Tratado del fin de las guerras del opio";
+    const name="Tratado De Las Guerras Del Opio";
+    const language = LANGUAGE.ES;
+    //
+    const imageCID="QmdcLdgjC8WPLyEfYaFRE13uchyfivXtRdaf2BVUFMwCBT";
+    const artist="Yo momma";
+    const artist_webpage="https://youtu.be/vI2hT9lb1gY";
+    const topics= [TOPIC.UK, TOPIC.GEOPOLITICS, TOPIC.HISTORY, TOPIC.OPIUM, TOPIC.CHINA];
+    const _royaltyPct = "8.00"//%
+    const _royaltyAddress = "0x24cAEd0fF40814d9DB16a6F341e8A023804D9EF3"
+    //
     const external_url="warondrugsisasham.eth.link";
-    const image="ipfs://QmTupo3sCz6DFKKJpbMi5KEngpKwjUPWGZzZCMaRm3tep2";
-    const name="Anti immigrant";
-    const artist="magazin";
-    const artist_webpage="https://youtu.be/rBooOvKESNk";
-    const topics= [TOPIC.US, TOPIC.POLITICS, TOPIC.HISTORY];
-    const language = LANGUAGE.EN;
     //############################################################
 
-    if(image.substring(0,7)!=="ipfs://"){
-        throw("invalid image format. Expected an IPFS url such as ipfs://<CID>");
-    }
     if(topics.length==0){
         throw("topics must be an array with at least 1 topic");
     }
@@ -33,13 +34,17 @@ async function main(){
     const uri = {
         description: description,
         external_url: external_url,
-        image: image,
+        image: "ipfs://"+imageCID,
         name: name,
         attributes: {
             artist: artist,
             webpage:artist_webpage,
             topics: topics,
             language: language
+        },
+        royalties: {
+            pctValue: _royaltyPct,
+            address: _royaltyAddress
         }
     }
     const safe_name = name.replace(/ /g,"_");

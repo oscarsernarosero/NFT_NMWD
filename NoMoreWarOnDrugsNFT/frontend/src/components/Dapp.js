@@ -214,6 +214,12 @@ export class Dapp extends React.Component {
                     getAllNFTsIdsOnly = { () => {
                       return this.getAllNFTsIdsOnly();
                     }}
+
+                    marketPlaceAddress = {MarketPlaceAddress.Token}
+                    to = {this.state.selectedAddress}
+                    getPrice = { (tokenId) => {
+                      return this.getPrice( tokenId);
+                    }}
                   />
                 }
               />

@@ -17,6 +17,7 @@ export class ImageNFT extends React.Component{
     this.state ={forSale : this.props.uri.forSale, visible:false};
     this.setForSale = this.setForSale.bind(this);
     this.buy = this.buy.bind(this);
+    this.mint = this.mint.bind(this);
     this.setSelectedId = this.setSelectedId.bind(this);
     this.buyDisable = this.buyDisable.bind(this);
     this.changePrice = this.changePrice.bind(this);
@@ -44,6 +45,47 @@ export class ImageNFT extends React.Component{
       this.props.setSelectedId(this.props.uri.id,pinata_image_url, this.props.uri.price);
     }
   
+    async mint() {
+      const tokenId = this.props.uri.id;
+      const price = this.props.uri.price;
+      const royalties = this.props.uri.royalties;
+      const royaltyRecepient = royalties.address;
+      const royaltyValue = parseFloat(royalties.pctValue)*100;
+
+
+      const abi = [
+        "function mintThroughPurchase(address _to, uint _tokenId, address royaltyRecipient, uint256 royaltyValue) external payable"
+      ];
+      const iface = new ethers.utils.Interface(abi);
+      const data = iface.encodeFunctionData("mintThroughPurchase", [this.props.to, tokenId, royaltyRecepient, royaltyValue]);
+        
+        const params = [
+          {
+            from: this.props.to,
+            to: this.props.marketPlaceAddress,
+            value: price, 
+            data: data
+          },
+        ];
+        await window.ethereum
+          .request({
+            method: 'eth_sendTransaction',
+            params,
+          })
+          .then((result) => {
+            console.log(result);
+            this.idInput.current.value = "";
+            this.royaltyRecepientInput.value = "";
+            this.royaltyValueInput.value = "";
+            // The result varies by by RPC method.
+            // For example, this method will return a transaction hash hexadecimal string on success.
+          })
+          .catch((error) => {
+            console.log(error);
+            // If the request fails, the Promise will reject with an error.
+          });
+        
+    }
 
   async buy() {
     const tokenId = this.props.uri.id;
@@ -143,11 +185,16 @@ async setForSale()
         Price: {parseInt(this.props.uri.price)/1000000000000000000} ETH
       </div>  
       <div className={this.props.mywallet ? "dont-show" : "text-center"}>
-        <button onClick={this.props.mywallet||!this.props.uri.forSale ? this.buyDisable : this.buy}
+
+        <button onClick={this.props.mywallet||!this.props.uri.forSale ? this.buyDisable :
+                                                   this.props.forMint ? this.mint : this.buy}
+
         className={this.props.uri.owned ? "button-owned"  : "button" }>
           {this.props.uri.owned ? "You Own This NFT !" : 
+          this.props.forMint ? "MINT!" :
           this.props.uri.forSale ? "BUY" : "Not For Sale"}
-          </button>
+
+        </button>
       </div>
       <div className={!this.props.mywallet||this.props.uri.message!=="" ? "dont-show" : "text-center"}>
       {/* the following line is just for testing puroposes. DELETE THIS LINE LATER AND UNCOMMENT THE ONE ABOVE*/ }

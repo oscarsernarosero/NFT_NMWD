@@ -1,5 +1,6 @@
 import React from "react";
 import { PaginationNFTs } from "./PaginationNFTs";
+import { ForMinting } from "./ForMinting";
 import "../../style/gallery.css";
 
 export class Gallery extends React.Component{
@@ -22,8 +23,25 @@ export class Gallery extends React.Component{
           }}
           mywallet = {false}
           />
+
+
+        <ForMinting
+          marketPlaceAddress = {this.props.marketPlaceAddress}
+          address = {this.props.address}
+          getAllNFTsIdsOnly = { () => {
+              return this.props.getAllNFTsIdsOnly();
+          }}
+          mywallet = {false}
+          marketPlaceAddress = {this.props.marketPlaceAddress}
+          to = {this.props.to}
+          getPrice = { (tokenId) => {
+            return this.props.getPrice( tokenId);
+          }}
+          />
          
           </div>
+
+          
 
         );
     }
