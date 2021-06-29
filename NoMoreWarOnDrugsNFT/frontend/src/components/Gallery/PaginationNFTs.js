@@ -16,6 +16,8 @@ import { BigNumber } from "ethers";
         const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
         this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1],pageSize:6};
         this.changeCurrentPage = this.changeCurrentPage.bind(this);
+        this.listView = this.listView.bind(this);
+        this.albumView = this.albumView.bind(this);
         console.log(this.state);
         
       }
@@ -69,6 +71,12 @@ import { BigNumber } from "ethers";
         }
     }
 
+    listView(){
+      this.setState({view:1});
+    }
+    albumView(){
+        this.setState({view:0});
+    }
     async changeCurrentPage(numPage) {
         this.setState({ page: numPage });
         console.log("change to page",this.state.page);
@@ -117,7 +125,11 @@ import { BigNumber } from "ethers";
       render(){
         return (
             <div >
-               <div>
+              <div>
+                    <button onClick={this.listView}>List</button>
+                    <button onClick={this.albumView}>album</button>
+                </div>
+               <div className={this.state.view ? "": "not-visible"}>
                <ul className="list">
                 {this.state.nfts.map((item,index)=>{
                     return <li className="galleryItem"
@@ -147,18 +159,20 @@ import { BigNumber } from "ethers";
                         /></li>
                 })}
                 </ul>
-                <div className="centered">
+                </div>
+                <div className={this.state.view ? "not-visible":"" }>
+                  <Carousel
+                      nfts={this.state.nfts}
+                    />    
+                  </div> 
+                  <div className="centered">
                     <Pagination
                     currentPage={this.state.page}
                     sizePerPage={this.state.pageSize}
                     totalSize={this.props.mywallet ? this.state.myIds.length : this.state.ids.length}
                     changeCurrentPage={this.changeCurrentPage}
                     />
-                    </div>
-                 </div> 
-                 <Carousel
-                    nfts={this.state.nfts}
-                  />          
+                    </div>    
               </div>
             );
         }

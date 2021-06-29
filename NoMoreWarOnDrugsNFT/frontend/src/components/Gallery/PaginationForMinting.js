@@ -13,8 +13,10 @@ import { Carousel } from "../Gallery/Carousel";
     constructor(props){
         super(props);
         const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
-        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1],pageSize:6};
+        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1],pageSize:6, view:0};
         this.changeCurrentPage = this.changeCurrentPage.bind(this);
+        this.listView = this.listView.bind(this);
+        this.albumView = this.albumView.bind(this);
         console.log(this.state);
         
       }
@@ -47,6 +49,14 @@ import { Carousel } from "../Gallery/Carousel";
         
         
     }
+
+    listView(){
+        this.setState({view:1});
+    }
+    albumView(){
+        this.setState({view:0});
+    }
+
 
     componentDidCatch(){
         const demo_NFT = {"description": "error","external_url": "unkown","image": "loading","name": "error","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
@@ -92,7 +102,19 @@ import { Carousel } from "../Gallery/Carousel";
       render(){
         return (
             <div >
-               <div>
+                <div>
+                    <h2>Mint New NFTs</h2>
+                </div>
+                <div>
+                    <p>By minting new NFT you have the privilage of inmortalizing yourself
+                        in the blockchain by setting a message for your NFT. This message will live for
+                        ever in the Ethereum netwrok. Don't miss this opportunity!</p>
+                </div>
+                <div>
+                    <button onClick={this.listView}>List</button>
+                    <button onClick={this.albumView}>album</button>
+                </div>
+               <div className={this.state.view ? "": "not-visible"}>
                <ul className="list">
                 {this.state.nfts.map((item,index)=>{
                     return <li className="galleryItem"
@@ -123,6 +145,12 @@ import { Carousel } from "../Gallery/Carousel";
                         /></li>
                 })}
                 </ul>
+                </div>
+                <div className={this.state.view ? "not-visible":"" }>
+                <Carousel
+                    nfts={this.state.nfts}
+                  />
+                </div>     
                 <div className="centered">
                     <Pagination
                     currentPage={this.state.page}
@@ -131,10 +159,7 @@ import { Carousel } from "../Gallery/Carousel";
                     changeCurrentPage={this.changeCurrentPage}
                     />
                     </div>
-                 </div> 
-                 <Carousel
-                    nfts={this.state.nfts}
-                  />          
+                      
               </div>
             );
         }

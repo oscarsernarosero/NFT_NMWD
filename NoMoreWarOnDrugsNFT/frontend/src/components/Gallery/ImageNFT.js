@@ -144,8 +144,13 @@ async setForSale()
   
   render(){
     const CID = (this.props.uri.image).substring(7);
-    console.log("CID: ",CID);
-    const pinata_image_url = "https://gateway.pinata.cloud/ipfs/"+CID;
+    let pinata_image_url;
+    if(CID){
+      pinata_image_url = "https://gateway.pinata.cloud/ipfs/"+CID;
+    }else{
+      pinata_image_url = "https://gateway.pinata.cloud/ipfs/QmNZxE7QumQqD4WkvPBps7yfwW876Ns55dCf6tCbcFvF5a";//change this for logo later
+    }
+    
   return (
     <div>
       <div className="NFTTitle">
@@ -222,7 +227,7 @@ async setForSale()
       </div>  
       <div className={!this.props.mywallet ? "dont-show" : "text-center"}>
       For sale? 
-        <label class="switch">
+        <label className="switch">
           <input type="checkbox" checked={this.props.uri.forSale} onChange={this.setForSale}/>
           <span className="slider round"></span>
         </label>

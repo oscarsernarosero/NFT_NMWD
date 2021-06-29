@@ -39,7 +39,7 @@ export class Carousel extends React.Component {
     render(){
         return(
             <div id="carousel-3d-container" 
-            style={{"background-image": "linear-gradient(180deg, black, black, #"+this.state.background+")", "transition": "background-image .9s linear"}}>
+            style={{"backgroundImage": "linear-gradient(180deg, black, black, #"+this.state.background+")", "transition": "backgroundImage 1s linear"}}>
                 
                 <Coverflow
                     displayQuantityOfSide={1}
@@ -52,13 +52,14 @@ export class Carousel extends React.Component {
                     height={780}
                     >
                     
-                        {this.props.nfts.map((item,index)=>{
+                        {this.props.nfts.map((key,index)=>{
                         return (
-                            <div onClick={()=>this.fn(index)}>
+                            <div onClick={(key)=>this.fn(index)} key={index}>
+                                
                             <ImageNFT
                                 address = {this.props.address}
                                 marketPlaceAddress = {this.props.marketPlaceAddress}
-                                uri = {item}
+                                uri = {key}
                                 setTokenMessage={ (_tokenId, _msg ) => {
                                     return this.props.setTokenMessage(_tokenId, _msg );
                                 }}
