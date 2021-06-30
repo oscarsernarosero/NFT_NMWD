@@ -13,10 +13,11 @@ import { Carousel } from "../Gallery/Carousel";
     constructor(props){
         super(props);
         const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
-        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1],pageSize:6, view:0, fiterBy:{topic:[], artist:[],language:-1}};
+        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1], filteredIds:[],pageSize:6, view:0, filterBy:{topic:[], artist:[],language:0}};
         this.changeCurrentPage = this.changeCurrentPage.bind(this);
         this.listView = this.listView.bind(this);
         this.albumView = this.albumView.bind(this);
+        this.filterNFTs = this.filterNFTs.bind(this);
         console.log(this.state);
         this.DB = require("../../localDB/attributes.json");
         
@@ -39,6 +40,7 @@ import { Carousel } from "../Gallery/Carousel";
         }
 
         this.setState({ids: ids_to_mint});
+        this.setState({filteredIds: ids_to_mint});
         this.setState({mounted: true});
 
         if(this.props.pageSize){
@@ -64,8 +66,10 @@ import { Carousel } from "../Gallery/Carousel";
       let filteredByTopic = [];
       let filteredByArtist = [];
       let filteredByLanguage = [];
+      let filteredResult = [];
 
       if(this.state.filterBy.topic.length>0){
+        console.log("filtering by topic...");
         let thisTopic;
         this.state.filterBy.topic.map( (_topic) => {
             try{
@@ -74,10 +78,14 @@ import { Carousel } from "../Gallery/Carousel";
               thisTopic =[]
             }
             filteredByTopic = [...new Set([...filteredByTopic, ...thisTopic])];
+            console.log("filteredByTopic: ",filteredByTopic);
         })
+      }else{
+        filteredByTopic = this.state.ids;
       }
 
       if(this.state.filterBy.artist.length>0){
+        console.log("filtering by artist...");
         let thisArtist;
         this.state.filterBy.artist.map( (_artist) => {
             try{
@@ -86,35 +94,30 @@ import { Carousel } from "../Gallery/Carousel";
               thisArtist =[]
             }
             filteredByArtist = [...new Set([...filteredByArtist, ...thisArtist])];
+            console.log("filteredByArtist: ",filteredByArtist);
         })
+      }else{
+        filteredByTopic = this.state.ids;
       }
 
       if(this.state.filterBy.language>=0){
+        console.log("filtering by language...");
         const _language = this.state.filterBy.language;
         filteredByLanguage = this.DB.language[_language];
+        console.log("filteredByLanguage: ",filteredByLanguage);
+      }else{
+        filteredByTopic = this.state.ids;
       }
 
-      let filteredResult = [];
-      if(this.state.filterBy.topic.length>0){
-        filteredResult = filteredByTopic;
-          if(this.state.filterBy.artist.length>0){
-            filteredResult = filteredResult.filter(x => filteredByArtist.includes(x));
-              if(this.state.filterBy.language>=0){
-                filteredResult = filteredResult.filter(x => filteredByLanguage.includes(x));
-              }
-          }else if(this.state.filterBy.language>=0){
-        filteredResult = filteredResult.filter(x => filteredByLanguage.includes(x));
-      }
-      }else if(this.state.filterBy.artist.length>0){
-        filteredResult = filteredByArtist;
-          if(this.state.filterBy.language>=0){
-            filteredResult = filteredResult.filter(x => filteredByLanguage.includes(x));
-          }
-      } else if(this.state.filterBy.language>=0){
-        filteredResult = filteredByLanguage;
-      }
+      //intersection of all three results:
+      filteredResult = filteredByTopic.filter(x => filteredByArtist.includes(x));
+      filteredResult = filteredResult.filter(x => filteredByLanguage.includes(x));
 
-      //finalResult = toca crear una nueva variable de estado que sea ids_to_show
+      const finalResult =  (this.state.ids).filter(x => filteredResult.includes(x));
+      this.setState({filteredIds:finalResult}, () => {
+        this.getPageData();
+      });
+      
     }
 
 
@@ -137,7 +140,7 @@ import { Carousel } from "../Gallery/Carousel";
     async getPageData(){
         const startAt = this.state.pageSize * (this.state.page-1);
         const endAt = startAt + this.state.pageSize;
-        const pageIds = this.state.ids.slice(startAt,endAt);
+        const pageIds = this.state.filteredIds.slice(startAt,endAt);
         
         const nfts = [];
         for(let i=0; i<pageIds.length;i++){
@@ -173,6 +176,9 @@ import { Carousel } from "../Gallery/Carousel";
                 <div>
                     <button onClick={this.listView}>List</button>
                     <button onClick={this.albumView}>album</button>
+                </div>
+                <div>
+                  <button onClick={this.filterNFTs}>apply filter</button>
                 </div>
                <div className={this.state.view ? "": "not-visible"}>
                <ul className="list">
@@ -211,6 +217,7 @@ import { Carousel } from "../Gallery/Carousel";
                     nfts={this.state.nfts}
                   />
                 </div>     
+                
                 <div className="centered">
                     <Pagination
                     currentPage={this.state.page}
