@@ -10,6 +10,7 @@
     "@types/react-transition-group": "^4.4.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
+    "browserify-fs": "^1.0.0",
     "react": "^16.13.1",
     "react-coverflow": "^0.2.20",
     "react-dom": "^16.13.1",

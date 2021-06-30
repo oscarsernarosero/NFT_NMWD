@@ -5,18 +5,13 @@ async function main(){
 
     const fs = require("fs");
     const CONST = require('./uri_constants');
-    const pinataSDK = require('@pinata/sdk');
-    require('dotenv').config();
-    const { PINATA_PRIVATE_KEY, PINATA_PUBLIC_KEY} = process.env;
-    const pinata = pinataSDK(PINATA_PUBLIC_KEY, PINATA_PRIVATE_KEY);
-
     const TOPIC = CONST.TOPIC;
     const LANGUAGE = CONST.LANGUAGE;
-    const contractsDir = "../frontend/src/uris/";
+    const contractsDir = __dirname + "/../frontend/src/uris/";
 
     //############### MODIFY THE PARAMETERS HERE: ###############
     const description="Tratado del fin de las guerras del opio";
-    const name="Test Pinning Through Script";
+    const name="Tratado De Las Guerras Del Opio";
     const language = LANGUAGE.ES;
     //
     const imageCID="QmdcLdgjC8WPLyEfYaFRE13uchyfivXtRdaf2BVUFMwCBT";
@@ -52,59 +47,11 @@ async function main(){
             address: _royaltyAddress
         }
     }
-
-    console.log("about to save file");
     const safe_name = name.replace(/ /g,"_");
-    await fs.writeFileSync(
-    "../frontend/src/uris/"+safe_name+".json",
-    JSON.stringify(uri, undefined, 0));
-    // , (err) => {
-    //     // throws an error, you could also catch it here
-    //     if (err) throw err;
-    
-    //     // success case, the file was saved
-    //     console.log('Lyric saved!');
-    // });
-
-
-    console.log("about to authenticate");
-    pinata.testAuthentication().then((result) => {
-        //handle successful authentication here
-        console.log("pinata authenticated? => ",result);
-    }).catch((err) => {
-        //handle error here
-        console.log(err);
-    });
-
-    const body = { file:"../frontend/src/uris/"+safe_name+".json" };
-        const options = {
-          pinataMetadata: {
-            name: safe_name
-          },
-            pinataOptions: {
-                cidVersion: 1,
-                customPinPolicy: {
-                    regions: [
-                        {
-                            id: 'FRA1',
-                            desiredReplicationCount: 2
-                        },
-                        {
-                            id: 'NYC1',
-                            desiredReplicationCount: 2
-                        }
-                    ]
-                }
-            }
-        };
-
-        pinata.pinFileToIPFS(body, options).then((result) => {
-            //handle results here
-            console.log("from pinning: ",result);
-        }).catch((err) => {
-            //handle error here
-            console.log(err);
-        });
+    fs.writeFileSync(
+    contractsDir+safe_name+".json",
+    JSON.stringify(uri, undefined, 0)
+    );
 }
 
 main()

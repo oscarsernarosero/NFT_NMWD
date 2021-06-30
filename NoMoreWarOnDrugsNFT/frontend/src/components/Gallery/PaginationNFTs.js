@@ -5,7 +5,6 @@ import { ImageNFT } from "./ImageNFT";
 import "../../style/pagination.css"
 
 import { Carousel } from "../Gallery/Carousel";
-import { BigNumber } from "ethers";
 
 
   export class PaginationNFTs extends React.Component{

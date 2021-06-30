@@ -33,6 +33,9 @@
     "husky": "^4.2.5"
   },
   "dependencies": {
+    "@pinata/sdk": "^1.1.23",
+    "axios": "^0.21.1",
+    "bs58": "^4.0.1",
     "dotenv": "^8.2.0"
   }
 }
