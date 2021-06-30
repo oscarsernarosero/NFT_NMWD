@@ -13,11 +13,12 @@ import { Carousel } from "../Gallery/Carousel";
     constructor(props){
         super(props);
         const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
-        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1],pageSize:6, view:0};
+        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1],pageSize:6, view:0, fiterBy:{topic:[], artist:[],language:-1}};
         this.changeCurrentPage = this.changeCurrentPage.bind(this);
         this.listView = this.listView.bind(this);
         this.albumView = this.albumView.bind(this);
         console.log(this.state);
+        this.DB = require("../../localDB/attributes.json");
         
       }
 
@@ -55,6 +56,65 @@ import { Carousel } from "../Gallery/Carousel";
     }
     albumView(){
         this.setState({view:0});
+    }
+
+    //let intersection = arrA.filter(x => arrB.includes(x));
+    //let union = [...new Set([...arrA, ...arrB])];
+    filterNFTs(){
+      let filteredByTopic = [];
+      let filteredByArtist = [];
+      let filteredByLanguage = [];
+
+      if(this.state.filterBy.topic.length>0){
+        let thisTopic;
+        this.state.filterBy.topic.map( (_topic) => {
+            try{
+              thisTopic = this.DB.topic[_topic];
+            }catch{
+              thisTopic =[]
+            }
+            filteredByTopic = [...new Set([...filteredByTopic, ...thisTopic])];
+        })
+      }
+
+      if(this.state.filterBy.artist.length>0){
+        let thisArtist;
+        this.state.filterBy.artist.map( (_artist) => {
+            try{
+              thisArtist = this.DB.artist[_artist];
+            }catch{
+              thisArtist =[]
+            }
+            filteredByArtist = [...new Set([...filteredByArtist, ...thisArtist])];
+        })
+      }
+
+      if(this.state.filterBy.language>=0){
+        const _language = this.state.filterBy.language;
+        filteredByLanguage = this.DB.language[_language];
+      }
+
+      let filteredResult = [];
+      if(this.state.filterBy.topic.length>0){
+        filteredResult = filteredByTopic;
+          if(this.state.filterBy.artist.length>0){
+            filteredResult = filteredResult.filter(x => filteredByArtist.includes(x));
+              if(this.state.filterBy.language>=0){
+                filteredResult = filteredResult.filter(x => filteredByLanguage.includes(x));
+              }
+          }else if(this.state.filterBy.language>=0){
+        filteredResult = filteredResult.filter(x => filteredByLanguage.includes(x));
+      }
+      }else if(this.state.filterBy.artist.length>0){
+        filteredResult = filteredByArtist;
+          if(this.state.filterBy.language>=0){
+            filteredResult = filteredResult.filter(x => filteredByLanguage.includes(x));
+          }
+      } else if(this.state.filterBy.language>=0){
+        filteredResult = filteredByLanguage;
+      }
+
+      //finalResult = toca crear una nueva variable de estado que sea ids_to_show
     }
 
 
