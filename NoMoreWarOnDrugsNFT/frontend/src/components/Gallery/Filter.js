@@ -16,8 +16,12 @@ export class Filter extends React.Component{
         const peopleTopics=[];
         const countryTopics=[];
         const drugKind=[];
+        const artists=[];
         const topics = DB.topic;
 
+        Object.entries(DB.artist).map(([key,value], index) => {
+            artists.push(key);
+        });
         console.log("topics",topics);
         let reversedTOPIC = {};
         Object.entries(TOPIC).map(([value,key], index) => {
@@ -46,9 +50,9 @@ export class Filter extends React.Component{
         console.log("peopleTopics",peopleTopics);
         console.log("countryTopics",countryTopics);
 
-      this.state = { langauge:-1,
-                    artist:"",
-                    topics:[],
+      this.state = { langauge:[-1],
+                    artists:artists, selectedArtists:[],
+                    selectedTopics:[],
                     generalTopics:generalTopics,
                     peopleTopics:peopleTopics,
                     countryTopics:countryTopics,
@@ -73,27 +77,43 @@ export class Filter extends React.Component{
         this.setState({langauge: event.target.value});
       }
 
-    handleArtist(event) {
-        this.setState({artist: event.target.value});
+    async handleArtist(event) {
+        let checked = this.state.selectedArtists;
+      if(event.target.checked){
+          checked.push(event.target.value);
+      }else{
+          checked = checked.filter( value => value != event.target.value );
+      }
+      await this.setState({selectedArtists:checked});
+      console.log("this.state.selectedArtists",this.state.selectedArtists);
+      console.log("ids of first artist",DB.artist[this.state.selectedArtists[0]]);
+
         }
 
-    handleTopics(event) {
-        let checked = this.state.topics;
-        if(event.target.checked){
-            checked.push(event.target.value);
-        }else{
-            checked = checked.filter( value => value != event.target.value );
-        }
-        this.setState({topics:checked});
-        }
+    async handleTopics(event) {
+        let checked = this.state.selectedTopics;
+      if(event.target.checked){
+          checked.push(event.target.value);
+      }else{
+          checked = checked.filter( value => value != event.target.value );
+      }
+      await this.setState({selectedTopics:checked});
+      console.log("this.state.selectedTopics",this.state.selectedTopics);
+      console.log("FIRST TOPIC value",TOPIC[this.state.selectedTopics[0]]);
+      console.log("ids of first topic",DB.topic[TOPIC[this.state.selectedTopics[0]]]);
+    }
+
 
     show(event){
         event.preventDefault();
         this.setState({topicVisible: !this.state.topicVisible});
     }
 
-    handleSubmit(){
-
+    handleSubmit(event){
+        event.preventDefault();
+        const byTopics = this.state.selectedTopics.map( (literal) => TOPIC[literal] );
+        console.log("byTopics",byTopics);
+        this.props.applyFilter(byTopics,this.state.selectedArtists, this.state.language);
     }
 render(){
 
@@ -102,90 +122,127 @@ render(){
         <h4 className="component-title">Create A New URI</h4>
         <form
             onSubmit={this.handleSubmit} >
-            <div className="form-group">
-            <label>Name Of The NFT: </label>
-            <input
-                className="form-control"
-                type="text"
-                name="name"
-                onChange={this.handleName}
-                ref={this.nameInput}
-                required
-            />
-            
-            <div className="form-group">
-            <label>Language The NFT Is In: </label>
-            <select 
-                value={this.state.languageInput} 
-                onChange={this.handleLanguage}
-                className="form-control"
-                required
-                >   
-                    <option value={-1}>Select</option>
-                    {LANGUAGE.map((language, value)=>{
-                        return <option value={value} key={value}>{language}</option>
-                    })}
-                </select>
-            </div>
-            
-            <div className="form-group">
-            <label>Artist: </label>
-            <input
-                className="form-control"
-                type="text"  
-                name="artist"
-                onChange={this.handleArtist}
-                ref={this.artistInput}
-                required
-            />
-            </div>
-            
-            </div>
-            
-            <div>
-                <button onClick={this.show} className="topic-button">Drugs: </button>
-                <div className={this.state.topicVisible? "": "dont-show"}>
-                        <div className="topic-options">
-                                {this.state.drugTopic.map((drug, index) => {
-                                    return  <div key={index}>
-                                            <input 
-                                            type="checkbox" 
-                                            name="topic" 
-                                            value={drug}
-                                            onChange={this.handleTopics}
-                                            /> 
-                                            {drug}
-                                            </div>
-                                })
-                                }
-                        </div>
-                </div>
-            </div> 
-
-            <div>
-            <button onClick={this.show}>all: </button>
+            <button onClick={this.show} className="topic-button">Filter </button>
             <div className={this.state.topicVisible? "": "dont-show"}>
-            <div className="topic-options">
-                    {Object.entries(TOPIC).map((obj,index) => {
-                        return  <div>
-                                <input 
-                                type="checkbox" 
-                                name="topic" 
-                                value={obj[1]}
-                                onChange={this.handleTopics}
-                                /> 
-                                {obj[0]}
-                                </div>
-                    })
-                    }
+                <div className="filter-menu">
+                  <div className="filter-category">
+                      <label className="topic-title">By drug kind:</label>
+                      
+                              <div className="topic-options">
+                                      {this.state.drugTopic.map((drug, index) => {
+                                          return  <div key={index}>
+                                                  <input 
+                                                  type="checkbox" 
+                                                  name="topic" 
+                                                  value={drug}
+                                                  onChange={this.handleTopics}
+                                                  /> 
+                                                  {drug}
+                                                  </div>
+                                      })
+                                      }
+                              </div>
+                      
+                  </div> 
+
+                  <div className="filter-category">
+                  <label className="topic-title">By historical character:</label>
+                    <div className={this.state.topicVisible? "": "dont-show"}>
+                      <div className="topic-options">
+                              {this.state.peopleTopics.map((person,index) => {
+                                  return  <div key={index}>
+                                          <input 
+                                          type="checkbox" 
+                                          name="topic" 
+                                          value={person}
+                                          onChange={this.handleTopics}
+                                          /> 
+                                          {person}
+                                          </div>
+                              })
+                              }
+                        </div>
+                      </div>
                     </div>
-            </div>
-            </div>
-            
-            
-            <div className="form-group">
-            <input className="btn btn-primary" type="submit" value="Create URI" />
-            </div>
+
+                    <div className="filter-category">
+                    <label className="topic-title">By country reference:</label>
+                      <div className={this.state.topicVisible? "": "dont-show"}>
+                              <div className="topic-options">
+                                      {this.state.countryTopics.map((country, index) => {
+                                          return  <div key={index}>
+                                                  <input 
+                                                  type="checkbox" 
+                                                  name="topic" 
+                                                  value={country}
+                                                  onChange={this.handleTopics}
+                                                  /> 
+                                                  {country}
+                                                  </div>
+                                      })
+                                      }
+                              </div>
+                      </div>
+                  </div> 
+
+                  <div className="filter-category">
+                  <label className="topic-title">By general topic:</label>
+                      <div className={this.state.topicVisible? "": "dont-show"}>
+                              <div className="topic-options">
+                                      {this.state.generalTopics.map((topic, index) => {
+                                          return  <div key={index}>
+                                                  <input 
+                                                  type="checkbox" 
+                                                  name="topic" 
+                                                  value={topic}
+                                                  onChange={this.handleTopics}
+                                                  /> 
+                                                  {topic}
+                                                  </div>
+                                      })
+                                      }
+                              </div>
+                      </div>
+                  </div> 
+
+                  <div className="filter-category">
+                    <label className="topic-title">By artist:</label>
+                      <div className={this.state.topicVisible? "": "dont-show"}>
+                              <div className="topic-options">
+                                      {this.state.artists.map((artist, index) => {
+                                          return  <div key={index}>
+                                                  <input 
+                                                  type="checkbox" 
+                                                  name="topic" 
+                                                  value={artist}
+                                                  onChange={this.handleArtist}
+                                                  /> 
+                                                  {artist}
+                                                  </div>
+                                      })
+                                      }
+                              </div>
+                      </div>
+                  </div> 
+
+                  <div className="filter-category">
+                  <label>Language The NFT Is In: </label>
+                  <select 
+                    value={this.state.languageInput} 
+                    onChange={this.handleLanguage}
+                    className=""
+                    required
+                    >   
+                        <option value={-1}>All</option>
+                        {LANGUAGE.map((language, value)=>{
+                            return <option value={value}>{language}</option>
+                        })}
+                    </select>
+                  </div>
+              </div>
+
+             </div>
+             <button type="submit">apply filter</button>
         </form>
         </div>
     );

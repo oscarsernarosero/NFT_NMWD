@@ -63,10 +63,10 @@ import { Carousel } from "../Gallery/Carousel";
 
     //let intersection = arrA.filter(x => arrB.includes(x));
     //let union = [...new Set([...arrA, ...arrB])];
-    filterNFTs(){
-      let filteredByTopic = [];
-      let filteredByArtist = [];
-      let filteredByLanguage = [];
+    filterNFTs(_byTopic, _byArtist, _byLanguage){
+      let filteredByTopic = _byTopic;
+      let filteredByArtist = _byArtist;
+      let filteredByLanguage = _byLanguage;
       let filteredResult = [];
 
       if(this.state.filterBy.topic.length>0){
@@ -179,10 +179,9 @@ import { Carousel } from "../Gallery/Carousel";
                     <button onClick={this.albumView}>album</button>
                 </div>
                 <div>
-                  <Filter/>
-                </div>
-                <div>
-                  <button onClick={this.filterNFTs}>apply filter</button>
+                  <Filter
+                  applyFilter = {(_byTopic, _byArtist, _byLanguage) => {
+                    return this.filterNFTs(_byTopic, _byArtist, _byLanguage)}}/>
                 </div>
                <div className={this.state.view ? "": "not-visible"}>
                <ul className="list">
