@@ -8,8 +8,6 @@ export class WaitingForComfirmation extends React.Component{
         super(props);
         this.state = {close: false};
         this.close = this.close.bind(this);
-        console.log("props:",props);
-        console.log("state",this.state);
     }
 
     close(){

@@ -1,0 +1,39 @@
+.dont-show{
+    display: none;
+}
+
+.topic-options{
+    padding: 2px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 3px;
+    list-style: none;
+    text-align:justify;
+    margin: 2px;
+    max-width:max-content;
+    max-height: fit-content;
+    font-size: 10px;
+}
+
+
+.filter-category{
+    padding: 2px;
+    height:min-content;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.3rem;
+    min-width:max-content;
+    max-width: max-content;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.filter-menu {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    grid-gap: 20px;
+    list-style: none;
+    text-align: end;
+    justify-content: end;
+    width: 100%;
+}

@@ -22,7 +22,6 @@ export class ImageNFT extends React.Component{
     this.buyDisable = this.buyDisable.bind(this);
     this.changePrice = this.changePrice.bind(this);
     this.close = this.close.bind(this);
-    console.log("state in NFTImage: ",this.state);
     
   }
 

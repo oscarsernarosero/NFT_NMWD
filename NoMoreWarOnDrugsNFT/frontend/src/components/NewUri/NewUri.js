@@ -1,16 +1,65 @@
 import React from "react";
+import "../../style/filter.css";
 const fs = require("fs");
+const DB = require("../../localDB/attributes.json");
 const CONST = require('./uri_constants');
 const TOPIC = CONST.TOPIC;
 const LANGUAGE = CONST.LANGUAGE;
+
 
   export class NewUri extends React.Component{
 
     constructor(props){
       super(props);
+      const generalTopics=[];
+        const peopleTopics=[];
+        const countryTopics=[];
+        const drugKind=[];
+        const artists=[];
+        const topics = DB.topic;
+
+        Object.entries(DB.artist).map(([key,value], index) => {
+          artists.push(key);
+      });
+
+        console.log("topics",topics);
+        let reversedTOPIC = {};
+        Object.entries(TOPIC).map(([value,key], index) => {
+            reversedTOPIC[key]= value;
+        });
+        console.log("reversedTOPIC", reversedTOPIC);
+        const nTopics = Object.entries(topics).map((str_topic) => {
+            return parseInt(str_topic);
+        });
+        console.log("nTopics",nTopics);
+        nTopics.map( (ntopic) => {
+            if(ntopic<20){
+                drugKind.push(reversedTOPIC[ntopic]);
+            }else if(ntopic>=20 && ntopic <40){
+                generalTopics.push(reversedTOPIC[ntopic]);
+            }else if(ntopic>=40 && ntopic <60){
+                peopleTopics.push(reversedTOPIC[ntopic]);
+            }else if(ntopic>=60 && ntopic <100){
+                countryTopics.push(reversedTOPIC[ntopic]);
+            }else{
+                throw("corrupted database");
+            }
+        });
+        console.log("drugKind",drugKind);
+        console.log("generalTopics",generalTopics);
+        console.log("peopleTopics",peopleTopics);
+        console.log("countryTopics",countryTopics);
+
+     
+  
       this.state = {description:"", name:"", langauge:-1,
                     imageCID:"",artist:"",artist_webpage:"",
                     topics:[],royatyPct:8.00, 
+                    generalTopics:generalTopics,
+                    peopleTopics:peopleTopics,
+                    countryTopics:countryTopics,
+                    artists:artists,
+                    drugTopic:drugKind,
                     royaltyAddress:"0x0x44E2c3503572B9bb359DA5b38c7B057c95D7CD01", 
                     external_url:"warondrugsisasham.eth.link",
                     pinataSecret:"", pinataKey:""};
@@ -28,6 +77,7 @@ const LANGUAGE = CONST.LANGUAGE;
       this.handlePinataSecret = this.handlePinataSecret.bind(this);
       this.handlePinataKey = this.handlePinataKey.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.show = this.show.bind(this);
         
       this.descriptionInput = React.createRef();
       this.languageInput = React.createRef();
@@ -69,14 +119,16 @@ const LANGUAGE = CONST.LANGUAGE;
     this.setState({artist_webpage: event.target.value});
     }
 
-    handleTopics(event) {
-    let checked = this.state.topics;
-    if(event.target.checked){
-        checked.push(event.target.value);
-    }else{
-        checked = checked.filter( value => value != event.target.value );
-    }
-    this.setState({topics:checked});
+    async handleTopics(event) {
+      let checked = this.state.topics;
+      if(event.target.checked){
+          checked.push(event.target.value);
+      }else{
+          checked = checked.filter( value => value != event.target.value );
+      }
+      await this.setState({topics:checked});
+      console.log("this.state.topics",this.state.topics);
+      console.log("FIRST TOPIC value",TOPIC[this.state.topics[0]])
     }
 
     handleRoyaltyPct(event) {
@@ -98,6 +150,11 @@ const LANGUAGE = CONST.LANGUAGE;
     handlePinataKey(event) {
       this.setState({pinataKey: event.target.value});
     }
+
+    show(event){
+      event.preventDefault();
+      this.setState({topicVisible: !this.state.topicVisible});
+  }
 
     async handleSubmit(event) {
         event.preventDefault();
@@ -239,22 +296,111 @@ const LANGUAGE = CONST.LANGUAGE;
                 ref={this.artistWebpageInput}
               />
             </div>
-            <div className="form-group">
-              <label>Topics: </label>
-                    {Object.entries(TOPIC).map((obj,index) => {
-                        return  <div>
-                                <input 
-                                type="checkbox" 
-                                name="topic" 
-                                value={obj[1]}
-                                onChange={this.handleTopics}
-                                /> 
-                                {obj[0]}
-                                </div>
-                    })
-                    }
-                
-            </div>
+            <div className="filter-menu">
+              <div className="filter-category">
+                  <button onClick={this.show} className="topic-button">Drugs: </button>
+                  <div className={this.state.topicVisible? "": "dont-show"}>
+                          <div className="topic-options">
+                                  {this.state.drugTopic.map((drug, index) => {
+                                      return  <div key={index}>
+                                              <input 
+                                              type="checkbox" 
+                                              name="topic" 
+                                              value={drug}
+                                              onChange={this.handleTopics}
+                                              /> 
+                                              {drug}
+                                              </div>
+                                  })
+                                  }
+                          </div>
+                  </div>
+              </div> 
+
+              <div className="filter-category">
+              <button onClick={this.show}>Historical Characters: </button>
+                <div className={this.state.topicVisible? "": "dont-show"}>
+                  <div className="topic-options">
+                          {this.state.peopleTopics.map((person,index) => {
+                              return  <div key={index}>
+                                      <input 
+                                      type="checkbox" 
+                                      name="topic" 
+                                      value={person}
+                                      onChange={this.handleTopics}
+                                      /> 
+                                      {person}
+                                      </div>
+                          })
+                          }
+                    </div>
+                  </div>
+                </div>
+
+                <div className="filter-category">
+                  <button onClick={this.show} className="topic-button">Drugs: </button>
+                  <div className={this.state.topicVisible? "": "dont-show"}>
+                          <div className="topic-options">
+                                  {this.state.countryTopics.map((country, index) => {
+                                      return  <div key={index}>
+                                              <input 
+                                              type="checkbox" 
+                                              name="topic" 
+                                              value={country}
+                                              onChange={this.handleTopics}
+                                              /> 
+                                              {country}
+                                              </div>
+                                  })
+                                  }
+                          </div>
+                  </div>
+              </div> 
+
+              <div className="filter-category">
+                  <button onClick={this.show} className="topic-button">Drugs: </button>
+                  <div className={this.state.topicVisible? "": "dont-show"}>
+                          <div className="topic-options">
+                                  {this.state.generalTopics.map((topic, index) => {
+                                      return  <div key={index}>
+                                              <input 
+                                              type="checkbox" 
+                                              name="topic" 
+                                              value={topic}
+                                              onChange={this.handleTopics}
+                                              /> 
+                                              {topic}
+                                              </div>
+                                  })
+                                  }
+                          </div>
+                  </div>
+              </div> 
+
+              <div className="filter-category">
+                  <button onClick={this.show} className="topic-button">Drugs: </button>
+                  <div className={this.state.topicVisible? "": "dont-show"}>
+                          <div className="topic-options">
+                                  {this.state.artists.map((artist, index) => {
+                                      return  <div key={index}>
+                                              <input 
+                                              type="checkbox" 
+                                              name="topic" 
+                                              value={artist}
+                                              onChange={this.handleTopics}
+                                              /> 
+                                              {artist}
+                                              </div>
+                                  })
+                                  }
+                          </div>
+                  </div>
+              </div> 
+
+
+             </div>
+            
+            
             <div className="form-group">
               <label>Royalty Percentage: </label>
               <input

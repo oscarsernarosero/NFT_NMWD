@@ -1,5 +1,6 @@
 import React from "react";
 import Pagination from "react-pagination-js";
+import {Filter} from  "./Filter";
 import "react-pagination-js/dist/styles.css"; // import css
 import { ImageNFT } from "./ImageNFT";
 import "../../style/pagination.css"
@@ -176,6 +177,9 @@ import { Carousel } from "../Gallery/Carousel";
                 <div>
                     <button onClick={this.listView}>List</button>
                     <button onClick={this.albumView}>album</button>
+                </div>
+                <div>
+                  <Filter/>
                 </div>
                 <div>
                   <button onClick={this.filterNFTs}>apply filter</button>
