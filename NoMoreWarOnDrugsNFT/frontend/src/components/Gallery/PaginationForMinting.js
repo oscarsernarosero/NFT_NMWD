@@ -14,7 +14,7 @@ import { Carousel } from "../Gallery/Carousel";
     constructor(props){
         super(props);
         const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
-        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1], filteredIds:[],pageSize:6, view:0, filterBy:{topic:[], artist:[],language:0}};
+        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1], filteredIds:[],pageSize:6, view:0, filterBy:{topic:[], artist:[],language:-1}};
         this.changeCurrentPage = this.changeCurrentPage.bind(this);
         this.listView = this.listView.bind(this);
         this.albumView = this.albumView.bind(this);
@@ -61,18 +61,20 @@ import { Carousel } from "../Gallery/Carousel";
         this.setState({view:0});
     }
 
+    
+
     //let intersection = arrA.filter(x => arrB.includes(x));
     //let union = [...new Set([...arrA, ...arrB])];
     filterNFTs(_byTopic, _byArtist, _byLanguage){
-      let filteredByTopic = _byTopic;
-      let filteredByArtist = _byArtist;
-      let filteredByLanguage = _byLanguage;
+      let filteredByTopic = [];
+      let filteredByArtist = [];
+      let filteredByLanguage = [];
       let filteredResult = [];
 
-      if(this.state.filterBy.topic.length>0){
+      if(_byTopic.length>0){
         console.log("filtering by topic...");
         let thisTopic;
-        this.state.filterBy.topic.map( (_topic) => {
+        _byTopic.map( (_topic) => {
             try{
               thisTopic = this.DB.topic[_topic];
             }catch{
@@ -85,10 +87,10 @@ import { Carousel } from "../Gallery/Carousel";
         filteredByTopic = this.state.ids;
       }
 
-      if(this.state.filterBy.artist.length>0){
+      if(_byArtist.length>0){
         console.log("filtering by artist...");
         let thisArtist;
-        this.state.filterBy.artist.map( (_artist) => {
+        _byArtist.map( (_artist) => {
             try{
               thisArtist = this.DB.artist[_artist];
             }catch{
@@ -98,16 +100,15 @@ import { Carousel } from "../Gallery/Carousel";
             console.log("filteredByArtist: ",filteredByArtist);
         })
       }else{
-        filteredByTopic = this.state.ids;
+        filteredByArtist = this.state.ids;
       }
 
-      if(this.state.filterBy.language>=0){
+      if(_byLanguage>=0){
         console.log("filtering by language...");
-        const _language = this.state.filterBy.language;
-        filteredByLanguage = this.DB.language[_language];
+        filteredByLanguage = this.DB.language[_byLanguage];
         console.log("filteredByLanguage: ",filteredByLanguage);
       }else{
-        filteredByTopic = this.state.ids;
+        filteredByLanguage = this.state.ids;
       }
 
       //intersection of all three results:

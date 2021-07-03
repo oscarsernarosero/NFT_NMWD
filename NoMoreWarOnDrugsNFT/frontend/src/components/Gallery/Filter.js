@@ -50,7 +50,7 @@ export class Filter extends React.Component{
         console.log("peopleTopics",peopleTopics);
         console.log("countryTopics",countryTopics);
 
-      this.state = { langauge:[-1],
+      this.state = { language:-1,
                     artists:artists, selectedArtists:[],
                     selectedTopics:[],
                     generalTopics:generalTopics,
@@ -73,8 +73,11 @@ export class Filter extends React.Component{
       console.log(this.state);
     }
 
-    handleLanguage(event) {
-        this.setState({langauge: event.target.value});
+    async handleLanguage(event) {
+        console.log("about to set language : ", event.target.value);
+        await this.setState({language: event.target.value});
+        console.log("language : ", this.state.language);
+        
       }
 
     async handleArtist(event) {
@@ -113,6 +116,8 @@ export class Filter extends React.Component{
         event.preventDefault();
         const byTopics = this.state.selectedTopics.map( (literal) => TOPIC[literal] );
         console.log("byTopics",byTopics);
+        console.log("this.state.selectedArtists",this.state.selectedArtists);
+        console.log("this.state.language",this.state.language);
         this.props.applyFilter(byTopics,this.state.selectedArtists, this.state.language);
     }
 render(){
@@ -234,8 +239,8 @@ render(){
                     required
                     >   
                         <option value={-1}>All</option>
-                        {LANGUAGE.map((language, value)=>{
-                            return <option value={value}>{language}</option>
+                        {LANGUAGE.map((language, index)=>{
+                            return <option value={index}>{language}</option>
                         })}
                     </select>
                   </div>

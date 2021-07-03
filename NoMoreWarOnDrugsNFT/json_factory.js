@@ -17,14 +17,14 @@ async function main(){
     const contractsDir = "./frontend/src/uris/";
 
     //############### MODIFY THE PARAMETERS HERE: ###############
-    const description="fifth test on ipfs api";
-    const name="Topics test";
-    const language = LANGUAGE.ES;
+    const description="The greed of the British forced China to buy their opium";
+    const name="British Greed";
+    const language = LANGUAGE.EN;
     //
-    const imageCID="QmdcLdgjC8WPLyEfYaFRE13uchyfivXtRdaf2BVUFMwCBT";
-    const artist="Yo momma";
+    const imageCID="QmfMbivX4gfjxytpHgwkrS2eSQRu9N4NWWHq3HW9YpJc6D";
+    const artist="Cartoon";
     const artist_webpage="https://youtu.be/vI2hT9lb1gY";
-    const topics= [TOPIC.UK, TOPIC.GEOPOLITICS, TOPIC.HISTORY, TOPIC.OPIUM, TOPIC.CHINA];
+    const topics= [TOPIC.CHINA, TOPIC.UK, TOPIC.GEOPOLITICS, TOPIC.HISTORY, TOPIC.OPIUM];
     const _royaltyPct = "8.00"//%
     const _royaltyAddress = "0x24cAEd0fF40814d9DB16a6F341e8A023804D9EF3"
     //
@@ -87,7 +87,7 @@ async function main(){
         name: safe_name
         },
         pinataOptions: {
-            cidVersion: 1,
+            cidVersion: 0,
             customPinPolicy: {
                 regions: [
                     {
@@ -137,60 +137,77 @@ async function main(){
         console.log("id",id);
 
         uri.attributes.topics.map((topic) => {
-            insert(id, topic, "topic");
+            insert("attributes",id, topic, "topic");
         });
-        insert(id, uri.attributes.language,"language");
-        insert(id,uri.attributes.artist, "artist");
+        insert("attributes",id, uri.attributes.language,"language");
+        insert("attributes",id,uri.attributes.artist, "artist");
+        insert("uri_files",safe_name,id,null);
 }
 
-function insert(value, row, table) {
+function insert(db, value, row, table) {
 
     const fs = require("fs");
 
     //the localDB directory
     const dirDB = "./frontend/src/localDB";
-    const attributes = require(dirDB+"/attributes.json");
 
-    const topic = attributes.topic;
-    const artist = attributes.artist;
-    const language = attributes.language;
+    if(db==="attributes"){
+      const attributes = require(dirDB+"/attributes.json");
 
-    try{ 
-      if(table=="topic"){
-        topic[row].push(value);
+      const topic = attributes.topic;
+      const artist = attributes.artist;
+      const language = attributes.language;
+  
+      try{ 
+        if(table=="topic"){
+          topic[row].push(value);
+        }
+        else if(table=="artist"){
+          artist[row].push(value);
+        }
+        else if(table=="language"){
+          language[row].push(value);
+        }
+        else{
+          throw("Not a valid table");
+        }
+        
+      }catch{ 
+        
+        if(table=="topic"){
+          topic[row]=[value];
+        }
+        else if(table=="artist"){
+          artist[row]=[value];
+        }
+        else if(table=="language"){
+          language[row]=[value];
+        }
+        else{
+          throw("Not a valid table");
+        }
       }
-      else if(table=="artist"){
-        artist[row].push(value);
-      }
-      else if(table=="language"){
-        language[row].push(value);
-      }
-      else{
-        throw("Not a valid table");
-      }
-      
-    }catch{ 
-      
-      if(table=="topic"){
-        topic[row]=[value];
-      }
-      else if(table=="artist"){
-        artist[row]=[value];
-      }
-      else if(table=="language"){
-        language[row]=[value];
-      }
-      else{
-        throw("Not a valid table");
-      }
+  
+      const final={topic, language, artist};
+  
+      fs.writeFileSync(
+          dirDB+"/attributes.json",
+      JSON.stringify(final, null, 2)
+      );
     }
 
-    const final={topic, language, artist};
+    else if(db==="uri_files"){
 
-    fs.writeFileSync(
-        dirDB+"/attributes.json",
-    JSON.stringify(final, null, 2)
-    );
+      let files = require(dirDB+"/uri_files.json");
+
+      files[row]=value;
+
+      fs.writeFileSync(
+          dirDB+"/uri_files.json",
+      JSON.stringify(files, null, 2)
+      );
+      }
+    
 }
 
 main()
