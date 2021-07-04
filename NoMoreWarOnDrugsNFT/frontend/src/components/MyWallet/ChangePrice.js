@@ -1,7 +1,6 @@
 import React from "react";
-import { ViewOnEtherscan } from "../Generics/ViewOnEtherscan"
 import "../../style/change-price.css"
-import { WaitingForComfirmation } from "../Generics/WaitingForComfirmation";
+import { LiveBlockchainStatus } from "../Generics/LiveBlockchainStatus";
 
 
 export class ChangePrice extends React.Component{
@@ -100,11 +99,17 @@ export class ChangePrice extends React.Component{
                             step={0.000000000000000001}
                             />
                     </div>
-                    <div className="tx-hash-price">
+                    <div>
+                        <LiveBlockchainStatus
+                            txHash={this.state.txHash}
+                            waiting={this.state.waiting}
+                            successful = {this.state.successful}
+                        />
+                    </div>
+                    {/* <div className="tx-hash-price">
                         <ViewOnEtherscan
                             txHash={this.state.txHash}
                         />
-                        {/* <label >Tx Hash: {this.state.txHash}</label> */}
                     </div>
       
                     <WaitingForComfirmation
@@ -114,7 +119,7 @@ export class ChangePrice extends React.Component{
                     <div className={this.state.successful ? "success" : "not-visible"}>
                     Your transaction was successful!
                     </div>     
-                        
+                         */}
                 </div>
                 <div className="form-group-price">
                     <input className="mybutton-price" type="submit" value="Change Price" />

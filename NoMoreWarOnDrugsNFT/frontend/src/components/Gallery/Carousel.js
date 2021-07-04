@@ -59,6 +59,8 @@ export class Carousel extends React.Component {
                             <ImageNFT
                                 address = {this.props.address}
                                 marketPlaceAddress = {this.props.marketPlaceAddress}
+                                forMint={this.props.forMint}
+                                to = {this.props.to}
                                 uri = {key}
                                 setTokenMessage={ (_tokenId, _msg ) => {
                                     return this.props.setTokenMessage(_tokenId, _msg );

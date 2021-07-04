@@ -2,6 +2,7 @@ import React from "react";
 import "../../style/imageNFT.css";
 import { ChangePrice } from "../MyWallet/ChangePrice";
 import { ethers } from "ethers";
+import { Popup } from "../Generics/Popup";
 import {
   BrowserRouter as Router,
   Route,
@@ -14,27 +15,39 @@ export class ImageNFT extends React.Component{
 
   constructor(props){
     super(props);
-    this.state ={forSale : this.props.uri.forSale, visible:false};
+    
+    this.state ={forSale : this.props.uri.forSale, changePriceVisble:false, 
+      setForSalePopupVisible: false, waiting:false, successful:false};
     this.setForSale = this.setForSale.bind(this);
     this.buy = this.buy.bind(this);
     this.mint = this.mint.bind(this);
     this.setSelectedId = this.setSelectedId.bind(this);
     this.buyDisable = this.buyDisable.bind(this);
     this.changePrice = this.changePrice.bind(this);
-    this.close = this.close.bind(this);
-    
+    this.closeChangePrice = this.closeChangePrice.bind(this);
+    this.closeSetForSalePopup = this.closeSetForSalePopup.bind(this);
+    console.log("props NFT image: ",this.props);
   }
 
   buyDisable(){
     console.log("buy button disable");
   }
 
-  close(){
-    this.setState({visible:false});
+  closeChangePrice(){
+    this.setState({changePriceVisble:false});
   }
 
   changePrice(){
-    this.setState({visible:true});
+    this.setState({changePriceVisble:true});
+  }
+
+  closeSetForSalePopup(){
+    this.setState({setForSalePopupVisible:false});
+  }
+
+  componentDidMount(){
+    console.log("this.props.uri.forSale",this.props.uri.forSale);
+    this.setState({forSale:this.props.uri.forSale});
   }
 
   setSelectedId(){
@@ -45,6 +58,7 @@ export class ImageNFT extends React.Component{
     }
   
     async mint() {
+      console.log("minting...",this.props.uri.id);
       const tokenId = this.props.uri.id;
       const price = this.props.uri.price;
       const royalties = this.props.uri.royalties;
@@ -73,7 +87,6 @@ export class ImageNFT extends React.Component{
           })
           .then((result) => {
             console.log(result);
-            this.idInput.current.value = "";
             this.royaltyRecepientInput.value = "";
             this.royaltyValueInput.value = "";
             // The result varies by by RPC method.
@@ -89,6 +102,8 @@ export class ImageNFT extends React.Component{
   async buy() {
     const tokenId = this.props.uri.id;
     console.log("id: ",tokenId);
+    console.log(this.props.forMint);
+    console.log(this.props.marketPlaceAddress);
     const price = this.props.uri.price;
     console.log("price: ",price);
 
@@ -128,16 +143,29 @@ export class ImageNFT extends React.Component{
 
 async setForSale()
 {
-  this.props.setForSale(this.props.uri.id, !this.state.forSale)
-  .then((tx)=> {
-    if (tx.error){
+  console.log("in setForSale. forsale?: ",this.state.forSale);
+  this.setState({setForSalePopupVisible: true});
+  console.log("about to send tx");
+  const tx = await this.props.setForSale(this.props.uri.id, !this.props.uri.forSale);
+  this.setState({waiting: true});
+  
+  if (tx.error){
     this.setState({forSale: !this.state.forSale});
+    this.setState({txHash: tx});
+    this.setState({waiting: false});
   }else{
+    this.setState({forSale: !this.state.forSale});
     this.setState({txHash: tx.hash});
+    const res = await this.props.waitForMinedConfirmation(tx.hash, (tx) => {
+      this.setState({waiting: false});
+      this.setState({successful: true});
+      console.log("tx mined: ", tx.hash);
+  })
     console.log("changed forSale in tx: ",tx.hash);
-    window.location.reload(false);
+    //this.setState({setForSalePopupVisible: true});
+    //window.location.reload(false);
     }
-  });
+  
   
 }
   
@@ -192,7 +220,6 @@ async setForSale()
 
         <button onClick={this.props.mywallet||!this.props.uri.forSale ? this.buyDisable :
                                                    this.props.forMint ? this.mint : this.buy}
-
         className={this.props.uri.owned ? "button-owned"  : "button" }>
           {this.props.uri.owned ? "You Own This NFT !" : 
           this.props.forMint ? "MINT!" :
@@ -214,8 +241,8 @@ async setForSale()
         <ChangePrice 
           id = {this.props.uri.id}
           price = {this.props.uri.price}
-          visible = {this.state.visible}
-          close = {()=>{this.close()}}
+          visible = {this.state.changePriceVisble}
+          close = {()=>{this.closeChangePrice()}}
           setPrice = { (price, tokenId) => {
             return this.props.setPrice(price, tokenId);
           }}
@@ -224,13 +251,27 @@ async setForSale()
           }}
         />
       </div>  
-      <div className={!this.props.mywallet ? "dont-show" : "text-center"}>
+      <div className={!this.props.mywallet ? "dont-show" : "for-sale-container"}>
+        <div className="for-sale-label">
       For sale? 
-        <label className="switch">
+      </div>
+      <div>
+        <label className="check-for-sale">
           <input type="checkbox" checked={this.props.uri.forSale} onChange={this.setForSale}/>
-          <span className="slider round"></span>
+          <span ></span>
         </label>
+        </div>
       </div>  
+
+          <Popup 
+            visible = {this.state.setForSalePopupVisible}
+            txHash={this.state.txHash}
+            waiting={this.state.waiting}
+            successful = {this.state.successful}
+            close = {()=>{this.closeSetForSalePopup()}}
+          />
+
+
     </div>
   );
 }

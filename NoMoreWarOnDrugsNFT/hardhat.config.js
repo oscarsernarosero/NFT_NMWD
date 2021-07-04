@@ -32,10 +32,11 @@ module.exports = {
       ropsten: {
          url: API_URL,
          accounts: [`0x${PRIVATE_KEY}`]
-      },
-      mainnet:{
-        url: API_URL_MAINNET,
-        accounts: [`0x${PRIVATE_KEY2}`]
       }
+      // ,
+      // mainnet:{
+      //   url: API_URL_MAINNET,
+      //   accounts: [`0x${PRIVATE_KEY2}`]
+      // }
    },
 };

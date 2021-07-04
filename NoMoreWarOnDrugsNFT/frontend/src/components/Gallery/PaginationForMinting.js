@@ -34,21 +34,22 @@ import { Carousel } from "../Gallery/Carousel";
           await this.getNFTids();
         }
         const ids_to_mint =[];
-        for (const [key, value] of Object.entries(this.props.forMint)) {
+        for (const [key, value] of Object.entries(this.props.nftsForMint)) {
             if( !( this.state.ids.includes(key.toLowerCase()) ) ){
                 ids_to_mint.push(key);
             }
         }
 
-        this.setState({ids: ids_to_mint});
-        this.setState({filteredIds: ids_to_mint});
-        this.setState({mounted: true});
+        await this.setState({ids: ids_to_mint});
+        await this.setState({filteredIds: ids_to_mint});
+        
 
         if(this.props.pageSize){
             if(this.props.pageSize != this.state.pageSize){
                 this.setState({pageSize: this.props.pageSize});
         }}
         await this.getPageData();
+        await this.setState({mounted: true});
         console.log("from pagination ",this.state);
         
         
@@ -146,7 +147,7 @@ import { Carousel } from "../Gallery/Carousel";
         
         const nfts = [];
         for(let i=0; i<pageIds.length;i++){
-            const data = this.props.forMint[pageIds[i]];
+            const data = this.props.nftsForMint[pageIds[i]];
             const price = await this.props.getPrice(pageIds[i]);
             data["price"] = price._hex; 
             data["id"] = pageIds[i];
@@ -165,6 +166,7 @@ import { Carousel } from "../Gallery/Carousel";
       }
       
       render(){
+        console.log("rendering from PaginationForMinting");
         return (
             <div >
                 <div>
@@ -219,6 +221,27 @@ import { Carousel } from "../Gallery/Carousel";
                 <div className={this.state.view ? "not-visible":"" }>
                 <Carousel
                     nfts={this.state.nfts}
+                    address = {this.props.address}
+                    marketPlaceAddress = {this.props.marketPlaceAddress}
+                    setTokenMessage={ (_tokenId, _msg ) => {
+                        return this.props.setTokenMessage(_tokenId, _msg );
+                    }}
+                    mywallet = {this.props.mywallet}
+                    setForSale = { (tokenId, forSale) => {
+                        return this.props.setForSale(tokenId, forSale);
+                      }}
+                      setSelectedId = {(id, imageUrl, price) => {
+                        return this.props.setSelectedId(id, imageUrl), price;
+                    }}
+                    setPrice = { (price, tokenId) => {
+                        return this.props.setPrice(price, tokenId);
+                      }}
+                      waitForMinedConfirmation={ (tx_hash, func) => {
+                        return this.props.waitForMinedConfirmation(tx_hash, func);
+                      }}
+                      forMint={true}
+                      marketPlaceAddress = {this.props.marketPlaceAddress}
+                      to = {this.props.to}
                   />
                 </div>     
                 

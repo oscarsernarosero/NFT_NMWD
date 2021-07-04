@@ -6,7 +6,7 @@ export class ViewOnEtherscan extends React.Component{
     render(){
         return(
             <div className={this.props.txHash!=="" || this.props.txHash.error ? "view-on-etherscan" : "not-visible"}>
-                {this.props.txHash.error ? 
+                {this.props.txHash? this.props.txHash.error ? 
                 "Something went wrong"
                 : 
                 <div>
@@ -16,7 +16,7 @@ export class ViewOnEtherscan extends React.Component{
                 
                     View Tx on Etherscan</a>
                 </div>
-                }
+                :""}
                 
             </div>
         );
