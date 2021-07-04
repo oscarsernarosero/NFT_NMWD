@@ -22,6 +22,10 @@ export class Gallery extends React.Component{
               return this.props.getAllNFTsIdsOnly();
           }}
           mywallet = {false}
+          waitForMinedConfirmation={ (tx_hash, func) => {
+            return this.props.waitForMinedConfirmation(tx_hash, func);
+          }}
+          to = {this.props.to}
           />
 
 
@@ -32,10 +36,12 @@ export class Gallery extends React.Component{
               return this.props.getAllNFTsIdsOnly();
           }}
           mywallet = {false}
-          marketPlaceAddress = {this.props.marketPlaceAddress}
           to = {this.props.to}
           getPrice = { (tokenId) => {
             return this.props.getPrice( tokenId);
+          }}
+          waitForMinedConfirmation={ (tx_hash, func) => {
+            return this.props.waitForMinedConfirmation(tx_hash, func);
           }}
           />
          

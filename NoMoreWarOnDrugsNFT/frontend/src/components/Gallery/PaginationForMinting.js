@@ -214,6 +214,9 @@ import { Carousel } from "../Gallery/Carousel";
                               forMint={true}
                               marketPlaceAddress = {this.props.marketPlaceAddress}
                               to = {this.props.to}
+                              waitForMinedConfirmation={ (tx_hash, func) => {
+                                return this.props.waitForMinedConfirmation(tx_hash, func);
+                              }}
                         /></li>
                 })}
                 </ul>

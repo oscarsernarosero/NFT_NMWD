@@ -163,14 +163,43 @@
     max-width:300px;
 }
 
+
+
+.forsale-transfer-container{
+    display: block;
+}
+
+.transfer-container{
+    display: inline-block;
+    min-width: 50%;
+    align-content: end;
+    
+}
+
+.transfer-button{
+    padding: 2px 20px;
+    font-size: 20px;
+    font-family: 'Rajdhani', sans-serif;
+    background-color: rgb(2, 68, 155);
+    border-radius: 10px;
+    color: white;
+    border-style: hidden;
+    margin-left: auto;
+    margin-right: 15px;
+    align-content: center;
+    min-width: 50%;
+    max-width:100%;
+    display: block;
+}
+
 .for-sale-container{
-    display: inline-flex;
-    width: 100%;
+    display: inline-block;
+    min-width:max-content;
 }
 .for-sale-label{
     display: inline;
     padding: 2px;
-    margin-left: 60px;
+    margin-left: 40px;
     font-size: 1.5rem; 
     text-align: left;
     align-content: left;
@@ -178,8 +207,9 @@
   }
 
   .check-for-sale{
-      display: inline;
-      padding-left:30px;
+      display: inline-block;
+      padding-left:10px;
+
   }
 
   .check-for-sale input{

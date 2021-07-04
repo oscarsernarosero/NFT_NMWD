@@ -43,6 +43,9 @@ export class MyWallet extends React.Component{
                 waitForMinedConfirmation={ (tx_hash, func) => {
                     return this.props.waitForMinedConfirmation(tx_hash, func);
                   }}
+                  safeTransfer = { (owner, to, tokenId) => {
+                    return this.props.safeTransfer(owner, to, tokenId);
+                  }}
             />
             
             <Balance 

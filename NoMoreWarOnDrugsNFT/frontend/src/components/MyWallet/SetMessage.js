@@ -1,5 +1,5 @@
 import React from "react";
-import { MyNFTs } from "./MyNFTs";
+import { Popup } from "../Generics/Popup";
 import "../../style/set-message.css"
 
 
@@ -9,10 +9,12 @@ export class SetMessage extends React.Component{
         super(props);
         console.log(props);
         
-        this.state = {msg: "", txHash: "", count:0};
+        this.state = {msg: "", txHash: "", count:0,
+        popupVisible: false, waiting:false, successful:false};
     
         this.handleChangeMsg = this.handleChangeMsg.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.closePopup = this.closePopup.bind(this);
     
         this.msgInput = React.createRef();
         this.container = React.createRef();
@@ -26,21 +28,37 @@ export class SetMessage extends React.Component{
         this.setState({msg: event.target.value, count: event.target.value.length});
         
       }
+
+      closePopup(){
+        this.setState({popupVisible:false});
+      }
     
     
       async handleSubmit(event) {
         event.preventDefault();
+
         const msg = this.state.msg;
         const tokenId = this.props.id;
         console.log("msg: ",msg," tokenId: ",tokenId);
-    
+        
+        this.setState({popupVisible: true});
+        console.log("about to send tx");
         const tx =  await this.props.setTokenMessage(tokenId, msg );
+        this.setState({waiting: true});
         console.log(tx);
         if (tx.error){
-            this.setState({txHash: tx.error});
-        }else{
+            this.setState({forSale: !this.state.forSale});
+            this.setState({txHash: tx});
+            this.setState({waiting: false});
+          }else{
+            this.setState({forSale: !this.state.forSale});
             this.setState({txHash: tx.hash});
-            this.msgInput.current.value = "";
+            const res = await this.props.waitForMinedConfirmation(tx.hash, (tx) => {
+              this.setState({waiting: false});
+              this.setState({successful: true});
+              console.log("tx mined: ", tx.hash);
+          })
+            console.log("changed forSale in tx: ",tx.hash);
         }
             
         
@@ -92,6 +110,14 @@ export class SetMessage extends React.Component{
                     <input className="mybutton" type="submit" value="Set Message" />
                 </div>
             </form>
+
+            <Popup 
+            visible = {this.state.popupVisible}
+            txHash={this.state.txHash}
+            waiting={this.state.waiting}
+            successful = {this.state.successful}
+            close = {()=>{this.closePopup()}}
+          />
         </div>
         );
     }

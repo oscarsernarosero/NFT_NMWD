@@ -50,6 +50,9 @@ export class ForMinting extends React.Component{
             }}
             marketPlaceAddress = {this.props.marketPlaceAddress}
             to = {this.props.to}
+            waitForMinedConfirmation={ (tx_hash, func) => {
+              return this.props.waitForMinedConfirmation(tx_hash, func);
+            }}
             />
            
             </div>

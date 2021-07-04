@@ -3,6 +3,7 @@ import "../../style/imageNFT.css";
 import { ChangePrice } from "../MyWallet/ChangePrice";
 import { ethers } from "ethers";
 import { Popup } from "../Generics/Popup";
+import { Transfer } from "../MyWallet/Transfer"
 import {
   BrowserRouter as Router,
   Route,
@@ -17,7 +18,7 @@ export class ImageNFT extends React.Component{
     super(props);
     
     this.state ={forSale : this.props.uri.forSale, changePriceVisble:false, 
-      setForSalePopupVisible: false, waiting:false, successful:false};
+      popupVisible: false, waiting:false, successful:false, transferVisble:false};
     this.setForSale = this.setForSale.bind(this);
     this.buy = this.buy.bind(this);
     this.mint = this.mint.bind(this);
@@ -25,7 +26,9 @@ export class ImageNFT extends React.Component{
     this.buyDisable = this.buyDisable.bind(this);
     this.changePrice = this.changePrice.bind(this);
     this.closeChangePrice = this.closeChangePrice.bind(this);
-    this.closeSetForSalePopup = this.closeSetForSalePopup.bind(this);
+    this.closePopup = this.closePopup.bind(this);
+    this.closeTransfer = this.closeTransfer.bind(this);
+    this.transfer = this.transfer.bind(this);
     console.log("props NFT image: ",this.props);
   }
 
@@ -41,8 +44,16 @@ export class ImageNFT extends React.Component{
     this.setState({changePriceVisble:true});
   }
 
-  closeSetForSalePopup(){
-    this.setState({setForSalePopupVisible:false});
+  transfer(){
+    this.setState({transferVisble:true});
+  }
+
+  closePopup(){
+    this.setState({popupVisible:false});
+  }
+
+  closeTransfer(){
+    this.setState({transferVisble:false});
   }
 
   componentDidMount(){
@@ -80,15 +91,22 @@ export class ImageNFT extends React.Component{
             data: data
           },
         ];
+        this.setState({popupVisible: true});
+        console.log("about to send tx");
         await window.ethereum
           .request({
             method: 'eth_sendTransaction',
             params,
           })
-          .then((result) => {
-            console.log(result);
-            this.royaltyRecepientInput.value = "";
-            this.royaltyValueInput.value = "";
+          .then(async (txHash) => {
+            this.setState({waiting: true});
+            console.log(txHash);
+            this.setState({txHash: txHash});
+            const res = await this.props.waitForMinedConfirmation(txHash, (tx) => {
+              this.setState({waiting: false});
+              this.setState({successful: true});
+              console.log("tx mined: ", tx);
+          });
             // The result varies by by RPC method.
             // For example, this method will return a transaction hash hexadecimal string on success.
           })
@@ -121,18 +139,25 @@ export class ImageNFT extends React.Component{
         data: data
         },
     ];
+    
     console.log("params:",params);
+    this.setState({popupVisible: true});
+    console.log("about to send tx");
     await window.ethereum
         .request({
         method: 'eth_sendTransaction',
         params,
         })
-        .then((result) => {
-        console.log(result);
-        //this.idInput.current.value = "";
-        // The result varies by by RPC method.
-        // For example, this method will return a transaction hash hexadecimal string on success.
-        })
+        .then(async (txHash) => {
+        this.setState({waiting: true});
+        console.log(txHash);
+        this.setState({txHash: txHash});
+        const res = await this.props.waitForMinedConfirmation(txHash, (tx) => {
+          this.setState({waiting: false});
+          this.setState({successful: true});
+          console.log("tx mined: ", tx);
+      });
+    })
         .catch((error) => {
         console.log(error);
         // If the request fails, the Promise will reject with an error.
@@ -144,7 +169,7 @@ export class ImageNFT extends React.Component{
 async setForSale()
 {
   console.log("in setForSale. forsale?: ",this.state.forSale);
-  this.setState({setForSalePopupVisible: true});
+  this.setState({popupVisible: true});
   console.log("about to send tx");
   const tx = await this.props.setForSale(this.props.uri.id, !this.props.uri.forSale);
   this.setState({waiting: true});
@@ -162,7 +187,7 @@ async setForSale()
       console.log("tx mined: ", tx.hash);
   })
     console.log("changed forSale in tx: ",tx.hash);
-    //this.setState({setForSalePopupVisible: true});
+    //this.setState({popupVisible: true});
     //window.location.reload(false);
     }
   
@@ -236,39 +261,59 @@ async setForSale()
       
       </div>  
       <div className={!this.props.mywallet ? "dont-show" : "text-center"}>
-      
+    
         <button className="setPrice" onClick={this.changePrice}> Change Price </button>
-        <ChangePrice 
-          id = {this.props.uri.id}
-          price = {this.props.uri.price}
-          visible = {this.state.changePriceVisble}
-          close = {()=>{this.closeChangePrice()}}
-          setPrice = { (price, tokenId) => {
-            return this.props.setPrice(price, tokenId);
-          }}
-          waitForMinedConfirmation={ (tx_hash, func) => {
-            return this.props.waitForMinedConfirmation(tx_hash, func);
-          }}
-        />
-      </div>  
-      <div className={!this.props.mywallet ? "dont-show" : "for-sale-container"}>
-        <div className="for-sale-label">
-      For sale? 
+            <ChangePrice 
+              id = {this.props.uri.id}
+              price = {this.props.uri.price}
+              visible = {this.state.changePriceVisble}
+              close = {()=>{this.closeChangePrice()}}
+              setPrice = { (price, tokenId) => {
+                return this.props.setPrice(price, tokenId);
+              }}
+              waitForMinedConfirmation={ (tx_hash, func) => {
+                return this.props.waitForMinedConfirmation(tx_hash, func);
+              }}
+            />
+
+      </div> 
+      <div className={!this.props.mywallet ? "dont-show" : "forsale-transfer-container"}>
+        <div className="for-sale-container"> 
+          <div className="for-sale-label">
+            For sale? 
+            </div>
+          <div className="check-for-sale">
+              <label >
+                <input type="checkbox" checked={this.props.uri.forSale} onChange={this.setForSale}/>
+                <span ></span>
+              </label>
+            </div>
+        </div> 
+        <div className="transfer-container">
+
+          <button className="transfer-button" onClick={this.transfer}> Transfer</button>
+          <Transfer 
+            my_address={this.props.address}
+            safeTransfer = {(owner, to, tokenId) => {
+            return this.props.safeTransfer(owner, to, tokenId)}}
+            id = {this.props.uri.id}
+            price = {this.props.uri.price}
+            visible = {this.state.transferVisble}
+            close = {()=>{this.closeTransfer()}}
+            waitForMinedConfirmation={ (tx_hash, func) => {
+              return this.props.waitForMinedConfirmation(tx_hash, func);
+            }}
+          />
+          
+        </div> 
       </div>
-      <div>
-        <label className="check-for-sale">
-          <input type="checkbox" checked={this.props.uri.forSale} onChange={this.setForSale}/>
-          <span ></span>
-        </label>
-        </div>
-      </div>  
 
           <Popup 
-            visible = {this.state.setForSalePopupVisible}
+            visible = {this.state.popupVisible}
             txHash={this.state.txHash}
             waiting={this.state.waiting}
             successful = {this.state.successful}
-            close = {()=>{this.closeSetForSalePopup()}}
+            close = {()=>{this.closePopup()}}
           />
 
 

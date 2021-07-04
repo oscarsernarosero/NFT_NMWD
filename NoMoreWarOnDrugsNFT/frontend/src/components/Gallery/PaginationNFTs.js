@@ -155,6 +155,13 @@ import { Carousel } from "../Gallery/Carousel";
                               }}
                               
                               forMint={false}
+                              to = {this.props.to}
+                              waitForMinedConfirmation={ (tx_hash, func) => {
+                                return this.props.waitForMinedConfirmation(tx_hash, func);
+                              }}
+                              safeTransfer = { (owner, to, tokenId) => {
+                                return this.props.safeTransfer(owner, to, tokenId);
+                              }}
                         /></li>
                 })}
                 </ul>
@@ -162,6 +169,18 @@ import { Carousel } from "../Gallery/Carousel";
                 <div className={this.state.view ? "not-visible":"" }>
                   <Carousel
                       nfts={this.state.nfts}
+                      address = {this.props.address}
+                      marketPlaceAddress = {this.props.marketPlaceAddress}
+                      mywallet = {this.props.mywallet}
+                      forMint={false}
+                      to = {this.props.to}
+                      waitForMinedConfirmation={ (tx_hash, func) => {
+                      return this.props.waitForMinedConfirmation(tx_hash, func);
+                    }}
+                    safeTransfer = { (owner, to, tokenId) => {
+                      return this.props.safeTransfer(owner, to, tokenId);
+                    }}
+                    
                     />    
                   </div> 
                   <div className="centered">
@@ -170,6 +189,7 @@ import { Carousel } from "../Gallery/Carousel";
                     sizePerPage={this.state.pageSize}
                     totalSize={this.props.mywallet ? this.state.myIds.length : this.state.ids.length}
                     changeCurrentPage={this.changeCurrentPage}
+                    
                     />
                     </div>    
               </div>

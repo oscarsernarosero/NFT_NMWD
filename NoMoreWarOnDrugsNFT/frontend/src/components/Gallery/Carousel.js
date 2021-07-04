@@ -42,10 +42,10 @@ export class Carousel extends React.Component {
             style={{"backgroundImage": "linear-gradient(180deg, black, black, #"+this.state.background+")", "transition": "backgroundImage 1s linear"}}>
                 
                 <Coverflow
-                    displayQuantityOfSide={1}
+                    displayQuantityOfSide={2}
                     infiniteScroll={false}
                     enableHeading={false}
-                    otherFigureScale={0.5}
+                    otherFigureScale={0.3}
                     currentFigureScale={1}
                     enableScroll={false}
                     width={"100%"}

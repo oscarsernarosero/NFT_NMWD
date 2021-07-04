@@ -26,6 +26,7 @@ import { MyWallet} from "./MyWallet/MyWallet";
 import { SetMessage } from "./MyWallet/SetMessage";
 import { ChangePrice } from "./MyWallet/ChangePrice"
 import { NewUri } from  "./NewUri/NewUri";
+import { Transfer } from  "./MyWallet/Transfer";
 
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
@@ -221,6 +222,9 @@ export class Dapp extends React.Component {
                     getPrice = { (tokenId) => {
                       return this.getPrice( tokenId);
                     }}
+                    waitForMinedConfirmation={ (tx_hash, func) => {
+                      return this.waitForMinedConfirmation(tx_hash, func);
+                    }}
                   />
                 }
               />
@@ -261,6 +265,9 @@ export class Dapp extends React.Component {
                   waitForMinedConfirmation={ (tx_hash, func) => {
                     return this.waitForMinedConfirmation(tx_hash, func);
                   }}
+                  safeTransfer = { (owner, to, tokenId) => {
+                    return this.safeTransferFrom(owner, to, tokenId);
+                  }}
                   />
                 }
               />
@@ -273,6 +280,9 @@ export class Dapp extends React.Component {
                   }}
                   id = {this.state.selectedId}
                   imageUrl = {this.state.imageUrl}
+                  waitForMinedConfirmation={ (tx_hash, func) => {
+                    return this.waitForMinedConfirmation(tx_hash, func);
+                  }}
                   />
                 }
               />
@@ -281,6 +291,17 @@ export class Dapp extends React.Component {
                   <ChangePrice
                   setPrice = { (price, tokenId) => {
                     return this.setPrice(price, tokenId);
+                  }}
+                  id = {this.state.selectedId}
+                  price = {this.state.price}
+                  />
+                }
+              />
+              <Route path="/transfer" 
+                render={(props)=>
+                  <Transfer
+                  safeTransfer = { (owner, to, tokenId) => {
+                    return this.safeTransferFrom(owner, to, tokenId);
                   }}
                   id = {this.state.selectedId}
                   price = {this.state.price}
