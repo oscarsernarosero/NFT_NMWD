@@ -48,15 +48,6 @@ export class MyWallet extends React.Component{
                   }}
             />
             
-            <Balance 
-                getUserBalance = { (_address) => {
-                    return this.props.getUserBalance(_address);
-                  }}
-                  withdrawUserFunds = { (amount) => {
-                    return this.props.withdrawUserFunds( amount);
-                  }}
-                  address = {this.props.address}
-            />
         </div>
         );
     }

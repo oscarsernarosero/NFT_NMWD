@@ -34,25 +34,9 @@ export class ForMinting extends React.Component{
       return (
         <div className="gallery">
             <PaginationForMinting
-            marketPlaceAddress = {this.props.marketPlaceAddress}
-            address = {this.props.address}
-            getNFTData={ (id) => {
-                return this.props.getNFTData(id);
-            }}
             nftsForMint={this.state.nftsForMint}
-            getAllNFTsIdsOnly = { () => {
-                return this.props.getAllNFTsIdsOnly();
-            }}
             mywallet = {false}
-            
-            getPrice = { (tokenId) => {
-              return this.props.getPrice( tokenId);
-            }}
-            marketPlaceAddress = {this.props.marketPlaceAddress}
-            to = {this.props.to}
-            waitForMinedConfirmation={ (tx_hash, func) => {
-              return this.props.waitForMinedConfirmation(tx_hash, func);
-            }}
+            {...this.props}
             />
            
             </div>

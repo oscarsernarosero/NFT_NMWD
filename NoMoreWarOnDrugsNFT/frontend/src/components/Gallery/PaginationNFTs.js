@@ -174,13 +174,25 @@ import { Carousel } from "../Gallery/Carousel";
                       mywallet = {this.props.mywallet}
                       forMint={false}
                       to = {this.props.to}
+                      setTokenMessage={ (_tokenId, _msg ) => {
+                        return this.props.setTokenMessage(_tokenId, _msg );
+                       }}
+                       setForSale = { (tokenId, forSale) => {
+                        return this.props.setForSale(tokenId, forSale);
+                      }}
+                      setSelectedId = {(id, imageUrl, price) => {
+                      return this.props.setSelectedId(id, imageUrl), price;
+                      }}
+                      setPrice = { (price, tokenId) => {
+                          return this.props.setPrice(price, tokenId);
+                        }}
                       waitForMinedConfirmation={ (tx_hash, func) => {
                       return this.props.waitForMinedConfirmation(tx_hash, func);
-                    }}
-                    safeTransfer = { (owner, to, tokenId) => {
-                      return this.props.safeTransfer(owner, to, tokenId);
-                    }}
-                    
+                      }}
+                      safeTransfer = { (owner, to, tokenId) => {
+                        return this.props.safeTransfer(owner, to, tokenId);
+                      }}
+                      
                     />    
                   </div> 
                   <div className="centered">

@@ -57,27 +57,8 @@ export class Carousel extends React.Component {
                             <div onClick={(key)=>this.fn(index)} key={index}>
                                 
                             <ImageNFT
-                                address = {this.props.address}
-                                marketPlaceAddress = {this.props.marketPlaceAddress}
-                                forMint={this.props.forMint}
-                                to = {this.props.to}
                                 uri = {key}
-                                setTokenMessage={ (_tokenId, _msg ) => {
-                                    return this.props.setTokenMessage(_tokenId, _msg );
-                                }}
-                                mywallet = {this.props.mywallet}
-                                setForSale = { (tokenId, forSale) => {
-                                    return this.props.setForSale(tokenId, forSale);
-                                }}
-                                setSelectedId = {(id, imageUrl, price) => {
-                                    return this.props.setSelectedId(id, imageUrl), price;
-                                }}
-                                setPrice = { (price, tokenId) => {
-                                    return this.props.setPrice(price, tokenId);
-                                }}
-                                waitForMinedConfirmation={ (tx_hash, func) => {
-                                    return this.props.waitForMinedConfirmation(tx_hash, func);
-                                }}
+                                {...this.props}
                             />
                             </div>
                     );}
