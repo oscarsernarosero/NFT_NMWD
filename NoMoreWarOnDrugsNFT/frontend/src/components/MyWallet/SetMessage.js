@@ -54,15 +54,20 @@ export class SetMessage extends React.Component{
             this.setState({forSale: !this.state.forSale});
             this.setState({txHash: tx.hash});
             const res = await this.props.waitForMinedConfirmation(tx.hash, (tx) => {
-              this.setState({waiting: false});
-              this.setState({successful: true});
-              console.log("tx mined: ", tx.hash);
+            this.setState({waiting: false});
+            this.setState({successful: true});
+            console.log("tx mined: ", tx.hash);
+            const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+            const currentUrl = window.location.href;
+            console.log("currentUrl", currentUrl);
+            console.log("currentUrl.length", currentUrl.length);
+            console.log("currentUrl.length substring", currentUrl.substring((currentUrl.length-10)));
+            const walletUrl = currentUrl.substring(0,(currentUrl.length-10))+"wallet";
+            sleep(3000).then( () => window.location.href = walletUrl).catch( error => console.log("error while reloading:",error));
+                
           })
             console.log("changed forSale in tx: ",tx.hash);
-        }
-            
-        
-      
+        }  
       }
   
   render(){
@@ -89,7 +94,7 @@ export class SetMessage extends React.Component{
                        Message:
                     </div>
                     <div>
-                        <textarea rows = "4" cols = "70" maxlength = "250" placeholder="Welcome to inmortality"
+                        <textarea rows = "4" cols = "70" maxLength = "250" placeholder="Welcome to inmortality"
                             id="text-area"
                             className="message-input"
                             onChange={this.handleChangeMsg}

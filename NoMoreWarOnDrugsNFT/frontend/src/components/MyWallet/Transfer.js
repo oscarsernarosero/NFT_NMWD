@@ -51,6 +51,10 @@ export class Transfer extends React.Component{
             const res = await this.props.waitForMinedConfirmation(tx.hash, (tx) => {
                 this.setState({waiting: false});
                 this.setState({successful: true});
+                const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+                const currentUrl = window.location.href;
+                sleep(2000).then( () => window.location.href = currentUrl).catch( error => console.log("error while reloading:",error));
+                
                 console.log("tx mined: ", tx.hash);
             })
             console.log("res: ",res);

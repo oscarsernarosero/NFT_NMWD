@@ -8,7 +8,8 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Switch
+  Switch,
+ useHistory
 } from "react-router-dom";
 
 
@@ -29,8 +30,17 @@ export class ImageNFT extends React.Component{
     this.closePopup = this.closePopup.bind(this);
     this.closeTransfer = this.closeTransfer.bind(this);
     this.transfer = this.transfer.bind(this);
+    //this didn't work
+    this.reloadWallet = this.reloadWallet.bind(this);
     console.log("props NFT image: ",this.props);
   }
+
+  //this didn't work
+  reloadWallet(){
+      const history = useHistory();
+     history.push('/wallet');
+    }
+  
 
   buyDisable(){
     console.log("buy button disable");
@@ -106,6 +116,10 @@ export class ImageNFT extends React.Component{
               this.setState({waiting: false});
               this.setState({successful: true});
               console.log("tx mined: ", tx);
+              const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+               const currentUrl = window.location.href;
+              sleep(2000).then( () => window.location.href = currentUrl).catch( error => console.log("error while reloading:",error));
+    
           });
             // The result varies by by RPC method.
             // For example, this method will return a transaction hash hexadecimal string on success.
@@ -156,6 +170,10 @@ export class ImageNFT extends React.Component{
           this.setState({waiting: false});
           this.setState({successful: true});
           console.log("tx mined: ", tx);
+          const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+          const currentUrl = window.location.href;
+          sleep(2000).then( () => window.location.href = currentUrl).catch( error => console.log("error while reloading:",error));
+    
       });
     })
         .catch((error) => {
@@ -185,10 +203,18 @@ async setForSale()
       this.setState({waiting: false});
       this.setState({successful: true});
       console.log("tx mined: ", tx.hash);
+      console.log("changed forSale in tx: ",tx.hash);
+      const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+      const currentUrl = window.location.href;
+      sleep(2000).then( () => window.location.href = currentUrl).catch( error => console.log("error while reloading:",error));
+    
+
   })
-    console.log("changed forSale in tx: ",tx.hash);
-    //this.setState({popupVisible: true});
-    //window.location.reload(false);
+    
+
+    
+    //this didn't work
+    //this.reloadWallet();
     }
   
   

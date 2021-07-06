@@ -286,28 +286,7 @@ export class Dapp extends React.Component {
                   />
                 }
               />
-              <Route path="/changeprice" 
-                render={(props)=>
-                  <ChangePrice
-                  setPrice = { (price, tokenId) => {
-                    return this.setPrice(price, tokenId);
-                  }}
-                  id = {this.state.selectedId}
-                  price = {this.state.price}
-                  />
-                }
-              />
-              <Route path="/transfer" 
-                render={(props)=>
-                  <Transfer
-                  safeTransfer = { (owner, to, tokenId) => {
-                    return this.safeTransferFrom(owner, to, tokenId);
-                  }}
-                  id = {this.state.selectedId}
-                  price = {this.state.price}
-                  />
-                }
-              />
+              
               <Route path="/new_uri" 
               render={(props)=>
                   <NewUri/>}
