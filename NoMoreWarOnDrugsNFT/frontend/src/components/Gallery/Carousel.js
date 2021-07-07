@@ -38,22 +38,21 @@ export class Carousel extends React.Component {
 
     render(){
         return(
-            <div id="carousel-3d-container mask" 
-            //style={{"backgroundImage" : "linear-gradient(180deg, black, black, #"+this.state.background+")",
-           // style={{"backgroundColor" : "#"+this.state.background,
-           style={{"background" : "linear-gradient(to top, transparent 10%, black 50%), #"+this.state.background,
-                        //"backgroundImage" : "linear-gradient(to bottom, transparent 75%, black 25%)",
+            <div id="carousel-3d-container" 
+           style={{"background" : "linear-gradient(to top, transparent 10%, black 60%), #"+this.state.background,
                         "transition":"background-color 0.8s ease"}}>
                 
                 <Coverflow
-                    displayQuantityOfSide={2}
+                    displayQuantityOfSide={1}
                     infiniteScroll={false}
                     enableHeading={false}
                     otherFigureScale={0.3}
-                    currentFigureScale={1}
+                    currentFigureScale={1.15}
                     enableScroll={false}
-                    width={"100%"}
-                    height={780}
+                    width={1040}
+                    height={900}
+                    
+                    
                     >
                     
                         {this.props.nfts.map((key,index)=>{

@@ -292,9 +292,6 @@
   to {opacity: 1}
 }
 
-.carousel-3d-container{
-  background-image: linear-gradient(to bottom, transparent 75%, black 25%);
-}
 
 .mask{
   -webkit-mask-image: linear-gradient(to bottom, transparent 75%, black 25%);

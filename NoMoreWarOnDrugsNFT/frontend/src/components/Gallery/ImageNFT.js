@@ -230,7 +230,7 @@ async setForSale()
     }
     
   return (
-    <div>
+    <div className="nft-container">
       <div className="NFTTitle">
         {this.props.uri.name}
       </div>
@@ -247,15 +247,15 @@ async setForSale()
         Message:
       </div>
       <div className={this.props.mywallet&&this.props.uri.message==="" ? "dont-show" : 
-      !this.props.mywallet&&this.props.uri.message==="" ? "no-message" : "message"}>
-        {!this.props.mywallet&&this.props.uri.message==="" ? 
-        "This NFT has no message yet. You can set it yourself if you buy this NFT!" :
-        this.props.uri.message} 
+        !this.props.mywallet&&this.props.uri.message==="" || this.props.uri.message===undefined ? "no-message" : "message"}>
+          {!this.props.mywallet&&this.props.uri.message==="" || this.props.uri.message===undefined  ? 
+          "This NFT has no message yet. You can set it yourself if you buy this NFT!" :
+          this.props.uri.message} 
       </div>
-      <div>
-        <h6 className="artist">
+      <div className="artist-container">
+        <div className="artist">
          artist: 
-        </h6>
+        </div>
         <a href={this.props.uri.attributes.webpage} className="link" target="_blank" rel="noopener noreferrer">
           {this.props.uri.attributes.artist}
         </a>
@@ -267,7 +267,7 @@ async setForSale()
       <div className="price">
         Price: {parseInt(this.props.uri.price)/1000000000000000000} ETH
       </div>  
-      <div className={this.props.mywallet ? "dont-show" : "text-center"}>
+      <div className={this.props.mywallet ? "dont-show" : "button-container"}>
 
         <button onClick={this.props.mywallet||!this.props.uri.forSale ? this.buyDisable :
                                                    this.props.forMint ? this.mint : this.buy}
@@ -279,10 +279,10 @@ async setForSale()
         </button>
       </div>
       <div className={!this.props.mywallet||this.props.uri.message!=="" ? "dont-show" : "text-center"}>
-      <Link to={{ pathname: "/setmessage" }}>
-        <button className="setMessage" onClick={this.setSelectedId}> Set The Message!</button>
-      </Link>
-      
+        <Link to={{ pathname: "/setmessage" }}>
+          <button className="setMessage" onClick={this.setSelectedId}> Set The Message!</button>
+        </Link>
+        
       </div>  
       <div className={!this.props.mywallet ? "dont-show" : "text-center"}>
     
