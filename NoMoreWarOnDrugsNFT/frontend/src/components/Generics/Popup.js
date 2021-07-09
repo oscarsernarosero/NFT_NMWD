@@ -1,6 +1,6 @@
 import React from "react";
 import { LiveBlockchainStatus } from "./LiveBlockchainStatus"
-import "../../style/change-price.css"
+import "../../style/popup.css"
 
 
 /**

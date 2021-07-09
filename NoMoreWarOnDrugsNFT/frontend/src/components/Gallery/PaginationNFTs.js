@@ -3,6 +3,9 @@ import Pagination from "react-pagination-js";
 import "react-pagination-js/dist/styles.css"; // import css
 import { ImageNFT } from "./ImageNFT";
 import "../../style/pagination.css"
+import { CgDisplayGrid } from "react-icons/cg";
+import { CgDisplaySpacing } from "react-icons/cg";
+
 
 import { Carousel } from "../Gallery/Carousel";
 
@@ -33,6 +36,7 @@ import { Carousel } from "../Gallery/Carousel";
         let myIds = await this.props.getNFTidsByAddress(this.props.address);
         console.log("myIds raw ",myIds);
         if(myIds.length>0){
+          console.log("in the else if");
             myIds = myIds.map( (_id) => {return _id._hex;});
             console.log("myIds ",myIds);
             this.setState({mounted: true, myIds: myIds});
@@ -40,7 +44,13 @@ import { Carousel } from "../Gallery/Carousel";
             if(this.props.pageSize){
                 if(this.props.pageSize != this.state.pageSize){
                     this.setState({pageSize: this.props.pageSize});
-            }}}
+            }}
+          }else if(this.props.mywallet){
+            console.log("in the else if");
+              await this.setState({myIds: []});
+              await this.setState({nfts: []});
+              console.log(this.state.nfts);
+            }
             await this.getPageData();
             console.log("from pagination ",this.state);
             
@@ -65,6 +75,9 @@ import { Carousel } from "../Gallery/Carousel";
                 myIds = myIds.map( (_id) => {return _id._hex;});
                 console.log("myIds ",myIds);
                 this.setState({myIds: myIds});
+            }else if(myIds.length==0 && this.state.mywallet){
+              this.setState({myIds: []});
+              this.setState({nfts: []});
             }
             await this.getPageData();
         }
@@ -125,8 +138,8 @@ import { Carousel } from "../Gallery/Carousel";
         return (
             <div >
               <div>
-                    <button onClick={this.listView}>List</button>
-                    <button onClick={this.albumView}>album</button>
+                    <button onClick={this.listView}><CgDisplayGrid style={{verticalAlign:"middle"}}/>List</button>
+                    <button onClick={this.albumView}><CgDisplaySpacing style={{verticalAlign:"middle"}}/>album</button>
                 </div>
                <div className={this.state.view ? "": "not-visible"}>
                <ul className="list">

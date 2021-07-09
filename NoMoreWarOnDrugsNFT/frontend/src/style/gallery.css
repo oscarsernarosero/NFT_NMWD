@@ -8,8 +8,7 @@
 }
 
 .gallery{
-    min-width:400px;
-    max-width: 1300px;
+    width:100%;
     margin-left:auto;
     margin-right:auto;
 }

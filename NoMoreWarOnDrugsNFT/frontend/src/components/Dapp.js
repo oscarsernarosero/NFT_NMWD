@@ -24,9 +24,7 @@ import { Home } from "./Home/Home";
 import { Gallery } from "./Gallery/Gallery";
 import { MyWallet} from "./MyWallet/MyWallet";
 import { SetMessage } from "./MyWallet/SetMessage";
-import { ChangePrice } from "./MyWallet/ChangePrice"
 import { NewUri } from  "./NewUri/NewUri";
-import { Transfer } from  "./MyWallet/Transfer";
 
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js

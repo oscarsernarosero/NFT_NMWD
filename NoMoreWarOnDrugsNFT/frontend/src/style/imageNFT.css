@@ -4,24 +4,24 @@
      
     min-width: 100%;
     height: min-content;
-    padding: 5%;
+    padding: 3%;
 
 }
 
 
 .NFTTitle{
-    font-size:1.7rem;
+    font-size:1.6rem;
     line-height: 1.7rem;
     padding-bottom: 2%;
     align-self: center;
     text-align: center;
-    max-width: 90%;
-    text-shadow: 0px 0px 3px rgb(119, 141, 240);
+    max-width: 94%;
+    text-shadow: 0px 0px 0.4rem rgb(255, 255, 255);
 }
 
 
 .imageNFT{
-    max-width: 90%;
+    max-width: 94%;
     display:block;
     align-content: center;
 }
@@ -38,7 +38,7 @@
 
 .message{
     display:block;
-    max-width: 85%;
+    max-width: 92%;
     align-self: center;
     text-align: left;
     padding: 1%;
@@ -49,7 +49,7 @@
 
 .no-message{
     display:block;
-    max-width: 85%;
+    max-width: 92%;
     align-self: center;
     text-align: left;
     padding: 1%;
@@ -60,7 +60,7 @@
 
 .artist-container{
     font-size: 0rem;
-    max-width: 90%;
+    max-width: 94%;
     padding: 1%;
 }
 
@@ -97,11 +97,19 @@
     color: rgb(97, 97, 252);
 }
 
+.clearfix{zoom: 1}
+.clearfix.after{
+    content: '.';
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
 .description{
     display:block;
     align-self: center;
     text-align: left;
-    max-width: 90%;
+    max-width: 94%;
     padding-top: 1%;
     font-size: 14px;
     color: rgb(226, 226, 226);
@@ -112,13 +120,14 @@
     font-size: 2rem;
     margin-top: 0.5%;
     text-align: center;
-    max-width: 90%;
+    max-width: 94%;
     overflow: scroll;
+    text-shadow: 0 0 0.2rem rgb(255, 255, 182);
 }
 
 
 .button-container{
-    width: 90%;
+    width: 94%;
 }
 
 .button{
@@ -141,7 +150,7 @@
 .button:hover{
     color: blue;
     text-shadow: 0px 0px 5px green;
-    transform: scale(1.08);
+    transform: scale(1.04);
 }
 
 .button:active{
@@ -170,7 +179,6 @@
 
 .text-center{
     text-align: center;
-    background-color: cornsilk;
 }
 
 .imageContainer{

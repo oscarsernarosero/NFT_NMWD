@@ -4,6 +4,15 @@ import { ChangePrice } from "../MyWallet/ChangePrice";
 import { ethers } from "ethers";
 import { Popup } from "../Generics/Popup";
 import { Transfer } from "../MyWallet/Transfer"
+import { BiCoin } from "react-icons/bi";
+import { FaEthereum } from "react-icons/fa";
+import { GiTwoCoins } from "react-icons/gi";
+import { GiFountainPen } from "react-icons/gi";
+import { GiPalette } from "react-icons/gi";
+import { MdMessage } from "react-icons/md";
+import { CgDetailsMore } from "react-icons/cg";
+
+
 import {
   BrowserRouter as Router,
   Route,
@@ -33,6 +42,7 @@ export class ImageNFT extends React.Component{
     //this didn't work
     this.reloadWallet = this.reloadWallet.bind(this);
     console.log("props NFT image: ",this.props);
+    
   }
 
   //this didn't work
@@ -231,7 +241,7 @@ async setForSale()
     
   return (
     <div className="nft-container">
-      <div className="NFTTitle">
+      <div className="NFTTitle" style={this.props.uri.name.length<25?{"font-size":"2rem"}:{"font-size":"1.6rem"}}>
         {this.props.uri.name}
       </div>
       <div className="imageContainer">
@@ -244,7 +254,7 @@ async setForSale()
         </a>
       </div>
       <div className={this.props.mywallet&&this.props.uri.message==="" ? "dont-show" : "msg-title"}>
-        Message:
+      <MdMessage style={{verticalAlign:"middle"}}/> Message:
       </div>
       <div className={this.props.mywallet&&this.props.uri.message==="" ? "dont-show" : 
         !this.props.mywallet&&this.props.uri.message==="" || this.props.uri.message===undefined ? "no-message" : "message"}>
@@ -254,26 +264,31 @@ async setForSale()
       </div>
       <div className="artist-container">
         <div className="artist">
-         artist: 
+         <GiPalette /> &nbsp;  artist: 
         </div>
         <a href={this.props.uri.attributes.webpage} className="link" target="_blank" rel="noopener noreferrer">
           {this.props.uri.attributes.artist}
         </a>
       </div>
       <div className="description">
-        Description: {this.props.uri.description}
+        <CgDetailsMore/>Description: {this.props.uri.description}
       </div>
       
       <div className="price">
-        Price: {parseInt(this.props.uri.price)/1000000000000000000} ETH
+       <FaEthereum style={{verticalAlign:"middle",fontSize:"1.5rem"}}/> {parseInt(this.props.uri.price)/1000000000000000000}  ETH 
       </div>  
       <div className={this.props.mywallet ? "dont-show" : "button-container"}>
 
         <button onClick={this.props.mywallet||!this.props.uri.forSale ? this.buyDisable :
                                                    this.props.forMint ? this.mint : this.buy}
         className={this.props.uri.owned ? "button-owned"  : "button" }>
+          {
+            this.props.forMint ? <GiTwoCoins style={{verticalAlign:"middle"}}/> : ""
+          }
+          
+          
           {this.props.uri.owned ? "You Own This NFT !" : 
-          this.props.forMint ? "MINT!" :
+          this.props.forMint ?  " Mint!":
           this.props.uri.forSale ? "BUY" : "Not For Sale"}
 
         </button>
