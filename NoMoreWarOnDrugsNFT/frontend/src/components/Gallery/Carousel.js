@@ -50,7 +50,7 @@ export class Carousel extends React.Component {
                     currentFigureScale={1.15}
                     enableScroll={false}
                     width={900}
-                    height={900}
+                    height={720}
                     
                     
                     >

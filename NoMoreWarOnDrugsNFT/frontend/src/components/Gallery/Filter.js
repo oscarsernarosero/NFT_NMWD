@@ -1,4 +1,7 @@
 import React from "react";
+import { CgFilters } from "react-icons/cg";
+import { IoCaretDown } from "react-icons/io5";
+import { IoCaretUp } from "react-icons/io5";
 import '../../style/filter.css';
 const fs = require("fs");
 const DB = require("../../localDB/attributes.json");
@@ -123,11 +126,14 @@ export class Filter extends React.Component{
 render(){
 
     return (
-        <div>
-        <h4 className="component-title">Create A New URI</h4>
+        <div className="filter-container">
         <form
             onSubmit={this.handleSubmit} >
-            <button onClick={this.show} className="topic-button">Filter </button>
+            <button onClick={this.show} className="topic-button">
+                <CgFilters style={{verticalAlign:"middle",fontSize:"1.2rem"}}/>&nbsp;Filter &nbsp;
+                {this.state.topicVisible? <IoCaretUp style={{verticalAlign:"middle"}}/>:
+                                            <IoCaretDown style={{verticalAlign:"middle"}}/>}
+                </button>
             <div className={this.state.topicVisible? "": "dont-show"}>
                 <div className="filter-menu">
                   <div className="filter-category">
@@ -245,9 +251,9 @@ render(){
                     </select>
                   </div>
               </div>
-
+              <button type="submit">apply filter</button>
              </div>
-             <button type="submit">apply filter</button>
+             
         </form>
         </div>
     );

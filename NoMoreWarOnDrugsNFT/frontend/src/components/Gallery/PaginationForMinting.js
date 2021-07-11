@@ -3,7 +3,9 @@ import Pagination from "react-pagination-js";
 import {Filter} from  "./Filter";
 import "react-pagination-js/dist/styles.css"; // import css
 import { ImageNFT } from "./ImageNFT";
-import "../../style/pagination.css"
+import "../../style/pagination.css";
+import { CgViewGrid } from "react-icons/cg";
+import { CgUiKit } from "react-icons/cg";
 
 import { Carousel } from "../Gallery/Carousel";
 
@@ -178,8 +180,14 @@ import { Carousel } from "../Gallery/Carousel";
                         ever in the Ethereum netwrok. Don't miss this opportunity!</p>
                 </div>
                 <div>
-                    <button onClick={this.listView}>List</button>
-                    <button onClick={this.albumView}>album</button>
+                <button onClick={this.listView} 
+                    className={this.state.view ? "grid-active": "grid-inactive"}>
+                      <CgViewGrid style={{verticalAlign:"middle", fontSize:"1.25rem"}}
+                    />&nbsp;Grid</button>
+                    <button onClick={this.albumView}
+                    className={!this.state.view ? "cover-active": "cover-inactive"}>
+                      <CgUiKit style={{verticalAlign:"middle",fontSize:"1.25rem"}}
+                    />&nbsp;Cover</button>
                 </div>
                 <div>
                   <Filter

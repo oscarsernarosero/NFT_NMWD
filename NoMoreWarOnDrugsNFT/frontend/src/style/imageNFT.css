@@ -179,63 +179,83 @@
 
 .text-center{
     text-align: center;
+    display:block;
+    width: 94%;
 }
 
 .imageContainer{
     align-content: center;
+    
 }
 
-
-
-
 .setMessage{
-    margin: 10px;
+    margin: 0.4rem;
     padding: 2px 20px;
-    font-size: 20px;
+    font-size: 1.3rem;
     font-family: 'Rajdhani', sans-serif;
     background-color: rgb(2, 68, 155);
-    border-radius: 10px;
+    border-radius: 0.7rem;
     color: white;
     border-style: hidden;
     margin-left: auto;
     margin-right: auto;
     align-content: center;
-    min-width: 80%;
-    max-width:300px;
+    width:100%;
 }
 
 .setPrice{
-    margin: 10px;
+    margin: 0.4rem;
     padding: 2px 20px;
-    font-size: 20px;
+    font-size: 1.3rem;
     font-family: 'Rajdhani', sans-serif;
     background-color: rgb(2, 68, 155);
-    border-radius: 10px;
+    border-radius: 0.7rem;
     color: white;
     border-style: hidden;
     margin-left: auto;
     margin-right: auto;
     align-content: center;
-    min-width: 80%;
-    max-width:300px;
+    width:100%;
 }
-
-
 
 .forsale-transfer-container{
     display: block;
+    width:94%;
+    margin: 0.4rem;
 }
 
+.for-sale-container{
+    display: inline-block;
+    width:50%;
+}
+.for-sale-label{
+    display: inline-block;
+    padding: 0.2rem;
+    font-size: 1.3rem; 
+    text-align: left;
+    align-content: left;
+    max-width: fit-content;
+  }
+
+  .check-for-sale{
+      display: inline-block;
+      padding-left:0.1rem;
+
+  }
+
+  .check-for-sale input{
+    width: 20px;
+    height: 20px;
+}
 .transfer-container{
     display: inline-block;
-    min-width: 50%;
-    align-content: end;
+    width: 47%;
     
 }
 
 .transfer-button{
-    padding: 2px 20px;
-    font-size: 20px;
+    padding: 0.2rem 0.5rem;
+    font-size: 1.3rem;
     font-family: 'Rajdhani', sans-serif;
     background-color: rgb(2, 68, 155);
     border-radius: 10px;
@@ -244,36 +264,9 @@
     margin-left: auto;
     margin-right: 15px;
     align-content: center;
-    min-width: 50%;
-    max-width:100%;
+    width:100%;
     display: block;
 }
-
-.for-sale-container{
-    display: inline-block;
-    min-width:max-content;
-}
-.for-sale-label{
-    display: inline;
-    padding: 2px;
-    margin-left: 40px;
-    font-size: 1.5rem; 
-    text-align: left;
-    align-content: left;
-    max-width: fit-content;
-  }
-
-  .check-for-sale{
-      display: inline-block;
-      padding-left:10px;
-
-  }
-
-  .check-for-sale input{
-    width: 20px;
-    height: 20px;
-}
-
   .dont-show{
       display: none;
   }

@@ -7,11 +7,16 @@ import { Transfer } from "../MyWallet/Transfer"
 import { BiCoin } from "react-icons/bi";
 import { FaEthereum } from "react-icons/fa";
 import { GiTwoCoins } from "react-icons/gi";
-import { GiFountainPen } from "react-icons/gi";
+import { IoIosSend } from "react-icons/io";
 import { GiPalette } from "react-icons/gi";
 import { MdMessage } from "react-icons/md";
 import { CgDetailsMore } from "react-icons/cg";
-
+import { IoPricetag } from "react-icons/io5"; 
+import { RiPriceTag2Fill } from "react-icons/ri";
+import { RiShoppingBag3Fill } from "react-icons/ri";
+import { RiShoppingCart2Fill } from "react-icons/ri";
+import { HiCash } from "react-icons/hi";
+import { TiStar } from "react-icons/ti";
 
 import {
   BrowserRouter as Router,
@@ -271,7 +276,7 @@ async setForSale()
         </a>
       </div>
       <div className="description">
-        <CgDetailsMore/>Description: {this.props.uri.description}
+        Description: {this.props.uri.description}
       </div>
       
       <div className="price">
@@ -283,25 +288,29 @@ async setForSale()
                                                    this.props.forMint ? this.mint : this.buy}
         className={this.props.uri.owned ? "button-owned"  : "button" }>
           {
-            this.props.forMint ? <GiTwoCoins style={{verticalAlign:"middle"}}/> : ""
+            this.props.forMint ? <GiTwoCoins style={{verticalAlign:"middle"}}/> :
+            this.props.uri.forSale?  <TiStar style={{verticalAlign:"middle"}}/>  :
+            ""
           }
           
           
           {this.props.uri.owned ? "You Own This NFT !" : 
           this.props.forMint ?  " Mint!":
-          this.props.uri.forSale ? "BUY" : "Not For Sale"}
+          this.props.uri.forSale ? " BUY" : "Not For Sale"}
 
         </button>
       </div>
       <div className={!this.props.mywallet||this.props.uri.message!=="" ? "dont-show" : "text-center"}>
         <Link to={{ pathname: "/setmessage" }}>
-          <button className="setMessage" onClick={this.setSelectedId}> Set The Message!</button>
+          <button className="setMessage" onClick={this.setSelectedId}>
+          <MdMessage style={{verticalAlign:"middle"}}/>  Set The Message!</button>
         </Link>
         
       </div>  
       <div className={!this.props.mywallet ? "dont-show" : "text-center"}>
     
-        <button className="setPrice" onClick={this.changePrice}> Change Price </button>
+        <button className="setPrice" onClick={this.changePrice}> 
+        <HiCash style={{verticalAlign:"middle"}}/>&nbsp; Change Price </button>
             <ChangePrice 
               id = {this.props.uri.id}
               price = {this.props.uri.price}
@@ -319,7 +328,7 @@ async setForSale()
       <div className={!this.props.mywallet ? "dont-show" : "forsale-transfer-container"}>
         <div className="for-sale-container"> 
           <div className="for-sale-label">
-            For sale? 
+            <IoPricetag style={{verticalAlign:"middle"}}/>&nbsp;For sale? 
             </div>
           <div className="check-for-sale">
               <label >
@@ -330,7 +339,8 @@ async setForSale()
         </div> 
         <div className="transfer-container">
 
-          <button className="transfer-button" onClick={this.transfer}> Transfer</button>
+          <button className="transfer-button" onClick={this.transfer}> 
+          <IoIosSend style={{verticalAlign:"middle"}}/>&nbsp;Transfer</button>
           <Transfer 
             my_address={this.props.address}
             safeTransfer = {(owner, to, tokenId) => {

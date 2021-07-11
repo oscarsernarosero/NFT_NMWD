@@ -3,8 +3,9 @@ import Pagination from "react-pagination-js";
 import "react-pagination-js/dist/styles.css"; // import css
 import { ImageNFT } from "./ImageNFT";
 import "../../style/pagination.css"
-import { CgDisplayGrid } from "react-icons/cg";
-import { CgDisplaySpacing } from "react-icons/cg";
+import { CgViewGrid } from "react-icons/cg";
+import { CgUiKit } from "react-icons/cg";
+
 
 
 import { Carousel } from "../Gallery/Carousel";
@@ -138,8 +139,14 @@ import { Carousel } from "../Gallery/Carousel";
         return (
             <div >
               <div>
-                    <button onClick={this.listView}><CgDisplayGrid style={{verticalAlign:"middle"}}/>List</button>
-                    <button onClick={this.albumView}><CgDisplaySpacing style={{verticalAlign:"middle"}}/>album</button>
+                    <button onClick={this.listView} 
+                    className={this.state.view ? "grid-active": "grid-inactive"}>
+                      <CgViewGrid style={{verticalAlign:"middle", fontSize:"1.25rem"}}
+                    />&nbsp;Grid</button>
+                    <button onClick={this.albumView}
+                    className={!this.state.view ? "cover-active": "cover-inactive"}>
+                      <CgUiKit style={{verticalAlign:"middle",fontSize:"1.25rem"}}
+                    />&nbsp;Cover</button>
                 </div>
                <div className={this.state.view ? "": "not-visible"}>
                <ul className="list">

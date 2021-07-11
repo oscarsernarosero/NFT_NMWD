@@ -1,8 +1,48 @@
 .centered{
-    width: max-content;
+    width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 2rm;
-    padding-top: 35px;
-    padding-bottom: 60px;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.grid-active{
+    background-color: transparent;
+    color: white;
+    border-style: solid;
+    border-radius: 0.4rem;
+    border-color: #2255bb;
+    border-width: 1px;
+    font-size:1rem;
+}
+
+.grid-inactive{
+    background-color: transparent;
+    color: white;
+    border-style: solid;
+    border-radius: 0.4rem;
+    border-color: #222;
+    border-width: 1px;
+    font-size:1rem;
+}
+
+.cover-active{
+    background-color: transparent;
+    color: white;
+    border-style: solid;
+    border-radius: 0.4rem;
+    border-color: #2255bb;
+    border-width: 1px;
+    font-size:1rem;
+}
+
+.cover-inactive{
+    background-color: transparent;
+    color: white;
+    border-style: solid;
+    border-radius: 0.4rem;
+    border-color: #222;
+    border-width: 1px;
+    font-size:1rem;
 }
