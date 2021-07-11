@@ -1,20 +1,21 @@
 .galleryItem{
-    max-width: 400px;
+    width: fit-content;
+    height: min-content;
     display:inline-flex;
     list-style-type: none;
     align-content: center;
     border-width: 1px;
     border-color: lavender;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
+    padding:1rem;
 }
 
 .gallery{
     width:100%;
-    margin-left:auto;
-    margin-right:auto;
 }
 
 .list{
     display: table;
+    width: 100%;
+    font-size: 0;
+    margin-left: -2rem;
 }
