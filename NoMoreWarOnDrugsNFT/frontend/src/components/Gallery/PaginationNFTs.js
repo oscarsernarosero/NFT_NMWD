@@ -1,5 +1,6 @@
 import React from "react";
 import Pagination from "react-pagination-js";
+import {Filter} from  "./Filter";
 import "react-pagination-js/dist/styles.css"; // import css
 import { ImageNFT } from "./ImageNFT";
 import "../../style/pagination.css"
@@ -17,43 +18,61 @@ import { Carousel } from "../Gallery/Carousel";
     constructor(props){
         super(props);
         const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
-        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1],pageSize:6};
+        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1],filteredIds:[],pageSize:6, view:0, filterBy:{topic:[], artist:[],language:-1}};
         this.changeCurrentPage = this.changeCurrentPage.bind(this);
         this.listView = this.listView.bind(this);
         this.albumView = this.albumView.bind(this);
+        this.filterNFTs = this.filterNFTs.bind(this);
         console.log(this.state);
+        this.DB = require("../../localDB/attributes.json");
         
       }
 
     async componentDidMount(){
+      //we wait until the Dapp loads the wallet.
         const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
         while(!this.props.address){
           await sleep(500);  
         }
         
+        //we get all the NFT Ids as long as we are not in the wallet's view
         if(!this.state.mywallet){
           await this.getNFTids();
         }
-        let myIds = await this.props.getNFTidsByAddress(this.props.address);
-        console.log("myIds raw ",myIds);
-        if(myIds.length>0){
-          console.log("in the else if");
-            myIds = myIds.map( (_id) => {return _id._hex;});
-            console.log("myIds ",myIds);
-            this.setState({mounted: true, myIds: myIds});
+        
 
-            if(this.props.pageSize){
-                if(this.props.pageSize != this.state.pageSize){
-                    this.setState({pageSize: this.props.pageSize});
-            }}
-          }else if(this.props.mywallet){
-            console.log("in the else if");
-              await this.setState({myIds: []});
-              await this.setState({nfts: []});
-              console.log(this.state.nfts);
-            }
-            await this.getPageData();
-            console.log("from pagination ",this.state);
+        //we store the list of all NFTs owned by the wallet in myIds
+        let myIds = await this.props.getNFTidsByAddress(this.props.address);
+
+        //also, there is no filter yet, therefore the filtered NFTs are all
+        //the NFTs, or the owned NFTs depending if we are in the wallet view or not.
+        if(this.state.mywallet){
+          await this.setState({filteredIds: myIds});
+        }else{
+          await this.setState({filteredIds: this.state.ids});
+        }
+
+        //if the wallet owns at least 1 NFT, then we store the Ids 
+        if(myIds.length>0){
+            myIds = myIds.map( (_id) => {return _id._hex;});
+            this.setState({mounted: true, myIds: myIds});
+          }
+          //otherwise, we simply set the state to empty arrays to errase
+          // the 'loading' demo NFT that users see at the beginning 
+          //(only necessary for wallet view)
+        else if(this.props.mywallet){
+            await this.setState({myIds: []});
+            await this.setState({nfts: []});
+          }
+
+        //if we receive a different pageSize, we set it.
+        if(this.props.pageSize){
+          if(this.props.pageSize != this.state.pageSize){
+              this.setState({pageSize: this.props.pageSize});
+        }}
+        //finally, we request the blockchain for the data of the NFTs
+        //, but only the ones that we need to display.
+        await this.getPageData();
             
         
     }
@@ -90,6 +109,69 @@ import { Carousel } from "../Gallery/Carousel";
     albumView(){
         this.setState({view:0});
     }
+
+    //let intersection = arrA.filter(x => arrB.includes(x));
+    //let union = [...new Set([...arrA, ...arrB])];
+    filterNFTs(_byTopic, _byArtist, _byLanguage){
+      let filteredByTopic = [];
+      let filteredByArtist = [];
+      let filteredByLanguage = [];
+      let filteredResult = [];
+
+      if(_byTopic.length>0){
+        console.log("filtering by topic...");
+        let thisTopic;
+        _byTopic.map( (_topic) => {
+            try{
+              thisTopic = this.DB.topic[_topic];
+            }catch{
+              thisTopic =[]
+            }
+            filteredByTopic = [...new Set([...filteredByTopic, ...thisTopic])];
+            console.log("filteredByTopic: ",filteredByTopic);
+        })
+      }else{
+        filteredByTopic = this.state.ids;
+      }
+
+      if(_byArtist.length>0){
+        console.log("filtering by artist...");
+        let thisArtist;
+        _byArtist.map( (_artist) => {
+            try{
+              thisArtist = this.DB.artist[_artist];
+            }catch{
+              thisArtist =[]
+            }
+            filteredByArtist = [...new Set([...filteredByArtist, ...thisArtist])];
+            console.log("filteredByArtist: ",filteredByArtist);
+        })
+      }else{
+        filteredByArtist = this.state.ids;
+      }
+
+      if(_byLanguage>=0){
+        console.log("filtering by language...");
+        filteredByLanguage = this.DB.language[_byLanguage];
+        console.log("filteredByLanguage: ",filteredByLanguage);
+      }else{
+        filteredByLanguage = this.state.ids;
+      }
+      //intersection of all three results:
+      filteredResult = filteredByTopic.filter(x => filteredByArtist.includes(x));
+      console.log(filteredResult);
+      filteredResult = filteredResult.filter(x => filteredByLanguage.includes(x));
+      console.log(filteredResult);
+
+      const finalResult =  (this.state.ids).filter(x => filteredResult.includes(x));
+      console.log(finalResult);
+      this.setState({filteredIds:finalResult}, () => {
+        this.getPageData();
+      });
+      
+    }
+
+
     async changeCurrentPage(numPage) {
         this.setState({ page: numPage });
         console.log("change to page",this.state.page);
@@ -103,12 +185,13 @@ import { Carousel } from "../Gallery/Carousel";
     async getPageData(){
         const startAt = this.state.pageSize * (this.state.page-1);
         const endAt = startAt + this.state.pageSize;
-        let pageIds;
-        if(this.props.mywallet){
-          pageIds = this.state.myIds.slice(startAt,endAt);
-        }else{
-          pageIds = this.state.ids.slice(startAt,endAt);
-        }
+        const pageIds = this.state.filteredIds.slice(startAt,endAt);
+        // let pageIds;
+        // if(this.props.mywallet){
+        //   pageIds = this.state.myIds.slice(startAt,endAt);
+        // }else{
+        //   pageIds = this.state.ids.slice(startAt,endAt);
+        // }
         const nfts = [];
         for(let i=0; i<pageIds.length;i++){
             const data = await this.props.getNFTData(pageIds[i]);
@@ -123,15 +206,15 @@ import { Carousel } from "../Gallery/Carousel";
     }
     
       async getNFTids(){
-        let ids = [];
-         if(this.props.address) {
-            ids = await this.props.getAllNFTsIdsOnly();
+        // let ids = [];
+        //  if(this.props.address) {
+            let ids = await this.props.getAllNFTsIdsOnly();
             this.setState({ids: ids});
             console.log("getNFTids: ",ids);
 
-         }else{
-            this.state = {ids: [0]};
-        }
+        //  }else{
+        //     this.state = {ids: [0]};
+        // }
         
       }
       
@@ -147,6 +230,11 @@ import { Carousel } from "../Gallery/Carousel";
                     className={!this.state.view ? "cover-active": "cover-inactive"}>
                       <CgUiKit style={{verticalAlign:"middle",fontSize:"1.25rem"}}
                     />&nbsp;Cover</button>
+                </div>
+                <div>
+                  <Filter
+                  applyFilter = {(_byTopic, _byArtist, _byLanguage) => {
+                    return this.filterNFTs(_byTopic, _byArtist, _byLanguage)}}/>
                 </div>
                <div className={this.state.view ? "": "not-visible"}>
                <ul className="list">

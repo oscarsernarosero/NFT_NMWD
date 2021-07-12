@@ -11,9 +11,11 @@
 
 .gallery{
     width:100%;
+    
 }
 
 .list{
+    padding-top:2rem;
     display: table;
     width: 100%;
     font-size: 0;

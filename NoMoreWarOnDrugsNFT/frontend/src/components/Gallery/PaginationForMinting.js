@@ -27,32 +27,42 @@ import { Carousel } from "../Gallery/Carousel";
       }
 
     async componentDidMount(){
+        //we wait until the Dapp loads the wallet.
         const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
         while(!this.props.address){
           await sleep(500);  
         }
         
-        if(!this.state.mywallet){
+        //we get all the NFT Ids
+        //if(!this.state.mywallet){
           await this.getNFTids();
-        }
+        //}
+
+        //we create an empty array to store the NFTs available to mint
         const ids_to_mint =[];
+        //we iterate through the list in the local database and only push
+        //the Id if it hasn't been minted yet
         for (const [key, value] of Object.entries(this.props.nftsForMint)) {
             if( !( this.state.ids.includes(key.toLowerCase()) ) ){
                 ids_to_mint.push(key);
             }
         }
 
+        //we store the ids to mint in the state of the component.
         await this.setState({ids: ids_to_mint});
+        //also, there is no filter yet, therefore the filtered NFTs are all
+        //the original NFTs to mint.
         await this.setState({filteredIds: ids_to_mint});
         
-
+        //if we receive a different pageSize, we set it.
         if(this.props.pageSize){
             if(this.props.pageSize != this.state.pageSize){
                 this.setState({pageSize: this.props.pageSize});
         }}
+        //finally, we request the blockchain for the data of the NFTs
+        //, but only the ones that we need to display.
         await this.getPageData();
         await this.setState({mounted: true});
-        console.log("from pagination ",this.state);
         
         
     }
