@@ -1,22 +1,23 @@
 .galleryItem{
-    width: fit-content;
+    width: 30%;
     height: min-content;
     display:inline-flex;
     list-style-type: none;
     align-content: center;
     border-width: 1px;
     border-color: lavender;
-    padding:1rem;
+    padding:1.3rem;
+    padding-bottom:2rem;
+    
 }
 
 .gallery{
     width:100%;
-    
+    column-gap: 50px;
 }
 
 .list{
     padding-top:2rem;
-    display: table;
     width: 100%;
     font-size: 0;
     margin-left: -2rem;

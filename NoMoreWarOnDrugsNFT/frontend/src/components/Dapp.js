@@ -20,7 +20,7 @@ import {TokenContract} from "./TokenContract/TokenContract"
 import { NavBar } from "./Header/NavBar";
 import { WalletStatus } from "./Header/WalletStatus";
 import { Marketplace } from "./Marketplace/Marketplace";
-import { Home } from "./Home/Home";
+import { Home } from "./Info/Home";
 import { Gallery } from "./Gallery/Gallery";
 import { MyWallet} from "./MyWallet/MyWallet";
 import { SetMessage } from "./MyWallet/SetMessage";

@@ -1,0 +1,33 @@
+.right-image-container{
+    display: inline-block;
+    max-width:100%;
+    padding: 1rem;
+}
+.right-image{
+    display: block;
+    max-width:80%;
+    padding: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.right-text{
+    display: inline-block;
+    margin-right: auto;
+    align-content: flex-end;
+    text-align: justify;
+}
+
+p{
+    font-size: 1.3rem;
+    text-align: justify;
+}
+
+.right-container{
+    min-height:fit-content;
+    padding: 2.5rem 3.5rem;
+    background-color: black;
+    color: white;
+    display: grid;
+    grid-template-columns: [right] 67% [right] 33%;
+}

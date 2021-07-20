@@ -16,14 +16,15 @@ export const  NavItems = [
     },
     {
         title: "Wallet",
-        link: "marketplace",
+        link: "wallet",
         className: "nav-link"
     },
     {
         title: "Channel",
-        link: "wallet",
+        link: "channel",
         className: "nav-link"
     }
+    //marketplace is now off the navbar. Simply type manually the url
 
 ]
 
