@@ -226,10 +226,6 @@ async setForSale()
 
   })
     
-
-    
-    //this didn't work
-    //this.reloadWallet();
     }
   
   

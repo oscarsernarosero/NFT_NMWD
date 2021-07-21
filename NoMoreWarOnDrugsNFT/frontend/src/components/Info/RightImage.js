@@ -4,8 +4,20 @@ import "../../style/right-image.css"
 
 export class RightImage extends React.Component {
     render(){
+        console.log("this.props.backgroundImage",this.props.backgroundImage);
         return (
-            <div className="right-container">
+            <div 
+            style={this.props.backgroundImage? {
+                backgroundImage:"url('"+this.props.backgroundImage+"')",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundAttachment: "fixed"
+            }:{}}
+            >
+                <div
+                className="right-container" 
+                style={this.props.backgroundImage?{backgroundColor:"#000000cc"}:{}}
+                >
                 
                 <div className="right-text">
                 <h2>{this.props.title}</h2>
@@ -16,8 +28,8 @@ export class RightImage extends React.Component {
                     src={this.props.src}
                     alt={this.props.alt}
                     className="right-image"
-                    
                     />
+                </div>
                 </div>
             </div>
             

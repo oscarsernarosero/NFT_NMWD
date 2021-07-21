@@ -1,0 +1,30 @@
+
+.element-container{
+    display: inline-block;
+    max-width: 100%;
+    padding: 1rem;
+}
+
+.element{
+    display: block;
+    max-width:80%;
+    padding: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+
+.element-text{
+    font-size: 1.3rem;
+    text-align: justify;
+}
+
+.three-elements-container{
+    min-height:fit-content;
+    padding:  3.5rem 15%;
+    background-color: #000000cc;
+    color: white;
+    display: grid;
+    grid-template-columns: [left] 33.3% [middle] 33.3% [right] 33.3% ;
+}

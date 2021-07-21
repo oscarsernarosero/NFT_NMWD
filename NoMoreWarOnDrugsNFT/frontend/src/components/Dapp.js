@@ -21,6 +21,7 @@ import { NavBar } from "./Header/NavBar";
 import { WalletStatus } from "./Header/WalletStatus";
 import { Marketplace } from "./Marketplace/Marketplace";
 import { Home } from "./Info/Home";
+import { Overview } from "./Info/Overview";
 import { Gallery } from "./Gallery/Gallery";
 import { MyWallet} from "./MyWallet/MyWallet";
 import { SetMessage } from "./MyWallet/SetMessage";
@@ -89,12 +90,10 @@ export class Dapp extends React.Component {
             <switch>
               <Route path="/" exact 
                 component={Home}/>
-              <Router path="/" exact render = {()=>{ 
-                    return(
-                      <h1>home</h1> 
-                    );
-                  }
-                }/>
+             
+                <Route path="/overview"  
+                component={Overview}/>
+                
               <Route path="/tokenContract"
                 render = {
                   (props)=>
