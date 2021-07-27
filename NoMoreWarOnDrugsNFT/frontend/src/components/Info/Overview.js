@@ -15,12 +15,14 @@ export class Overview extends React.Component {
                 title="There is a finit amount of NFTs: 512"
                 
                 text={<p>
-                    SWD NFTs are scarce. There will be only 512 SWDs ever. This is hardcoded in the smart contract.
-                    This finit amount of NFTs in this collection aims to make each token very special, with high 
-                    value that increases over time.
+                    SWD NFTs are scarce. There will be only 512 SWDs ever which is hardcoded in the smart contract.
+                    This finit amount of NFTs aims to make each token very special, and therefore gives it a high 
+                    value that increases over time. But these NFTs are not just any NFTs out there in the market.
+                    These NFTs are tokens of your political believes, and peaces of history that we are creating
+                    together.
 
                     <br/><br/>
-                    This is a very important moment in history, and you can be part of it. You can even own 
+                    This is a very important moment in history, and you can not just be part of it, but you can even own 
                     peaces of it. Don't miss out!
                     <br/><br/>
                     Where does the "512" number come from? 512 is the result of 2^9.
@@ -35,15 +37,15 @@ export class Overview extends React.Component {
                 text={<p >
                     A very important aspect of this collection of NFTs is that you can set a message that
                     will live for ever in the blockchain. This message can be set only once, and you cannot
-                    modify it once it's set, so be carful! The amount of characters of this message is 300,
+                    modify it once it's set, so be careful! The amount of characters available for this message is 300,
                     so there is enough space for you to elaborate on your idea. 
                     <br/><br/>
-                    You can sign the message with your name or a pseudoname to make sure that people will
+                    You can "sign" the message with your name or a pseudoname  at the end to make sure that people will
                     know that it was you who set the message.
                     <br/><br/>
                     The main idea of this message is to let the governments of the world know that we are 
-                    against the hypocrit <b>War On Drugs</b>, and that we are tired of state terrorism, and
-                    we want our freedom back. However, there is no hard rules. You can literally write whatever
+                    against the hypocrite <b>War On Drugs</b>, and that we are tired of state terrorism, and
+                    we also want our freedoms back. However, there is no hard rules. You can literally write whatever
                     you want.  
                 
                 </p>
@@ -53,11 +55,12 @@ export class Overview extends React.Component {
             <ThreeElements
                 leftTitle="YouTube Channel"
                 leftText={<p>
-                    This NFTs project is part of a bigger project. The main visible part of the
-                    bigger project is the YouTube channel that aims to study the development
+                    This NFTs project is part of a bigger project which main goal is to demilitarize 
+                    the <b>War On Drugs</b>. The main part of this project has been so far the 
+                    YouTube channel that aims to study the development
                     of prohibition and drug trafficking from various perspective, and shedding 
-                    light on the fact that the <b>War On Drugs</b> is nothing but a geopolitical,
-                     and political tool. In other words, a means for power.
+                    light on the fact that the <b>War On Drugs</b> is nothing more than a geopolitical,
+                    and political tool. In other words, a means for power.
             
                 </p>}
 
@@ -122,12 +125,13 @@ export class Overview extends React.Component {
                 title="Support My YouTube Channel"
                 
                 text={<p>
-                    This collection of NFTs is born by the necessity of supporting my research on 
+                    This collection of NFTs is born from the necessity of supporting my research on 
                     the War On Drugs which I share through my YouTube Channel. Even though my channel
                     has captured some attention before, YouTube quickly started to restric my videos,
-                    which killed the organic growth of my views. Instead of abandoning my initiative,
-                    I decided to combine all of my passions in this project: history, software development,
-                    blockchain technology, and politics. My idea is to
+                    and even my ability to monetize some of them. These restrictions are so severe that
+                    they killed the organic growth of my views, and therefore my profits from my channel. 
+                    Instead of abandoning my initiative, I decided to combine all of my passions in this  
+                    project: history, software development, blockchain technology, and politics. My idea is to
                     feed my YouTube channel from the NFT market, at the same time that I feed the NFT 
                     market from my YouTube Channel. In the process, I can finance my true passions, and 
                     beneffit the comunities I work with.

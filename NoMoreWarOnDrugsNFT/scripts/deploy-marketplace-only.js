@@ -9,15 +9,10 @@ async function main() {
           " option '--network localhost'"
       );
     }
-      
-    //gas price setup
-    let overrides = { 
-      // The price (in wei) per unit of gas
-      gasPrice: '0x12A05F200'
-    };
   
     const MarketPlace = await ethers.getContractFactory("NMWDMarketPlace");
-    const marketPlace = await MarketPlace.deploy(overrides);
+    //const marketPlace = await MarketPlace.deploy(overrides);
+    const marketPlace = await upgrades.deployProxy(MarketPlace);
     await marketPlace.deployed();
   
     console.log("marketPlace address:", marketPlace.address);
@@ -66,4 +61,8 @@ async function main() {
       console.error(error);
       process.exit(1);
     });
+
+    //npx hardhat run --network localhost scripts/deploy-marketplace-only.js
+
+    //npx hardhat run --network ropsten scripts/deploy-marketplace-only.js
   

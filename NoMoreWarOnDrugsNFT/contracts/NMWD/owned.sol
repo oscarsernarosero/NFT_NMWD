@@ -48,6 +48,7 @@ contract Owned {
     public
     onlyOwner
   {
+
     require(_newOwner != address(0), CANNOT_TRANSFER_TO_ZERO_ADDRESS);
     emit OwnershipTransferred(owner, _newOwner);
     owner = _newOwner;

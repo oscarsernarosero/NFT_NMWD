@@ -8,7 +8,7 @@ import "./nf-token-metadata.sol";
 import "./owned.sol";
 import "./erc2981-per-token-royalties.sol";
 
-contract NoMoreWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981PerTokenRoyalties {
+contract StopTheWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981PerTokenRoyalties {
 
     /** 
     * @dev error when an NFT is attempted to be minted after the max

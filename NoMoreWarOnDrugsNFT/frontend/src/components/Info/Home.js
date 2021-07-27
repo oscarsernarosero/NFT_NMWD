@@ -10,7 +10,8 @@ export class Home extends React.Component {
         return (
             <div className="home-container">
             <LeftImage
-                src="http://4.bp.blogspot.com/-Yq3Q5ex8chU/T0uKnKUhjcI/AAAAAAAAAEM/cDfeYY9cYQA/s1600/ebla_clay_tablet.png"
+                //src="http://4.bp.blogspot.com/-Yq3Q5ex8chU/T0uKnKUhjcI/AAAAAAAAAEM/cDfeYY9cYQA/s1600/ebla_clay_tablet.png"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Stele_of_Vultures_detail_01-transparent.png/440px-Stele_of_Vultures_detail_01-transparent.png"
                 alt="image2"
                 title="Be part of history"
                 text={<p>

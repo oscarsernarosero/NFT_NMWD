@@ -10,8 +10,8 @@ import { ethers } from "ethers";
 
 // We import the contract's artifacts and address here, as we are going to be
 // using them with ethers
-import NMWDArtifact from "../contracts/Token_NoMoreWarOnDrugs.json";
-import NMWDAddress from "../contracts/contract-address-NoMoreWarOnDrugs.json";
+import NMWDArtifact from "../contracts/Token_StopTheWarOnDrugs.json";
+import NMWDAddress from "../contracts/contract-address-StopTheWarOnDrugs.json";
 import MarketPlaceArtifact from "../contracts/Token_NMWDMarketPlace.json";
 import MarketPlaceAddress from "../contracts/contract-address-NMWDMarketPlace.json";
 

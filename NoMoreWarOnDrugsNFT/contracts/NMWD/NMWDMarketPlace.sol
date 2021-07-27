@@ -3,12 +3,13 @@
 pragma solidity 0.8.0;
 
 import "./owned.sol";
-import "./NoMoreWarOnDrugs.sol";
+import "./StopTheWarOnDrugs.sol";
 import "./context.sol";
 import "./address-utils.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 
-contract NMWDMarketPlace is Owned, Context {
+contract NMWDMarketPlace is Owned, Context, Initializable{
 
     using AddressUtils for address;
 
@@ -29,7 +30,7 @@ contract NMWDMarketPlace is Owned, Context {
     event SecurityWithdrawal(address indexed payee, uint amount);
     event NFTSent(address indexed payer, uint tokenId, uint amount);
 
-    NoMoreWarOnDrugs public NMWDcontract;
+    StopTheWarOnDrugs public TokenContract;
 
     /**
     * @dev Mapping from token ID to its pirce.
@@ -49,9 +50,9 @@ contract NMWDMarketPlace is Owned, Context {
 
 
     /**
-    * @dev Contract Constructor
+    * @dev Contract Constructor/Initializer
     */
-    constructor() { 
+    function initialize() public initializer { 
         isOwned();
     }
 
@@ -61,7 +62,8 @@ contract NMWDMarketPlace is Owned, Context {
     */
     function updateNMWDcontract(address nmwdAddress) external onlyOwner{
         require(nmwdAddress != address(0) && nmwdAddress != address(this),INVALID_ADDRESS);
-        NMWDcontract = NoMoreWarOnDrugs(nmwdAddress);
+        require(address(TokenContract) != nmwdAddress,NO_CHANGES_INTENDED);
+        TokenContract = StopTheWarOnDrugs(nmwdAddress);
     }
 
     /**
@@ -69,8 +71,8 @@ contract NMWDMarketPlace is Owned, Context {
     * the marketplace contract. Only if the marketplace owns the NFT
     */
     function getBackOwnership() external onlyOwner{
-        require(address(NMWDcontract) != address(0),CONTRACT_ADDRESS_NOT_SETUP);
-        NMWDcontract.transferOwnership(address(owner));
+        require(address(TokenContract) != address(0),CONTRACT_ADDRESS_NOT_SETUP);
+        TokenContract.transferOwnership(address(owner));
     }
 
 
@@ -83,18 +85,18 @@ contract NMWDMarketPlace is Owned, Context {
         require(_msgSender() != address(0) && _msgSender() != address(this));
         require(price[_tokenId] > 0);
         require(msg.value >= price[_tokenId]);
-        require(NMWDcontract.ownerOf(_tokenId) != address(0), NOT_VALID_NFT);
+        require(TokenContract.ownerOf(_tokenId) != address(0), NOT_VALID_NFT);
 
-        address tokenSeller = NMWDcontract.ownerOf(_tokenId);
-        require(NMWDcontract.getApproved(_tokenId) == address(this) || 
-                NMWDcontract.isApprovedForAll(tokenSeller, address(this)), 
+        address tokenSeller = TokenContract.ownerOf(_tokenId);
+        require(TokenContract.getApproved(_tokenId) == address(this) || 
+                TokenContract.isApprovedForAll(tokenSeller, address(this)), 
                 NOT_APPROVED);
 
         //avoid reentrancy
         forSale[_tokenId] = false;
 
         //transfer the NFT to the buyer
-        NMWDcontract.safeTransferFrom(tokenSeller, _msgSender(), _tokenId);
+        TokenContract.safeTransferFrom(tokenSeller, _msgSender(), _tokenId);
 
         // this is the fee of the contract per transaction
         uint256 saleFee = (msg.value / 1000) * 8;
@@ -103,7 +105,7 @@ contract NMWDMarketPlace is Owned, Context {
         //calculating the net amount of the sale
         uint netAmount = msg.value - saleFee;
 
-        (address royaltyReceiver, uint256 royaltyAmount) = NMWDcontract.royaltyInfo( _tokenId, netAmount);
+        (address royaltyReceiver, uint256 royaltyAmount) = TokenContract.royaltyInfo( _tokenId, netAmount);
 
         //calculating the amount to pay the seller 
         uint256 toPaySeller = netAmount - royaltyAmount;
@@ -134,7 +136,7 @@ contract NMWDMarketPlace is Owned, Context {
 
         contractBalance += msg.value;
 
-        NMWDcontract.mint(_to, _tokenId, royaltyRecipient, royaltyValue);
+        TokenContract.mint(_to, _tokenId, royaltyRecipient, royaltyValue);
         emit NFTSent(_to, _tokenId, msg.value);
     }
 
@@ -147,8 +149,6 @@ contract NMWDMarketPlace is Owned, Context {
         require(_payee != address(0) && _payee != address(this));
         require(contractBalance >= _amount, INSUFICIENT_BALANCE);
         require(_amount > 0 && _amount <= address(this).balance, NOT_EHOUGH_ETHER);
-        //this is kinda xtra, but security is top priority
-        require(tx.origin == _msgSender());
 
         //we check if somebody has hacked the contract, in which case we send all the funds to 
         //the owner of the contract
@@ -165,18 +165,25 @@ contract NMWDMarketPlace is Owned, Context {
 
     /**
     * @dev Updates price for the _tokenId NFT
-    * @dev Throws if _currentPrice is zero
+    * @dev Throws if updating price to the same current price, or to negative
+    * value, or is not the owner of the NFT.
+    * @notice there is a special rule where the owner of the marketplace can 
+    * set the price of an NFT only if the NFT doesn't exist yet (for minting)
     * @param _price the price in wei for the NFT
     * @param _tokenId uint token ID (painting number)
     */
     function setPrice(uint _price, uint _tokenId) external {
         require(_price > 0, NEGATIVE_VALUE);
         require(_price != price[_tokenId], NO_CHANGES_INTENDED);
-        try NMWDcontract.ownerOf(_tokenId) returns (address _address) {
+        //Only owner of NFT can set a price, but if the NFT doesn't exist yet,
+        //then the owner of the marketplace can set a price for minting
+        try TokenContract.ownerOf(_tokenId) returns (address _address) {
             require(_address == _msgSender());
         }catch {
            require(owner == _msgSender(), "Not owner"); 
         }
+
+        //finally, we do what we came here for.
         price[_tokenId] = _price;
     } 
 
@@ -202,7 +209,7 @@ contract NMWDMarketPlace is Owned, Context {
     */
     function setForSale(uint _tokenId, bool _forSale) external returns (bool){
         
-        try NMWDcontract.ownerOf(_tokenId) returns (address _address) {
+        try TokenContract.ownerOf(_tokenId) returns (address _address) {
             require(_address == _msgSender(),NOT_NFT_OWNER);
         }catch {
            return false;

@@ -1,6 +1,8 @@
 // This is a script for deploying your contracts. You can adapt it to deploy
 // yours, or create new ones.
+
 async function main() {
+  
   // This is just a convenience check
   if (network.name === "hardhat") {
     console.warn(
@@ -9,18 +11,7 @@ async function main() {
         " option '--network localhost'"
     );
   }
-  /* // old code
-  // ethers is avaialble in the global scope
-  const [deployer] = await ethers.getSigners();
-  console.log(
-    "Deploying the contracts with the account:",
-    await deployer.getAddress()
-  );
-
-  console.log("Account balance:", (await deployer.getBalance()).toString());
-  */ 
-
-    
+ 
   //gas price setup
   let overrides = { 
     // The price (in wei) per unit of gas
@@ -30,23 +21,23 @@ async function main() {
     gasPrice: '0x12A05F200'
   };
 
-  const NMWDToken = await ethers.getContractFactory("NoMoreWarOnDrugs");
-  const MarketPlace = await ethers.getContractFactory("NMWDMarketPlace");
+  const SWDToken = await ethers.getContractFactory("StopTheWarOnDrugs");
+  //const MarketPlace = await ethers.getContractFactory("NMWDMarketPlace");
   //const token = await Token.deploy();
-  const nmwdToken = await NMWDToken.deploy("NoMoreWarOnDrugs", "NMWD",overrides );
-  const marketPlace = await MarketPlace.deploy(overrides);
+  const swdToken = await SWDToken.deploy("StopTheWarOnDrugs", "SWD",overrides );
+  //const marketPlace = await MarketPlace.deploy(overrides);
   //await token.deployed();
-  await nmwdToken.deployed();
-  await marketPlace.deployed();
+  await swdToken.deployed();
+  //await marketPlace.deployed();
 
   //console.log("Token address:", token.address);
-  console.log("nmwdToken address:", nmwdToken.address);
-  console.log("marketPlace address:", marketPlace.address);
+  console.log("nmwdToken address:", swdToken.address);
+  //console.log("marketPlace address:", marketPlace.address);
 
   // We also save the contract's artifacts and address in the frontend directory
   //saveFrontendFiles(token, "token");
-  saveFrontendFiles(nmwdToken, "NoMoreWarOnDrugs");
-  saveFrontendFiles(marketPlace, "NMWDMarketPlace");
+  saveFrontendFiles(swdToken, "StopTheWarOnDrugs");
+  //saveFrontendFiles(marketPlace, "NMWDMarketPlace");
 }
 
 function saveFrontendFiles(token, name) {
@@ -67,8 +58,8 @@ function saveFrontendFiles(token, name) {
   if (name === "token"){
     TokenArtifact = artifacts.readArtifactSync("Token");
     
-  }else if (name === "NoMoreWarOnDrugs"){
-    TokenArtifact = artifacts.readArtifactSync("NoMoreWarOnDrugs");
+  }else if (name === "StopTheWarOnDrugs"){
+    TokenArtifact = artifacts.readArtifactSync("StopTheWarOnDrugs");
   }
 
   else if(name == "NMWDMarketPlace"){
@@ -88,3 +79,8 @@ main()
     console.error(error);
     process.exit(1);
   });
+
+
+//npx hardhat run --network localhost scripts/deploy-token.js
+
+//npx hardhat run --network ropsten scripts/deploy-token.js
