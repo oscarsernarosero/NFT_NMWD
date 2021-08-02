@@ -17,18 +17,19 @@ async function main(){
     const contractsDir = "./frontend/src/uris/";
 
     //############### MODIFY THE PARAMETERS HERE: ###############
-    const description="The greed of the British forced China to buy their opium";
-    const name="British Greed";
+    const description="This is the second test of displaying a video as an NFT";
+    const name="MP4 Test 2";
     const language = LANGUAGE.EN;
     //
-    const imageCID="QmfMbivX4gfjxytpHgwkrS2eSQRu9N4NWWHq3HW9YpJc6D";
-    const artist="Cartoon";
+    const imageCID="";
+    const videoCID="QmTLs9Z9u2X8z2pf8DoTkcLRy2Fxu7NqMoXYw9aiG32fH5";
+    const artist="Who Knows";
     const artist_webpage="https://youtu.be/vI2hT9lb1gY";
     const topics= [TOPIC.CHINA, TOPIC.UK, TOPIC.GEOPOLITICS, TOPIC.HISTORY, TOPIC.OPIUM];
     const _royaltyPct = "8.00"//%
-    const _royaltyAddress = "0x24cAEd0fF40814d9DB16a6F341e8A023804D9EF3"
+    const _royaltyAddress = "0xB85ea1C62FD5CC6F081F047eCA0BD5aFDd5c5cD5"
     //
-    const external_url="warondrugsisasham.eth.link";
+    const external_url="stopthewarondrugs.eth.link";
     //############################################################
 
     if(topics.length==0){
@@ -37,11 +38,25 @@ async function main(){
     if( language !== LANGUAGE.EN  &&  language !== LANGUAGE.ES ){
         throw("There are only 2 languages availabe: EN and ES");
     }
+    let image_url;
+    let video_url;
+    if(videoCID==""){
+      image_url="ipfs://"+imageCID;
+      video_url="";
+    }else{
+      if(imageCID==""){
+        image_url="";
+      }else{
+        image_url="ipfs://"+imageCID
+      }
+      video_url="ipfs://"+videoCID;
+    }
 
     const uri = {
         description: description,
         external_url: external_url,
-        image: "ipfs://"+imageCID,
+        image: image_url,
+        animation_url: video_url,
         name: name,
         attributes: {
             artist: artist,

@@ -360,7 +360,7 @@ export class Dapp extends React.Component {
     // sample project, but you can reuse the same initialization pattern.
     this._intializeEthers();
     console.log("initialized");
-    this.getContractOwner();
+    await this.getContractOwner();
     console.log("got contract owner");
     this._getTokenData();
     console.log("got token data");
@@ -405,7 +405,7 @@ export class Dapp extends React.Component {
   }
 
   async getContractOwner(){
-    const owner = await this._nmwd.owner();
+    const owner = await this._nmwd.getOwner();
     this.setState({ owner:  owner });
   }
 

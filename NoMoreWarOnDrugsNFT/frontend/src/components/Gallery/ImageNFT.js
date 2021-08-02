@@ -31,6 +31,7 @@ export class ImageNFT extends React.Component{
 
   constructor(props){
     super(props);
+   
     
     this.state ={forSale : this.props.uri.forSale, changePriceVisble:false, 
       popupVisible: false, waiting:false, successful:false, transferVisble:false};
@@ -81,7 +82,7 @@ export class ImageNFT extends React.Component{
     this.setState({transferVisble:false});
   }
 
-  componentDidMount(){
+  async componentDidMount(){
     console.log("this.props.uri.forSale",this.props.uri.forSale);
     this.setState({forSale:this.props.uri.forSale});
   }
@@ -89,8 +90,8 @@ export class ImageNFT extends React.Component{
   setSelectedId(){
     const CID = (this.props.uri.image).substring(7);
     console.log("CID: ",CID);
-    const pinata_image_url = "https://gateway.pinata.cloud/ipfs/"+CID;
-      this.props.setSelectedId(this.props.uri.id,pinata_image_url, this.props.uri.price);
+    const pinata_content_url = "https://gateway.pinata.cloud/ipfs/"+CID;
+      this.props.setSelectedId(this.props.uri.id,pinata_content_url, this.props.uri.price);
     }
   
     async mint() {
@@ -232,26 +233,50 @@ async setForSale()
 }
   
   render(){
+    
     const CID = (this.props.uri.image).substring(7);
-    let pinata_image_url;
-    if(CID){
-      pinata_image_url = "https://gateway.pinata.cloud/ipfs/"+CID;
-    }else{
-      pinata_image_url = "https://gateway.pinata.cloud/ipfs/QmNZxE7QumQqD4WkvPBps7yfwW876Ns55dCf6tCbcFvF5a";//change this for logo later
+    let pinata_content_url;
+    let animation=false;
+    console.log("in animation url before",this.props.uri.animation_url);
+    if (this.props.uri.animation_url!=undefined && this.props.uri.animation_url!=""){
+      console.log("in animation url",this.props.uri.animation_url);
+      animation=true;
     }
+    if(CID){
+      pinata_content_url = "https://gateway.pinata.cloud/ipfs/"+CID;
+      console.log("pinata_content_url", pinata_content_url);
+    }else{
+      if (animation){
+        pinata_content_url = "https://gateway.pinata.cloud/ipfs/QmTLs9Z9u2X8z2pf8DoTkcLRy2Fxu7NqMoXYw9aiG32fH5";//change this for logo later
+  
+      }else{
+        pinata_content_url = "https://gateway.pinata.cloud/ipfs/QmNZxE7QumQqD4WkvPBps7yfwW876Ns55dCf6tCbcFvF5a";//change this for logo later
+      }
+        }
     
   return (
     <div className="nft-container">
-      <div className="NFTTitle" style={this.props.uri.name.length<25?{"font-size":"2rem"}:{"font-size":"1.6rem"}}>
+      <div className="NFTTitle" style={this.props.uri.name.length<25?{"fontSize":"2rem"}:{"fontSize":"1.6rem"}}>
         {this.props.uri.name}
       </div>
       <div className="imageContainer">
-        <a href={pinata_image_url} target="_blank" rel="noopener noreferrer">
-         <img 
-          src={pinata_image_url}
+        <a href={pinata_content_url} target="_blank" rel="noopener noreferrer">
+          {animation? 
+          <video loop autoPlay controls muted
+          style={{width:"100%"}}
+          >
+            <source src={pinata_content_url} type="video/mp4"/>
+            <source src={pinata_content_url} type="video/ogg" />
+            Your browser does not support the video tag.
+          </video>
+          :
+          <img 
+          src={pinata_content_url}
           alt={this.props.uri.name}
           className="imageNFT"
           />
+          }
+         
         </a>
       </div>
       <div className={this.props.mywallet&&this.props.uri.message==="" ? "dont-show" : "msg-title"}>

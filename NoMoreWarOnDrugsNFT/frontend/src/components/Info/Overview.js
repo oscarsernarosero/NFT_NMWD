@@ -12,20 +12,18 @@ export class Overview extends React.Component {
             <LeftImage
                 src="https://www.pngplay.com/wp-content/uploads/2/Diamond-Transparent-Image.png"
                 alt="image2"
-                title="There is a finit amount of NFTs: 512"
+                title="There is a finit amount of NFTs: 904"
                 
                 text={<p>
-                    SWD NFTs are scarce. There will be only 512 SWDs ever which is hardcoded in the smart contract.
+                    SWD NFTs are scarce. There will be only 904 SWDs ever which is hardcoded in the smart contract.
                     This finit amount of NFTs aims to make each token very special, and therefore gives it a high 
                     value that increases over time. But these NFTs are not just any NFTs out there in the market.
-                    These NFTs are tokens of your political believes, and peaces of history that we are creating
-                    together.
+                    These NFTs are pieces of history that we are creating together.
 
                     <br/><br/>
-                    This is a very important moment in history, and you can not just be part of it, but you can even own 
-                    peaces of it. Don't miss out!
-                    <br/><br/>
-                    Where does the "512" number come from? 512 is the result of 2^9.
+                    There are only 904 NFTs because that's the amount of <i>líderes sociales</i> -activists- murdered in Colombia between
+                    Dic 1st, 2016 to Feb 28th, 2021. War on Drugs has to do a great deal in this matter. Therefore, they represent
+                    the millions of fatal victims of the War On Drugs.
                     </p>
                 }            
             />
@@ -40,12 +38,12 @@ export class Overview extends React.Component {
                     modify it once it's set, so be careful! The amount of characters available for this message is 300,
                     so there is enough space for you to elaborate on your idea. 
                     <br/><br/>
-                    You can "sign" the message with your name or a pseudoname  at the end to make sure that people will
-                    know that it was you who set the message.
+                    You can "sign" the message with your name or a pseudoname  at the end of the message to make sure 
+                    that people will know that it was you who set it.
                     <br/><br/>
                     The main idea of this message is to let the governments of the world know that we are 
                     against the hypocrite <b>War On Drugs</b>, and that we are tired of state terrorism, and
-                    we also want our freedoms back. However, there is no hard rules. You can literally write whatever
+                    we also want our freedoms back. However, these are not hard rules. You can literally write whatever
                     you want.  
                 
                 </p>
@@ -55,7 +53,7 @@ export class Overview extends React.Component {
             <ThreeElements
                 leftTitle="YouTube Channel"
                 leftText={<p>
-                    This NFTs project is part of a bigger project which main goal is to demilitarize 
+                    This NFT project is part of a bigger project whose main goal is to demilitarize 
                     the <b>War On Drugs</b>. The main part of this project has been so far the 
                     YouTube channel that aims to study the development
                     of prohibition and drug trafficking from various perspective, and shedding 
@@ -91,13 +89,13 @@ export class Overview extends React.Component {
                 
                 text={<p>
                     This collection of NFTs have collaborated with different artists, mostly from
-                    Latinamerica. They are mostly local artists from cities that have been really
+                    Latinamerica this is one of the areas that has been really
                     devastated by this War On Drugs. Cities like Cali, Cololombia, or Ciudad Juarez, 
                     México, are among the hometowns of these talented artists. One of the goals of 
-                    this project is to give visibility to these not-very-known artists through the Ethereum 
-                    blockchain, and expose the incredible creativity that these forgotten areas can offer. 
+                    this project is to give visibility to the art from these beaten areas through the Ethereum 
+                    blockchain.
                     Also, a percentage of the royalties of the NFTs goes to the artists directly, which 
-                    could potentially impact their lives in a very positive way.
+                    could have a positive impact in these areas. 
                     </p>
                 }            
             />

@@ -46,13 +46,13 @@ contract ERC2981PerTokenRoyalties is IERC2981Royalties, SupportsInterface {
     }
 
     /// @inheritdoc	IERC2981Royalties
-    function royaltyInfo(uint256 tokenId, uint256 value)
+    function royaltyInfo(uint256 _tokenId, uint256 _salePrice)
         external
         view
         override
         returns (address receiver, uint256 royaltyAmount)
     {
-        Royalty memory royalty = idToRoyalties[tokenId];
-        return (royalty.recipient, (value * royalty.value) / 10000);
+        Royalty memory royalty = idToRoyalties[_tokenId];
+        return (royalty.recipient, (_salePrice * royalty.value) / 10000);
     }
 }

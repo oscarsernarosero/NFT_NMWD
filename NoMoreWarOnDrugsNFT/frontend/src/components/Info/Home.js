@@ -15,10 +15,16 @@ export class Home extends React.Component {
                 alt="image2"
                 title="Be part of history"
                 text={<p>
+                    Stop-the-War-on-Drugs is not just an NFT project. It is a world-wide movement that gets stronger by the day.
+                    This project, however, is pioneering in the crypto space regarding political activism. In other words, this is not just an NFT;
+                    This is also a token that represents your believes and your values. 
+                    
+                    <br/><br/>
+                   But that is not it.
                     By getting one or more of the Stop-The-War-On-Drugs NFTs, you are not only supporting a YouTube channel and the artists who create 
-                        these art works, but you are also immortalizing yourself in the Ethereum blockchain for ever! These NFTs offer the opportunity
-                        of writting a message against the nefarious <b>War On Drugs</b> directly onto the blockchain without the possibility of being modified or deleted <b>ever!!! </b>
-                        We, together, will pioneer in the blockchain political activism to end this horrendous <b>War On Drugs</b> that takes away our freedoms and rights, 
+                        these art works, but you are also <b>immortalizing yourself in the Ethereum blockchain for ever!</b> These NFTs offer the opportunity
+                        of writting a message against the nefarious <b>War On Drugs</b> directly into the blockchain without the possibility of being modified or deleted <b>ever!!! </b>
+                        We, together, will pioneer and make history in the blockchain political activism to end this horrendous <b>War On Drugs</b> that takes away our freedoms and rights, 
                         and you will be able to prove to your kids and grandkids that you were among those pioneers of this noble cause. What are you waiting for?
                     </p>
                 }            
@@ -29,16 +35,17 @@ export class Home extends React.Component {
                 alt="image2"
                 title="You are supporting artists and my Youtube channel"
                 text={<p >
-                    One of the main goals of this project is to give visibility to some not-mainstream  artists from the very same places that 
+                    One of the main goals of this project is to give visibility to some artists from the very same places that 
                     <b> War On Drugs</b> has done the most harm. In other words, artists from cities like Cali, Colombia or Culiacán, México.
-                    People who suffer -through their skin- the cartels brutality and government corruption in their daily lives. 
+                    People who suffer -through their skin- the cartels brutality and government corruption in their daily lives. The natural 
+                    outcome of prohibition. We want to make the pain into art. 
                     <br/>
                     <br/>
                 
                     But that's not it.
-                    This NFT project is one of the first ones to implement EIP2907. This EIP aims to support royalties for
-                    NFT creators. NWD has a standard 8.00% royalty on all NFTs, and, as a rule of thumb, NWD grants a percentage of 
-                    the total amount of royalties collected to all the artists who collaborate in the art creation. This percentage 
+                    This NFT project is one of the first ones to implement ERC2907 which aims to support royalties for
+                    NFT creators. SWD has a standard 8.00% royalty for all NFTs, and, as a rule of thumb, SWD grants a percentage of 
+                    the total amount of royalties collected to <b>all</b> the artists who collaborate in the art creation. This percentage 
                     can be somewhere between 15% and 50% depending on the preference of payment of the artist. To know more about
                     this, you can check out our artist partner program. 
                 </p>
