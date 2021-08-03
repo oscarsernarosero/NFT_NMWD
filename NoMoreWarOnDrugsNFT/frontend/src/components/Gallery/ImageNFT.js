@@ -33,7 +33,7 @@ export class ImageNFT extends React.Component{
     super(props);
    
     
-    this.state ={forSale : this.props.uri.forSale, changePriceVisble:false, 
+    this.state ={forSale : this.props.uri.forSale, content: undefined, changePriceVisble:false, 
       popupVisible: false, waiting:false, successful:false, transferVisble:false};
     this.setForSale = this.setForSale.bind(this);
     this.buy = this.buy.bind(this);
@@ -47,7 +47,7 @@ export class ImageNFT extends React.Component{
     this.transfer = this.transfer.bind(this);
     //this didn't work
     this.reloadWallet = this.reloadWallet.bind(this);
-    console.log("props NFT image: ",this.props);
+    //console.log("props NFT image: ",this.props);
     
   }
 
@@ -234,20 +234,21 @@ async setForSale()
   
   render(){
     
-    const CID = (this.props.uri.image).substring(7);
+    let CID="";
     let pinata_content_url;
     let animation=false;
-    console.log("in animation url before",this.props.uri.animation_url);
     if (this.props.uri.animation_url!=undefined && this.props.uri.animation_url!=""){
-      console.log("in animation url",this.props.uri.animation_url);
       animation=true;
+      CID = (this.props.uri.animation_url).substring(7);
+    }else{
+      CID = (this.props.uri.image).substring(7);
     }
     if(CID){
       pinata_content_url = "https://gateway.pinata.cloud/ipfs/"+CID;
       console.log("pinata_content_url", pinata_content_url);
     }else{
       if (animation){
-        pinata_content_url = "https://gateway.pinata.cloud/ipfs/QmTLs9Z9u2X8z2pf8DoTkcLRy2Fxu7NqMoXYw9aiG32fH5";//change this for logo later
+        pinata_content_url = "https://ipfs.fleek.co/ipfs/bafybeihj7gwt5cqj2pk35qkdthyt5dmvknstf2k4fqsrwgmpchd7ucypni";//change this for logo later
   
       }else{
         pinata_content_url = "https://gateway.pinata.cloud/ipfs/QmNZxE7QumQqD4WkvPBps7yfwW876Ns55dCf6tCbcFvF5a";//change this for logo later
