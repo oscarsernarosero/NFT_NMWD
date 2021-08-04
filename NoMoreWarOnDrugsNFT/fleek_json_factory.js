@@ -13,15 +13,19 @@ async function main(){
     const LANGUAGE = CONST.LANGUAGE;
     const contractsDir = "./frontend/src/uris/";
 
+
     //############### MODIFY THE PARAMETERS HERE: ###############
-    const description="Fleek test 2";
-    const name="FLeek Test 2";
+    //First, we upload the NFT media content:
+    const nftMediaPath="./nft_media/Melo/GEOPOLITICAL English.mov";
+    const isAnimated = true;
+    const name="War On Drugs Is A Geopolitical Move";
+    const description="It all started with America trying to protect its interest with \
+    China. In a time of weak military power, the US didn't have more than its diplomacy.";
+
     const language = LANGUAGE.EN;
-    //
-    const imageCID="";
-    const videoCID="QmTLs9Z9u2X8z2pf8DoTkcLRy2Fxu7NqMoXYw9aiG32fH5";
-    const artist="Who Knows";
-    const artist_webpage="https://youtu.be/vI2hT9lb1gY";
+    
+    const artist="Juan Melo";
+    const artist_webpage="http://modernacontemporanea.com/meloJuan.html";
     const topics= [TOPIC.CHINA, TOPIC.UK, TOPIC.GEOPOLITICS, TOPIC.HISTORY, TOPIC.OPIUM];
     const _royaltyPct = "8.00"//%
     const _royaltyAddress = "0xB85ea1C62FD5CC6F081F047eCA0BD5aFDd5c5cD5"
@@ -29,27 +33,34 @@ async function main(){
     const external_url="stopthewarondrugs.eth.link";
     //############################################################
 
-    if(topics.length==0){
-        throw("topics must be an array with at least 1 topic");
-    }
-    if( language !== LANGUAGE.EN  &&  language !== LANGUAGE.ES ){
-        throw("There are only 2 languages availabe: EN and ES");
-    }
+    if(topics.length==0) 
+        throw("topics must be an array with at least 1 topic")
+    
+    if( language !== LANGUAGE.EN  &&  language !== LANGUAGE.ES ) 
+        throw("There are only 2 languages availabe: EN and ES")
+    
+    const safe_name = name.replace(/ /g,"_");
+    const nftMediaConent = fs.createReadStream(nftMediaPath);
+    //uploading the NFT media-content file
+    let uploadedFile;
+    let response;
+    uploadedFile = await fleekStorage.upload({apiKey: FLEEK_API_KEY, apiSecret: FLEEK_API_SECRET,
+                    key: safe_name+"_media", data: nftMediaConent,  })
+        .then(res => {response=res; });
+    console.log("response media content", response);
+
+    //now writting the URI json file
     let image_url;
     let video_url;
-    //Fix the following lines
-    if(videoCID==""){
-      image_url="ipfs://"+imageCID;
-      video_url="";
-    }else{
-      if(imageCID==""){
+    if(isAnimated){
+        video_url="ipfs://"+response.hashV0;
         image_url="";
-      }else{
-        image_url="ipfs://"+imageCID
-      }
-      video_url="ipfs://"+videoCID;
+    } 
+    else {
+        video_url="";
+        image_url="ipfs://"+response.hashV0;
     }
-
+    
     const uri = {
         description: description,
         external_url: external_url,
@@ -69,7 +80,7 @@ async function main(){
     }
 
     console.log("about to save file");
-    const safe_name = name.replace(/ /g,"_");
+    
     await fs.writeFileSync(
     contractsDir+safe_name+".json",
     JSON.stringify(uri, undefined, 0));
@@ -77,9 +88,7 @@ async function main(){
     //reading the file I just created
     const fileData = fs.createReadStream("./frontend/src/uris/fleek_test.json");
 
-    //uploading the file
-    let uploadedFile;
-    let response;
+    //uploading the URI file
     uploadedFile = await fleekStorage.upload({
         apiKey: FLEEK_API_KEY,
         apiSecret: FLEEK_API_SECRET,
