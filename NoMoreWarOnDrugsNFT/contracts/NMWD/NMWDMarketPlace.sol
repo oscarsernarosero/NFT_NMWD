@@ -98,7 +98,7 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
         //transfer the NFT to the buyer
         TokenContract.safeTransferFrom(tokenSeller, _msgSender(), _tokenId);
 
-        // this is the fee of the contract per transaction
+        // this is the fee of the contract per transaction: 0.8%
         uint256 saleFee = (msg.value / 1000) * 8;
         contractBalance += saleFee;
 
@@ -226,5 +226,13 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
     function getForSale(uint _tokenId) external view returns (bool){
         return forSale[_tokenId];
     } 
+
+    /**
+   * @dev Burns an NFT.
+   * @param _tokenId of the NFT to burn.
+   */
+    function burn(uint256 _tokenId ) external onlyOwner {
+        TokenContract.burn( _tokenId);
+  }
 
 }

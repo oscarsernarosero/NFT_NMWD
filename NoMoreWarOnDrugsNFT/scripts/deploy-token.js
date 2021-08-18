@@ -83,4 +83,6 @@ main()
 
 //npx hardhat run --network localhost scripts/deploy-token.js
 
+//npx hardhat run --network rinkeby scripts/deploy-token.js
+
 //npx hardhat run --network ropsten scripts/deploy-token.js

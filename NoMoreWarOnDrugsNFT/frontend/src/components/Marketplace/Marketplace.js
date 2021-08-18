@@ -1,6 +1,7 @@
 import React from "react";
 
 import { TransferOwnership } from  "./TransferOwnership";
+import { OwnershipToSafe } from "./OwnershipToSafe";
 import { MarketPlaceApprove } from "./MarketPlaceApprove";
 import { Purchase } from "./Purchase";
 import { SetPrice } from "./SetPrice";
@@ -51,6 +52,13 @@ export class Marketplace extends React.Component{
               <TransferOwnership
                 transferOwnership = { (to) => {
                   return this.props.transferOwnership(to);
+                }}
+              />
+            }
+            {
+              <OwnershipToSafe
+                ownershipToSafe = { (to) => {
+                  return this.props.ownershipToSafe(to);
                 }}
               />
             }

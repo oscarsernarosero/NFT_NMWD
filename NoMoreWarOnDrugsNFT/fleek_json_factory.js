@@ -15,10 +15,9 @@ async function main(){
 
 
     //############### MODIFY THE PARAMETERS HERE: ###############
-    //First, we upload the NFT media content:
-    const nftMediaPath="./nft_media/Melo/GEOPOLITICAL English.mov";
+    const nftMediaPath="./nft_media/Melo/Primeros Narcos español LINK_x264_001.mp4";
     const isAnimated = true;
-    const name="War On Drugs Is A Geopolitical Move";
+    const name="Test Primeros Narcos Mp4";
     const description="It all started with America trying to protect its interest with \
     China. In a time of weak military power, the US didn't have more than its diplomacy.";
 
@@ -86,7 +85,7 @@ async function main(){
     JSON.stringify(uri, undefined, 0));
 
     //reading the file I just created
-    const fileData = fs.createReadStream("./frontend/src/uris/fleek_test.json");
+    const fileData = fs.createReadStream("./frontend/src/uris/"+safe_name+".json");
 
     //uploading the URI file
     uploadedFile = await fleekStorage.upload({

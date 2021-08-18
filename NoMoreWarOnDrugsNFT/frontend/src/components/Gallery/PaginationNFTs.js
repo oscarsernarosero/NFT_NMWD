@@ -6,6 +6,9 @@ import { ImageNFT } from "./ImageNFT";
 import "../../style/pagination.css"
 import { CgViewGrid } from "react-icons/cg";
 import { CgUiKit } from "react-icons/cg";
+import { InfoPopup } from "../Generics/InfoPopup";
+import Tooltip from 'react-bootstrap/Tooltip';
+import Overlay from 'react-bootstrap/Overlay';
 
 
 
@@ -17,15 +20,21 @@ import { Carousel } from "../Gallery/Carousel";
 
     constructor(props){
         super(props);
-        const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
-        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1],filteredIds:[],pageSize:6, view:0, filterBy:{topic:[], artist:[],language:-1}};
+        const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading",
+        "attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
+        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1],filteredIds:[],pageSize:6, view:0,
+           filterBy:{topic:[], artist:[],language:-1}, viewInfoVisble: false};
         this.changeCurrentPage = this.changeCurrentPage.bind(this);
         this.listView = this.listView.bind(this);
         this.albumView = this.albumView.bind(this);
         this.filterNFTs = this.filterNFTs.bind(this);
+        this.viewInfo = this.viewInfo.bind(this);
+        this.closeViewInfo = this.closeViewInfo.bind(this);
         console.log(this.state);
         this.DB = require("../../localDB/attributes.json");
         
+        //this.target = useRef(null);
+
       }
 
     async componentDidMount(){
@@ -108,6 +117,15 @@ import { Carousel } from "../Gallery/Carousel";
     }
     albumView(){
         this.setState({view:0});
+    }
+
+    viewInfo(){
+      this.setState({viewInfoVisble:!this.state.viewInfoVisble});
+      console.log("view info");
+    }
+
+    closeViewInfo(){
+      this.setState({viewInfoVisble:false});
     }
 
     //let intersection = arrA.filter(x => arrB.includes(x));
@@ -230,6 +248,12 @@ import { Carousel } from "../Gallery/Carousel";
                     className={!this.state.view ? "cover-active": "cover-inactive"}>
                       <CgUiKit style={{verticalAlign:"middle",fontSize:"1.25rem"}}
                     />&nbsp;Cover</button>
+                    
+                      <InfoPopup
+                      msg="bla bla"
+                      visible = {this.state.viewInfoVisble}
+                      viewInfo = {()=>{this.viewInfo()}}
+                    />
                 </div>
                 <div>
                   <Filter

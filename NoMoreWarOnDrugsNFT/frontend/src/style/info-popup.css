@@ -1,0 +1,41 @@
+.tooltip-container{
+    display:inline-block;
+}
+
+.close-button{
+    display: inline-flex;
+    position:abosolute;
+    top:2px;
+    left: 2px;
+    width:10%;
+}
+
+.button-close-button{
+    background-color: #00000000;
+    border-style: hidden;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.info-content{
+    color: #ccc;
+    background-color: black;
+    font-size: 1rem;
+}
+
+.visible{
+    position:absolute;
+    border-radius: 20px;
+    top:20px;
+    left:50px;
+    width:150px;
+    height:fit-content;
+    display: block;
+    padding: 4px;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .not-visible{
+      display: none;
+  }

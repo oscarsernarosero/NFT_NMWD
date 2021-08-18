@@ -15,7 +15,7 @@ export class Overview extends React.Component {
                 title="There is a finit amount of NFTs: 904"
                 
                 text={<p>
-                    SWD NFTs are scarce. There will be only 904 SWDs ever which is hardcoded in the smart contract.
+                    SWD NFTs are really scarce. There will be only 904 SWDs ever which is hardcoded in the smart contract.
                     This finit amount of NFTs aims to make each token very special, and therefore gives it a high 
                     value that increases over time. But these NFTs are not just any NFTs out there in the market.
                     These NFTs are pieces of history that we are creating together.
@@ -49,6 +49,20 @@ export class Overview extends React.Component {
                 </p>
                 }       
 
+            />
+            <LeftImage
+                src="https://www.pngplay.com/wp-content/uploads/2/Diamond-Transparent-Image.png"
+                alt="image2"
+                title="Why NFTs in 2 Languages?"
+                
+                text={<p>
+                    You might've noticed that a lot of the NFTs come in 2 versions: English and Spanish. This is because we believe that it is the
+                    responsability of the Latinamerican people to speak up against the war that has devastated most of the poor communities 
+                    in the world, but especially our Central and South American countries.
+                    Therfore, this struggle must also be argued in Spanish. However, we understand that international affairs and the NFT community
+                    are English-spoken circles, and this has led us to create our NFTs in these 2 flavors.
+                    </p>
+                }            
             />
             <ThreeElements
                 leftTitle="YouTube Channel"
@@ -89,7 +103,7 @@ export class Overview extends React.Component {
                 
                 text={<p>
                     This collection of NFTs have collaborated with different artists, mostly from
-                    Latinamerica this is one of the areas that has been really
+                    Latinamerica which is one of the areas that has been really
                     devastated by this War On Drugs. Cities like Cali, Cololombia, or Ciudad Juarez, 
                     México, are among the hometowns of these talented artists. One of the goals of 
                     this project is to give visibility to the art from these beaten areas through the Ethereum 

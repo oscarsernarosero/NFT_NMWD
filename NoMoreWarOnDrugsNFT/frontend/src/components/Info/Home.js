@@ -16,8 +16,8 @@ export class Home extends React.Component {
                 title="Be part of history"
                 text={<p>
                     Stop-the-War-on-Drugs is not just an NFT project. It is a world-wide movement that gets stronger by the day.
-                    This project, however, is pioneering in the crypto space regarding political activism. In other words, this is not just an NFT;
-                    This is also a token that represents your believes and your values. 
+                    SWD, moreover, is pioneering in the crypto space regarding political activism. In other words, there are not just NFTs;
+                    These are also tokens that represent your believes and your values. 
                     
                     <br/><br/>
                    But that is not it.
@@ -37,7 +37,7 @@ export class Home extends React.Component {
                 text={<p >
                     One of the main goals of this project is to give visibility to some artists from the very same places that 
                     <b> War On Drugs</b> has done the most harm. In other words, artists from cities like Cali, Colombia or Culiacán, México.
-                    People who suffer -through their skin- the cartels brutality and government corruption in their daily lives. The natural 
+                    People who suffer -through their skin- the cartels brutality and government corruption in their daily lives --the natural 
                     outcome of prohibition. We want to make the pain into art. 
                     <br/>
                     <br/>

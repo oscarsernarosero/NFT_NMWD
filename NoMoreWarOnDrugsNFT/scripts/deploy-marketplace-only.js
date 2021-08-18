@@ -65,4 +65,6 @@ async function main() {
     //npx hardhat run --network localhost scripts/deploy-marketplace-only.js
 
     //npx hardhat run --network ropsten scripts/deploy-marketplace-only.js
+
+    //npx hardhat run --network rinkeby scripts/deploy-marketplace-only.js
   

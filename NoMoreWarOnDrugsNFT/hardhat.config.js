@@ -8,7 +8,7 @@ require('@openzeppelin/hardhat-upgrades');
 // testing the frontend.
 require("./tasks/faucet");
 
-const { API_URL, API_URL_MAINNET, PRIVATE_KEY, PRIVATE_KEY2 } = process.env;
+const { API_URL, API_URL_MAINNET, RINKEBY_API_URL, PRIVATE_KEY, PRIVATE_KEY2 } = process.env;
 
 module.exports = {
   solidity:{
@@ -33,6 +33,11 @@ module.exports = {
          url: API_URL,
          accounts: [`0x${PRIVATE_KEY}`]
       }
+      ,
+      rinkeby: {
+        url: RINKEBY_API_URL,
+        accounts: [`0x${PRIVATE_KEY}`]
+     }
       // ,
       // mainnet:{
       //   url: API_URL_MAINNET,

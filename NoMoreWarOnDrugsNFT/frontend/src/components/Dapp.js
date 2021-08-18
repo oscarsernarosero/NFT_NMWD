@@ -147,6 +147,9 @@ export class Dapp extends React.Component {
                       return this.updateNMWDContract(address);
                       } 
                     }
+                    ownershipToSafe = { to => {
+                      return this.ownershipToSafe(to);
+                    }}
                     approveNMWD = {() => {
                       return this.approveNMWD();
                     }}
@@ -385,13 +388,13 @@ export class Dapp extends React.Component {
     this._nmwd = new ethers.Contract(
       NMWDAddress.Token,
       NMWDArtifact.abi,
-      this._provider.getSigner(0)
+      this._provider.getSigner(0)//do I need this?
     );
 
     this.marketPlace = new ethers.Contract(
       MarketPlaceAddress.Token,
       MarketPlaceArtifact.abi,
-      this._provider.getSigner(0)
+      this._provider.getSigner(0)//do I need this?
     );
 
   }
@@ -513,6 +516,8 @@ export class Dapp extends React.Component {
     }
   }
 
+ 
+
  async getNFTidsByAddress(address){
   try{
     const ids= await this._nmwd.getNFTsByAddress(address);
@@ -580,6 +585,18 @@ export class Dapp extends React.Component {
        return {error: error.message};
      }
    }
+
+   async ownershipToSafe(to){
+    try{
+      const tx = await this.marketPlace.transferOwnership(to);
+      console.log(tx);
+      await tx.wait();
+      return tx;
+    }catch(error){
+      console.log(error);
+      return {error: "error while transfering ownership"} 
+    }
+  }
 
    async withdrawUserFunds(amount){
     try{
