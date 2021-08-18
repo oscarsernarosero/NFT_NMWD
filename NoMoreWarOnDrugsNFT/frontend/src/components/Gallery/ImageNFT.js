@@ -98,16 +98,16 @@ export class ImageNFT extends React.Component{
       console.log("minting...",this.props.uri.id);
       const tokenId = this.props.uri.id;
       const price = this.props.uri.price;
-      const royalties = this.props.uri.royalties;
-      const royaltyRecepient = royalties.address;
-      const royaltyValue = parseFloat(royalties.pctValue)*100;
+      //const royalties = this.props.uri.royalties;
+      //const royaltyRecepient = royalties.address;
+      //const royaltyValue = parseFloat(royalties.pctValue)*100;
 
 
       const abi = [
-        "function mintThroughPurchase(address _to, uint _tokenId, address royaltyRecipient, uint256 royaltyValue) external payable"
+        "function mintThroughPurchase(address _to, uint _tokenId) external payable"
       ];
       const iface = new ethers.utils.Interface(abi);
-      const data = iface.encodeFunctionData("mintThroughPurchase", [this.props.to, tokenId, royaltyRecepient, royaltyValue]);
+      const data = iface.encodeFunctionData("mintThroughPurchase", [this.props.to, tokenId]);
         
         const params = [
           {

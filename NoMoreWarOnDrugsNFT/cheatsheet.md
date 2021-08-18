@@ -73,9 +73,14 @@ since we only need to setup the prices, we only provide the abi for the setPrice
           "internalType": "uint256",
           "name": "_tokenId",
           "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_royaltyAddress",
+          "type": "address"
         }
       ],
-      "name": "setPrice",
+      "name": "setPriceForMinting",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

@@ -39,6 +39,11 @@
       "address": "0x4c06FbA8bDa0Ce0AC917e7d119BA24bf2D7579F6",
       "txHash": "0xf27a8307093429351da16e7e3301f78df8e881d975b6575ce1db0d0b5de23582",
       "kind": "transparent"
+    },
+    {
+      "address": "0x82bB67010dc8BB93C2f0644c36FaD059bd6BBf1C",
+      "txHash": "0x9dcdc74acb144350f48ca3837d3c4ffdc3a97a14ac1b42d9a541f08237028b98",
+      "kind": "transparent"
     }
   ],
   "impls": {
@@ -108,6 +113,85 @@
           },
           "t_address": {
             "label": "address"
+          }
+        }
+      }
+    },
+    "e6b7c5ad474c7b38dba83a58f50ae5c610d290d17180de1354d15775beedb720": {
+      "address": "0x503B0656dE4EB1eC05276a3b45EBE2DB8dC730c5",
+      "txHash": "0xab6d2de700a2c1c847bcd5a6ed3f67077f8d1a54bedfccb17b259bcaf9d97bc5",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Owned",
+            "label": "owner",
+            "type": "t_address",
+            "src": "contracts/NMWD/owned.sol:16"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:21"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:26"
+          },
+          {
+            "contract": "NMWDMarketPlace",
+            "label": "TokenContract",
+            "type": "t_contract(StopTheWarOnDrugs)1368",
+            "src": "contracts/NMWD/NMWDMarketPlace.sol:35"
+          },
+          {
+            "contract": "NMWDMarketPlace",
+            "label": "price",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "contracts/NMWD/NMWDMarketPlace.sol:40"
+          },
+          {
+            "contract": "NMWDMarketPlace",
+            "label": "royaltyAddress",
+            "type": "t_mapping(t_uint256,t_address)",
+            "src": "contracts/NMWD/NMWDMarketPlace.sol:45"
+          },
+          {
+            "contract": "NMWDMarketPlace",
+            "label": "forSale",
+            "type": "t_mapping(t_uint256,t_bool)",
+            "src": "contracts/NMWD/NMWDMarketPlace.sol:51"
+          },
+          {
+            "contract": "NMWDMarketPlace",
+            "label": "contractBalance",
+            "type": "t_uint256",
+            "src": "contracts/NMWD/NMWDMarketPlace.sol:56"
+          }
+        ],
+        "types": {
+          "t_contract(StopTheWarOnDrugs)1368": {
+            "label": "contract StopTheWarOnDrugs"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_uint256,t_bool)": {
+            "label": "mapping(uint256 => bool)"
+          },
+          "t_bool": {
+            "label": "bool"
           }
         }
       }

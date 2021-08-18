@@ -27,7 +27,7 @@ async function main() {
     // _pct_artist is a percentage multiplied by 100.
     const royaltyReceiver = await RoyaltyReceiver.deploy("0xB85ea1C62FD5CC6F081F047eCA0BD5aFDd5c5cD5",//this is me
                                                         "0x04F2612a826c88017Fa3e447D291462d56449a7F",// this is the artist
-                                                        4000, overrides );
+                                                        5500, overrides );
     await royaltyReceiver.deployed();
   
     //console.log("Token address:", token.address);
@@ -35,7 +35,7 @@ async function main() {
   
     // We also save the contract's artifacts and address in the frontend directory
     //saveFrontendFiles(token, "token");
-    saveFrontendFiles(royaltyReceiver, "RoyaltyReceiver", "Artist000");
+    saveFrontendFiles(royaltyReceiver, "RoyaltyReceiver", "Artist_test_rinkeby");
   }
   
   function saveFrontendFiles(token, name, artist) {

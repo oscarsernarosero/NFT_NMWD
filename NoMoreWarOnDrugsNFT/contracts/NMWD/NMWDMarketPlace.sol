@@ -24,6 +24,8 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
     string constant NOT_NFT_OWNER = "0509";
     string constant INSUFICIENT_BALANCE = "0510";
     string constant STILL_OWN_NFT_CONTRACT = "0511";
+    string constant NFT_ALREADY_MINTED = "0512";
+    
 
     event Sent(address indexed payee, uint amount);
     event RoyaltyPaid(address indexed payee, uint amount);
@@ -36,6 +38,11 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
     * @dev Mapping from token ID to its pirce.
     */
     mapping(uint => uint256) internal price;
+
+    /**
+    * @dev Mapping from token ID to its pirce.
+    */
+    mapping(uint => address) internal royaltyAddress;
 
     /**
     * @dev Mapping from NFT ID to boolean representing
@@ -126,13 +133,15 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
     * @dev Purchase _tokenId
     * @param _tokenId uint token ID (painting number)
     */
-    function mintThroughPurchase(address _to, uint _tokenId,
-                                address royaltyRecipient, uint256 royaltyValue
-                                ) external payable  
-             {
+    function mintThroughPurchase(address _to, uint _tokenId) external payable {
         require(price[_tokenId] > 0);
         require(msg.value >= price[_tokenId],NOT_EHOUGH_ETHER);
         require(_msgSender() != address(0) && _msgSender() != address(this));
+
+        //we extract the royalty address from the mapping
+        address royaltyRecipient = royaltyAddress[_tokenId];
+        //this is hardcoded 7.00% for all NFTs
+        uint royaltyValue = 700;
 
         contractBalance += msg.value;
 
@@ -167,24 +176,39 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
     * @dev Updates price for the _tokenId NFT
     * @dev Throws if updating price to the same current price, or to negative
     * value, or is not the owner of the NFT.
-    * @notice there is a special rule where the owner of the marketplace can 
-    * set the price of an NFT only if the NFT doesn't exist yet (for minting)
     * @param _price the price in wei for the NFT
     * @param _tokenId uint token ID (painting number)
     */
     function setPrice(uint _price, uint _tokenId) external {
         require(_price > 0, NEGATIVE_VALUE);
         require(_price != price[_tokenId], NO_CHANGES_INTENDED);
-        //Only owner of NFT can set a price, but if the NFT doesn't exist yet,
-        //then the owner of the marketplace can set a price for minting
-        try TokenContract.ownerOf(_tokenId) returns (address _address) {
-            require(_address == _msgSender());
-        }catch {
-           require(owner == _msgSender(), "Not owner"); 
-        }
-
+        //Only owner of NFT can set a price
+        address _address = TokenContract.ownerOf(_tokenId);
+        require(_address == _msgSender());
+        
         //finally, we do what we came here for.
         price[_tokenId] = _price;
+    } 
+
+    /**
+    * @dev Updates price for the _tokenId NFT before minting
+    * @dev Throws if updating price to the same current price, or to negative
+    * value, or is not the owner of the marketplace.
+    * @param _price the price in wei for the NFT
+    * @param _tokenId uint token ID (painting number)
+    * @param _royaltyAddress the address that will receive the royalties.
+    */
+    function setPriceForMinting(uint _price, uint _tokenId, address _royaltyAddress) external onlyOwner{
+        require(_price > 0, NEGATIVE_VALUE);
+        require(_price != price[_tokenId], NO_CHANGES_INTENDED);
+        require(_royaltyAddress != address(0) && _royaltyAddress != address(this),INVALID_ADDRESS);
+        //this makes sure this is only set before minting. It is impossible to change the
+        //royalty address once it's been minted. The price can then be only reset by the NFT owner.
+        require( !TokenContract.exists(_tokenId),NFT_ALREADY_MINTED);
+        
+        //finally, we do what we came here for.
+        price[_tokenId] = _price;
+        royaltyAddress[_tokenId] = _royaltyAddress;
     } 
 
     /**
@@ -234,5 +258,6 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
     function burn(uint256 _tokenId ) external onlyOwner {
         TokenContract.burn( _tokenId);
   }
+
 
 }

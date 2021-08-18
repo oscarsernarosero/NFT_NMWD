@@ -10,7 +10,7 @@ The strategy for codes is to separate them by smart contract kind. Each smart co
 | 01 | Owned |
 | 02 | NFTokenEnumerable |
 | 03 | NFToken |
-| 04 | NoMoreWarOnDrugs |
+| 04 | StopTheWarOnDrugs |
 | 05 | NMWDMarketPlace |
 
 <br>
@@ -56,6 +56,8 @@ The full list of the errors are in the following list:
 | 0509 | NOT_NFT_OWNER | You need to own the NFT to carry out this operation | 
 | 0510 | INSUFICIENT_BALANCE | Your Ether balance is insuficient to withdraw the requested amount | 
 | 0511 | STILL_OWN_NFT_CONTRACT | operation not permitted while the marketplace owns the NFT contract. Simply make sure to transfer ownership of the NFT contract. |
+| 0512 | NFT_ALREADY_MINTED | Operation only permitted before minting |
+
 
 <br>
 

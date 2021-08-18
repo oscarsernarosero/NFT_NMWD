@@ -257,7 +257,7 @@ contract StopTheWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981
     * @notice that the returned string doesn't prepend the usual "0x".
     * @param _uint number to convert to string.
     */
-    function uintToHexStr(uint _uint) internal pure returns (string memory) {
+  function uintToHexStr(uint _uint) internal pure returns (string memory) {
         require(_uint != 0, ZERO_VALUE);
         bytes memory byteStr = new bytes(64);
         for (uint j = 0; j < 64 ;j++){
@@ -279,6 +279,19 @@ contract StopTheWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981
         require(security_value == 192837); //this is just to make sure that this method was not called by accident
         selfdestruct(payable(owner)); 
       }
+
+    /**
+    * @dev returns boolean representing the existance of an NFT
+    * @param _tokenId of the NFT looking up.
+    */
+      function exists(uint _tokenId) external view returns (bool) { 
+        if( idToOwner[_tokenId] == address(0)){
+          return false;
+        }else{
+          return true;
+        }
+      }
+
 
 } 
 
