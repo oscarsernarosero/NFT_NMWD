@@ -90,7 +90,7 @@ export class ImageNFT extends React.Component{
   setSelectedId(){
     const CID = (this.props.uri.image).substring(7);
     console.log("CID: ",CID);
-    const pinata_content_url = "https://gateway.pinata.cloud/ipfs/"+CID;
+    const pinata_content_url = "https://ipfs.fleek.co/ipfs/"+CID;
       this.props.setSelectedId(this.props.uri.id,pinata_content_url, this.props.uri.price);
     }
   
@@ -244,7 +244,7 @@ async setForSale()
       CID = (this.props.uri.image).substring(7);
     }
     if(CID){
-      pinata_content_url = "https://gateway.pinata.cloud/ipfs/"+CID;
+      pinata_content_url = "https://ipfs.fleek.co/ipfs/"+CID;
       console.log("pinata_content_url", pinata_content_url);
     }else{
       if (animation){

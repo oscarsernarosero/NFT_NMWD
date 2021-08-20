@@ -35,7 +35,6 @@ export class ForMinting extends React.Component{
         <div className="gallery">
             <PaginationForMinting
             nftsForMint={this.state.nftsForMint}
-            mywallet = {false}
             {...this.props}
             />
            

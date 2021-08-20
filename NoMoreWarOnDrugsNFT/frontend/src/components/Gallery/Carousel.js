@@ -8,11 +8,12 @@ export class Carousel extends React.Component {
     constructor(props){
         super(props);
         this.fn = this.fn.bind(this);
-        this.state={background:"000000"};
+        this.state={background:"000000", selected:0};
     }
 
 
     fn (active) {
+        this.setState({selected:active});
         if(active !== undefined){
             // console.log("function", active);
             // let R = (active*4).toString(16);
@@ -34,7 +35,11 @@ export class Carousel extends React.Component {
         }
         
         
-      
+    async componentDidUpdate(prevProps){
+        if (this.props.page != prevProps.page){
+            this.setState({selected:3});
+        }
+    }  
 
     render(){
         return(
@@ -44,13 +49,14 @@ export class Carousel extends React.Component {
                 
                 <Coverflow
                     displayQuantityOfSide={1.3}
-                    infiniteScroll={false}
+                    infiniteScroll={true}
                     enableHeading={false}
                     otherFigureScale={0.3}
                     currentFigureScale={1.15}
                     enableScroll={false}
                     width={900}
                     height={760}
+                    active={this.state.selected}
                     
                     
                     >

@@ -1,8 +1,8 @@
 import React from "react";
 import Pagination from "react-pagination-js";
-import {Filter} from  "./Filter";
+import {Filter} from  "../Gallery/Filter";
 import "react-pagination-js/dist/styles.css"; // import css
-import { ImageNFT } from "./ImageNFT";
+import { ImageNFT } from "../Gallery/ImageNFT";
 import "../../style/pagination.css";
 import { CgViewGrid } from "react-icons/cg";
 import { CgUiKit } from "react-icons/cg";
@@ -16,7 +16,7 @@ import { Carousel } from "../Gallery/Carousel";
     constructor(props){
         super(props);
         const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
-        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1], filteredIds:[],pageSize:6, view:0, filterBy:{topic:[], artist:[],language:-1}};
+        this.state = {nfts: [demo_NFT], mounted: false, page:props.page, ids: [-1], myIds: [-1], filteredIds:[],pageSize:6, view:0, filterBy:{topic:[], artist:[],language:-1}};
         this.changeCurrentPage = this.changeCurrentPage.bind(this);
         this.listView = this.listView.bind(this);
         this.albumView = this.albumView.bind(this);
@@ -143,13 +143,12 @@ import { Carousel } from "../Gallery/Carousel";
 
 
     async changeCurrentPage(numPage) {
-        this.setState({ page: numPage });
-        console.log("change to page",this.state.page);
-        await this.getPageData();
-        //I am doing this double because it doesn't work if I do it once.
-        this.setState({ page: numPage });
-        console.log("change to page",this.state.page);
-        await this.getPageData();
+        const currentUrl = window.location.href;
+        let i = currentUrl.lastIndexOf('/');
+        const url=currentUrl.substr(0,i)+"/"+numPage;
+        console.log(url)
+        window.location.href = url;
+
       };
 
     async getPageData(){
@@ -241,6 +240,7 @@ import { Carousel } from "../Gallery/Carousel";
                 </div>
                 <div className={this.state.view ? "not-visible":"" }>
                 <Carousel
+                    page={this.state.page}
                     nfts={this.state.nfts}
                     address = {this.props.address}
                     marketPlaceAddress = {this.props.marketPlaceAddress}
@@ -268,7 +268,7 @@ import { Carousel } from "../Gallery/Carousel";
                 
                 <div className="centered">
                     <Pagination
-                    currentPage={this.state.page}
+                    currentPage={this.props.page}
                     sizePerPage={this.state.pageSize}
                     totalSize={this.props.mywallet ? this.state.myIds.length : this.state.ids.length}
                     changeCurrentPage={this.changeCurrentPage}

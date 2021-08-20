@@ -1,7 +1,6 @@
 import React from "react";
 import { PaginationNFTs } from "../Gallery/PaginationNFTs"
 import "../../style/myNFTs.css";
-import { ImageNFT } from "../Gallery/ImageNFT";
 
 
   export class MyNFTs extends React.Component{

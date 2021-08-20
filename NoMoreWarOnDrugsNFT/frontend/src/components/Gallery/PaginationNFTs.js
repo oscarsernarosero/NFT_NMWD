@@ -22,7 +22,7 @@ import { Carousel } from "../Gallery/Carousel";
         super(props);
         const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading",
         "attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
-        this.state = {nfts: [demo_NFT], mounted: false, page:1, ids: [-1], myIds: [-1],filteredIds:[],pageSize:6, view:0,
+        this.state = {nfts: [demo_NFT], mounted: false, page:props.page, ids: [-1], myIds: [-1],filteredIds:[],pageSize:6, view:0,
            filterBy:{topic:[], artist:[],language:-1}, viewInfoVisble: false};
         this.changeCurrentPage = this.changeCurrentPage.bind(this);
         this.listView = this.listView.bind(this);
@@ -191,25 +191,23 @@ import { Carousel } from "../Gallery/Carousel";
 
 
     async changeCurrentPage(numPage) {
-        this.setState({ page: numPage });
-        console.log("change to page",this.state.page);
-        await this.getPageData();
-        //I am doing this double because it doesn't work if I do it once.
-        this.setState({ page: numPage });
-        console.log("change to page",this.state.page);
-        await this.getPageData();
+      const currentUrl = window.location.href;
+      let i = currentUrl.lastIndexOf('/');
+      const url=currentUrl.substr(0,i)+"/"+numPage;
+      console.log(url)
+      window.location.href = url;
       };
 
     async getPageData(){
         const startAt = this.state.pageSize * (this.state.page-1);
         const endAt = startAt + this.state.pageSize;
-        const pageIds = this.state.filteredIds.slice(startAt,endAt);
-        // let pageIds;
-        // if(this.props.mywallet){
-        //   pageIds = this.state.myIds.slice(startAt,endAt);
-        // }else{
-        //   pageIds = this.state.ids.slice(startAt,endAt);
-        // }
+        //const pageIds = this.state.filteredIds.slice(startAt,endAt);
+        let pageIds;
+        if(this.props.mywallet){
+          pageIds = this.state.myIds.slice(startAt,endAt);
+        }else{
+          pageIds = this.state.filteredIds.slice(startAt,endAt);
+        }
         const nfts = [];
         for(let i=0; i<pageIds.length;i++){
             const data = await this.props.getNFTData(pageIds[i]);
@@ -329,7 +327,7 @@ import { Carousel } from "../Gallery/Carousel";
                   </div> 
                   <div className="centered">
                     <Pagination
-                    currentPage={this.state.page}
+                    currentPage={this.props.page}
                     sizePerPage={this.state.pageSize}
                     totalSize={this.props.mywallet ? this.state.myIds.length : this.state.ids.length}
                     changeCurrentPage={this.changeCurrentPage}

@@ -11,17 +11,22 @@ export const  NavItems = [
     },
     {
         title: "Gallery",
-        link: "/gallery",
+        link: "/gallery/1",
+        className: "nav-link"
+    },
+    {
+        title: "Mint",
+        link: "/mint/1",
         className: "nav-link"
     },
     {
         title: "Wallet",
-        link: "wallet",
+        link: "/wallet",
         className: "nav-link"
     },
     {
         title: "Channel",
-        link: "channel",
+        link: "/channel",
         className: "nav-link"
     }
     //marketplace is now off the navbar. Simply type manually the url

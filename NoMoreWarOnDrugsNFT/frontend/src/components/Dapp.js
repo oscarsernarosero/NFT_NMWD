@@ -23,6 +23,7 @@ import { Marketplace } from "./Marketplace/Marketplace";
 import { Home } from "./Info/Home";
 import { Overview } from "./Info/Overview";
 import { Gallery } from "./Gallery/Gallery";
+import { Mint } from "./Mint/Mint";
 import { MyWallet} from "./MyWallet/MyWallet";
 import { SetMessage } from "./MyWallet/SetMessage";
 import { NewUri } from  "./NewUri/NewUri";
@@ -200,7 +201,7 @@ export class Dapp extends React.Component {
                   />
                 }
               />
-              <Route path="/gallery" 
+              <Route path="/gallery/:page?" 
                 render={(props)=>
                   <Gallery
                     
@@ -216,8 +217,23 @@ export class Dapp extends React.Component {
                     getAllNFTsIdsOnly = { () => {
                       return this.getAllNFTsIdsOnly();
                     }}
+                    to = {this.state.selectedAddress}
+                    waitForMinedConfirmation={ (tx_hash, func) => {
+                      return this.waitForMinedConfirmation(tx_hash, func);
+                    }}
+                  />
+                }
+              />
 
+              <Route path="/mint/:page?" 
+                render={(props)=>
+                  <Mint
+                    address = {this.state.selectedAddress}
                     marketPlaceAddress = {MarketPlaceAddress.Token}
+
+                    getAllNFTsIdsOnly = { () => {
+                      return this.getAllNFTsIdsOnly();
+                    }}
                     to = {this.state.selectedAddress}
                     getPrice = { (tokenId) => {
                       return this.getPrice( tokenId);
@@ -228,7 +244,7 @@ export class Dapp extends React.Component {
                   />
                 }
               />
-              <Route path="/wallet" 
+              <Route path="/wallet/:page?" exact
                 render={(props)=>
                   <MyWallet
                     getNFTsByAddress = {(address) => {

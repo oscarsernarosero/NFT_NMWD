@@ -1,19 +1,19 @@
 import React from "react";
-import { PaginationNFTs } from "./PaginationNFTs";
+import { ForMinting } from "./ForMinting";
 import "../../style/gallery.css";
 import {
   useParams
 } from "react-router-dom";
 
-export function Gallery(props){
+export function Mint(props){
 
-    
-  let { page } = useParams();
-  if (page===undefined)  page=1;
+    let { page } = useParams();
+    if (page===undefined)  page=1;
   
     return (
       <div className="gallery">
-          <PaginationNFTs
+
+        <ForMinting
           page={page}
           mywallet = {false}
           {...props}

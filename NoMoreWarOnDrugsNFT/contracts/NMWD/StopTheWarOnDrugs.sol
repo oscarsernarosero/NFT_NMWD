@@ -282,7 +282,7 @@ contract StopTheWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981
 
     /**
     * @dev returns boolean representing the existance of an NFT
-    * @param _tokenId of the NFT looking up.
+    * @param _tokenId of the NFT to look up.
     */
       function exists(uint _tokenId) external view returns (bool) { 
         if( idToOwner[_tokenId] == address(0)){
