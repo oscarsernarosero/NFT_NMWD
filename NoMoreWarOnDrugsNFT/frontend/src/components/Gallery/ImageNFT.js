@@ -15,6 +15,7 @@ import { IoPricetag } from "react-icons/io5";
 import { RiPriceTag2Fill } from "react-icons/ri";
 import { RiShoppingBag3Fill } from "react-icons/ri";
 import { RiShoppingCart2Fill } from "react-icons/ri";
+import { GiQueenCrown } from "react-icons/gi";
 import { HiCash } from "react-icons/hi";
 import { TiStar } from "react-icons/ti";
 
@@ -257,46 +258,64 @@ async setForSale()
     
   return (
     <div className="nft-container">
+
       <div className="NFTTitle" style={this.props.uri.name.length<25?{"fontSize":"2rem"}:{"fontSize":"1.6rem"}}>
         {this.props.uri.name}
       </div>
+
       <div className="imageContainer">
         <a href={pinata_content_url} target="_blank" rel="noopener noreferrer">
           {animation? 
-          <video loop autoPlay controls muted
-          style={{width:"100%"}}
-          >
-            <source src={pinata_content_url} type="video/mp4"/>
-            <source src={pinata_content_url} type="video/ogg" />
-            Your browser does not support the video tag.
-          </video>
-          :
-          <img 
-          src={pinata_content_url}
-          alt={this.props.uri.name}
-          className="imageNFT"
-          />
+            <video loop autoPlay controls muted
+              style={{width:"100%"}}
+              >
+              <source src={pinata_content_url} type="video/mp4"/>
+              <source src={pinata_content_url} type="video/ogg" />
+              Your browser does not support the video tag.
+            </video>
+            :
+            <img 
+              src={pinata_content_url}
+              alt={this.props.uri.name}
+              className="imageNFT"
+            />
           }
          
         </a>
       </div>
-      <div className={this.props.mywallet&&this.props.uri.message==="" ? "dont-show" : "msg-title"}>
-      <MdMessage style={{verticalAlign:"middle"}}/> Message:
+
+      <div className="nft-id">
+          id: {this.props.uri.id}
       </div>
+
+      <div className={this.props.mywallet&&this.props.uri.message==="" ? "dont-show" : "msg-title"}>
+        <MdMessage style={{verticalAlign:"middle"}}/> Message:
+      </div>
+
       <div className={this.props.mywallet&&this.props.uri.message==="" ? "dont-show" : 
         !this.props.mywallet&&this.props.uri.message==="" || this.props.uri.message===undefined ? "no-message" : "message"}>
           {!this.props.mywallet&&this.props.uri.message==="" || this.props.uri.message===undefined  ? 
           "This NFT has no message yet. You can set it yourself if you buy this NFT!" :
           this.props.uri.message} 
       </div>
-      <div className="artist-container">
-        <div className="artist">
-         <GiPalette /> &nbsp;  artist: 
+
+      <div className="artist-royalty-container">
+        <div className="artist-container">
+          <div className="artist">
+            <GiPalette />&nbsp;Artist: 
+          </div>
+          <a href={this.props.uri.attributes.webpage} className="link" target="_blank" rel="noopener noreferrer">
+            {this.props.uri.attributes.artist}
+          </a>
         </div>
-        <a href={this.props.uri.attributes.webpage} className="link" target="_blank" rel="noopener noreferrer">
-          {this.props.uri.attributes.artist}
-        </a>
+        <div className="royalty-container">
+          <div className="royalty">
+            <GiQueenCrown style={{verticalAlign:"middle"}}/>&nbsp;NFT-Royalty: 
+             </div>
+          <div className="royalty-value"> 6.9%  </div>
+        </div>
       </div>
+
       <div className="description">
         Description: {this.props.uri.description}
       </div>
@@ -304,11 +323,12 @@ async setForSale()
       <div className="price">
        <FaEthereum style={{verticalAlign:"middle",fontSize:"1.5rem"}}/> {parseInt(this.props.uri.price)/1000000000000000000}  ETH 
       </div>  
+
       <div className={this.props.mywallet ? "dont-show" : "button-container"}>
 
         <button onClick={this.props.mywallet||!this.props.uri.forSale ? this.buyDisable :
                                                    this.props.forMint ? this.mint : this.buy}
-        className={this.props.uri.owned ? "button-owned"  : "button" }>
+          className={this.props.uri.owned ? "button-owned"  : "button" }>
           {
             this.props.forMint ? <GiTwoCoins style={{verticalAlign:"middle"}}/> :
             this.props.uri.forSale?  <TiStar style={{verticalAlign:"middle"}}/>  :
@@ -322,6 +342,7 @@ async setForSale()
 
         </button>
       </div>
+
       <div className={!this.props.mywallet||this.props.uri.message!=="" ? "dont-show" : "text-center"}>
         <Link to={{ pathname: "/setmessage" }}>
           <button className="setMessage" onClick={this.setSelectedId}>
@@ -329,6 +350,7 @@ async setForSale()
         </Link>
         
       </div>  
+
       <div className={!this.props.mywallet ? "dont-show" : "text-center"}>
     
         <button className="setPrice" onClick={this.changePrice}> 

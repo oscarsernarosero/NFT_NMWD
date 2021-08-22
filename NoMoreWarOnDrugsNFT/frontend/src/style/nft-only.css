@@ -1,115 +1,157 @@
 @import url('https://fonts.googleapis.com/css2?family=Arsenal&family=Bilbo&family=Changa:wght@200&family=Cuprum&family=East+Sea+Dokdo&family=Economica&family=Fondamento&family=Girassol&family=Gudea:wght@400;700&family=IBM+Plex+Mono:wght@300&family=IM+Fell+DW+Pica&family=IM+Fell+English+SC&family=Just+Another+Hand&family=Nanum+Pen+Script&family=New+Rocker&family=Pathway+Gothic+One&family=Rajdhani&family=Rancho&family=Rock+Salt&family=Saira+Semi+Condensed:wght@300;400&family=Sedgwick+Ave+Display&family=Teko:wght@300&family=Walter+Turncoat&display=swap');
 
 .nft-container{
-     
-    min-width: 100%;
+    min-width: min-content;
     height: min-content;
     padding: 3%;
+    margin:auto;
+}
 
+.imageNFT{
+    max-width: 100%;
+    display:block;
+    align-content: center;
+    margin: auto;
+}
+
+.info-container{
+    width: 900px;
+    margin: auto;
+}
+
+.msg-container{
+    margin-top: 1rem;
+    max-width: 94%;
+    display:block;
+    height: max-content;
+    align-content: center;
+}
+
+
+.message{
+    display:inline-block;
+    max-width: 90%;
+    align-self: center;
+    text-align: left;
+    font-size: 1.5rem;
+    font-family: 'Caveat', cursive;
+    line-height: 1.5rem;
+    height: max-content;
+}
+
+.no-message{
+    display:inline-block;
+    height: min-content;
+    text-overflow: clip;
+    line-height: 1.5rem;
+    max-width: 90%;
+    align-self: center;
+    text-align: left;
+    font-size: 1.5rem;
+    color: #abad18;
+}
+
+.msg-title{
+    display:inline-block;
+    max-width: 10%;
+    align-self: center;
+    text-align: left;
+    height: 0rem;
+    font-size: 1rem;
+    line-height: 0rem;
+    color: rgb(226, 226, 226);
 }
 
 
 .NFTTitle{
-    font-size:1.6rem;
-    line-height: 1.7rem;
-    padding-bottom: 2%;
+    
+    font-size:1rem;
     align-self: center;
-    text-align: center;
+    text-align: left;
     max-width: 94%;
+    max-height: 0rem;
     text-shadow: 0px 0px 0.4rem rgb(255, 255, 255);
 }
 
-
-.imageNFT{
-    max-width: 94%;
-    display:block;
-    align-content: center;
-}
-
 .nft-id{
-    margin-top: 2%;
-    text-align: center;
-    overflow: clip;
-    text-overflow: ellipsis;
-    font-size: 0.733vw;
-    padding:1%;
-    max-width: 92%;
-    white-space: nowrap;
-    height: 1rem;
-}
-
-.msg-title{
-    display:block;
-    
-    align-self: center;
+    font-size: 1rem;
     text-align: left;
-    height: min-content;
-    font-size: 0.75rem;
-    color: rgb(226, 226, 226);
-}
-
-.message{
-    display:block;
-    max-width: 92%;
-    align-self: center;
-    text-align: left;
-    padding: 1%;
-    font-size: 1.1rem;
-    font-family: 'Caveat', cursive;
-    line-height: 1.9rem;
-}
-
-.no-message{
-    display:block;
-    max-width: 92%;
-    align-self: center;
-    text-align: left;
-    padding: 1%;
-    text-overflow: ellipsis;
-    font-size: 0.9rem;
-    color: #abad18;
-}
-
-.artist-rotalty-container{
     max-width: 94%;
-    padding: 1%;
-    display:block;
+    margin:0;
+    padding: 0;
+    padding-top:0.3rem
 }
+
+.description{
+    display:block;
+    align-self: center;
+    text-align: left;
+    max-width: 94%;
+    font-size: 1rem;
+    color: rgb(226, 226, 226);
+    padding:0;
+    padding-top:0.3rem
+}
+
 
 .artist-container{
     display: inline-block;
     width: 50%;
-    font-size: 0rem;
-    padding: 1%;
+    padding: 0;
+    font-size: 1rem;
 }
 
-.royalty-container{
-    display: inline-block;
-    width: 40%;
-    font-size: 0.75rem;
+.owner-address{
+    display:block;
+    align-self: center;
+    text-align: left;
+    max-width: 94%;
+    font-size: 1rem;
+    color: rgb(226, 226, 226);
+    padding:0;
 }
 
-.royalty{
-    display: inline-block;
-    width: 55%
-}
-
-.royalty-value{
-    text-align: end;
-    display: inline-block;
-    width: 40%
-}
-
-
-.artist{
+.artist-title{
     display: inline-flex;
     padding:0;
     margin:0;
     align-self: center;
-    max-width: 50%;
-    min-width: 40%;
+    width:max-content;
     text-align: left;
-    font-size: 0.75rem;
+    font-size: 1rem;
+}
+
+.artist-name{
+    display: inline-flex;
+    padding:0;
+    margin:0;
+    align-self: center;
+    max-width: 70%;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.artist-link{
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+.royalty-container{
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.royalty{
+    display: inline-block;
+    width: max-content;
+}
+
+.royalty-value{
+    text-align:start;
+    display: inline-block;
+    width: 70%
 }
 
 .link:visited,
@@ -140,16 +182,6 @@
     clear: both;
     height: 0;
     visibility: hidden;
-}
-
-.description{
-    display:block;
-    align-self: center;
-    text-align: left;
-    max-width: 94%;
-    padding-top: 1%;
-    font-size: 0.75rem;
-    color: rgb(226, 226, 226);
 }
 
 

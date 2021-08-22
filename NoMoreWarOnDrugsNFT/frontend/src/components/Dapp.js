@@ -23,6 +23,7 @@ import { Marketplace } from "./Marketplace/Marketplace";
 import { Home } from "./Info/Home";
 import { Overview } from "./Info/Overview";
 import { Gallery } from "./Gallery/Gallery";
+import { NFTOnlyContainer } from "./Gallery/NFTOnlyContainer";
 import { Mint } from "./Mint/Mint";
 import { MyWallet} from "./MyWallet/MyWallet";
 import { SetMessage } from "./MyWallet/SetMessage";
@@ -92,8 +93,32 @@ export class Dapp extends React.Component {
               <Route path="/" exact 
                 component={Home}/>
              
-                <Route path="/overview"  
+              <Route path="/overview"  
                 component={Overview}/>
+
+              <Route path="/nftbyid/:id"  
+                render= { 
+                  (props)=>
+                  <NFTOnlyContainer 
+                    address = {this.state.selectedAddress}
+                    marketPlaceAddress = {MarketPlaceAddress.Token}
+
+                    getNFTData={ (id) => {
+                      return this.getNFTData(id);
+                    }}
+                    getNFTidsByAddress={(address) => {
+                      return this.getNFTidsByAddress(address);
+                    }}
+                    getAllNFTsIdsOnly = { () => {
+                      return this.getAllNFTsIdsOnly();
+                    }}
+                    to = {this.state.selectedAddress}
+                    waitForMinedConfirmation={ (tx_hash, func) => {
+                      return this.waitForMinedConfirmation(tx_hash, func);
+                    }}
+                  />
+                }
+              />
                 
               <Route path="/tokenContract"
                 render = {
@@ -567,7 +592,9 @@ export class Dapp extends React.Component {
    }
 
    async getNFTData(id){
+     console.log("start id",id);
         const uri = await this._nmwd.tokenURI(id);
+        console.log("1111");
         const CID = uri.substring(7);
         console.log("CID from uri: ",CID);
         const pinata_uri_url = "https://gateway.pinata.cloud/ipfs/"+CID;
@@ -590,6 +617,8 @@ export class Dapp extends React.Component {
         data["id"] = id;
         const forSale = await this.marketPlace.getForSale(id);
         data["forSale"] = forSale;
+        const nftOwner = await this.getOwnerOf(id);
+        data["nftOwner"] = nftOwner;
         return data
    }
 
