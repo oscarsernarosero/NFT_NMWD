@@ -257,7 +257,7 @@ async setForSale()
     }
 
         const currentUrl = window.location.href;
-        let i = currentUrl.lastIndexOf('nftbyid/');
+        let i = currentUrl.lastIndexOf('gallery/');
         const url=currentUrl.substr(0,i)+"nftbyid/"+this.props.uri.id;
         console.log(url)
         //window.location.href = url;

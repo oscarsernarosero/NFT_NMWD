@@ -22,3 +22,10 @@ marketPlace address: 0x4c3dB2cEaF27FEA5f5aD7e80F474f575cda80DD6
 nmwdToken address: 0x84dAfE3529152c27DCc591daDe5BC40a6d960Ae5
 marketPlace address: 0x6F5e314bc11895e219f2Fd4a4fA6742A8bf42A1A
 
+# RINKEBY NETWORK
+
+## August 20, 2021
+
+nmwdToken address: 0x474608684e3d994FBf028F9F32188105649Ab4a7
+marketPlace address: 0x82bB67010dc8BB93C2f0644c36FaD059bd6BBf1C
+
