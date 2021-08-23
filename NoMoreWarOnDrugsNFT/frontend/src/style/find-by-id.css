@@ -1,0 +1,61 @@
+.find-by-id-container{
+    background-color:transparent;
+}
+
+.find-by-id{
+
+    
+
+}
+
+
+.find-by-id-button{
+    padding: 0.2rem;
+    height: 1.7rem;
+    background-color: black;
+    border-style: hidden;
+    color: white;
+}
+
+.find-by-id-form{
+    display: grid;
+    grid-template-columns:  max-content min-content;
+    grid-gap: 0px;
+    list-style: none;
+    text-align: end;
+    justify-content: center;
+    width: max-content;
+    font-size: 1.2rem;
+    align-content: flex-start;
+}
+
+
+.form-container{
+    width: max-content;
+    float:left;
+}
+
+.find-by-id-input{
+    display: inline-block;
+    border-radius: 0.7rem;
+    border-style: hidden;
+    height: 1.2rem;
+    width: 31rem;
+    align-content: left;
+    padding-left: 1rem;
+}
+
+.find-by-id-submmit{
+
+    display: inline-block;
+    color: black;
+    width: min-content;
+    align-content: flex-start;
+    margin-left: 1rem;
+    border-radius: 0.7rem;
+    border-style: hidden;
+}
+
+.dont-show{
+display: none;
+}

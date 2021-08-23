@@ -1,13 +1,23 @@
 import React from "react";
+import "../../style/find-by-id.css"
+import { CgFilters } from "react-icons/cg";
+import { IoCaretDown } from "react-icons/io5";
+import { IoCaretUp } from "react-icons/io5";
 
 
 export class FindById extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = {tokenId: ""}
+        this.state = {tokenId: "",lookUpByIdVisible:false}
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.show = this.show.bind(this);
+    }
+
+    show(event){
+        event.preventDefault();
+        this.setState({lookUpByIdVisible: !this.state.lookUpByIdVisible});
     }
 
     handleChange(event) {
@@ -30,18 +40,28 @@ export class FindById extends React.Component{
         return(
             <div className="find-by-id-container" >
                 <form className="find-by-id" onSubmit={this.handleSubmit}>
-                    <label>Id: </label>
-                    <input
-                        className="form-control"
-                        type="text"
-                        name="id"
-                        onChange={this.handleChange}
-                        required
-                    />
-                    <div className="form-group">
-                        <input className="btn btn-primary" type="submit" value="Search" />
+                <button onClick={this.show} className="find-by-id-button">
+                <CgFilters style={{verticalAlign:"middle",fontSize:"1.2rem"}}/>&nbsp;Look Up By Id&nbsp;
+                {this.state.lookUpByIdVisible? <IoCaretUp style={{verticalAlign:"middle"}}/>:
+                                            <IoCaretDown style={{verticalAlign:"middle"}}/>}
+                </button>
+                <div className={this.state.lookUpByIdVisible? "find-by-id-form": "dont-show"}>
+                    <div className="form-container">
+                        <label>Id: </label>
+                        <input
+                            className="find-by-id-input"
+                            type="text"
+                            name="id"
+                            onChange={this.handleChange}
+                            required
+                        />
+                     </div>
+                    <div>
+                        <input className="find-by-id-submmit" type="submit" value="Search" />
+                    </div>
                     </div>
                 </form>
+                
             </div>
         )
         

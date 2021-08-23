@@ -246,7 +246,6 @@ async setForSale()
     }
     if(CID){
       pinata_content_url = "https://ipfs.fleek.co/ipfs/"+CID;
-      console.log("pinata_content_url", pinata_content_url);
     }else{
       if (animation){
         pinata_content_url = "https://ipfs.fleek.co/ipfs/bafybeihj7gwt5cqj2pk35qkdthyt5dmvknstf2k4fqsrwgmpchd7ucypni";//change this for logo later

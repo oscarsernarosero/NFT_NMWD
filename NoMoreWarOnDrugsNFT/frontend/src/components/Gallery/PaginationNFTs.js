@@ -198,11 +198,6 @@ import { Carousel } from "../Gallery/Carousel";
     }
 
     async findById(_id){
-      // const data = await this.props.getNFTData(_id);
-      // if(!this.props.mywallet){
-      //   data["owned"] = this.state.myIds.includes(_id);
-      // }
-      // const nfts = [data]
       await this.setState({filteredIds: [_id]});
       console.log("filteredIds", this.state.filteredIds)
     }
@@ -240,15 +235,9 @@ import { Carousel } from "../Gallery/Carousel";
     }
     
       async getNFTids(){
-        // let ids = [];
-        //  if(this.props.address) {
             let ids = await this.props.getAllNFTsIdsOnly();
             this.setState({ids: ids});
             console.log("getNFTids: ",ids);
-
-        //  }else{
-        //     this.state = {ids: [0]};
-        // }
         
       }
       
