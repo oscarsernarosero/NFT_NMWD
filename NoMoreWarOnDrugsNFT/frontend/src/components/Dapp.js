@@ -226,7 +226,7 @@ export class Dapp extends React.Component {
                   />
                 }
               />
-              <Route path="/gallery/:page?" 
+              <Route path="/gallery/:page?/:id?" 
                 render={(props)=>
                   <Gallery
                     

@@ -254,7 +254,13 @@ async setForSale()
       }else{
         pinata_content_url = "https://ipfs.fleek.co/ipfs/QmNZxE7QumQqD4WkvPBps7yfwW876Ns55dCf6tCbcFvF5a";//change this for logo later
       }
-        }
+    }
+
+        const currentUrl = window.location.href;
+        let i = currentUrl.lastIndexOf('nftbyid/');
+        const url=currentUrl.substr(0,i)+"nftbyid/"+this.props.uri.id;
+        console.log(url)
+        //window.location.href = url;
     
   return (
     <div className="nft-container">
@@ -264,7 +270,7 @@ async setForSale()
       </div>
 
       <div className="imageContainer">
-        <a href={pinata_content_url} target="_blank" rel="noopener noreferrer">
+        <a href={url} target="_blank" rel="noopener noreferrer">
           {animation? 
             <video loop autoPlay controls muted
               style={{width:"100%"}}

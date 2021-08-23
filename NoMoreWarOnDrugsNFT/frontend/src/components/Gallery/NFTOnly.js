@@ -81,7 +81,11 @@ export class NFTOnly extends React.Component{
 
 
     seeInGallery(){
-        console.log("see it gallery for id: ",this.props.id);
+        const currentUrl = window.location.href;
+        let i = currentUrl.lastIndexOf('nftbyid/');
+        const url=currentUrl.substr(0,i)+"gallery/1/"+this.props.id;
+        console.log(url)
+        window.location.href = url;
     }
 
 
@@ -115,8 +119,8 @@ export class NFTOnly extends React.Component{
         }
         }
         return(
-            <div className="nft-container">
-                <div className="imageContainer">
+            <div className="nft-only-container">
+                <div className="imageContainer-nft">
                     <a href={pinata_content_url} target="_blank" rel="noopener noreferrer">
                     {animation? 
                         <video loop autoPlay controls muted
@@ -130,7 +134,7 @@ export class NFTOnly extends React.Component{
                         <img 
                         src={pinata_content_url}
                         alt={this.state.uri.name}
-                        className="imageNFT"
+                        className="imageNFT-only"
                         />
                     }
                     </a>
@@ -138,52 +142,53 @@ export class NFTOnly extends React.Component{
 
                 <div className="info-container">
 
-                    <div className="msg-container">
+                    <div className="msg-container-nft">
 
-                        <div className={this.state.uri.message==="" ? "dont-show" : "msg-title"}><MdMessage style={{verticalAlign:"middle"}}/> Message:
+                        <div className={this.state.uri.message==="" ? "dont-show" : "msg-title-nft"}>
+                        <MdMessage style={{verticalAlign:"middle"}}/> Message:&nbsp;
                         </div>
 
                         <div className={this.state.uri.message==="" ? "dont-show" : 
-                        this.state.uri.message==="" || this.state.uri.message===undefined ? "no-message" : "message"}>
+                        this.state.uri.message==="" || this.state.uri.message===undefined ? "no-message-nft" : "message-nft"}>
                             {this.state.uri.message==="" || this.state.uri.message===undefined  ? 
                             "This NFT has no message yet. You can set it yourself if you buy this NFT!" :
                             this.state.uri.message} 
                         </div>
                     </div>
 
-                    <div className="NFTTitle">
+                    <div className="NFTTitle-nft">
                         Name: {this.state.uri.name}
                     </div>
 
-                    <div className="nft-id">
+                    <div className="nft-id-nft">
                         Id: &nbsp;{this.props.id}
                     </div>
 
-                    <div className="description">
+                    <div className="description-nft">
                     Description: {this.state.uri.description}
                     </div>
 
-                    <div className="owner-address">
+                    <div className="owner-address-nft">
                     Owner Address: { this.state.minted? this.state.uri.nftOwner : "Not minted yet!"}
                     </div>
                     
-                    <div className="artist-container">
-                        <div className="artist-title">
+                    <div className="artist-container-nft">
+                        <div className="artist-title-nft">
                             <GiPalette />&nbsp;Artist: &nbsp;
                         </div>
-                        <div className="artist-name">
+                        <div className="artist-name-nft">
                             <a href={this.state.uri.attributes.webpage} className="link" target="_blank" rel="noopener noreferrer"
-                                className="artist-link" >
+                                className="artist-link-nft" >
                             {this.state.uri.attributes.artist }
                             </a>
                         </div>
                     </div>
 
-                    <div className="royalty-container">
-                        <div className="royalty">
+                    <div className="royalty-container-nft">
+                        <div className="royalty-nft">
                             <GiQueenCrown style={{verticalAlign:"middle"}}/>&nbsp;NFT-Royalty: &nbsp;
                             </div>
-                        <div className="royalty-value"> 6.9%  </div>
+                        <div className="royalty-value-nft"> 6.9%  </div>
                     </div>
 
                     <div className={ "button-container"}>

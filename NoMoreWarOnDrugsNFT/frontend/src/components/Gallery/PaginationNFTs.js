@@ -1,6 +1,7 @@
 import React from "react";
 import Pagination from "react-pagination-js";
 import {Filter} from  "./Filter";
+import { FindById } from "./FindById";
 import "react-pagination-js/dist/styles.css"; // import css
 import { ImageNFT } from "./ImageNFT";
 import "../../style/pagination.css"
@@ -28,13 +29,12 @@ import { Carousel } from "../Gallery/Carousel";
         this.listView = this.listView.bind(this);
         this.albumView = this.albumView.bind(this);
         this.filterNFTs = this.filterNFTs.bind(this);
+        this.findById = this.findById.bind(this);
         this.viewInfo = this.viewInfo.bind(this);
         this.closeViewInfo = this.closeViewInfo.bind(this);
         console.log(this.state);
         this.DB = require("../../localDB/attributes.json");
         
-        //this.target = useRef(null);
-
       }
 
     async componentDidMount(){
@@ -79,9 +79,17 @@ import { Carousel } from "../Gallery/Carousel";
           if(this.props.pageSize != this.state.pageSize){
               this.setState({pageSize: this.props.pageSize});
         }}
+        
+        if( this.props.findId!==0){
+          this.findById(this.props.findId);
+        }
         //finally, we request the blockchain for the data of the NFTs
-        //, but only the ones that we need to display.
-        await this.getPageData();
+          //, but only the ones that we need to display.
+          await this.getPageData();
+  
+        
+
+
             
         
     }
@@ -189,6 +197,16 @@ import { Carousel } from "../Gallery/Carousel";
       
     }
 
+    async findById(_id){
+      // const data = await this.props.getNFTData(_id);
+      // if(!this.props.mywallet){
+      //   data["owned"] = this.state.myIds.includes(_id);
+      // }
+      // const nfts = [data]
+      await this.setState({filteredIds: [_id]});
+      console.log("filteredIds", this.state.filteredIds)
+    }
+
 
     async changeCurrentPage(numPage) {
       const currentUrl = window.location.href;
@@ -257,6 +275,11 @@ import { Carousel } from "../Gallery/Carousel";
                   <Filter
                   applyFilter = {(_byTopic, _byArtist, _byLanguage) => {
                     return this.filterNFTs(_byTopic, _byArtist, _byLanguage)}}/>
+                </div>
+                <div>
+                  <FindById
+                    findById={(id) => {this.findById(id)}}
+                  />
                 </div>
                <div className={this.state.view ? "": "not-visible"}>
                <ul className="list">

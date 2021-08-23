@@ -8,13 +8,16 @@ import {
 export function Gallery(props){
 
     
-  let { page } = useParams();
+  let { page,id } = useParams();
+  console.log(id);
   if (page===undefined)  page=1;
+  if (id===undefined)  id=0;
   
     return (
       <div className="gallery">
           <PaginationNFTs
           page={page}
+          findId={id}
           mywallet = {false}
           {...props}
           />
