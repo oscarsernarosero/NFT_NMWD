@@ -3,7 +3,6 @@ import { CgFilters } from "react-icons/cg";
 import { IoCaretDown } from "react-icons/io5";
 import { IoCaretUp } from "react-icons/io5";
 import '../../style/filter.css';
-const fs = require("fs");
 const DB = require("../../localDB/attributes.json");
 const CONST = require('./uri_constants');
 
@@ -88,7 +87,7 @@ export class Filter extends React.Component{
       if(event.target.checked){
           checked.push(event.target.value);
       }else{
-          checked = checked.filter( value => value != event.target.value );
+          checked = checked.filter( value => value !== event.target.value );
       }
       await this.setState({selectedArtists:checked});
       console.log("this.state.selectedArtists",this.state.selectedArtists);
@@ -101,7 +100,7 @@ export class Filter extends React.Component{
       if(event.target.checked){
           checked.push(event.target.value);
       }else{
-          checked = checked.filter( value => value != event.target.value );
+          checked = checked.filter( value => value !== event.target.value );
       }
       await this.setState({selectedTopics:checked});
       console.log("this.state.selectedTopics",this.state.selectedTopics);

@@ -1,5 +1,12 @@
 .tooltip-container{
     display:inline-block;
+    margin-left: 0.5rem;
+}
+
+.info-button{
+    background-color: black;
+    color: white;
+    border-radius: 1rem;
 }
 
 .close-button{
@@ -13,7 +20,7 @@
 .button-close-button{
     background-color: #00000000;
     border-style: hidden;
-    font-size: 1.5rem;
+    font-size: 0.75rem;
     color: white;
 }
 
@@ -24,11 +31,11 @@
 }
 
 .visible{
-    position:absolute;
+    position:fixed;
     border-radius: 20px;
-    top:20px;
-    left:50px;
-    width:150px;
+    top:200px;
+    left:450px;
+    width:500px;
     height:fit-content;
     display: block;
     padding: 4px;

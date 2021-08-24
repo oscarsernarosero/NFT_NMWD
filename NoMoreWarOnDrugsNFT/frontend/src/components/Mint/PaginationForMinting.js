@@ -56,7 +56,7 @@ import { Carousel } from "../Gallery/Carousel";
         
         //if we receive a different pageSize, we set it.
         if(this.props.pageSize){
-            if(this.props.pageSize != this.state.pageSize){
+            if(this.props.pageSize !== this.state.pageSize){
                 this.setState({pageSize: this.props.pageSize});
         }}
         //finally, we request the blockchain for the data of the NFTs
@@ -143,6 +143,14 @@ import { Carousel } from "../Gallery/Carousel";
 
 
     async changeCurrentPage(numPage) {
+        await this.setState({ page: numPage });
+        console.log("change to page",this.state.page);
+        this.getPageData();
+        //I am doing this double because it doesn't work if I do it once.
+        // await this.setState({ page: numPage });
+        // console.log("change to page",this.state.page);
+        // await this.getPageData();
+
         const currentUrl = window.location.href;
         let i = currentUrl.lastIndexOf('/');
         const url=currentUrl.substr(0,i)+"/"+numPage;
@@ -221,16 +229,12 @@ import { Carousel } from "../Gallery/Carousel";
                                 return this.props.setForSale(tokenId, forSale);
                               }}
                               setSelectedId = {(id, imageUrl, price) => {
-                                return this.props.setSelectedId(id, imageUrl), price;
+                                return this.props.setSelectedId(id, imageUrl, price);
                             }}
                             setPrice = { (price, tokenId) => {
                                 return this.props.setPrice(price, tokenId);
                               }}
-                              waitForMinedConfirmation={ (tx_hash, func) => {
-                                return this.props.waitForMinedConfirmation(tx_hash, func);
-                              }}
                               forMint={true}
-                              marketPlaceAddress = {this.props.marketPlaceAddress}
                               to = {this.props.to}
                               waitForMinedConfirmation={ (tx_hash, func) => {
                                 return this.props.waitForMinedConfirmation(tx_hash, func);
@@ -253,7 +257,7 @@ import { Carousel } from "../Gallery/Carousel";
                         return this.props.setForSale(tokenId, forSale);
                       }}
                       setSelectedId = {(id, imageUrl, price) => {
-                        return this.props.setSelectedId(id, imageUrl), price;
+                        return this.props.setSelectedId(id, imageUrl, price);
                     }}
                     setPrice = { (price, tokenId) => {
                         return this.props.setPrice(price, tokenId);
@@ -262,14 +266,13 @@ import { Carousel } from "../Gallery/Carousel";
                         return this.props.waitForMinedConfirmation(tx_hash, func);
                       }}
                       forMint={true}
-                      marketPlaceAddress = {this.props.marketPlaceAddress}
                       to = {this.props.to}
                   />
                 </div>     
                 
                 <div className="centered">
                     <Pagination
-                    currentPage={this.props.page}
+                    currentPage={this.state.page}
                     sizePerPage={this.state.pageSize}
                     totalSize={this.props.mywallet ? this.state.myIds.length : this.state.ids.length}
                     changeCurrentPage={this.changeCurrentPage}

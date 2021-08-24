@@ -36,7 +36,7 @@ export class Carousel extends React.Component {
         
         
     async componentDidUpdate(prevProps){
-        if (this.props.page != prevProps.page){
+        if (this.props.page !== prevProps.page){
             this.setState({selected:3});
         }
     }  

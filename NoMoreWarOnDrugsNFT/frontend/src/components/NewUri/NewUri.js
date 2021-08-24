@@ -1,6 +1,5 @@
 import React from "react";
 import "../../style/filter.css";
-const fs = require("fs");
 const DB = require("../../localDB/attributes.json");
 const CONST = require('./uri_constants');
 const TOPIC = CONST.TOPIC;
@@ -116,7 +115,7 @@ const LANGUAGE = CONST.LANGUAGE;
       if(event.target.checked){
           checked.push(event.target.value);
       }else{
-          checked = checked.filter( value => value != event.target.value );
+          checked = checked.filter( value => value !== event.target.value );
       }
       await this.setState({selectedArtists:checked});
       console.log("this.state.selectedArtists",this.state.selectedArtists);
@@ -134,7 +133,7 @@ const LANGUAGE = CONST.LANGUAGE;
       if(event.target.checked){
           checked.push(event.target.value);
       }else{
-          checked = checked.filter( value => value != event.target.value );
+          checked = checked.filter( value => value !== event.target.value );
       }
       await this.setState({selectedTopics:checked});
       console.log("this.state.selectedTopics",this.state.selectedTopics);
@@ -177,7 +176,7 @@ const LANGUAGE = CONST.LANGUAGE;
         const pinata = pinataSDK(this.state.pinataKey, this.state.pinataSecret);
 
 
-        if(this.state.selectedTopics.length==0){
+        if(this.state.selectedTopics.length===0){
             throw("topics must be an array with at least 1 topic");
         }
         if( this.state.language !== LANGUAGE.EN  &&  this.state.language !== LANGUAGE.ES ){

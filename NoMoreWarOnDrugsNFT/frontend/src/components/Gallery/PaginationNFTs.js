@@ -8,9 +8,6 @@ import "../../style/pagination.css"
 import { CgViewGrid } from "react-icons/cg";
 import { CgUiKit } from "react-icons/cg";
 import { InfoPopup } from "../Generics/InfoPopup";
-import Tooltip from 'react-bootstrap/Tooltip';
-import Overlay from 'react-bootstrap/Overlay';
-
 
 
 import { Carousel } from "../Gallery/Carousel";
@@ -76,7 +73,7 @@ import { Carousel } from "../Gallery/Carousel";
 
         //if we receive a different pageSize, we set it.
         if(this.props.pageSize){
-          if(this.props.pageSize != this.state.pageSize){
+          if(this.props.pageSize !== this.state.pageSize){
               this.setState({pageSize: this.props.pageSize});
         }}
         
@@ -112,7 +109,7 @@ import { Carousel } from "../Gallery/Carousel";
                 myIds = myIds.map( (_id) => {return _id._hex;});
                 console.log("myIds ",myIds);
                 this.setState({myIds: myIds});
-            }else if(myIds.length==0 && this.state.mywallet){
+            }else if(myIds.length===0 && this.state.mywallet){
               this.setState({myIds: []});
               this.setState({nfts: []});
             }
@@ -204,6 +201,10 @@ import { Carousel } from "../Gallery/Carousel";
 
 
     async changeCurrentPage(numPage) {
+      await this.setState({ page: numPage });
+      console.log("change to page",this.state.page);
+      this.getPageData();
+
       const currentUrl = window.location.href;
       let i = currentUrl.lastIndexOf('/');
       const url=currentUrl.substr(0,i)+"/"+numPage;
@@ -255,7 +256,7 @@ import { Carousel } from "../Gallery/Carousel";
                     />&nbsp;Cover</button>
                     
                       <InfoPopup
-                      msg="bla bla"
+                      msg="Select grid view or cover view according to your preference"
                       visible = {this.state.viewInfoVisble}
                       viewInfo = {()=>{this.viewInfo()}}
                     />
@@ -287,7 +288,7 @@ import { Carousel } from "../Gallery/Carousel";
                                 return this.props.setForSale(tokenId, forSale);
                               }}
                               setSelectedId = {(id, imageUrl, price) => {
-                                return this.props.setSelectedId(id, imageUrl), price;
+                                return this.props.setSelectedId(id, imageUrl, price);
                             }}
                             setPrice = { (price, tokenId) => {
                                 return this.props.setPrice(price, tokenId);
@@ -298,9 +299,6 @@ import { Carousel } from "../Gallery/Carousel";
                               
                               forMint={false}
                               to = {this.props.to}
-                              waitForMinedConfirmation={ (tx_hash, func) => {
-                                return this.props.waitForMinedConfirmation(tx_hash, func);
-                              }}
                               safeTransfer = { (owner, to, tokenId) => {
                                 return this.props.safeTransfer(owner, to, tokenId);
                               }}
@@ -323,7 +321,7 @@ import { Carousel } from "../Gallery/Carousel";
                         return this.props.setForSale(tokenId, forSale);
                       }}
                       setSelectedId = {(id, imageUrl, price) => {
-                      return this.props.setSelectedId(id, imageUrl), price;
+                      return this.props.setSelectedId(id, imageUrl, price);
                       }}
                       setPrice = { (price, tokenId) => {
                           return this.props.setPrice(price, tokenId);
@@ -339,7 +337,7 @@ import { Carousel } from "../Gallery/Carousel";
                   </div> 
                   <div className="centered">
                     <Pagination
-                    currentPage={this.props.page}
+                    currentPage={this.state.page}
                     sizePerPage={this.state.pageSize}
                     totalSize={this.props.mywallet ? this.state.myIds.length : this.state.ids.length}
                     changeCurrentPage={this.changeCurrentPage}

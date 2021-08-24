@@ -1,0 +1,71 @@
+.info-only-popup-container{
+    padding: 5px;
+    border-radius: 20px;
+    display: block;
+    max-width: fit-content;
+    min-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+    background-color: #012e86;
+    
+    
+}
+
+
+.paragraph-price{
+    padding: 20px;
+    font-size: 20px;
+    text-shadow: 0px 0px 5px rgb(3, 68, 3);
+    text-justify:newspaper;
+    border-color: rgb(0, 255, 157);
+    border-style: hidden;
+    border-radius: 10px;
+    background-color: rgb(0, 255, 157, 0.3);
+}
+
+.close-button{
+    display: inline-flex;
+    position:abosolute;
+    top:2px;
+    left: 2px;
+    width:10%;
+}
+
+.button-close-button{
+    background-color: #00000000;
+    border-style: hidden;
+    font-size: 1.5rem;
+    color: white;
+}
+.title-price{
+    font-size: 20px;
+    padding-left: 28px;
+    text-shadow: 0px 0px 10px blue;
+    display:inline-flex;
+    text-align: right;
+    width:77%;
+    
+}
+
+.justify-center{
+    text-align:center ;
+    align-content: center;
+}
+
+.form-container-price{
+    padding: 2px;
+    background-color: #00000050;
+    border-bottom-right-radius: 20px;
+      border-bottom-left-radius:  20px;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+    
+}
+
+.message-label-price{
+    color: white;
+    padding: 20px;
+    text-shadow: 0px 0px 10px black;
+    font-size: 28px;
+}

@@ -1,7 +1,6 @@
 import React from "react";
 import { PaginationForMinting } from "./PaginationForMinting";
 import "../../style/gallery.css";
-const fs = require("fs");
 
 
 export class ForMinting extends React.Component{

@@ -1,31 +1,9 @@
 import React from "react";
 import "../../style/nft-only.css";
-import { ChangePrice } from "../MyWallet/ChangePrice";
-import { ethers } from "ethers";
-import { Popup } from "../Generics/Popup";
-import { Transfer } from "../MyWallet/Transfer"
-import { BiCoin } from "react-icons/bi";
-import { FaEthereum } from "react-icons/fa";
-import { GiTwoCoins } from "react-icons/gi";
-import { IoIosSend } from "react-icons/io";
 import { GiPalette } from "react-icons/gi";
 import { MdMessage } from "react-icons/md";
-import { CgDetailsMore } from "react-icons/cg";
-import { IoPricetag } from "react-icons/io5"; 
-import { RiPriceTag2Fill } from "react-icons/ri";
-import { RiShoppingBag3Fill } from "react-icons/ri";
-import { RiShoppingCart2Fill } from "react-icons/ri";
 import { GiQueenCrown } from "react-icons/gi";
-import { HiCash } from "react-icons/hi";
-import { TiStar } from "react-icons/ti";
 
-import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    Switch,
-   useHistory
-  } from "react-router-dom";
 
 export class NFTOnly extends React.Component{
 
@@ -101,7 +79,7 @@ export class NFTOnly extends React.Component{
         let CID="";
         let pinata_content_url;
         let animation=false;
-        if (this.state.uri.animation_url!=undefined && this.state.uri.animation_url!=""){
+        if (this.state.uri.animation_url!==undefined && this.state.uri.animation_url!==""){
         animation=true;
         CID = (this.state.uri.animation_url).substring(7);
         }else{
@@ -177,7 +155,7 @@ export class NFTOnly extends React.Component{
                             <GiPalette />&nbsp;Artist: &nbsp;
                         </div>
                         <div className="artist-name-nft">
-                            <a href={this.state.uri.attributes.webpage} className="link" target="_blank" rel="noopener noreferrer"
+                            <a href={this.state.uri.attributes.webpage} target="_blank" rel="noopener noreferrer"
                                 className="artist-link-nft" >
                             {this.state.uri.attributes.artist }
                             </a>

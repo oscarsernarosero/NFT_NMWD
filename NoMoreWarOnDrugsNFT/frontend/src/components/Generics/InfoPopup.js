@@ -1,9 +1,6 @@
 import React from "react";
 import "../../style/info-popup.css"
-
-import Tooltip from 'react-bootstrap/Tooltip';
-import Overlay from 'react-bootstrap/Overlay';
-import Button from 'react-bootstrap/Button'
+import { OnlyTextPopup } from "./OnlyTextPopup";
 
 /**
 * @dev This is a generic popup for displaying information about a front end feature.
@@ -12,25 +9,28 @@ This is triggered by the "?" button found on some aread of the UI.
 * @param visible boolean indicating the visibility of the popup.
 * @param viewInfo function that alters the visibility of the popup.
 */
-export function InfoPopup(_props) {
-    const [show, setShow] = React.useState(false);
-    const target = React.useRef(null);
-    console.log(_props);
-    console.log("show",show);
+export class InfoPopup extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = {visible:false};
+  }
+
+    
+  render(){
     return (
-        
-      <div >
-        <button ref={target} onClick={() => setShow(!show)}>
+      <div className="tooltip-container">
+        <button  onClick={this.props.viewInfo} className="info-button">
           ?
         </button>
-        <Overlay target={target.current} show={show} placement="right">
-            
-          {(props) => (
-            <Tooltip id="overlay-example" {...props}>
-              {_props.msg}
-            </Tooltip>
-          )}
-        </Overlay>
+        <div className={this.props.visible?"visible":"not-visible"}>
+          <OnlyTextPopup 
+            msg={this.props.msg}
+            close={this.props.viewInfo}
+          />
+        </div>
       </div>
     );
+  }
+  
   }

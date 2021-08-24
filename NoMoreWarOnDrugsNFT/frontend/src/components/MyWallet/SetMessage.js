@@ -53,7 +53,7 @@ export class SetMessage extends React.Component{
           }else{
             this.setState({forSale: !this.state.forSale});
             this.setState({txHash: tx.hash});
-            const res = await this.props.waitForMinedConfirmation(tx.hash, (tx) => {
+            await this.props.waitForMinedConfirmation(tx.hash, (tx) => {
             this.setState({waiting: false});
             this.setState({successful: true});
             console.log("tx mined: ", tx.hash);

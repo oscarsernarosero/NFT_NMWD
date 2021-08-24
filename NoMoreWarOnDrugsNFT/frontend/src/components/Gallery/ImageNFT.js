@@ -4,26 +4,18 @@ import { ChangePrice } from "../MyWallet/ChangePrice";
 import { ethers } from "ethers";
 import { Popup } from "../Generics/Popup";
 import { Transfer } from "../MyWallet/Transfer"
-import { BiCoin } from "react-icons/bi";
 import { FaEthereum } from "react-icons/fa";
 import { GiTwoCoins } from "react-icons/gi";
 import { IoIosSend } from "react-icons/io";
 import { GiPalette } from "react-icons/gi";
 import { MdMessage } from "react-icons/md";
-import { CgDetailsMore } from "react-icons/cg";
 import { IoPricetag } from "react-icons/io5"; 
-import { RiPriceTag2Fill } from "react-icons/ri";
-import { RiShoppingBag3Fill } from "react-icons/ri";
-import { RiShoppingCart2Fill } from "react-icons/ri";
 import { GiQueenCrown } from "react-icons/gi";
 import { HiCash } from "react-icons/hi";
 import { TiStar } from "react-icons/ti";
 
 import {
-  BrowserRouter as Router,
-  Route,
   Link,
-  Switch,
  useHistory
 } from "react-router-dom";
 
@@ -129,7 +121,7 @@ export class ImageNFT extends React.Component{
             this.setState({waiting: true});
             console.log(txHash);
             this.setState({txHash: txHash});
-            const res = await this.props.waitForMinedConfirmation(txHash, (tx) => {
+            await this.props.waitForMinedConfirmation(txHash, (tx) => {
               this.setState({waiting: false});
               this.setState({successful: true});
               console.log("tx mined: ", tx);
@@ -183,7 +175,7 @@ export class ImageNFT extends React.Component{
         this.setState({waiting: true});
         console.log(txHash);
         this.setState({txHash: txHash});
-        const res = await this.props.waitForMinedConfirmation(txHash, (tx) => {
+        await this.props.waitForMinedConfirmation(txHash, (tx) => {
           this.setState({waiting: false});
           this.setState({successful: true});
           console.log("tx mined: ", tx);
@@ -216,7 +208,7 @@ async setForSale()
   }else{
     this.setState({forSale: !this.state.forSale});
     this.setState({txHash: tx.hash});
-    const res = await this.props.waitForMinedConfirmation(tx.hash, (tx) => {
+    await this.props.waitForMinedConfirmation(tx.hash, (tx) => {
       this.setState({waiting: false});
       this.setState({successful: true});
       console.log("tx mined: ", tx.hash);
@@ -238,7 +230,7 @@ async setForSale()
     let CID="";
     let pinata_content_url;
     let animation=false;
-    if (this.props.uri.animation_url!=undefined && this.props.uri.animation_url!=""){
+    if (this.props.uri.animation_url!==undefined && this.props.uri.animation_url!==""){
       animation=true;
       CID = (this.props.uri.animation_url).substring(7);
     }else{
@@ -256,7 +248,13 @@ async setForSale()
     }
 
         const currentUrl = window.location.href;
-        let i = currentUrl.lastIndexOf('gallery/');
+        let i = -1;
+        if (this.props.forMint){
+          i = currentUrl.lastIndexOf('mint/');
+        }else{
+          i = currentUrl.lastIndexOf('gallery/');
+        }
+        
         const url=currentUrl.substr(0,i)+"nftbyid/"+this.props.uri.id;
         console.log(url)
         //window.location.href = url;
@@ -298,8 +296,8 @@ async setForSale()
       </div>
 
       <div className={this.props.mywallet&&this.props.uri.message==="" ? "dont-show" : 
-        !this.props.mywallet&&this.props.uri.message==="" || this.props.uri.message===undefined ? "no-message" : "message"}>
-          {!this.props.mywallet&&this.props.uri.message==="" || this.props.uri.message===undefined  ? 
+        (!this.props.mywallet&&this.props.uri.message==="") || this.props.uri.message===undefined ? "no-message" : "message"}>
+          {(!this.props.mywallet&&this.props.uri.message==="") || this.props.uri.message===undefined  ? 
           "This NFT has no message yet. You can set it yourself if you buy this NFT!" :
           this.props.uri.message} 
       </div>
