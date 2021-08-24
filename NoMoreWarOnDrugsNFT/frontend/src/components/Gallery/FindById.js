@@ -1,6 +1,6 @@
 import React from "react";
 import "../../style/find-by-id.css"
-import { CgFilters } from "react-icons/cg";
+import { BiSearchAlt } from "react-icons/bi";
 import { IoCaretDown } from "react-icons/io5";
 import { IoCaretUp } from "react-icons/io5";
 
@@ -41,13 +41,15 @@ export class FindById extends React.Component{
             <div className="find-by-id-container" >
                 <form className="find-by-id" onSubmit={this.handleSubmit}>
                 <button onClick={this.show} className="find-by-id-button">
-                <CgFilters style={{verticalAlign:"middle",fontSize:"1.2rem"}}/>&nbsp;Look Up By Id&nbsp;
+                <BiSearchAlt style={{verticalAlign:"middle",fontSize:"1.2rem"}}/>&nbsp;Look Up By Id&nbsp;
                 {this.state.lookUpByIdVisible? <IoCaretUp style={{verticalAlign:"middle"}}/>:
                                             <IoCaretDown style={{verticalAlign:"middle"}}/>}
                 </button>
                 <div className={this.state.lookUpByIdVisible? "find-by-id-form": "dont-show"}>
                     <div className="form-container">
-                        <label>Id: </label>
+                        <label>
+                            Id: &nbsp;
+                        </label>
                         <input
                             className="find-by-id-input"
                             type="text"

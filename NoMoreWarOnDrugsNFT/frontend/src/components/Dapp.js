@@ -2,6 +2,7 @@ import React from "react";
 
 import {
   BrowserRouter as Router,
+  HashRouter,
   Route,
 } from "react-router-dom";
 
@@ -78,7 +79,7 @@ export class Dapp extends React.Component {
   render() {
     
     return (
-      <Router>
+      <HashRouter>
         <div> 
           <NavBar/>
           <WalletStatus
@@ -335,7 +336,7 @@ export class Dapp extends React.Component {
             </switch>
             </div>
           </div>
-        </Router>
+        </HashRouter>
     );
   }
 
