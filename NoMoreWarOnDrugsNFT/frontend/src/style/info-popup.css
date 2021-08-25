@@ -33,8 +33,8 @@
 .visible{
     position:fixed;
     border-radius: 20px;
-    top:200px;
-    left:450px;
+    top:50%;
+    left:33%;
     width:500px;
     height:fit-content;
     display: block;

@@ -28,7 +28,6 @@ import { Carousel } from "../Gallery/Carousel";
         this.filterNFTs = this.filterNFTs.bind(this);
         this.findById = this.findById.bind(this);
         this.viewInfo = this.viewInfo.bind(this);
-        this.closeViewInfo = this.closeViewInfo.bind(this);
         console.log(this.state);
         this.DB = require("../../localDB/attributes.json");
         
@@ -126,11 +125,6 @@ import { Carousel } from "../Gallery/Carousel";
 
     viewInfo(){
       this.setState({viewInfoVisble:!this.state.viewInfoVisble});
-      console.log("view info");
-    }
-
-    closeViewInfo(){
-      this.setState({viewInfoVisble:false});
     }
 
     //let intersection = arrA.filter(x => arrB.includes(x));
@@ -204,12 +198,14 @@ import { Carousel } from "../Gallery/Carousel";
       await this.setState({ page: numPage });
       console.log("change to page",this.state.page);
       this.getPageData();
-
       const currentUrl = window.location.href;
       let i = currentUrl.lastIndexOf('/');
       const url=currentUrl.substr(0,i)+"/"+numPage;
       console.log(url)
       window.location.href = url;
+      //I am doing this double because it doesn't work if I do it once.
+      window.location.reload();
+      window.location.reload();
       };
 
     async getPageData(){
@@ -269,6 +265,7 @@ import { Carousel } from "../Gallery/Carousel";
                 <div>
                   <FindById
                     findById={(id) => {this.findById(id)}}
+                    forMint={false}
                   />
                 </div>
                <div className={this.state.view ? "": "not-visible"}>

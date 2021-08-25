@@ -7,14 +7,16 @@ import {
 
 export function Mint(props){
 
-    let { page } = useParams();
+    let { page,id } = useParams();
     if (page===undefined)  page=1;
+    if (id===undefined)  id=0;
   
     return (
       <div className="gallery">
 
         <ForMinting
           page={page}
+          findId={id}
           mywallet = {false}
           {...props}
           />

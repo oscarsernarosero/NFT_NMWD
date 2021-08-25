@@ -250,7 +250,7 @@ export class Dapp extends React.Component {
                 }
               />
 
-              <Route path="/mint/:page?" 
+              <Route path="/mint/:page?/:id?" 
                 render={(props)=>
                   <Mint
                     address = {this.state.selectedAddress}

@@ -28,12 +28,21 @@ export class FindById extends React.Component{
       async handleSubmit(event) {
         event.preventDefault();
         const currentUrl = window.location.href;
-        let i = currentUrl.lastIndexOf('gallery/');
-        const url=currentUrl.substr(0,i)+"gallery/1/"+this.state.tokenId;
+        let i =-1;
+        let url="";
+        if( this.props.forMint){
+            i = currentUrl.lastIndexOf('mint/');
+            url=currentUrl.substr(0,i)+"mint/1/"+this.state.tokenId;
+        }else{
+            i = currentUrl.lastIndexOf('gallery/');
+            url=currentUrl.substr(0,i)+"gallery/1/"+this.state.tokenId;
+        }
+        
         //const url="localhost/300/gallery/1/"+this.state.tokenId;
         console.log(url)
         window.location.href = url;
-        console.log("submitting",this.props.findById );
+        window.location.reload();
+        window.location.reload();
       }
 
     render(){

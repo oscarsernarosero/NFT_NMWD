@@ -1,11 +1,13 @@
 import React from "react";
 import Pagination from "react-pagination-js";
 import {Filter} from  "../Gallery/Filter";
+import { FindById } from "../Gallery/FindById";
 import "react-pagination-js/dist/styles.css"; // import css
 import { ImageNFT } from "../Gallery/ImageNFT";
 import "../../style/pagination.css";
 import { CgViewGrid } from "react-icons/cg";
 import { CgUiKit } from "react-icons/cg";
+import { InfoPopup } from "../Generics/InfoPopup";
 
 import { Carousel } from "../Gallery/Carousel";
 
@@ -21,6 +23,8 @@ import { Carousel } from "../Gallery/Carousel";
         this.listView = this.listView.bind(this);
         this.albumView = this.albumView.bind(this);
         this.filterNFTs = this.filterNFTs.bind(this);
+        this.findById = this.findById.bind(this);
+        this.viewInfo = this.viewInfo.bind(this);
         console.log(this.state);
         this.DB = require("../../localDB/attributes.json");
         
@@ -59,6 +63,10 @@ import { Carousel } from "../Gallery/Carousel";
             if(this.props.pageSize !== this.state.pageSize){
                 this.setState({pageSize: this.props.pageSize});
         }}
+
+        if( this.props.findId!==0){
+          this.findById(this.props.findId);
+        }
         //finally, we request the blockchain for the data of the NFTs
         //, but only the ones that we need to display.
         await this.getPageData();
@@ -74,6 +82,9 @@ import { Carousel } from "../Gallery/Carousel";
         this.setState({view:0});
     }
 
+    viewInfo(){
+      this.setState({viewInfoVisble:!this.state.viewInfoVisble});
+    }
     
 
     //let intersection = arrA.filter(x => arrB.includes(x));
@@ -136,6 +147,12 @@ import { Carousel } from "../Gallery/Carousel";
     }
 
 
+    async findById(_id){
+      await this.setState({filteredIds: [_id]});
+      console.log("filteredIds", this.state.filteredIds)
+    }
+
+
     componentDidCatch(){
         const demo_NFT = {"description": "error","external_url": "unkown","image": "loading","name": "error","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
         this.setState({nfts: [demo_NFT]});
@@ -146,17 +163,14 @@ import { Carousel } from "../Gallery/Carousel";
         await this.setState({ page: numPage });
         console.log("change to page",this.state.page);
         this.getPageData();
-        //I am doing this double because it doesn't work if I do it once.
-        // await this.setState({ page: numPage });
-        // console.log("change to page",this.state.page);
-        // await this.getPageData();
-
         const currentUrl = window.location.href;
-        let i = currentUrl.lastIndexOf('/');
-        const url=currentUrl.substr(0,i)+"/"+numPage;
+        let i = currentUrl.lastIndexOf('mint/');
+        const url=currentUrl.substr(0,i)+"mint/"+numPage;
         console.log(url)
         window.location.href = url;
-
+        //I am doing this double because it doesn't work if I do it once.
+        window.location.reload();
+        window.location.reload();
       };
 
     async getPageData(){
@@ -205,13 +219,24 @@ import { Carousel } from "../Gallery/Carousel";
                     className={!this.state.view ? "cover-active": "cover-inactive"}>
                       <CgUiKit style={{verticalAlign:"middle",fontSize:"1.25rem"}}
                     />&nbsp;Cover</button>
-                </div>
+                
+                <InfoPopup
+                      msg="Select grid view or cover view according to your preference"
+                      visible = {this.state.viewInfoVisble}
+                      viewInfo = {()=>{this.viewInfo()}}
+                    />
+                    </div>
                 <div>
                   <Filter
                   applyFilter = {(_byTopic, _byArtist, _byLanguage) => {
                     return this.filterNFTs(_byTopic, _byArtist, _byLanguage)}}/>
                 </div>
-                
+                <div>
+                  <FindById
+                    findById={(id) => {this.findById(id)}}
+                    forMint={true}
+                  />
+                </div>
                <div className={this.state.view ? "": "not-visible"}>
                <ul className="list">
                 {this.state.nfts.map((item,index)=>{
