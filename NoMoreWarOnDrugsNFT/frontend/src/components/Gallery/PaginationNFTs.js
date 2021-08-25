@@ -116,11 +116,11 @@ import { Carousel } from "../Gallery/Carousel";
         }
     }
 
-    listView(){
-      this.setState({view:1});
+    async listView(){
+      await this.setState({view:1});
     }
-    albumView(){
-        this.setState({view:0});
+    async albumView(){
+        await this.setState({view:0});
     }
 
     viewInfo(){
@@ -199,13 +199,13 @@ import { Carousel } from "../Gallery/Carousel";
       console.log("change to page",this.state.page);
       this.getPageData();
       const currentUrl = window.location.href;
-      let i = currentUrl.lastIndexOf('/');
-      const url=currentUrl.substr(0,i)+"/"+numPage;
+      let i = currentUrl.lastIndexOf('gallery/');
+      const url=currentUrl.substr(0,i)+"gallery/"+numPage;
       console.log(url)
       window.location.href = url;
       //I am doing this double because it doesn't work if I do it once.
-      window.location.reload();
-      window.location.reload();
+      // window.location.reload();
+      // window.location.reload();
       };
 
     async getPageData(){

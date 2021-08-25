@@ -18,7 +18,7 @@ import { Carousel } from "../Gallery/Carousel";
     constructor(props){
         super(props);
         const demo_NFT = {"description": "loading","external_url": "unkown","image": "loading","name": "...Loading","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
-        this.state = {nfts: [demo_NFT], mounted: false, page:props.page, ids: [-1], myIds: [-1], filteredIds:[],pageSize:6, view:0, filterBy:{topic:[], artist:[],language:-1}};
+        this.state = {nfts: [demo_NFT], mounted: false, page:props.page, ids: [-1], myIds: [-1], filteredIds:[],pageSize:9, view:0, filterBy:{topic:[], artist:[],language:-1}};
         this.changeCurrentPage = this.changeCurrentPage.bind(this);
         this.listView = this.listView.bind(this);
         this.albumView = this.albumView.bind(this);
@@ -169,8 +169,8 @@ import { Carousel } from "../Gallery/Carousel";
         console.log(url)
         window.location.href = url;
         //I am doing this double because it doesn't work if I do it once.
-        window.location.reload();
-        window.location.reload();
+        //window.location.reload();
+        //window.location.reload();
       };
 
     async getPageData(){

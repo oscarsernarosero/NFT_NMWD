@@ -45,14 +45,18 @@ export class Carousel extends React.Component {
         return(
             <div id="carousel-3d-container" 
            style={{"background" : "linear-gradient(to top, transparent 1%, black 40%), #"+this.state.background,
-                        "transition":"background-color 0.8s ease"}}>
+                        "transition":"background-color 0.8s ease",
+                        "marginLeft":"-6vw", "marginRight":"-3vw"}}>
                 
                 <Coverflow
-                    displayQuantityOfSide={1.3}
+                    //displayQuantityOfSide={1.3}
+                    displayQuantityOfSide={0.9}
                     infiniteScroll={true}
                     enableHeading={false}
-                    otherFigureScale={0.3}
-                    currentFigureScale={1.15}
+                    //otherFigureScale={0.3}
+                    otherFigureScale={0.5}
+                    //currentFigureScale={1.15}
+                    currentFigureScale={1}
                     enableScroll={false}
                     width={900}
                     height={760}

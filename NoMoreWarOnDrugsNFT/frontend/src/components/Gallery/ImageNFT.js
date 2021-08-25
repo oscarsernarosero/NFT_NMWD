@@ -262,7 +262,9 @@ async setForSale()
   return (
     <div className="nft-container">
 
-      <div className="NFTTitle" style={this.props.uri.name.length<25?{"fontSize":"2rem"}:{"fontSize":"1.6rem"}}>
+      <div className="NFTTitle" 
+      //style={this.props.uri.name.length<25?{"fontSize":"1.5rem"}:{"fontSize":"1rem"}}
+      >
         {this.props.uri.name}
       </div>
 
@@ -270,7 +272,7 @@ async setForSale()
         <a href={url} target="_blank" rel="noopener noreferrer">
           {animation? 
             <video loop autoPlay controls muted
-              style={{width:"100%"}}
+              style={{width:"94%",height:"min-content"}}
               >
               <source src={pinata_content_url} type="video/mp4"/>
               <source src={pinata_content_url} type="video/ogg" />
@@ -307,7 +309,9 @@ async setForSale()
           <div className="artist">
             <GiPalette />&nbsp;Artist: 
           </div>
-          <a href={this.props.uri.attributes.webpage} className="link" target="_blank" rel="noopener noreferrer">
+          <a href={this.props.uri.attributes.webpage} className="link" 
+          style={{fontSize:"0.9vw"}}
+          target="_blank" rel="noopener noreferrer">
             {this.props.uri.attributes.artist}
           </a>
         </div>
@@ -323,15 +327,17 @@ async setForSale()
         Description: {this.props.uri.description}
       </div>
       
-      <div className="price">
-       <FaEthereum style={{verticalAlign:"middle",fontSize:"1.5rem"}}/> {parseInt(this.props.uri.price)/1000000000000000000}  ETH 
+      <div className="price" style={{fontSize:"2.5vw"}}>
+       <FaEthereum style={{verticalAlign:"middle",fontSize:"2vw"}}/>{parseInt(this.props.uri.price)/1000000000000000000} ETH 
       </div>  
 
       <div className={this.props.mywallet ? "dont-show" : "button-container"}>
 
         <button onClick={this.props.mywallet||!this.props.uri.forSale ? this.buyDisable :
                                                    this.props.forMint ? this.mint : this.buy}
-          className={this.props.uri.owned ? "button-owned"  : "button" }>
+          className={this.props.uri.owned ? "button-owned"  : "button" }
+          style={{fontSize:"1.7vw"}}
+          >
           {
             this.props.forMint ? <GiTwoCoins style={{verticalAlign:"middle"}}/> :
             this.props.uri.forSale?  <TiStar style={{verticalAlign:"middle"}}/>  :

@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Arsenal&family=Bilbo&family=Changa:wght@200&family=Cuprum&family=East+Sea+Dokdo&family=Economica&family=Fondamento&family=Girassol&family=Gudea:wght@400;700&family=IBM+Plex+Mono:wght@300&family=IM+Fell+DW+Pica&family=IM+Fell+English+SC&family=Just+Another+Hand&family=Nanum+Pen+Script&family=New+Rocker&family=Pathway+Gothic+One&family=Rajdhani&family=Rancho&family=Rock+Salt&family=Saira+Semi+Condensed:wght@300;400&family=Sedgwick+Ave+Display&family=Teko:wght@300&family=Walter+Turncoat&display=swap');
-h1 {
-    color: red;
-    font-size:43px;
-    font-family: 'Sedgwick Ave Display', cursive;
-    text-align: center;
-}
+
 
 body{
     background-color: black;
@@ -12,6 +7,8 @@ body{
     font-family: 'Rajdhani', sans-serif;
     font-size:25px;
     margin: 0px;
+    padding:0px;
+    width: 100%;
 }
 
 *{
