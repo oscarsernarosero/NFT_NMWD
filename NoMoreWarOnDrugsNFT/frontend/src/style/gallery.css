@@ -1,19 +1,18 @@
 .galleryItem{
-    width: 30%;
+    width: 94%;
     height: min-content;
     display:inline-flex;
     list-style-type: none;
     align-content: center;
     border-width: 1px;
     border-color: lavender;
-    padding:1.3rem;
-    padding-bottom:2rem;
+    padding:2%;
+    padding-bottom:1rem;
     
 }
 
 .gallery{
-    width:100%;
-    column-gap: 50px;
+    width:94%;
 }
 
 .list{
@@ -21,4 +20,33 @@
     width: 100%;
     font-size: 0;
     margin-left: -2rem;
+}
+
+
+@media only screen and (min-width: 900px) {
+
+    .galleryItem{
+        width: 30%;
+        height: min-content;
+        display:inline-flex;
+        list-style-type: none;
+        align-content: center;
+        border-width: 1px;
+        border-color: lavender;
+        padding:1.3rem;
+        padding-bottom:2rem;
+        
+    }
+
+    .gallery{
+        width:100%;
+        column-gap: 50px;
+    }
+
+    .list{
+        padding-top:2rem;
+        width: 100%;
+        font-size: 0;
+        margin-left: -2rem;
+    }
 }

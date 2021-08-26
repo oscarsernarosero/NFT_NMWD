@@ -1,3 +1,4 @@
+
 .home-container{
     background-image: url("../../images/channel_photo_low_ql.jpeg");
     background-size: cover;
@@ -7,13 +8,13 @@
 }
 
 .history-image{
-    display: inline-block;
+    display: block;
     max-height: 100%;
     padding: 1rem;
 }
 
 .history-text{
-    display: inline-block;
+    display: block;
     margin-left: auto;
     align-content: flex-end;
     text-align: justify;
@@ -27,7 +28,7 @@ p{
 
 .home{
     min-height:fit-content;
-    padding: 2.5rem 3.5rem;
+    padding: 0.5rem 0.5rem;
     background-color: black;
     color: white;
     display: grid;
@@ -53,8 +54,8 @@ p{
 }
 
 .home-buttons{
-    min-height:400px;
-    padding: 15px 100px;
+    min-height:min-content;
+    padding: 7vw 7vw;
     background-color:#08293baa;
     color: #ffffffff;
     align-content: center;
@@ -62,15 +63,18 @@ p{
 
 .explore-nft{
     text-align: center;
-    padding: 5px 20px 5px 20px;
-    margin: 50px 300px 100px 300px;
+    padding: 2vw 5vw ;
+    margin: auto;
+    margin-bottom: 5vw;
+    max-width: 95%;
     background-color: #222288aa;
+    font-size: 1.5rem;
 }
 
 .explore-nft-button{
-    padding: 20px 10px;
+    padding: 1vw 5vw;
     text-align: center;
-    font-size: 40px;
+    font-size: 1.5rem;
     min-width: 55%;
     max-width:80%;
     border-radius: 15px;
@@ -81,4 +85,95 @@ p{
     display: grid;
     place-items: center;
     
+}
+
+
+@media only screen and (min-width: 900px) {
+
+    .home-container{
+        background-image: url("../../images/channel_photo_low_ql.jpeg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    }
+
+    .history-image{
+        display: inline-block;
+        max-height: 100%;
+        padding: 1rem;
+    }
+
+    .history-text{
+        display: inline-block;
+        margin-left: auto;
+        align-content: flex-end;
+        text-align: justify;
+    }
+
+    p{
+        font-size: 1rem;
+        text-align: justify;
+        color: #ccc;
+    }
+
+    .home{
+        min-height:fit-content;
+        padding: 2.5rem 3.5rem;
+        background-color: black;
+        color: white;
+        display: grid;
+        grid-template-columns: [left] 33% [right] 67%;
+    }
+
+    .support-artists-image{
+        float: right;
+        max-width: 40%;
+        min-width: 300px;
+        padding: 30px;
+        overflow: scroll;
+        
+    }
+
+    .support-artists{
+        background-color: black;
+        color: white;
+        height: fit-content;
+        padding: 2.5rem 3.5rem;
+        display: grid;
+        grid-template-columns: [left] 67% [right] 33%;
+    }
+
+    .home-buttons{
+        min-height:400px;
+        padding: 15px 100px;
+        background-color:#08293baa;
+        color: #ffffffff;
+        align-content: center;
+        
+    }
+
+    .explore-nft{
+        text-align: center;
+        padding: 5px 20px 5px 20px;
+        margin: 50px 300px 100px 300px;
+        background-color: #222288aa;
+        font-size: 3.5rem;
+    }
+
+    .explore-nft-button{
+        padding: 20px 10px;
+        text-align: center;
+        font-size: 40px;
+        min-width: 55%;
+        max-width:80%;
+        border-radius: 15px;
+        position: relative;
+    }
+
+    .test{
+        display: grid;
+        place-items: center;
+        
+    }
 }

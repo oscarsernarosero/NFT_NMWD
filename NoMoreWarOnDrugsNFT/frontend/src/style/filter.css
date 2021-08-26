@@ -3,70 +3,138 @@
 }
 
 .filter-container{
-background-color:transparent;
+    background-color:transparent;
+    }
+
+
+    .filter-menu {
+        display: block;
+        grid-gap: 0px;
+        list-style: none;
+        text-align: end;
+        justify-content: center;
+        width: 100%;
+        
+    }
+
+
+    .filter-category{
+        border-color: rgb(34, 34, 34);
+        border-width: 1px;
+        border-right-style:solid ;
+        border-left-style:solid ;
+        border-bottom-style:solid ;
+        height:min-content;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        font-size:0.75rem;
+        height: 100%;
+        font-family: 'Rajdhani', sans-serif;
+    }
+
+
+    .topic-options{
+        padding: 0.1rem;
+        display: grid;
+        grid-template-columns: repeat(4, 50%);
+        grid-gap: 0px;
+        list-style: none;
+        text-align:justify;
+        margin: 0px;
+        width:50%;
+        max-height: fit-content;
+        font-size: 0.7rem;
+    }
+
+    .topic-title{
+        display: block;
+        font-size: 0.8rem;
+        align-content: center;
+        text-align: center;
+        min-width: 100%;
+        padding-bottom: 0.3rem;
+    }
+
+
+    .topic-button{
+        width: 100%;
+        font-size: 0.8rem;
+        align-content: flex-start;
+        text-align: left;
+        background-color: black;
+        color:white;
+        border-style: none;
+        font-family: 'Rajdhani', sans-serif;
+    }
+
+
+@media only screen and (min-width: 900px) {
+    .filter-container{
+    background-color:transparent;
+    }
+
+
+    .filter-menu {
+        display: grid;
+        grid-template-columns: repeat(6, 16.6%);
+        grid-gap: 0px;
+        list-style: none;
+        text-align: end;
+        justify-content: center;
+        width: 100%;
+    }
+
+
+    .filter-category{
+        border-color: rgb(34, 34, 34);
+        border-width: 1px;
+        border-right-style:solid ;
+        border-left-style:solid ;
+        border-bottom-style:solid ;
+        height:min-content;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.3rem;
+        height: 100%;
+        font-size: 10px;
+        font-family: 'Rajdhani', sans-serif;
+    }
+
+
+    .topic-options{
+        padding: 0.1rem;
+        display: grid;
+        grid-template-columns: repeat(2, 100%);
+        grid-gap: 0px;
+        list-style: none;
+        text-align:justify;
+        margin: 0px;
+        width:50%;
+        max-height: fit-content;
+        font-size: 0.7rem;
+    }
+
+    .topic-title{
+        display: block;
+        font-size: 1rem;
+        align-content: center;
+        text-align: center;
+        min-width: 100%;
+        padding-bottom: 0.3rem;
+    }
+
+
+    .topic-button{
+        width: 100%;
+        font-size: 1rem;
+        align-content: flex-start;
+        text-align: left;
+        background-color: black;
+        color:white;
+        border-style: none;
+        font-family: 'Rajdhani', sans-serif;
+    }
+
 }
-
-
-.filter-menu {
-    display: grid;
-    grid-template-columns: repeat(6, 16.6%);
-    grid-gap: 0px;
-    list-style: none;
-    text-align: end;
-    justify-content: center;
-    width: 100%;
-}
-
-
-.filter-category{
-    border-color: rgb(34, 34, 34);
-    border-width: 1px;
-    border-right-style:solid ;
-    border-left-style:solid ;
-    border-bottom-style:solid ;
-    height:min-content;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    font-size: 2.3rem;
-    height: 100%;
-    font-size: 10px;
-    font-family: 'Rajdhani', sans-serif;
-}
-
-
-.topic-options{
-    padding: 0.1rem;
-    display: grid;
-    grid-template-columns: repeat(2, 100%);
-    grid-gap: 0px;
-    list-style: none;
-    text-align:justify;
-    margin: 0px;
-    width:50%;
-    max-height: fit-content;
-    font-size: 0.7rem;
-}
-
-.topic-title{
-    display: block;
-    font-size: 1rem;
-    align-content: center;
-    text-align: center;
-    min-width: 100%;
-    padding-bottom: 0.3rem;
-}
-
-
-.topic-button{
-    width: 100%;
-    font-size: 1rem;
-    align-content: flex-start;
-    text-align: left;
-    background-color: black;
-    color:white;
-    border-style: none;
-    font-family: 'Rajdhani', sans-serif;
-}
-
-
