@@ -310,7 +310,7 @@ async setForSale()
             <GiPalette />&nbsp;Artist: 
           </div>
           <a href={this.props.uri.attributes.webpage} className="link" 
-          style={{fontSize:"0.9vw"}}
+          style={window.innerWidth>900?{fontSize:"0.9vw"}:{fontSize:"2.2vw"}}
           target="_blank" rel="noopener noreferrer">
             {this.props.uri.attributes.artist}
           </a>
@@ -327,8 +327,8 @@ async setForSale()
         Description: {this.props.uri.description}
       </div>
       
-      <div className="price" style={{fontSize:"2.5vw"}}>
-       <FaEthereum style={{verticalAlign:"middle",fontSize:"2vw"}}/>{parseInt(this.props.uri.price)/1000000000000000000} ETH 
+      <div className="price" style={window.innerWidth>900?{fontSize:"2.5vw"}:{fontSize:"5.5vw"}}>
+       <FaEthereum style={window.innerWidth>900?{verticalAlign:"middle",fontSize:"2.5vw"}:{verticalAlign:"middle",fontSize:"5.5vw"}}/>{parseInt(this.props.uri.price)/1000000000000000000} ETH 
       </div>  
 
       <div className={this.props.mywallet ? "dont-show" : "button-container"}>
@@ -336,7 +336,7 @@ async setForSale()
         <button onClick={this.props.mywallet||!this.props.uri.forSale ? this.buyDisable :
                                                    this.props.forMint ? this.mint : this.buy}
           className={this.props.uri.owned ? "button-owned"  : "button" }
-          style={{fontSize:"1.7vw"}}
+          style={window.innerWidth>900?{fontSize:"1.7vw"}:{fontSize:"4vw"}}
           >
           {
             this.props.forMint ? <GiTwoCoins style={{verticalAlign:"middle"}}/> :

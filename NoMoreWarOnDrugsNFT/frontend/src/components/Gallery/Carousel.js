@@ -8,7 +8,7 @@ export class Carousel extends React.Component {
     constructor(props){
         super(props);
         this.fn = this.fn.bind(this);
-        this.state={background:"000000", selected:0};
+        this.state={background:"000000", selected:0,width:window.innerWidth};
     }
 
 
@@ -42,26 +42,49 @@ export class Carousel extends React.Component {
     }  
 
     render(){
+        let displayQtyOfSide;
+        let sideScale;
+        if(this.state.width>900){
+            displayQtyOfSide=0.9;
+            sideScale=0.5
+        }else{
+            displayQtyOfSide=0.2;
+            sideScale=1;
+        }
+    
         return(
+            
             <div id="carousel-3d-container" 
-           style={{"background" : "linear-gradient(to top, transparent 1%, black 40%), #"+this.state.background,
+                style={{"background" : "linear-gradient(to top, transparent 1%, black 40%), #"+this.state.background,
                         "transition":"background-color 0.8s ease",
-                        "marginLeft":"-6vw", "marginRight":"-3vw"}}>
+                        //"marginLeft":"-4vw", "marginRight":"-3vw"
+                        }}>
+
                 
+                            
                 <Coverflow
                     //displayQuantityOfSide={1.3}
-                    displayQuantityOfSide={0.9}
+                    displayQuantityOfSide={displayQtyOfSide}
                     infiniteScroll={true}
                     enableHeading={false}
                     //otherFigureScale={0.3}
-                    otherFigureScale={0.5}
+                    otherFigureScale={sideScale}
                     //currentFigureScale={1.15}
                     currentFigureScale={1}
                     enableScroll={false}
-                    width={900}
-                    height={760}
+                    // width={1900}
+                    // height={760}
                     active={this.state.selected}
-                    
+                    media={{
+                        '@media (max-width: 900px)': {
+                          width: '400px',
+                          height: '450px'
+                        },
+                        '@media (min-width: 900px)': {
+                          width: '1300px',
+                          height: '750px'
+                        }
+                      }}
                     
                     >
                     
