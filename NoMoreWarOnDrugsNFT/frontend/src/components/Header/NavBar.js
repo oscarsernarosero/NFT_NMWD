@@ -17,7 +17,7 @@ export class NavBar extends React.Component{
             <nav className="NavItems">
                 <div className="neon">
                     <span className="title-header" data-text="">
-                        No More War On Drugs</span>
+                        Stop The More War On Drugs</span>
                     <span className="gradient"></span>
                     <span className="spotlight"></span>
                 </div>

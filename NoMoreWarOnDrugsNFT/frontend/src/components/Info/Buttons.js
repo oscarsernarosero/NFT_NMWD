@@ -8,8 +8,11 @@ export class Buttons extends React.Component {
     }
 
     gallery(event){
-        const currentUrl = window.location.href;
-        window.location.href = currentUrl+"gallery";
+      const currentUrl = window.location.href;
+      let i = currentUrl.lastIndexOf('#/');
+      const url=currentUrl.substr(0,i)+"#/gallery/1";
+      console.log(url)
+      window.location.href = url;
     
     }
     render(){

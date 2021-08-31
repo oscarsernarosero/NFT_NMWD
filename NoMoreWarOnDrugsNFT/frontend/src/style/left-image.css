@@ -18,6 +18,7 @@
     display: block;
     align-content: flex-end;
     text-align: justify;
+    font-size: 0.9rem;
 }
 
 p{
@@ -59,7 +60,7 @@ p{
     }
 
     p{
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         text-align: justify;
     }
 

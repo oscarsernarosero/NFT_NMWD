@@ -82,12 +82,11 @@ import { Carousel } from "../Gallery/Carousel";
         //finally, we request the blockchain for the data of the NFTs
           //, but only the ones that we need to display.
           await this.getPageData();
+
+          if(this.state.nfts.length<5){
+            await this.setState({view:1});
+          }
   
-        
-
-
-            
-        
     }
 
     componentDidCatch(){

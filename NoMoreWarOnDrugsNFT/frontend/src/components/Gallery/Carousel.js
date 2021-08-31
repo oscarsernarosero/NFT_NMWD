@@ -48,8 +48,8 @@ export class Carousel extends React.Component {
             displayQtyOfSide=0.9;
             sideScale=0.5
         }else{
-            displayQtyOfSide=0.2;
-            sideScale=1;
+            displayQtyOfSide=0.25;
+            sideScale=0.95;
         }
     
         return(
@@ -66,6 +66,7 @@ export class Carousel extends React.Component {
                     //displayQuantityOfSide={1.3}
                     displayQuantityOfSide={displayQtyOfSide}
                     infiniteScroll={true}
+                    navigation={false}
                     enableHeading={false}
                     //otherFigureScale={0.3}
                     otherFigureScale={sideScale}

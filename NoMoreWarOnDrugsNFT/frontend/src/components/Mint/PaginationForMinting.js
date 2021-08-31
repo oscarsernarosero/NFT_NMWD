@@ -72,7 +72,9 @@ import { Carousel } from "../Gallery/Carousel";
         await this.getPageData();
         await this.setState({mounted: true});
         
-        
+        if(this.state.nfts.length<5){
+          await this.setState({view:1});
+        }
     }
 
     listView(){
