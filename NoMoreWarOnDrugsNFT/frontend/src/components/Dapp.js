@@ -8,12 +8,12 @@ import {
 // We'll use ethers to interact with the Ethereum network and our contract
 import { ethers } from "ethers";
 
-// We import the contract's artifacts and address here, as we are going to be
-// using them with ethers
-import NMWDArtifact from "../contracts/Token_StopTheWarOnDrugs.json";
-import NMWDAddress from "../contracts/contract-address-StopTheWarOnDrugs.json";
-import MarketPlaceArtifact from "../contracts/Token_NMWDMarketPlace.json";
-import MarketPlaceAddress from "../contracts/contract-address-NMWDMarketPlace.json";
+// // We import the contract's artifacts and address here, as we are going to be
+// // using them with ethers
+// import NMWDArtifact from "../contracts/Token_StopTheWarOnDrugs.json";
+// import NMWDAddress from "../contracts/contract-address-StopTheWarOnDrugs.json";
+// import MarketPlaceArtifact from "../contracts/Token_NMWDMarketPlace.json";
+// import MarketPlaceAddress from "../contracts/contract-address-NMWDMarketPlace.json";
 
 // components
 import {TokenContract} from "./TokenContract/TokenContract"
@@ -29,12 +29,25 @@ import { MyWallet} from "./MyWallet/MyWallet";
 import { SetMessage } from "./MyWallet/SetMessage";
 import { NewUri } from  "./NewUri/NewUri";
 
-
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
 // Here's a list of network ids https://docs.metamask.io/guide/ethereum-provider.html#properties
 // to use when deploying to other networks.
 const HARDHAT_NETWORK_ID = '31337';
-//const HARDHAT_NETWORK_ID = '1337';
+const network = {
+  "1":"mainnet",
+  "3": "ropsten",
+  "4": "rinkeby",
+  "31337":"localhost"
+}
+
+// We import the contract's artifacts and address here, as we are going to be
+// using them with ethers
+const NMWDArtifact =require("../contracts/Token_StopTheWarOnDrugs.json");
+const MarketPlaceArtifact =require("../contracts/Token_NMWDMarketPlace.json");
+var NMWDAddress =require("../contracts/rinkeby-contract-address-StopTheWarOnDrugs.json");
+var MarketPlaceAddress =require("../contracts/rinkeby-contract-address-NMWDMarketPlace.json");
+
+
 
 //let firstTime = true;
 
@@ -69,7 +82,8 @@ export class Dapp extends React.Component {
       networkError: undefined,
       owner: undefined,
       index_Id: undefined,
-      nfts: undefined
+      nfts: undefined,
+      initialized:false
     };
 
     this.state = this.initialState;
@@ -195,7 +209,7 @@ export class Dapp extends React.Component {
                       return this.props.approveNMWD(_tokenId);
                     } }
                     of = {this.state.selectedAddress}
-                    marketPlaceAddress = {MarketPlaceAddress.Token}
+                    //marketPlaceAddress = {MarketPlaceAddress.Token}
                     to = {this.state.selectedAddress}
                     withdrawUserFunds = { (amount) => {
                       return this.withdrawUserFunds( amount);
@@ -229,7 +243,7 @@ export class Dapp extends React.Component {
               <Route path="/gallery/:page?/:id?" 
                 render={(props)=>
                   <Gallery
-                    
+                    initialized = {this.state.initialized}
                     address = {this.state.selectedAddress}
                     marketPlaceAddress = {MarketPlaceAddress.Token}
 
@@ -339,10 +353,12 @@ export class Dapp extends React.Component {
     );
   }
 
-  componentWillUnmount() {
+  componentDidMount() {
     // We poll the user's balance, so we have to stop doing that when Dapp
     // gets unmounted
     //this._stopPollingData();
+    
+    this._intializeEthers();
   }
 
   async _connectWallet() {
@@ -351,17 +367,21 @@ export class Dapp extends React.Component {
 
     // To connect to the user's wallet, we have to run this method.
     // It returns a promise that will resolve to the user's address.
-    //const [selectedAddress] = await window.ethereum.enable();
-    const [selectedAddress] = await window.ethereum.request({ method: 'eth_requestAccounts' }) 
-    console.log(selectedAddress);
-    // Once we have the address, we can initialize the application.
+    //try{
+      const [selectedAddress] = await window.ethereum.request({ method: 'eth_requestAccounts' }) 
+      console.log("selected_address",selectedAddress);
+      // Once we have the address, we can initialize the application.
+  
+  
+      this._initialize(selectedAddress);
+      console.log("connected");
 
-    // First we check the network
-    // if (!this._checkNetwork()) {
-    //   return;
+    // }catch{
+    //  const [selectedAddress] = "0x0000000000000000000000000000000000";
+    //   console.log(selectedAddress);
+    //   this._initialize(selectedAddress);
     // }
 
-    this._initialize(selectedAddress);
     
 
     // We reinitialize it whenever the user changes their account.
@@ -391,6 +411,11 @@ export class Dapp extends React.Component {
   async _initialize(userAddress) {
     // This method initializes the dapp
 
+    // First we check the network
+    NMWDAddress =require("../contracts/"+network[window.ethereum.networkVersion]+"-contract-address-StopTheWarOnDrugs.json");
+    MarketPlaceAddress =require("../contracts/"+network[window.ethereum.networkVersion]+"-contract-address-NMWDMarketPlace.json");
+
+
     // We first store the user's address in the component's state
     console.log(userAddress);
     this.setState({
@@ -403,6 +428,7 @@ export class Dapp extends React.Component {
     // Fetching the token data and the user's balance are specific to this
     // sample project, but you can reuse the same initialization pattern.
     this._intializeEthers();
+    await this.setState({initialized:true});
     console.log("initialized");
     await this.getContractOwner();
     console.log("got contract owner");
@@ -418,27 +444,52 @@ export class Dapp extends React.Component {
     //   this.transferOwnership(MarketPlaceAddress.Token);
     //   firstTime = false;
     // }
-    console.log("before return",this.state.selectedAddress)
+    console.log("before return",this.state.selectedAddress);
+    
     
   }
 
   async _intializeEthers() {
+    console.log("provider beofre");
     // We first initialize ethers by creating a provider using window.ethereum
-    this._provider = new ethers.providers.Web3Provider(window.ethereum);
-
-    this._nmwd = new ethers.Contract(
-      NMWDAddress.Token,
-      NMWDArtifact.abi,
-      this._provider.getSigner(0)//do I need this?
-    );
-
-    this.marketPlace = new ethers.Contract(
-      MarketPlaceAddress.Token,
-      MarketPlaceArtifact.abi,
-      this._provider.getSigner(0)//do I need this?
-    );
+    try{
+      this._provider = new ethers.providers.Web3Provider(window.ethereum);
+      console.log("provider",this._provider);
+    }catch{
+      this._provider = new ethers.getDefaultProvider("rinkeby");
+      console.log("defaulted provider",this._provider);
+    }
+    
+    try{
+      this._nmwd = new ethers.Contract(
+        NMWDAddress.Token,
+        NMWDArtifact.abi,
+        this._provider.getSigner(0)//do I need this?
+      );
+  
+      this.marketPlace = new ethers.Contract(
+        MarketPlaceAddress.Token,
+        MarketPlaceArtifact.abi,
+        this._provider.getSigner(0)//do I need this?
+      );
+    }catch{
+      this._nmwd = new ethers.Contract(
+        NMWDAddress.Token,
+        NMWDArtifact.abi,
+        this._provider
+      );
+      console.log("this._nmwd",this._nmwd);
+  
+      this.marketPlace = new ethers.Contract(
+        MarketPlaceAddress.Token,
+        MarketPlaceArtifact.abi,
+        this._provider
+      );
+      console.log("this.marketPlace",this.marketPlace);
+    }
 
   }
+
 
   setSelectedId(id, imageUrl, price){
     this.setState({selectedId:id, imageUrl: imageUrl, price: price});
@@ -748,6 +799,7 @@ export class Dapp extends React.Component {
     while(more){
       try{
         _id = await this._nmwd.tokenByIndex(i);
+        console.log("nft with index ",i);
         //id = parseInt(_id._hex);
         id = _id._hex;
       }
@@ -774,8 +826,8 @@ export class Dapp extends React.Component {
      //the "buy" button
      try{
       let counter = 0;
-      //this is just me waiting for the wallet to get connected
-      while (!this.state.selectedAddress && counter<10){
+      //this is just me waiting for the wallet to get connected (10 sec max)
+      while (!this.state.selectedAddress && counter<100){
         const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
         await sleep(100);
         counter++;

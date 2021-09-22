@@ -31,7 +31,7 @@ async function main() {
     }
   
     fs.writeFileSync(
-      contractsDir + "/contract-address-"+name+".json",
+      contractsDir + "/"+network.name+"-contract-address-"+name+".json",
       JSON.stringify({ Token: token.address }, undefined, 2)
     );
   
