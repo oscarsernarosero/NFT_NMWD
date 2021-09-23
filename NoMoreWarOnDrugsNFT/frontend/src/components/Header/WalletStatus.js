@@ -28,7 +28,7 @@ export class WalletStatus extends React.Component{
     // injected, we instruct the user to install MetaMask.
     if (window.ethereum === undefined) {
         return (
-        <div>
+        <div className="wallet-language-container">
             <ChangeLanguage/>
             <div className="wallet not-connected">
                 <button className="wallet-button not-connected">
@@ -40,7 +40,7 @@ export class WalletStatus extends React.Component{
         
       }
     return (
-        <div>
+        <div className="wallet-language-container">
             <ChangeLanguage/>
             <div className={this.props.connected ? "wallet connected" : "wallet not-connected"}>
                 <button className={this.props.connected ? "wallet-button connected" : "wallet-button not-connected"}
