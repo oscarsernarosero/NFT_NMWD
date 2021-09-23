@@ -4,8 +4,13 @@ import './Home.css'
 import { LeftImage } from "./LeftImage";
 import { RightImage } from "./RightImage";
 import { Buttons } from "./Buttons";
+import"../../i18n/text";
+import { translate, localize } from 'react-i18nify';
+import { Translate, Localize } from 'react-i18nify';
 
 export class Home extends React.Component {
+
+    
     render(){
         return (
             <div className="home-container">
@@ -13,19 +18,12 @@ export class Home extends React.Component {
                 //src="http://4.bp.blogspot.com/-Yq3Q5ex8chU/T0uKnKUhjcI/AAAAAAAAAEM/cDfeYY9cYQA/s1600/ebla_clay_tablet.png"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Stele_of_Vultures_detail_01-transparent.png/440px-Stele_of_Vultures_detail_01-transparent.png"
                 alt="image2"
-                title="Be part of history"
+                title={translate('home.first.title')}
                 text={<p>
-                    Stop-the-War-on-Drugs is not just an NFT project. It is a world-wide movement that gets stronger by the day.
-                    SWD, moreover, is pioneering in the crypto space regarding political activism. In other words, there are not just NFTs;
-                    These are also tokens that represent your believes and your values. 
+                    <Translate value='home.first.para1' />
                     
                     <br/><br/>
-                   But that is not it.
-                    By getting one or more of the Stop-The-War-On-Drugs NFTs, you are not only supporting a YouTube channel and the artists who create 
-                        these art works, but you are also <b>immortalizing yourself in the Ethereum blockchain for ever!</b> These NFTs offer the opportunity
-                        of writting a message against the nefarious <b>War On Drugs</b> directly into the blockchain without the possibility of being modified or deleted <b>ever!!! </b>
-                        We, together, will pioneer and make history in the blockchain political activism to end this horrendous <b>War On Drugs</b> that takes away our freedoms and rights, 
-                        and you will be able to prove to your kids and grandkids that you were among those pioneers of this noble cause. What are you waiting for?
+                    <Translate value='home.first.para2' />
                     </p>
                 }            
             />

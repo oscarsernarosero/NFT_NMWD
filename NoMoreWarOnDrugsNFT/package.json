@@ -50,6 +50,7 @@
     "bs58": "^4.0.1",
     "crypto-js": "^4.1.1",
     "dotenv": "^8.2.0",
-    "react-bootstrap": "^2.0.0-beta.4"
+    "react-bootstrap": "^2.0.0-beta.4",
+    "react-i18nify": "^4.2.1"
   }
 }
