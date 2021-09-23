@@ -1,5 +1,6 @@
 import React from "react";
 
+
 import {
   HashRouter,
   Route,
@@ -84,7 +85,7 @@ export class Dapp extends React.Component {
       index_Id: undefined,
       nfts: undefined,
       initialized:false,
-      provider_defaulted: false
+      provider_defaulted: false,
     };
 
     this.state = this.initialState;
@@ -970,6 +971,7 @@ export class Dapp extends React.Component {
       return {error: "Invalid Id"} 
     }
   }
+
 
   // This method just clears part of the state.
   _dismissTransactionError() {

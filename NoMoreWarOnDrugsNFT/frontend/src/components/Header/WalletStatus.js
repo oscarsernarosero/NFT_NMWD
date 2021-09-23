@@ -1,5 +1,6 @@
 import React from "react";
 import { IoWallet } from "react-icons/io5";
+import {ChangeLanguage} from "./Language";
 import '../../style/walletStatus.css'
 
 export class WalletStatus extends React.Component{
@@ -28,6 +29,7 @@ export class WalletStatus extends React.Component{
     if (window.ethereum === undefined) {
         return (
         <div>
+            <ChangeLanguage/>
             <div className="wallet not-connected">
                 <button className="wallet-button not-connected">
                     <IoWallet style={{verticalAlign:"middle"}}/>&nbsp;No wallet detected
@@ -39,6 +41,7 @@ export class WalletStatus extends React.Component{
       }
     return (
         <div>
+            <ChangeLanguage/>
             <div className={this.props.connected ? "wallet connected" : "wallet not-connected"}>
                 <button className={this.props.connected ? "wallet-button connected" : "wallet-button not-connected"}
                 onClick={this.handleClick}>
