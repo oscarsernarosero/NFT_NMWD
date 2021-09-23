@@ -33,7 +33,7 @@ import { Carousel } from "../Gallery/Carousel";
     async componentDidMount(){
         //we wait until the Dapp loads the wallet.
         const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-        while(!this.props.address){
+        while((!this.props.address)&&(!this.props.provider_defaulted)){
           await sleep(500);  
         }
         

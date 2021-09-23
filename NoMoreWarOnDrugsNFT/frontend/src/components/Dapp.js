@@ -83,7 +83,8 @@ export class Dapp extends React.Component {
       owner: undefined,
       index_Id: undefined,
       nfts: undefined,
-      initialized:false
+      initialized:false,
+      provider_defaulted: false
     };
 
     this.state = this.initialState;
@@ -243,6 +244,7 @@ export class Dapp extends React.Component {
               <Route path="/gallery/:page?/:id?" 
                 render={(props)=>
                   <Gallery
+                    provider_defaulted= {this.state.provider_defaulted}
                     initialized = {this.state.initialized}
                     address = {this.state.selectedAddress}
                     marketPlaceAddress = {MarketPlaceAddress.Token}
@@ -267,6 +269,7 @@ export class Dapp extends React.Component {
               <Route path="/mint/:page?/:id?" 
                 render={(props)=>
                   <Mint
+                    provider_defaulted= {this.state.provider_defaulted}
                     address = {this.state.selectedAddress}
                     marketPlaceAddress = {MarketPlaceAddress.Token}
 
@@ -371,7 +374,7 @@ export class Dapp extends React.Component {
       const [selectedAddress] = await window.ethereum.request({ method: 'eth_requestAccounts' }) 
       console.log("selected_address",selectedAddress);
       // Once we have the address, we can initialize the application.
-  
+    this.setState({provider_defaulted:false});
   
       this._initialize(selectedAddress);
       console.log("connected");
@@ -458,8 +461,9 @@ export class Dapp extends React.Component {
     }catch{
       this._provider = new ethers.getDefaultProvider("rinkeby");
       console.log("defaulted provider",this._provider);
+      await this.setState({provider_defaulted:true});
     }
-    
+    console.log("dafaulted provider?",this.state.provider_defaulted);
     try{
       this._nmwd = new ethers.Contract(
         NMWDAddress.Token,

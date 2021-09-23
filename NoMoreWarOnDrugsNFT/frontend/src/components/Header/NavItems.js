@@ -11,12 +11,12 @@ export const  NavItems = [
     },
     {
         title: "Gallery",
-        link: "/gallery/1",
+        link: "/gallery/",
         className: "nav-link"
     },
     {
         title: "Mint",
-        link: "/mint/1",
+        link: "/mint/",
         className: "nav-link"
     },
     {
