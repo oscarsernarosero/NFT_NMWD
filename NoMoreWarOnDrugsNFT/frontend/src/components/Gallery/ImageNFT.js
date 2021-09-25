@@ -271,11 +271,12 @@ async setForSale()
       <div className="imageContainer">
         <a href={url} target="_blank" rel="noopener noreferrer">
           {animation? 
-            <video loop autoPlay controls muted
+            <video loop controls muted playsinline autoPlay
               style={{width:"94%",height:"min-content"}}
               >
               <source src={pinata_content_url} type="video/mp4"/>
               <source src={pinata_content_url} type="video/ogg" />
+              <source src={pinata_content_url} type="video/webm" />
               Your browser does not support the video tag.
             </video>
             :
@@ -333,7 +334,7 @@ async setForSale()
 
       <div className={this.props.mywallet ? "dont-show" : "button-container"}>
 
-        <button onClick={this.props.mywallet||!this.props.uri.forSale ? this.buyDisable :
+        <button onClick={this.props.mywallet||!this.props.uri.forSale || this.props.provider_defaulted ? this.buyDisable :
                                                    this.props.forMint ? this.mint : this.buy}
           className={this.props.uri.owned ? "button-owned"  : "button" }
           style={window.innerWidth>900?{fontSize:"1.7vw"}:{fontSize:"4vw"}}
@@ -345,9 +346,10 @@ async setForSale()
           }
           
           
-          {this.props.uri.owned ? "You Own This NFT !" : 
-          this.props.forMint ?  " Mint!":
-          this.props.uri.forSale ? " BUY" : "Not For Sale"}
+          {this.props.uri.owned ? "You Own This NFT !" :
+            this.props.provider_defaulted ? "You Need to Connect Wallet" :
+              this.props.forMint ?  " Mint!":
+                this.props.uri.forSale ? " BUY" : "Not For Sale"}
 
         </button>
       </div>

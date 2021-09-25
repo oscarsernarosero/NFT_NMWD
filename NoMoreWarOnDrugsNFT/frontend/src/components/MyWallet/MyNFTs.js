@@ -11,11 +11,16 @@ import "../../style/myNFTs.css";
                 <div className="title-my-nfts">
                     My NFTs
                 </div>
+                {
+                  this.props.provider_defaulted?
+                  <span>You need to connect wallet</span>:
+                  <PaginationNFTs
+                                  mywallet = {true}
+                                  {...this.props}
+                              />
+                }
 
-                <PaginationNFTs
-                mywallet = {true}
-                {...this.props}
-            />
+                
               </div>
             );
         }

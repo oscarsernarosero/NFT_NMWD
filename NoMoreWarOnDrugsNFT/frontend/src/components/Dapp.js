@@ -290,6 +290,7 @@ export class Dapp extends React.Component {
               <Route path="/wallet/:page?" exact
                 render={(props)=>
                   <MyWallet
+                  provider_defaulted= {this.state.provider_defaulted}
                     getNFTsByAddress = {(address) => {
                       return this.getNFTsByAddress(address);
                   }}

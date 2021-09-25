@@ -51,8 +51,9 @@
         width:max-content;
         padding: 0px;
         font-size: 0;
-        margin-left:auto;
-        margin-right: 1vw;
+        margin-left:79vw;
+        margin-right: auto;
+        position: absolute;
     }
 
     .wallet{

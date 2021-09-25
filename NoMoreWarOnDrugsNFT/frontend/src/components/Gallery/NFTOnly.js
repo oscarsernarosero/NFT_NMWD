@@ -61,7 +61,13 @@ export class NFTOnly extends React.Component{
     seeInGallery(){
         const currentUrl = window.location.href;
         let i = currentUrl.lastIndexOf('nftbyid/');
-        const url=currentUrl.substr(0,i)+"gallery/1/"+this.props.id;
+        let url="";
+        if(this.state.minted){
+            url=currentUrl.substr(0,i)+"gallery/1/"+this.props.id;
+        }else{
+            url=currentUrl.substr(0,i)+"mint/1/"+this.props.id;
+        }
+        
         console.log(url)
         window.location.href = url;
     }
