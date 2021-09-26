@@ -8,6 +8,8 @@ import "../../style/pagination.css";
 import { CgViewGrid } from "react-icons/cg";
 import { CgUiKit } from "react-icons/cg";
 import { InfoPopup } from "../Generics/InfoPopup";
+import"../../i18n/text";
+import { Translate, Localize } from 'react-i18nify';
 
 import { Carousel } from "../Gallery/Carousel";
 
@@ -205,12 +207,10 @@ import { Carousel } from "../Gallery/Carousel";
         return (
             <div >
                 <div>
-                    <h2>Mint New NFTs</h2>
+                  {<Translate value='mint.title'/>}
                 </div>
                 <div>
-                    <p>By minting new NFT you have the privilage of inmortalizing yourself
-                        in the blockchain by setting a message for your NFT. This message will live for
-                        ever in the Ethereum netwrok. Don't miss this opportunity!</p>
+                  {<Translate value='mint.text'/>}
                 </div>
                 <div>
                 <button onClick={this.listView} 

@@ -2,6 +2,9 @@ import React from "react";
 import { Popup } from "../Generics/Popup";
 import "../../style/set-message.css"
 
+import"../../i18n/text";
+import { Translate, Localize } from 'react-i18nify';
+
 
 export class SetMessage extends React.Component{
 
@@ -81,20 +84,18 @@ export class SetMessage extends React.Component{
             }
                 } >
             <div className="title justify-center">
-                Set The Message Of Your NFT
+                {<Translate value='setMessage.title'/>}
                 </div>
             <div className="paragraph">
-                Congratulations! You, as the owner of a NMWD NFT token, have the privilage of inmortalizing yourself with a message that will live for ever in the blockchain.
-                Be careful though. This message cannot be changed ever again once you submit it. Also, take into account that the message cannot be longer than 100 characters.
-                Welome to the inmortal phase of your thoughts!
+                {<Translate value='setMessage.text'/>}
                 </div>
             <form onSubmit={this.handleSubmit} className="form-container">
                 <div className="set-message">
                     <div className="justify-center message-label">
-                       Message:
+                    {<Translate value='setMessage.message'/>}:
                     </div>
                     <div>
-                        <textarea rows = "4" cols = "70" maxLength = "250" placeholder="Welcome to inmortality"
+                        <textarea rows = "4" cols = "70" maxLength = "250" placeholder="Welcome to immortality"
                             id="text-area"
                             className="message-input"
                             onChange={this.handleChangeMsg}
@@ -112,7 +113,7 @@ export class SetMessage extends React.Component{
                     </div>
                 </div>
                 <div className="form-group">
-                    <input className="mybutton" type="submit" value="Set Message" />
+                    <button className="mybutton" type="submit">{<Translate value='setMessage.setMessage'/>}</button>
                 </div>
             </form>
 

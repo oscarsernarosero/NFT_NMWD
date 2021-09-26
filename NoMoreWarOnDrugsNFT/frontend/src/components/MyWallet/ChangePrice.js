@@ -1,6 +1,8 @@
 import React from "react";
 import "../../style/change-price.css"
 import { LiveBlockchainStatus } from "../Generics/LiveBlockchainStatus";
+import"../../i18n/text";
+import { Translate, Localize } from 'react-i18nify';
 
 
 export class ChangePrice extends React.Component{
@@ -82,15 +84,15 @@ export class ChangePrice extends React.Component{
                 <button onClick={this.close} className="button-close-button">x</button>
             </div>
             <div className="title-price justify-center">
-                Change The Price Of Your NFT
+            {<Translate value='changePrice.title'/>}
                 </div>
             <div className="paragraph-price">
-                Current price: {parseInt(this.props.price)/1000000000000000000} ETH
+            {<Translate value='changePrice.current'/>}: {parseInt(this.props.price)/1000000000000000000} ETH
                 </div>
             <form onSubmit={this.handleSubmit} className="form-container-price">
                 <div >
                     <div className="justify-center message-label-price">
-                       New Price (ETH):
+                    {<Translate value='changePrice.new'/>} (ETH):
                     </div>
                     <div>
                         <input 
@@ -126,7 +128,7 @@ export class ChangePrice extends React.Component{
                          */}
                 </div>
                 <div className="form-group-price">
-                    <input className="mybutton-price" type="submit" value="Change Price" />
+                    <button className="mybutton-price" type="submit">{<Translate value='changePrice.button'/>}</button>
                 </div>
             </form>
             

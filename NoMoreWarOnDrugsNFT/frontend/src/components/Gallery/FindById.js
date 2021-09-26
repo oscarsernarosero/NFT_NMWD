@@ -3,6 +3,8 @@ import "../../style/find-by-id.css"
 import { BiSearchAlt } from "react-icons/bi";
 import { IoCaretDown } from "react-icons/io5";
 import { IoCaretUp } from "react-icons/io5";
+import"../../i18n/text";
+import { Translate, Localize } from 'react-i18nify';
 
 
 export class FindById extends React.Component{
@@ -50,7 +52,7 @@ export class FindById extends React.Component{
             <div className="find-by-id-container" >
                 <form className="find-by-id" onSubmit={this.handleSubmit}>
                 <button onClick={this.show} className="find-by-id-button">
-                <BiSearchAlt style={{verticalAlign:"middle",fontSize:"1.2rem"}}/>&nbsp;Look Up By Id&nbsp;
+                <BiSearchAlt style={{verticalAlign:"middle",fontSize:"1.2rem"}}/>&nbsp;{<Translate value='findById.find'/>}&nbsp;
                 {this.state.lookUpByIdVisible? <IoCaretUp style={{verticalAlign:"middle"}}/>:
                                             <IoCaretDown style={{verticalAlign:"middle"}}/>}
                 </button>
@@ -68,7 +70,7 @@ export class FindById extends React.Component{
                         />
                      </div>
                     <div>
-                        <input className="find-by-id-submmit" type="submit" value="Search" />
+                        <button className="find-by-id-submmit" type="submit">{<Translate value='findById.search'/>}</button>  
                     </div>
                     </div>
                 </form>

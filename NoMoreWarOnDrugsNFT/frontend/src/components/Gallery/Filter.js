@@ -3,6 +3,8 @@ import { CgFilters } from "react-icons/cg";
 import { IoCaretDown } from "react-icons/io5";
 import { IoCaretUp } from "react-icons/io5";
 import '../../style/filter.css';
+import"../../i18n/text";
+import { Translate, Localize } from 'react-i18nify';
 const DB = require("../../localDB/attributes.json");
 const CONST = require('./uri_constants');
 
@@ -129,14 +131,14 @@ render(){
         <form
             onSubmit={this.handleSubmit} >
             <button onClick={this.show} className="topic-button">
-                <CgFilters style={{verticalAlign:"middle",fontSize:"1.2rem"}}/>&nbsp;Filter &nbsp;
+                <CgFilters style={{verticalAlign:"middle",fontSize:"1.2rem"}}/>&nbsp;{<Translate value='filter.title'/>} &nbsp;
                 {this.state.topicVisible? <IoCaretUp style={{verticalAlign:"middle"}}/>:
                                             <IoCaretDown style={{verticalAlign:"middle"}}/>}
                 </button>
             <div className={this.state.topicVisible? "": "dont-show"}>
                 <div className="filter-menu">
                   <div className="filter-category">
-                      <label className="topic-title">By drug kind:</label>
+                      <label className="topic-title">{<Translate value='filter.option1'/>}:</label>
                       
                               <div className="topic-options">
                                       {this.state.drugTopic.map((drug, index) => {
@@ -156,7 +158,7 @@ render(){
                   </div> 
 
                   <div className="filter-category">
-                  <label className="topic-title">By historical character:</label>
+                  <label className="topic-title">{<Translate value='filter.option2'/>}:</label>
                     <div className={this.state.topicVisible? "": "dont-show"}>
                       <div className="topic-options">
                               {this.state.peopleTopics.map((person,index) => {
@@ -176,7 +178,7 @@ render(){
                     </div>
 
                     <div className="filter-category">
-                    <label className="topic-title">By country reference:</label>
+                    <label className="topic-title">{<Translate value='filter.option3'/>}:</label>
                       <div className={this.state.topicVisible? "": "dont-show"}>
                               <div className="topic-options">
                                       {this.state.countryTopics.map((country, index) => {
@@ -196,7 +198,7 @@ render(){
                   </div> 
 
                   <div className="filter-category">
-                  <label className="topic-title">By general topic:</label>
+                  <label className="topic-title">{<Translate value='filter.option4'/>}:</label>
                       <div className={this.state.topicVisible? "": "dont-show"}>
                               <div className="topic-options">
                                       {this.state.generalTopics.map((topic, index) => {
@@ -216,7 +218,7 @@ render(){
                   </div> 
 
                   <div className="filter-category">
-                    <label className="topic-title">By artist:</label>
+                    <label className="topic-title">{<Translate value='filter.option5'/>}:</label>
                       <div className={this.state.topicVisible? "": "dont-show"}>
                               <div className="topic-options">
                                       {this.state.artists.map((artist, index) => {
@@ -236,7 +238,7 @@ render(){
                   </div> 
 
                   <div className="filter-category">
-                  <label>Language The NFT Is In: </label>
+                  <label>{<Translate value='filter.option6'/>}: </label>
                   <select 
                     value={this.state.languageInput} 
                     onChange={this.handleLanguage}
@@ -250,7 +252,7 @@ render(){
                     </select>
                   </div>
               </div>
-              <button type="submit">apply filter</button>
+              <button type="submit">{<Translate value='filter.apply'/>}</button>
              </div>
              
         </form>

@@ -2,6 +2,9 @@ import React from "react";
 import "../../style/change-price.css"
 import { LiveBlockchainStatus } from "../Generics/LiveBlockchainStatus";
 
+import"../../i18n/text";
+import { Translate, Localize } from 'react-i18nify';
+
 
 export class Transfer extends React.Component{
 
@@ -73,15 +76,15 @@ export class Transfer extends React.Component{
                 <button onClick={this.close} className="button-close-button">x</button>
             </div>
             <div className="title-price justify-center">
-                Tranfer your NFT to a different address
+            {<Translate value='transfer.title'/>}
                 </div>
             <div className="paragraph-price">
-            Be careful! transfering the NFT to the wrong address can mean the permanent loss of your token.
+            {<Translate value='transfer.warning'/>}
                 </div>
             <form onSubmit={this.handleSubmit} className="form-container-price">
                 <div >
                     <div className="justify-center message-label-price">
-                       Transfer to Ethereum address:
+                    {<Translate value='transfer.to'/>}
                     </div>
                     <div>
                         <input 

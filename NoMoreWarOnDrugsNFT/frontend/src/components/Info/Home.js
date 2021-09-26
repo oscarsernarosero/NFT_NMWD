@@ -5,13 +5,13 @@ import { LeftImage } from "./LeftImage";
 import { RightImage } from "./RightImage";
 import { Buttons } from "./Buttons";
 import"../../i18n/text";
-import { translate, localize } from 'react-i18nify';
 import { Translate, Localize } from 'react-i18nify';
 
 export class Home extends React.Component {
 
     
     render(){
+        
         return (
             <div className="home-container">
             <LeftImage
@@ -31,7 +31,7 @@ export class Home extends React.Component {
             <RightImage
                 src="https://news.artnet.com/app/news-upload/2015/07/boteroEscobar-768x1024.jpg"
                 alt="image2"
-                title={translate('home.second.title')}
+                title={<Translate value='home.second.title'/>}
                 text={<p >
                      <Translate value='home.second.para1' />
                     <br/>

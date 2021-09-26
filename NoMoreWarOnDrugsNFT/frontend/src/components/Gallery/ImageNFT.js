@@ -14,6 +14,9 @@ import { GiQueenCrown } from "react-icons/gi";
 import { HiCash } from "react-icons/hi";
 import { TiStar } from "react-icons/ti";
 
+import"../../i18n/text";
+import { Translate, Localize } from 'react-i18nify';
+
 import {
   Link,
  useHistory
@@ -295,20 +298,20 @@ async setForSale()
       </div>
 
       <div className={this.props.mywallet&&this.props.uri.message==="" ? "dont-show" : "msg-title"}>
-        <MdMessage style={{verticalAlign:"middle"}}/> Message:
+        <MdMessage style={{verticalAlign:"middle"}}/> {<Translate value='imageNFT.message'/>}:
       </div>
 
       <div className={this.props.mywallet&&this.props.uri.message==="" ? "dont-show" : 
         (!this.props.mywallet&&this.props.uri.message==="") || this.props.uri.message===undefined ? "no-message" : "message"}>
           {(!this.props.mywallet&&this.props.uri.message==="") || this.props.uri.message===undefined  ? 
-          "This NFT has no message yet. You can set it yourself if you buy this NFT!" :
+          <Translate value='imageNFT.noMessage'/> :
           this.props.uri.message} 
       </div>
 
       <div className="artist-royalty-container">
         <div className="artist-container">
           <div className="artist">
-            <GiPalette />&nbsp;Artist: 
+            <GiPalette />&nbsp;{<Translate value='imageNFT.artist'/>}: 
           </div>
           <a href={this.props.uri.attributes.webpage} className="link" 
           style={window.innerWidth>900?{fontSize:"0.9vw"}:{fontSize:"2.2vw"}}
@@ -320,12 +323,12 @@ async setForSale()
           <div className="royalty">
             <GiQueenCrown style={{verticalAlign:"middle"}}/>&nbsp;NFT-Royalty: 
              </div>
-          <div className="royalty-value"> 6.9%  </div>
+          <div className="royalty-value"> 6.00%  </div>
         </div>
       </div>
 
       <div className="description">
-        Description: {this.props.uri.description}
+      {<Translate value='imageNFT.description'/>}: {this.props.uri.description}
       </div>
       
       <div className="price" style={window.innerWidth>900?{fontSize:"2.5vw"}:{fontSize:"5.5vw"}}>
@@ -346,10 +349,10 @@ async setForSale()
           }
           
           
-          {this.props.uri.owned ? "You Own This NFT !" :
-            this.props.provider_defaulted ? "You Need to Connect Wallet" :
-              this.props.forMint ?  " Mint!":
-                this.props.uri.forSale ? " BUY" : "Not For Sale"}
+          {this.props.uri.owned ? <Translate value='imageNFT.youOwn'/> :
+            this.props.provider_defaulted ? <Translate value='imageNFT.connectWallet'/> :
+              this.props.forMint ?  <Translate value='imageNFT.mint'/>:
+                this.props.uri.forSale ? <Translate value='imageNFT.buy'/> : <Translate value='imageNFT.notForSale'/>}
 
         </button>
       </div>
@@ -357,7 +360,7 @@ async setForSale()
       <div className={!this.props.mywallet||this.props.uri.message!=="" ? "dont-show" : "text-center"}>
         <Link to={{ pathname: "/setmessage" }}>
           <button className="setMessage" onClick={this.setSelectedId}>
-          <MdMessage style={{verticalAlign:"middle"}}/>  Set The Message!</button>
+          <MdMessage style={{verticalAlign:"middle"}}/>{<Translate value='imageNFT.setMessage'/>}</button>
         </Link>
         
       </div>  
@@ -365,7 +368,7 @@ async setForSale()
       <div className={!this.props.mywallet ? "dont-show" : "text-center"}>
     
         <button className="setPrice" onClick={this.changePrice}> 
-        <HiCash style={{verticalAlign:"middle"}}/>&nbsp; Change Price </button>
+        <HiCash style={{verticalAlign:"middle"}}/>&nbsp; {<Translate value='imageNFT.changePrice'/>}</button>
             <ChangePrice 
               id = {this.props.uri.id}
               price = {this.props.uri.price}
@@ -383,7 +386,7 @@ async setForSale()
       <div className={!this.props.mywallet ? "dont-show" : "forsale-transfer-container"}>
         <div className="for-sale-container"> 
           <div className="for-sale-label">
-            <IoPricetag style={{verticalAlign:"middle"}}/>&nbsp;For sale? 
+            <IoPricetag style={{verticalAlign:"middle"}}/>&nbsp;{<Translate value='imageNFT.forSale'/>}
             </div>
           <div className="check-for-sale">
               <label >
@@ -395,7 +398,7 @@ async setForSale()
         <div className="transfer-container">
 
           <button className="transfer-button" onClick={this.transfer}> 
-          <IoIosSend style={{verticalAlign:"middle"}}/>&nbsp;Transfer</button>
+          <IoIosSend style={{verticalAlign:"middle"}}/>&nbsp;{<Translate value='imageNFT.transfer'/>}</button>
           <Transfer 
             my_address={this.props.address}
             safeTransfer = {(owner, to, tokenId) => {
