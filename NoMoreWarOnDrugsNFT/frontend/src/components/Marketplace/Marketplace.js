@@ -110,27 +110,7 @@ export class Marketplace extends React.Component{
                 }}
               />
             }
-            {
-              <GetUserBalance
-                getUserBalance = { (_address) => {
-                  return this.props.getUserBalance(_address);
-                }
-              }
-              address = {this.props.selectedAddress}
-              />
-            }
-            {
-              <WithdrawUserFunds
-                withdrawUserFunds = { (amount) => {
-                  return this.props.withdrawUserFunds( amount);
-                }}
-                getUserBalance = { (_address) => {
-                  return this.props.getUserBalance(_address);
-                }
-              }
-              address = {this.props.selectedAddress}
-              />
-              }
+            
               {
               <SetForSale
                 setForSale = { (tokenId, forSale) => {

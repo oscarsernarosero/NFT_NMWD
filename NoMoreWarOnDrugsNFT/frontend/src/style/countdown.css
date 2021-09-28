@@ -1,0 +1,32 @@
+.countdown-component-container{
+    padding: 0.5vw;
+    padding-top:3vw;
+    width: 100%;
+}
+
+.countdown-legend{
+    text-align:center;
+    font-size:2rem;
+}
+
+
+.countdown-container{
+    padding: 0.5vw;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 130px);
+    grid-template-rows: [top] 120px [bottom] 40px;
+}
+
+.Clock-value{
+    font-size: 6.5rem;
+    color:aquamarine;
+    text-align: center;
+}
+
+.Clock-label{
+    font-size: 1.5rem;
+    text-align: center;
+}

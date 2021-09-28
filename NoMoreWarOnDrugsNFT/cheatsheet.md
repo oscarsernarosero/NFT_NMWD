@@ -101,6 +101,32 @@ since we only need to setup the prices, we only provide the abi for the setPrice
 ```
 The price is in WEIs!
 
+## Withdraw from marketplace
+
+```
+    [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_payee",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdrawFromContract",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+    ]
+```
+
+
 
 ## Upgrading the marketplace
 
@@ -115,3 +141,16 @@ The price is in WEIs!
 ### Rinkeby:
 
 0xC10042Fb78D4EA815aA29fCfb47d7D898Ab77559
+
+# Tests
+
+### Fleek vs. Pinata CIDs
+
+File: Scan 1 (scan of the cocaine producer in Perú).
+
+Fleek:  bafybeidt2ziwgwr7m7uosj6vtc6h64pasuybzcp3qfnwg7zlwpydvohtb4
+
+Pinata: QmW8q8zdScE6AQVHGZvETLa15GpNFRkESbSD7EtLvJV2AJ
+
+bafybeidt2ziwgwr7m7uosj6vtc6h64pasuybzcp3qfnwg7zlwpydvohtb4
+

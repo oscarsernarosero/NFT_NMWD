@@ -1,5 +1,6 @@
 import React from "react";
 import { PaginationNFTs } from "./PaginationNFTs";
+import { Countdown } from "../Generics/Countdown";
 import "../../style/gallery.css";
 import {
   useParams
@@ -16,6 +17,7 @@ export function Gallery(props){
   const chrome = navigator.userAgent.indexOf("Chrome") > -1;
     return (
       <div className="gallery">
+        <Countdown deadline={"October, 20, 2021"}/>
         <div className={chrome? "not-visible":"gallery"}>
                 <h4 style={{padding:"1vw", color:"yellow"}}>WARNING: This browser may cause unexpected behaviours in this app. We recommend to use Google Chrome or Brave for desktop.</h4>
               </div>
