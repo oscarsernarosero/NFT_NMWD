@@ -8,6 +8,7 @@ export class WalletStatus extends React.Component{
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this);
+      console.log("this.props.network",this.props.network);
         
       }
 
@@ -30,6 +31,9 @@ export class WalletStatus extends React.Component{
         return (
         <div className="wallet-language-container">
             <ChangeLanguage/>
+            <div className="spacer">-</div>
+            <div className="app-network">{this.props.network}</div>
+            <div className="spacer">-</div>
             <div className="wallet not-connected">
                 <button className="wallet-button not-connected">
                     <IoWallet style={{verticalAlign:"middle"}}/>&nbsp;No wallet detected
@@ -42,6 +46,9 @@ export class WalletStatus extends React.Component{
     return (
         <div className="wallet-language-container">
             <ChangeLanguage/>
+            <div className="spacer">-</div>
+            <div className={this.props.network==="mainnet"?"app-network":"app-network testnet"}>{this.props.network}</div>
+            <div className="spacer">-</div>
             <div className={this.props.connected ? "wallet connected" : "wallet not-connected"}>
                 <button className={this.props.connected ? "wallet-button connected" : "wallet-button not-connected"}
                 onClick={this.handleClick}>

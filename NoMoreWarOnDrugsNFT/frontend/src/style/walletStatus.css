@@ -52,7 +52,7 @@
         width:max-content;
         padding: 0px;
         font-size: 0;
-        margin-left:79vw;
+        margin-left:75vw;
         margin-right: auto;
         position: absolute;
     }
@@ -91,5 +91,28 @@
 
     .text{
         padding: 0px;
+    }
+
+    .app-network{
+        display:inline-block;
+        font-size: 1vw;
+        width: min-content;
+        padding-right: 0.5vw;
+        padding-left: 0.5vw;
+        color: white;
+        text-align:center;
+        background-color: rgb(82, 160, 4);
+        border-radius: 0.5vw;
+    }
+
+    .app-network.testnet{
+        background-color: rgb(160, 118, 4);
+    }
+
+    .spacer{
+        display:inline-block;
+        font-size:2vw;
+        line-height: 0%;
+        color:black
     }
 }

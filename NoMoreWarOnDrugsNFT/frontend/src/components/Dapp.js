@@ -87,6 +87,7 @@ export class Dapp extends React.Component {
       nfts: undefined,
       initialized:false,
       provider_defaulted: false,
+      network:network[window.ethereum.networkVersion]
     };
 
     this.state = this.initialState;
@@ -104,6 +105,7 @@ export class Dapp extends React.Component {
             connectWallet={() => this._connectWallet()} 
             networkError={this.state.networkError}
             dismiss={() => this._dismissNetworkError()}
+            network={this.state.network}
           />
           <div>
             <switch>
@@ -253,6 +255,7 @@ export class Dapp extends React.Component {
               <Route path="/gallery/:page?/:id?" 
                 render={(props)=>
                   <Gallery
+                    network={this.state.network}
                     provider_defaulted= {this.state.provider_defaulted}
                     initialized = {this.state.initialized}
                     address = {this.state.selectedAddress}
@@ -278,6 +281,7 @@ export class Dapp extends React.Component {
               <Route path="/mint/:page?/:id?" 
                 render={(props)=>
                   <Mint
+                  network={this.state.network}
                     provider_defaulted= {this.state.provider_defaulted}
                     address = {this.state.selectedAddress}
                     marketPlaceAddress = {MarketPlaceAddress.Token}
@@ -383,6 +387,7 @@ export class Dapp extends React.Component {
     // It returns a promise that will resolve to the user's address.
     //try{
       const [selectedAddress] = await window.ethereum.request({ method: 'eth_requestAccounts' }) 
+      
       console.log("selected_address",selectedAddress);
       // Once we have the address, we can initialize the application.
     this.setState({provider_defaulted:false});
@@ -424,6 +429,8 @@ export class Dapp extends React.Component {
 
   async _initialize(userAddress) {
     // This method initializes the dapp
+    await this.setState({network:network[window.ethereum.networkVersion]});
+      console.log("this.state.network",this.state.network);
 
     // First we check the network
     NMWDAddress =require("../contracts/"+network[window.ethereum.networkVersion]+"-contract-address-StopTheWarOnDrugs.json");
