@@ -103,10 +103,11 @@
         text-align:center;
         background-color: rgb(82, 160, 4);
         border-radius: 0.5vw;
+        font-weight: 800;
     }
 
     .app-network.testnet{
-        background-color: rgb(160, 118, 4);
+        background-color: #d6af02;
     }
 
     .spacer{

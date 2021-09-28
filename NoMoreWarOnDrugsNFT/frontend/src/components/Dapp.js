@@ -87,7 +87,7 @@ export class Dapp extends React.Component {
       nfts: undefined,
       initialized:false,
       provider_defaulted: false,
-      network:network[window.ethereum.networkVersion]
+      network:"Network"
     };
 
     this.state = this.initialState;
