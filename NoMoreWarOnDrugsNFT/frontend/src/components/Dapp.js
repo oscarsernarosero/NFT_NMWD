@@ -209,6 +209,9 @@ export class Dapp extends React.Component {
                     setPrice = { (price, tokenId) => {
                       return this.setPrice(price, tokenId);
                     }}
+                    setPriceForMinting = { (price, tokenId, royaltyAddress) => {
+                      return this.setPriceForMinting(price, tokenId, royaltyAddress);
+                    }}
                     getPrice = { (tokenId) => {
                       return this.getPrice( tokenId);
                     }}
@@ -757,6 +760,16 @@ export class Dapp extends React.Component {
     try{
       console.log("about to set price..", price)
       return await this.marketPlace.setPrice(price, tokenId);
+     }catch(error){
+      console.log(error);
+       return {error: error.message};
+     }
+   }
+
+   async setPriceForMinting(price, tokenId, royaltyAddress){
+    try{
+      console.log("about to set price for minting..", price)
+      return await this.marketPlace.setPriceForMinting(price, tokenId, royaltyAddress);
      }catch(error){
       console.log(error);
        return {error: error.message};

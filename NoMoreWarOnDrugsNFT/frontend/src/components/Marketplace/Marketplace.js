@@ -17,6 +17,7 @@ import { WithdrawFromContract } from "./WithdrawFromContract";
 import { SetForSale } from "./SetForSale";
 import { GetForSale } from "./GetForSale";
 import { InitializeContracts } from "./InitializeContracts";
+import { SetPriceForMinting } from "./SetPriceForMinting";
 
 export class Marketplace extends React.Component{
 
@@ -66,6 +67,13 @@ export class Marketplace extends React.Component{
               <SetPrice
                 setPrice = { (price, tokenId) => {
                   return this.props.setPrice(price, tokenId);
+                }}
+              />
+            }
+            {
+              <SetPriceForMinting
+                setPriceForMinting = { (price, tokenId, royaltyAddress) => {
+                  return this.props.setPriceForMinting(price, tokenId, royaltyAddress);
                 }}
               />
             }

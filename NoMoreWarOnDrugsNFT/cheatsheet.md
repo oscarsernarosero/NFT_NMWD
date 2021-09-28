@@ -43,6 +43,18 @@ make sure the network you are testing is the same network that metamask is point
 
 # In Production
 
+# To Deploy on Mainnet
+
+1. Make sure you are using VPN to hide your location
+
+2. Make sure you are using the right Ethereum account (5th).
+
+3. Then:
+``` 
+npx hardhat run --network mainnet scripts/deploy-token.js
+npx hardhat run --network mainnet scripts/deploy-marketplace-only.js
+```
+
 ## First time marketplace config:
 
 Simply hit the initialize contract button. Then transfer the ownership of the market place to the gnosis multisignature safe address. That's it!
@@ -61,8 +73,8 @@ abi:
 
 since we only need to setup the prices, we only provide the abi for the setPrice method:
 ```
-[
-{
+    [
+    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -89,5 +101,17 @@ since we only need to setup the prices, we only provide the abi for the setPrice
 ```
 The price is in WEIs!
 
+
 ## Upgrading the marketplace
 
+
+
+# Gnosis safe address:
+
+### Mainnet:
+
+0x87DEd4076BF0d2EE7907E2A931DD2AEc18FF4a7f
+
+### Rinkeby:
+
+0xC10042Fb78D4EA815aA29fCfb47d7D898Ab77559

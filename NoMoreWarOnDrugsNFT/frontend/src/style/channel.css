@@ -27,21 +27,25 @@
     background-color: black;
     border-style: hidden;
     color: white;
-    font-size: 1.1vw;
-    width: 100%;
-    text-align: left;
-}
-
-.blog-index-item{
-    background-color: #0000;
-    border-style: hidden;
-    color: white;
-    font-size: 1vw;
+    font-size: 1.3vw;
     width: 100%;
     text-align: left;
     border-bottom-style: solid;
     border-bottom-color: #222;
-    padding:0.1vw;
+   
+}
+
+.blog-index-item{
+    background-color: #000;
+    border-style: hidden;
+    color: white;
+    font-size: 0.9vw;
+    width: 100%;
+    text-align: left;
+    border-bottom-style: solid;
+    border-bottom-color: #222;
+    border-width: 1px;
+    padding:0.3vw;
 }
 
 .blog-content{
