@@ -29,6 +29,7 @@ import { Mint } from "./Mint/Mint";
 import { MyWallet} from "./MyWallet/MyWallet";
 import { SetMessage } from "./MyWallet/SetMessage";
 import { NewUri } from  "./NewUri/NewUri";
+import { Channel } from "./Channel/Channel"
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
 // Here's a list of network ids https://docs.metamask.io/guide/ethereum-provider.html#properties
@@ -110,7 +111,11 @@ export class Dapp extends React.Component {
                 component={Home}/>
              
               <Route path="/overview"  
-                component={Overview}/>
+                component={Overview}
+                />
+
+              <Route path="/channel/:post?"   
+                component={Channel}/>
 
               <Route path="/nftbyid/:id"  
                 render= { 
@@ -346,6 +351,7 @@ export class Dapp extends React.Component {
                   />
                 }
               />
+              
               
               <Route path="/new_uri" 
               render={(props)=>

@@ -5,6 +5,7 @@
     font-size: 0;
     margin-left:auto;
     margin-right: 3px;
+    z-index: 1;
 }
 
 .wallet{
