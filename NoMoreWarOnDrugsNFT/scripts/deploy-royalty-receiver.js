@@ -24,10 +24,11 @@ async function main() {
     };
   
     //#### MODIFY THIS WITH THE INFO #####
-    const SWDAddress = "0x1F4dEa20Ab14fDaBd74974251601933437232C3C";
-    const artistAddress = "0x04F2612a826c88017Fa3e447D291462d56449a7F";
+    const SWDAddress = "0xC10042Fb78D4EA815aA29fCfb47d7D898Ab77559";
+    const artistAddress = "0x8E8c90aafCc31E0545C00ea9662ccB4b6d1326bD";
     const artistPct = 5500; // magnified by 100: 10% = 1000; 50%=5000;
-    const artistName = "Juan_Melo";//Always capitals on initial letters, separated by _ in spaces.
+    const artistName = "Luto";//Always capitals on initial letters, separated by _ in spaces.
+    //### END OF INPUTS
 
     // first we create the hash of the info and check if it already exists
     const SHA256 = require('crypto-js/sha256');

@@ -7,6 +7,48 @@
       "network": "localhost",
       "contractAddress": "0x4c06FbA8bDa0Ce0AC917e7d119BA24bf2D7579F6",
       "dateCreated": "2021-8-20 13:23:39"
+    },
+    "53027e0ce0df24728b8fa64ff504dfd707d844cb48155891e6ddbe59bf574d35": {
+      "artistAddress": "0x04F2612a826c88017Fa3e447D291462d56449a7F",
+      "SWDAddress": "0x1F4dEa20Ab14fDaBd74974251601933437232C3C",
+      "artistPct": 5500,
+      "network": "ropsten",
+      "contractAddress": "0x3F49cFD7d6df6A059441BA131cD59be3c50c8601",
+      "dateCreated": "2021-9-29 15:56:43"
+    }
+  },
+  "Luto": {
+    "ece60eb74731a7fe592c12915110f3101bf06f66b83745ea7ea5b56b6b9e08fc": {
+      "artistAddress": "0x8E8c90aafCc31E0545C00ea9662ccB4b6d1326bD",
+      "SWDAddress": "0x1F4dEa20Ab14fDaBd74974251601933437232C3C",
+      "artistPct": 5500,
+      "network": "ropsten",
+      "contractAddress": "0xBC35b766B126d5fe94470990d006ED1ff8dF4fC8",
+      "dateCreated": "2021-9-29 16:4:33"
+    },
+    "17e259342f7ecfb976d2595218ab69db78a8801efe042d7ff6e75c6b9b9affce": {
+      "artistAddress": "0x8E8c90aafCc31E0545C00ea9662ccB4b6d1326bD",
+      "SWDAddress": "0x0278cE66A55a012D25C3Bc64f1b3A11A0505328F",
+      "artistPct": 5500,
+      "network": "ropsten",
+      "contractAddress": "0x42f9B1D4107E2cCa7EFA2c868C53Df7Ec097a77F",
+      "dateCreated": "2021-9-29 16:53:36"
+    },
+    "ab2dac6544bed25b03cd13b102e853a77ee2bf41b2ea6be69b51a785bddd2d10": {
+      "artistAddress": "0x8E8c90aafCc31E0545C00ea9662ccB4b6d1326bD",
+      "SWDAddress": "0x0278cE66A55a012D25C3Bc64f1b3A11A0505328F",
+      "artistPct": 5500,
+      "network": "rinkeby",
+      "contractAddress": "0x51AAdEFC8f1C8d6a1340B5e8854766d3783569CA",
+      "dateCreated": "2021-9-29 17:0:48"
+    },
+    "70425ee9593f0c523ecdc3a4d1c9bcc9a46f7dc4b3e173219447f5500caa33fa": {
+      "artistAddress": "0x8E8c90aafCc31E0545C00ea9662ccB4b6d1326bD",
+      "SWDAddress": "0xC10042Fb78D4EA815aA29fCfb47d7D898Ab77559",
+      "artistPct": 5500,
+      "network": "rinkeby",
+      "contractAddress": "0x95685ABe7150E1a47aFb281C2B3F89D92F8B87c9",
+      "dateCreated": "2021-9-29 17:2:18"
     }
   }
 }

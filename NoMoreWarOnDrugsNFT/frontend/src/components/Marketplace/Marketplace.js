@@ -18,6 +18,7 @@ import { SetForSale } from "./SetForSale";
 import { GetForSale } from "./GetForSale";
 import { InitializeContracts } from "./InitializeContracts";
 import { SetPriceForMinting } from "./SetPriceForMinting";
+import { RoyaltyReceiver } from "./RoyaltyWithdraw";
 
 export class Marketplace extends React.Component{
 
@@ -145,6 +146,14 @@ export class Marketplace extends React.Component{
               }
               myAddress={this.props.selectedAddress}
               />
+              }
+              {
+                <RoyaltyReceiver
+                address={this.props.selectedAddress}
+                waitForMinedConfirmation={ (tx_hash, func) => {
+                  return this.props.waitForMinedConfirmation(tx_hash, func);
+                }}
+                />
               }
             {
               <GetBackOwnership

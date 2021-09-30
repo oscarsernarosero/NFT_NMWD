@@ -21,6 +21,7 @@ import {TokenContract} from "./TokenContract/TokenContract"
 import { NavBar } from "./Header/NavBar";
 import { WalletStatus } from "./Header/WalletStatus";
 import { Marketplace } from "./Marketplace/Marketplace";
+import { RoyaltyReceiver } from "./Marketplace/RoyaltyWithdraw";
 import { Home } from "./Info/Home";
 import { Overview } from "./Info/Overview";
 import { Gallery } from "./Gallery/Gallery";
@@ -111,6 +112,17 @@ export class Dapp extends React.Component {
             <switch>
               <Route path="/" exact 
                 component={Home}/>
+
+              <Route path="/royalties"  
+                  render= { 
+                    (props)=><RoyaltyReceiver
+                    address={this.selectedAddress}
+                    waitForMinedConfirmation={ (tx_hash, func) => {
+                      return this.waitForMinedConfirmation(tx_hash, func);
+                        }
+                      }
+                    />}
+                />
              
               <Route path="/overview"  
                 component={Overview}
@@ -249,6 +261,9 @@ export class Dapp extends React.Component {
                     return this.getAllNFTs();
                     }
                     }
+                    waitForMinedConfirmation={ (tx_hash, func) => {
+                      return this.waitForMinedConfirmation(tx_hash, func);
+                    }}
                   />
                 }
               />

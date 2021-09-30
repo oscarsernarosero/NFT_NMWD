@@ -38,14 +38,12 @@ contract NMWDRoyaltyReceiver is Context{
 
         if(_msgSender() == artist){
             require(balance[artist] >= amount, "Not enough balance");
-            require( tx.origin == _msgSender());
             balance[artist] -= amount;
             payable(artist).transfer(amount);
             emit Sent(artist, amount);
 
         }else if(_msgSender() == nmwd){
             require(balance[nmwd] >= amount, "Not enough balance");
-            require( tx.origin == _msgSender());
             balance[nmwd] -= amount;
             payable(nmwd).transfer(amount);
             emit Sent(nmwd, amount);
