@@ -150,11 +150,26 @@ setTranslations({
 
           },about_me:{
             title:"About Me",
-            text:<p>
-              I'm a burger flipper immigrant during the day. At night, I'm a conflicted idealist soul, a coder,
-              a history bug, and a crypto punk that wants to do his bit in this world.
+            text:<p><i>
+              "I'm an immigrant burger flipper during the day. At night, I'm a conflicted idealist soul, a coder,
+              a history bug, and a crypto punk that wants to do his bit in this world."</i>
               </p>
-          }
+          },
+            id_cid:{
+              title:"You Can Look Up The NFT In IPFS By Its ID",
+              text:<p>
+                Every NFT comes with its ID which identifies it in the smart contract. This ID is in reality the hash 
+                of the URI file in IPFS. This means, that you can look up the URI file in IPFS yourself only with your 
+                NFT's ID. <br/><br/>
+                To do this, you simply have to build the CID by prepending "F01701220" to your NFT ID. In  
+                other words, your CID will be 'F01701220|YOUR-NFT-ID|'. So, for example, if you have 
+                access to an IPFS node, you can do something like  ipfs://F01701220|YOUR-NFT-ID|. Or you can do this 
+                through a public IPFS gateway such as Pinata or Fleek using the same CID. This is done this way to  
+                guaranty 100% authenticity of each NFT, and to acomplish self-describing IDs. <br/><br/>
+                The URI will hold all the information regarding the NFT including the image that represents it. 
+              </p>
+            }
+          
       },
       filter:{
         title:"Filter",
@@ -232,18 +247,20 @@ setTranslations({
           In simple words, artists can now develop their own art for SWD without supervision from our side, and make money 
           through their art in our platform. This, however, represents a risk for the artist of being rejected, or his/her 
           NFT not getting sold. Therefore, SWD will reward the artists who decide to share this risk 
-          by not only granting a higher percentage in royalties, but also, a higher percentage on the first sale of his/her NFT.
+          by not only granting a higher percentage in royalties, but also, a higher percentage on the first sale (minting)
+           of his/her NFT.
           </p>,
         subtitle2:"What's the deal?",
         paragraph2:<p> By being part of the artist-partner program, you as an artist will be entitled to 40% of the amount of ETH perceived 
           by SWD marketplace during the minting of the NFT you created. But that's not even the best part. You will be entitled to
-          55% of the royalties earned in the future through that particular NFT. All payments are made in Ether.
+          55% of the royalties earned in the future through that particular NFT. All payments are made in the cryptocurrency Ether.
           <br/><br/>
-          The NFT royalty payment and split happens automatically through smart-contract mechanisms which code will be public in the blockchain for 
-          transparency purposes. The 40% of the first sale will be paid directly by the SWD team within a week of the sale.
+          The NFT royalty payment and split happens automatically in the blockchain through smart-contract mechanisms which code will be 
+          public in the blockchain for transparency purposes. The 40% of the first sale will be paid directly by the SWD team within a week 
+          of the sale.
           <br/><br/>
           However, there are some requirements that your art work has to meet in order for it 
-          to be part of this exclusive collection of NFTs.
+          to be part of this exclusive collection of NFTs that will make history.
           </p>,
         subtitle3:"Requirements",
         paragraph3:<p> Meeting the requirements for SWD NFTs will put you at the door of being a partner with us. However,
@@ -273,6 +290,12 @@ setTranslations({
           <li>Your NFT may be animated or not, but the file must be a JPEG, PNG, GIF, or MP4.
           </li>
         </ul></p>,
+      apply_title:"How To Apply",
+      apply_text:<p>
+        Applying to be part of this NFT project is very easy. Simply send an e-mail to 
+        nft@stopthewarondrugs.com with your art, your name, and optionally a breve descriptio of the piece. 
+        We will consider your art and have an answer by 3 weeks of your submition.
+      </p>,
       subtitle4:"Once Your NFT Is Accepted",
       paragraph4:<p>
         Once your graphic piece is accepted to be part of this exclusive collection, you need to provide a couple more things 
@@ -290,7 +313,9 @@ setTranslations({
         <br/><br/>
         The royalty payments, however, will be stored in the royalty-splitter smart contract until you withdraw your funds 
         from it. Therefore, you will have to withdraw your Ether from this smart contract yourself to get your royalties. 
-        Please take into account that this requires some Ether to pay for the gas fees of this operation.
+        Please take into account that this requires some Ether to pay for the gas fees of this operation. Therefore, we 
+        suggest to wait until you have a considerable amount of Ether in this smart contract to withdraw funds since this 
+        way you won't pay too much money on gas fees.
         <br/><br/>
         The address of this smart contract will be given to you once we deploy it to the mainnet. If you have more 
         than one NFT with us, this contract will be the same for all of your NFTs.
@@ -352,7 +377,7 @@ setTranslations({
         },
       overview:{
           first:{
-              title:"Hay una cantidad finita de NFTs",
+              title:"Hay una cantidad finita de NFTs: 904",
               text:<span>Los SWD NFTs son realmente escasos. Sólo existirán un total de 904 SWDs en toda la historia, lo cual está
                 codificado de esta forma en su smart contract. Este número finito de NFTs busca hacer que cada token sea muy especial,
                 lo cual a su vez le da un alto valor, que a futuro se podría traducir en valor monetario (alto precio). Pero estos
@@ -468,11 +493,26 @@ setTranslations({
                 </p>
           },about_me:{
             title:"Quién Soy?",
-            text:<p>
-              Durante el día, soy un inmigrante trabajando en un restuarante. Durante la noche, soy un alma idealista
+            text:<p><i>
+              "Durante el día, soy un inmigrante trabajando en un restuarante. Durante la noche, soy un alma idealista
               clandestina, un aficionado a la historia, un desarrollador de software, y un amante del crypto que quiere aportar 
-              su granito de arena en este mundo.
+              su granito de arena en este mundo."</i>
               </p>
+          },
+          id_cid:{
+            title:"Busca Tu NFT en IPFS Con Su ID",
+            text:<p>
+              Todo NFT tiene su propio ID el cual lo identifica en el smart contract. Este ID es en realidad el hash 
+              del archivo URI en IPFS. Esto significa que tú puedes buscar el archivo URI en IPFS usando sólamente 
+              el ID del NFT. <br/><br/>
+              Para hacer esto, necesitas construir el CID colocando "F01701220" justo antes del ID del NFT. En 
+              otras palabras, el CID de tu NFT será 'F01701220|EL-ID-DE-TU-NFT|'. Por ejemplo, si tienes acceso a un 
+              nodo de IPFS, puedes hacer algo como ipfs://F01701220|EL-ID-DE-TU-NFT|. O también puedes hacer lo mismo 
+              a través de un gateway de IPFS público como el de Pinata o Fleek usando el CID que construíste. Estos 
+              NFTs se crearon de esta forma para garantizar 100% su autenticidad y para lograr IDs autodescriptivos.
+                <br/><br/>
+              El archivo URI tendrá toda la información respecto al NFT incluyendo la imagen que lo representa.
+            </p>
           }
         
 
@@ -546,84 +586,100 @@ setTranslations({
         channel:"Canal"
       },
       artist_partner:{
-        title:"Artist-Partner Program",
+        title:"Programa de Artista Socio",
         subtitle1:"Intro",
         paragraph1: <p>
-          Artists are at the heart of Stop-The-War-On-Drugs NFT project, of course. To bootstrap this project, different 
-          artists were contacted to develop the first NFTs, and build the different art works together. Since there 
-          have been different NFTs already made, now artists can get the idea of what these NFTs are about more easily, and 
-          that's where the artist-partner program comes into play. 
+          Los artistas son el corazón de Stop-The-War-On-Drugs NFTs. Para iniciar este proyecto, fue necesario contactar 
+          diferentes artistas para desarrollar juntos las primeras piezas. Pero ya que en este momento existen varios NFTs,
+          los artistas ahora se pueden dar una idea más fácilmente de cuál es la idea principal de este proyecto y de 
+          qué se trata. Aquí es cuando el programa de artistas socios entra en juego.
           <br/><br/>
-          In simple words, artists can now develop their own art for SWD without supervision from our side, and make money 
-          through their art in our platform. This, however, represents a risk for the artist of being rejected, or his/her 
-          NFT not getting sold. Therefore, SWD will reward the artists who decides to share this risk 
-          with not only a higher percentage in royalties, but also, a higher percentage on the first sale of his/her NFT.
+          En pocas palabras, los artistas ahora pueden desarrollar sus propios NFTs para SWD sin supervisión de nuestra 
+          parte, y ganar dinero con su arte através de nuestra plataforma. Sin embargo, esto representa un riesgo para el 
+          artista ya que sus NFTs pueden ser rechazados o simplemente podrían no venderse. Por lo tanto, SWD va a recompensar 
+          a los artistas que decidan hacer NFTs por su cuenta no sólo con un porcentage alto en los royalties, sino también 
+          con un porcentaje del valor recibido en la plataforma por la primera venta (acuñado) de su NFT.
           </p>,
-        subtitle2:"What's the deal?",
+        subtitle2:"El Acuerdo",
         paragraph2:<p>
-          By being part of the artist-partner program, you as an artist will be entitled to 40% of the amount of ETH perceived 
-          by SWD marketplace during the minting of the NFT you created. But that's not even the best part. You will be entitled to
-          55% of the royalties earned in the future through that particular NFT.
+          Al ser parte del programa de artistas socios, tú, como artista, tienes derecho al 40% de la cantidad de Ether 
+          percibida por el marketplace de SWD durante el acuñado del NFT que tú creaste. Pero eso no es la mejor parte. Tú 
+          tendrás derecho al 55% de las regalías (royalties) ganados en el futuro a través de ese NFT en particular. Todos los 
+          pagos serán realizados en la criptomoneda Ether.
           <br/><br/>
-          The NFT royalty split happens automatically through smart-contract mechanisms which code will be public in the blockchain for 
-          transparency purposes. The 40% of the first sale will be paid directly by the SWD team within a week of the sale.
+          El pago y la división de las regalías (royalties) sucede automáticamente en el blockchain através de mecanismos en smart 
+          contracts para mayor transparencia del proceso. Por otro lado, el 40% de la primera venta será pagado directamente por 
+          nosotros en máximo una semana después de la venta.
           <br/><br/>
-          But, before you get too excited about this, there are some requirements that your art work has to meet in order for it 
-          to be part of this exclusive collection of NFTs.
+          Pero para ser socio de este proyecto y tener NFTs en esta exclusiva colección que hará historia, es necesario 
+          cumplir con unos requisitos mínimos.
           </p>,
-          subtitle3:"Requirements",
-          paragraph3:<p> Meeting the requirements for SWD NFTs will put you at the door of being a partner with us. However,
-            meeting the requirements only is not enough. There will be only 904 NFTs ever in this collection, which means you 
-            are trying to be part of a very selected collection. Therefore, your art might be accepted or not. Obviously, the 
-            earlier in the project you apply, the higher the chances for you to be accepted. Even though the whole point of 
-            this program is to get some work load off the team, you still can email us to get some guidance. Just don't abuse
-            this resource. The minimum requirements for your NFT to be accepted are:
+          subtitle3:"Requisitos",
+          paragraph3:<p> Cumplir con los requisitos te va a poner en la puerta de entrada para ser socio con nosotros, pero 
+            no te garantiza la entrada. Existirán sólamente 904 NFTs de SWD en toda la historia, lo que significa que estás 
+            tratando de crear NFTs para una colección muy exclusiva. Por lo tanto, puede que tu arte sea aceptado o 
+            no. Obviamente, mientras más temprano en el proyecto apliques, mayores probabilidades de ser aceptado vas a tener.
+            A pesar de que la idea de este programa es la de agilizar el proceso de creación artística y liberar un poco la 
+            carga del equipo, tú puedes enviarnos un e-mail para recibir un poco de guía con respecto a tus NFTs para 
+            aumentar tus probabilidades de ser aceptado. Simplemente no abuses de este recurso. Los requisitos mínimos para 
+            tu NFT son:
             
           <ul>
-            <li>First, the most obvious requirement is that the NFT must be against prohibition --the war on drugs.
-              If the piece is inspired by the ideas or history shown in the YouTube channel, it will have better chances of 
-              getting accepted.
+            <li>Primero que todo, el requisito más obvio, tu NFT debe ser en contra de la prohibición o la farsa que es la 
+              guerra contra el narcotráfico. Si el NFT es inspirado en las ideas o la historia contada en el canal de 
+              YouTube, tendrá mejores posibilidades de ser aceptado.
             </li>
-            <li>The format of the piece can be rectangular or square, vertical or horizontal. However, if rectngular, it cannot 
-              have a proportion higher than 2:1 or 1:2.
+            <li>El formato de la pieza puede ser cuadrado, rectangular, horizontal o vertical. Sin embargo, si es rectangular, 
+              debe tener una proporción menor o igual a 2:1 o 1:2.
             </li>
-            <li>The piece must have the name of the project somewhere in a readable manner. It doesn't have to be a big element, 
-              but it needs to be clear that the piece belongs to this project. This will be achieved by putting 
-              "stopthewarondrugs.eth" in your graphic work.
+            <li>La pieza debe hacer referencia al proyecto en alguna parte de manera legible. No tiene que ser necesariamente 
+              un elemento grande en la pieza, pero necesita ser claro que el NFT hace parte de este proyecto. Para esto debes 
+              poner "stopthewarondrugs.eth" en tu trabajo gráfico.
             </li>
-            <li>The piece must be as small as any of the HD dimensions or as big as any of the 4K dimensions. </li>
-            <li>Cloud space is limmited, and NFTs are meant to be shown in a screen. So, even though we care a lot about 
-              high quality and pieces with good resolution, please don't make unnecessarily heavy files with quality that 
-              will be invisible to the eye.
+            <li>La pieza puede ser tan pequeño como tamaño estándar HD o tan grande como tamaño estándar 4k.  </li>
+            <li>El espacio en la nube es limitado y los NFTs están hechos para ser vistos a través de una pantalla. Así que, 
+              a pesar de que nos preocupamos por mantener la mejor calidad posible y una excelente resolució de las piezas, 
+              trata de NO crear archivos súper pesados con calidad que va a ser invisible al ojo humano.
             </li>
-            <li>Your NFT may be animated or not, but the file must be a JPEG, PNG, GIF, or MP4.
+            <li>Tu NFT puede ser animado o no, pero debe estar en formato JPEG, PNG, GIF, o MP4.
+            </li>
+            <li>Opcionalmente, si tu NFT contiene texto, puedes realizar 2 versiones: una en inglés y otra en español.
             </li>
           </ul></p>,
-        subtitle4:"Once Your NFT Is Accepted",
+        apply_title:"Cómo Aplicar?",
+        apply_text:<p>
+          Aplicar para ser parte de este proyecto de NFTs que hará historia es muy fácil. Simplemente envíanos un e-mail a 
+          nft@stopthewarondrugs.com con tu arte, tu nombre, y opcionalmente una breve descripción de tu NFT. Nosotros 
+          consideraremos la posibilidad de incluir tu NFT en esta colección y te responderemos en un máximo de tres semanas 
+          a partir de tu aplicación.
+        </p>,
+        subtitle4:"Si Tu NFT Es Aceptado",
         paragraph4:<p>
-          Once your graphic piece is accepted to be part of this exclusive collection, you need to provide a couple more things 
-          for us to be able to make your graphic piece into an NFT:
+          Una vez tu NFT haya sido aceptado para ser parte de esta exclusiva colección, necesitas darnos unos cuanto datos más: 
+          
           <ul>
-            <li>The Ethereum address where you want to receive/claim your payments.</li>
-            <li>Your prefered artistic pseoudonym (you can also go anonymus).</li>
-            <li>Your webpage url (optional).</li>
+            <li>Una dirección de Ethereum en la cual deseas recibir/reclamar tus pagos.</li>
+            <li>Tu nombre artístico (también puedes ir de anónimo).</li>
+            <li>La dirección de tu página web (opcional).</li>
           </ul>
         </p>,
-        subtitle5:"How Am I Going To Get My Payments?",
+        subtitle5:"Cómo Obtengo Mis Pagos?",
         paragraph5:<p>
-          Your first payment will be issued by us directly to the Ethereum address you provided. Only you are responsible for 
-          the safety of your funds once they get to your address.
+          El primer pago será realizado por nosotros directamente a tu dirección de Ethereum. La seguridad de estos fondos 
+          son responsabilidad única y exclusivamente tuya una vez éstos lleguen a tu dirección.
           <br/><br/>
-          The royalty payments, however, will be stored in the royalty-splitter smart contract until you withdraw your funds 
-          from it. Therefore, you will have to withdraw your Ether from this smart contract yourself to get your royalties. 
-          Please take into account that this requires some Ether to pay for the gas fees of this operation.
+          El pago de las regalías (royalties), sin embargo, serán recolectadas en el smart contract divisor de regalías hasta 
+          que tú retires tus fondos de este contrato. Por lo tanto, tú tendrás que retirar tus Ethers de este smart contract 
+          para poder obtener las regalías. Recuerda que necesitarás tener Ether para poder retirar tus Ethers de este 
+          contrato. Por lo tanto te recomendamos que no retires tus regalías hasta que tengas una suma considerable para 
+          evitar pagar mucho dinero en "gas fees".
           <br/><br/>
-          The address of this smart contract will be given to you once we deploy it to the mainnet. If you have more 
-          than one NFT with us, this contract will be the same for all of your NFTs.
+          La dirección de este smart contract será entregado a tí una vez despleguemos el contrato en el blockchain. Si tienes 
+          más de un NFT con nosotros, este contrato será el mismo para los royalties de todos tus NFTs.
         </p>
         },
     marketplace:{
-      title:"Important information about this marketplace",
+      title:"Información Importante Acerca de Este Marketplace",
       text:<p className="small-info">
       <b>Taza:</b> Este marketplace aplica una taza del 0.8% por cada transacción. Una de las más bajas del mercado. Así que 
       te recomendamos que trances tus SWD a través de esta plataforma.

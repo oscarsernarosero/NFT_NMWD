@@ -15,6 +15,8 @@ export function ArtistPartnerProgram(props){
             <Translate value='artist_partner.paragraph2'/>
             <h4>{<Translate value='artist_partner.subtitle3'/>}</h4>
             <Translate value='artist_partner.paragraph3'/>
+            <Translate value='artist_partner.apply_title'/>
+            <h4>{<Translate value='artist_partner.apply_text'/>}</h4>
             <h4>{<Translate value='artist_partner.subtitle4'/>}</h4>
             <Translate value='artist_partner.paragraph4'/>
             <h4>{<Translate value='artist_partner.subtitle5'/>}</h4>
