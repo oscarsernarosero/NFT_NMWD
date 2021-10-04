@@ -7,62 +7,62 @@ export const Playlists = {
             content:
             {
                     opium_wars:{
-                        title:"The Begenning: The Opium Wars",
+                        title:"The Beginning: The Opium Wars",
                         text:"The British East India Company can be considered as the first great cartel in 'modern' history. \
                         The implications that the illegal drug trafficking by the British, and later by the Americans in the XIX century, had in \
                         the development of Chinese history and its relationship with the western world, had \
-                        greate repercusions which are still felt today.",
-                        videoUrl:"https://www.youtube.com/embed/vI2hT9lb1gY"
+                        great repercussions which are still felt today.",
+                        videoUrl:"https://www.youtube.com/embed/niU1lKjoV4A"
                     },
                     racism:{
                         title:"Racism As A Trigger Of The War On Drugs",
                         text:"Among the different ideas that shaped the late-XIX and early-XX century world, were the ideas that \
-                        race was a natural indication of herarchy. These ideas also tirggered the negative perceptions of some \
-                        no-traditionally-european drugs. Racism against the Chinese, African Americna, and Mexicans had a big deal \
+                        race was a natural indication of hierarchy. These ideas also triggered the negative perceptions of some \
+                        no-traditionally-european drugs. Racism against the Chinese, African American, and Mexicans had a big deal \
                         to do with the prohibition of drugs in the US later in the XX century, which will be later exported to the \
                         rest of the world.",
                         videoUrl:"https://www.youtube.com/embed/-qul5lZEaHY"
                     },
                     coca:{
                         title:"The Origins Of Coca",
-                        text:"The coca leaves have been used for thousands of years by the indigenous people of South Amercia without \
+                        text:"The coca leaves have been used for thousands of years by the indigenous people of South America without \
                         any noticeable harming effects. On the contrary, the medicinal properties of this plant has ensured the good \
                         performance of these tribes in the high lands of the Andean mountains.",
                         videoUrl:"https://www.youtube.com/embed/qcgGhAkoQJo"
                     },
                     cocaine:{
                         title:"Origins Of Cocaine",
-                        text:"Cocaine was isolated from the coca leaf by German chemics. It's scientific legitimacy gave the indigenous \
+                        text:"Cocaine was isolated from the coca leaf by German chemist. It's scientific legitimacy gave the indigenous \
                         coca leaf the boost in the global trade that it needed to become a world-wide commodity. The explosion of products \
-                        based on the Southamerican plant gave birth to a 'coca-culture' in the second half of the XIX century, paving the \
+                        based on the South American plant gave birth to a 'coca-culture' in the second half of the XIX century, paving the \
                         way for the success of cocaine by the end of the century.",
                         videoUrl:"https://www.youtube.com/embed/1hSDoVpKTII"
                     },
                     cocaine_paste:{
                         title:"Origins Of Southamerican Cocaine",
-                        text:"After the explosion of demand for cocaine after 1884, and after the devastation of a Southamerican war, a \
+                        text:"After the explosion of demand for cocaine after 1884, and after the devastation of a South American war, a \
                         beaten country saw the rising of great scientific research around cocaine to overcome the economical crisis left \
                         by the war. The implications of these ventures in the history of cocaine as a global commodity were ennourmous.",
                         videoUrl:"https://www.youtube.com/embed/gZwTqip_cwk",
                     },
                     southamerican_cocaine_trade:{
-                        title:"First Southamerican Cocain Trade",
-                        text:"After the Southamerican invention of the cheap insitu cocaine paste, the cocaine trade overcame its biggest \
-                        historical obstacule to become a world-wide commodity. Legal cocaine trade grew exponentially during the following \
-                        decades causing some effects in the producer contries that later will hunt the prohibitionist campaings after WWii. \
+                        title:"First South American Cocaine Trade",
+                        text:"After the South American invention of the cheap insitu cocaine paste, the cocaine trade overcame its biggest \
+                        historical obstacle to become a world-wide commodity. Legal cocaine trade grew exponentially during the following \
+                        decades causing some effects in the producer countries that later will hunt the prohibitionist campaigns after WWii. \
                         ",
                         videoUrl:"https://www.youtube.com/embed/Qn-yjZBuFbs"
                     },
                     origins_cocaine_prohibition:{
                         title:"Before The Origins Of Cocaine Prohibition",
-                        text:"The initially unregulated patent-medicne companies, and the few real knowledge that the medicinal industry \
-                        had, caused the first opiod epidemic crisis in the US. The progessive movements alongside the conservatives persued the \
+                        text:"The initially unregulated patent-medicine companies, and the few real knowledge that the medicinal industry \
+                        had, caused the first opioid epidemic crisis in the US. The progressive movements alongside the conservatives pursued the \
                         first regulations around the companies that sold drugs, but it might not be the way you would expect.",
                         videoUrl:"https://www.youtube.com/embed/fbpUjNWkCcA"
                     },
                     cocaine_prohibition:{
                         title:"Origins of Cocaine Prohibition",
-                        text:"Now added to the progessive and conservative movements in the US, was the racism against the southern black \
+                        text:"Now added to the progressive and conservative movements in the US, was the racism against the southern black \
                         communities in the country. The reality behind cocaine prohibitionist movements in the US was a lot darker than \
                         what most people would dare to believe. Thankfully, history is here to save us.",
                         videoUrl:""
@@ -71,12 +71,12 @@ export const Playlists = {
                         title:"First International Drug Restrictions: The Hague Conventions 1911-1912",
                         text:"The truth behind the first international drug restriction is very different to what you would expect. \
                         Money, geopolitics, and China were the main interests that triggered the first international restriction \
-                        around drug trade led by the US. The consecuences inside the US, and later globally, are eerie",
+                        around drug trade led by the US. The consequences inside the US, and later globally, are eerie",
                         videoUrl:"https://www.youtube.com/embed/vq02_ydLe68"
                     },
                     summary:{
                         title:"Summary Of Geopolitics In The Restriction of Drugs",
-                        text:"A quick summary before entering in the experiment of total prohibition in the US druing the 1920s.",
+                        text:"A quick summary before entering in the experiment of total prohibition in the US during the 1920s.",
                         videoUrl:"https://www.youtube.com/embed/qOXt1ue5dLQ"
                     },
 
@@ -90,44 +90,44 @@ export const Playlists = {
         {
                 coca:{
                     title:"The Origins Of Coca",
-                    text:"The coca leaves have been used for thousands of years by the indigenous people of South Amercia without \
+                    text:"The coca leaves have been used for thousands of years by the indigenous people of South America without \
                     any noticeable harming effects. On the contrary, the medicinal properties of this plant has ensured the good \
                     performance of these tribes in the high lands of the Andean mountains.",
                     videoUrl:"https://www.youtube.com/embed/qcgGhAkoQJo"
                 },
                 cocaine:{
                     title:"Origins Of Cocaine",
-                    text:"Cocaine was isolated from the coca leaf by German chemics. It's scientific legitimacy gave the indigenous \
+                    text:"Cocaine was isolated from the coca leaf by German chemist. It's scientific legitimacy gave the indigenous \
                     coca leaf the boost in the global trade that it needed to become a world-wide commodity. The explosion of products \
                     based on the Southamerican plant gave birth to a 'coca-culture' in the second half of the XIX century, paving the \
                     way for the success of cocaine by the end of the century.",
                     videoUrl:"https://www.youtube.com/embed/1hSDoVpKTII"
                 },
                 cocaine_paste:{
-                    title:"Origins Of Southamerican Cocaine",
-                    text:"After the explosion of demand for cocaine after 1884, and after the devastation of a Southamerican war, a \
+                    title:"Origins Of South American Cocaine",
+                    text:"After the explosion of demand for cocaine after 1884, and after the devastation of a South American war, a \
                     beaten country saw the rising of great scientific research around cocaine to overcome the economical crisis left \
-                    by the war. The implications of these ventures in the history of cocaine as a global commodity were ennourmous.",
+                    by the war. The implications of these ventures in the history of cocaine as a global commodity were enormous.",
                     videoUrl:"https://www.youtube.com/embed/gZwTqip_cwk",
                 },
                 southamerican_cocaine_trade:{
-                    title:"First Southamerican Cocain Trade",
-                    text:"After the Southamerican invention of the cheap insitu cocaine paste, the cocaine trade overcame its biggest \
-                    historical obstacule to become a world-wide commodity. Legal cocaine trade grew exponentially during the following \
-                    decades causing some effects in the producer contries that later will hunt the prohibitionist campaings after WWii. \
+                    title:"First South American Cocaine Trade",
+                    text:"After the South American invention of the cheap insitu cocaine paste, the cocaine trade overcame its biggest \
+                    historical obstacle to become a world-wide commodity. Legal cocaine trade grew exponentially during the following \
+                    decades causing some effects in the producer countries that later will hunt the prohibitionist campaigns after WWii. \
                     ",
                     videoUrl:"https://www.youtube.com/embed/Qn-yjZBuFbs"
                 },
                 origins_cocaine_prohibition:{
                     title:"Before The Origins Of Cocaine Prohibition",
-                    text:"The initially unregulated patent-medicne companies, and the few real knowledge that the medicinal industry \
-                    had, caused the first opiod epidemic crisis in the US. The progessive movements alongside the conservatives persued the \
+                    text:"The initially unregulated patent-medicine companies, and the few real knowledge that the medicinal industry \
+                    had, caused the first opioid epidemic crisis in the US. The progessive movements alongside the conservatives pursued the \
                     first regulations around the companies that sold drugs, but it might not be the way you would expect.",
                     videoUrl:"https://www.youtube.com/embed/fbpUjNWkCcA"
                 },
                 cocaine_prohibition:{
                     title:"Origins of Cocaine Prohibition",
-                    text:"Now added to the progessive and conservative movements in the US, was the racism against the southern black \
+                    text:"Now added to the progressive and conservative movements in the US, was the racism against the southern black \
                     communities in the country. The reality behind cocaine prohibitionist movements in the US was a lot darker than \
                     what most people would dare to believe. Thankfully, history is here to save us.",
                     videoUrl:""
@@ -145,7 +145,7 @@ export const Playlists = {
                 
                 summary:{
                     title:"Summary Of Geopolitics In The Restriction of Drugs",
-                    text:"A quick summary before entering in the experiment of total prohibition in the US druing the 1920s.",
+                    text:"A quick summary before entering in the experiment of total prohibition in the US during the 1920s.",
                     videoUrl:"https://www.youtube.com/embed/qOXt1ue5dLQ"
                 },
                 harrison_act:{
@@ -157,11 +157,11 @@ export const Playlists = {
                 },
                 alcohol_prohibition_20s:{
                     title:"Alcohol Prohibition In The 1920s",
-                    text:"The legislation on drugs emboldened the prohibitionists in the country who had been long persuing \
+                    text:"The legislation on drugs emboldened the prohibitionists in the country who had been long pursuing \
                     a prohibition of alcohol in the country. The Harrison Act, which was not prohibitionist in theory, saw \
-                    the creation of parallel laws that explicitely banned some drugs during the 20s. The outcome of this \
-                    prohibition era was desastrouse. The similarities of this era in the US with the current situation in \
-                    Latin America are simply appaling",
+                    the creation of parallel laws that explicitly banned some drugs during the 20s. The outcome of this \
+                    prohibition era was disastrous. The similarities of this era in the US with the current situation in \
+                    Latin America are simply appalling",
                     videoUrl:"https://www.youtube.com/embed/qOXt1ue5dLQ"
                 },
                 end_prohibition_1934:{
@@ -213,8 +213,8 @@ export const Playlists = {
                         title:"Amphetamines and Metamphetamines - 1934 - 1945",
                         text:"During the 1930s, a couple of new drugs showed up in the market. Initially unregulated, it was possible to get \
                         these drugs over the counter with no restriction whatsoever. In contrast to modern prohibition times, however, abuse \
-                        of these drugs was not the mounstrous problem that it is today. Mafias around these drugs didn't exist either. A \
-                        shocking view of the effects of prohibition. The history surounding these drugs, however, is simply too telling.",
+                        of these drugs was not the monstrous problem that it is today. Mafias around these drugs didn't exist either. A \
+                        shocking view of the effects of prohibition. The history surrounding these drugs, however, is simply too telling.",
                         videoUrl:"https://www.youtube.com/embed/n0yVqANqseY"
                     }
 
@@ -230,14 +230,14 @@ export const Playlists = {
                             title:"Amphetamines and Metamphetamines - 1934 - 1945",
                             text:"During the 1930s, a couple of new drugs showed up in the market. Initially unregulated, it was possible to get \
                             these drugs over the counter with no restriction whatsoever. In contrast to modern prohibition times, however, abuse \
-                            of these drugs was not the mounstrous problem that it is today. Mafias around these drugs didn't exist either. A \
-                            shocking view of the effects of prohibition. The history surounding these drugs, however, is simply too telling.",
+                            of these drugs was not the monstrous problem that it is today. Mafias around these drugs didn't exist either. A \
+                            shocking view of the effects of prohibition. The history surrounding these drugs, however, is simply too telling.",
                             videoUrl:"https://www.youtube.com/embed/n0yVqANqseY"
                         },
                         wowii:{
                             title:"World War II And Mafia Deals",
                             text:"US government deals with the mafia to boost their results during the world war 2 are abundant. On the other hand, \
-                            Mexico had to go through the ambibalent and brutal world of US prohibitions.",
+                            Mexico had to go through the ambivalent and brutal world of US prohibitions.",
                             videoUrl:"https://www.youtube.com/embed/rBooOvKESNk"
                         }
     

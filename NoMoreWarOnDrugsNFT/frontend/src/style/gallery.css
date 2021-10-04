@@ -13,6 +13,9 @@
 
 .gallery{
     width:94%;
+    height: 700px;
+  overflow: scroll;
+  
 }
 
 .list{

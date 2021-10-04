@@ -5,18 +5,24 @@ export class Countdown extends Component {
     constructor(props) {
         super(props);
         this.state = {  days: 0, hours: 0, minutes: 0, seconds: 0 };
+        this.intervalID=0;
     }
     componentWillMount() {
         this.getTimeUntil(this.props.deadline);
     }
     componentDidMount() {
-        setInterval(() => this.getTimeUntil(this.props.deadline), 1000);
+        this.intervalID=setInterval(() => this.getTimeUntil(this.props.deadline), 1000);
     }
+
+    componentWillUnmount(){
+        clearInterval(this.intervalID);
+    }
+
     leading0(num) {
         return num < 10 ? "0" + num : num;
     }
     getTimeUntil(deadline) {
-        const time = Date.parse(deadline) - Date.parse(new Date());
+        const time = Date.parse(deadline+" GMT") - Date.parse(new Date());
         if (time < 0) {
         this.setState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         } else {

@@ -4,6 +4,7 @@ import './Home.css'
 import { LeftImage } from "./LeftImage";
 import { RightImage } from "./RightImage";
 import { Buttons } from "./Buttons";
+import { ContactMe } from "./ContactMe";
 import"../../i18n/text";
 import { Translate, Localize } from 'react-i18nify';
 
@@ -38,9 +39,9 @@ export class Home extends React.Component {
                     <br/>
                     <Translate value='home.second.para2' />
                 </p>
-                }       
-
+                }   
             />
+            <ContactMe/>
             </div>
         );
     }

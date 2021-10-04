@@ -4,6 +4,7 @@ import './Home.css'
 import { LeftImage } from "./LeftImage";
 import { RightImage } from "./RightImage";
 import { ThreeElements } from "./ThreeElements";
+import { ContactMe } from "./ContactMe";
 import"../../i18n/text";
 import { Translate, Localize } from 'react-i18nify';
 
@@ -66,7 +67,16 @@ export class Overview extends React.Component {
                 title={<Translate value='overview.seventh.title'/>}
                 text={<Translate value='overview.seventh.text'/>}           
             />
+            <RightImage
+                src="https://cdn4.iconfinder.com/data/icons/gray-toolbar-8/512/xxx046-128.png"
+                alt="image2"
+                //backgroundImage="https://www.eluniversal.com.mx/sites/default/files/2019/08/23/ejercito_.jpg"
+                title={<Translate value='overview.about_me.title'/>}
+                text={<Translate value='overview.about_me.text'/>}   
+            />
+            <ContactMe/>
             </div>
+            
         );
     }
 }

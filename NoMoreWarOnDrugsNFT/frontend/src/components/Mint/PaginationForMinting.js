@@ -29,12 +29,13 @@ import { Carousel } from "../Gallery/Carousel";
         this.viewInfo = this.viewInfo.bind(this);
         console.log(this.state);
         this.DB = require("../../localDB/attributes.json");
+        this.handler1=0;
         
       }
 
     async componentDidMount(){
         //we wait until the Dapp loads the wallet.
-        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+        const sleep = ms => new Promise(resolve => this.handler1=setTimeout(resolve, ms));
         while((!this.props.address)&&(!this.props.provider_defaulted)){
           await sleep(500);  
         }
@@ -78,6 +79,10 @@ import { Carousel } from "../Gallery/Carousel";
           await this.setState({view:1});
         }
     }
+
+    componentWillUnmount(){
+      clearTimeout(this.handler1);
+  }
 
     listView(){
         this.setState({view:1});

@@ -99,11 +99,12 @@ async withdraw(event) {
         await this.props.waitForMinedConfirmation(txHash, (tx) => {
           this.setState({waiting: false});
           this.setState({successful: true});
-          console.log("tx mined: ", tx);
-          const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-          const currentUrl = window.location.href;
-          sleep(2000).then( () => window.location.href = currentUrl).catch( error => console.log("error while reloading:",error));
-    
+        //   console.log("tx mined: ", tx);
+        //   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+        //   const currentUrl = window.location.href;
+        //   sleep(2000).then( () => window.location.href = currentUrl).catch( error => console.log("error while reloading:",error));
+            this.amountInput.current.value="";
+            this.cotractAddressInput.current.value="";
       });
     })
         .catch((error) => {
@@ -141,7 +142,8 @@ async withdraw(event) {
                 required
                 />
             
-            <label >Your Balance (wei): {this.state.balance}</label>
+            <label >Your Balance (wei): </label>
+            <label style={{color:"green",fontSize:"2.5vw"}}>{this.state.balance}</label>
             </div>
             <div className="form-group">
                 <input className="btn btn-primary" type="submit" value="Connect" />
@@ -156,7 +158,7 @@ async withdraw(event) {
               name="price"
               step="0.00001"
               onChange={this.handleChangeAmount}
-              ref={this.amountInputnput}
+              ref={this.amountInput}
               required
             />
             

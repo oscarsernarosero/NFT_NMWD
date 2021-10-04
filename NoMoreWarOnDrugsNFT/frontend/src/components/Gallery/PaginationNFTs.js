@@ -30,12 +30,14 @@ import { Carousel } from "../Gallery/Carousel";
         this.viewInfo = this.viewInfo.bind(this);
         console.log(this.state);
         this.DB = require("../../localDB/attributes.json");
+        this.handler1=0;
+        this.handler2=0;
         
       }
 
     async componentDidMount(){
       //we wait until the Dapp loads the wallet.
-        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+        const sleep = ms => new Promise(resolve => this.handler1=setTimeout(resolve, ms));
         
         while((!this.props.address)&&(!this.props.provider_defaulted)){
           await sleep(500);  
@@ -90,6 +92,11 @@ import { Carousel } from "../Gallery/Carousel";
   
     }
 
+    componentWillUnmount(){
+      clearTimeout(this.handler1);
+      clearTimeout(this.handler2);
+  }
+
     componentDidCatch(){
         const demo_NFT = {"description": "error","external_url": "unkown","image": "loading","name": "error","attributes": [ {"artist": "loading"},{"webpage":"https://github.com/oscarsernarosero?tab=overview&from=2021-04-01&to=2021-04-27"}],forSale:false}
         this.setState({nfts: [demo_NFT]});
@@ -97,7 +104,7 @@ import { Carousel } from "../Gallery/Carousel";
 
     async componentDidUpdate(prevProps){
         if(prevProps.address !== this.props.address && this.state.mounted === true){
-            const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+            const sleep = ms => new Promise(resolve => this.handler2=setTimeout(resolve, ms));
             await sleep(1500);    
             if(!this.state.mywallet ){
               await this.getNFTids();

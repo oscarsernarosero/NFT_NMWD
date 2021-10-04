@@ -4,6 +4,8 @@
     background-size: cover;
     background-repeat: no-repeat;
   background-attachment: fixed;
+  height: 88vh;
+  overflow: scroll;
   
 }
 
@@ -175,5 +177,12 @@ p{
         display: grid;
         place-items: center;
         
+    }
+
+    .contact-me-container{
+        background-color: black;
+        align-content: center;
+        padding:8vw;
+        text-align: center;
     }
 }

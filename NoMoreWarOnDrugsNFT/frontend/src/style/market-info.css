@@ -1,0 +1,43 @@
+.market-info-container{
+    padding-top: 1vw;
+    padding-bottom: 2vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background-color: #222;
+    border-radius: 1vw;
+    margin: 4vw;
+    margin-bottom: 2vw;
+}
+
+.small-info{
+    font-size: 1.1vw;
+    line-height: 0.95vw;
+}
+
+.market-info-title{
+    line-height: 2.5vw;
+    font-size: 1.7vw;
+}
+
+.market-info-text{
+    margin-left:2vw;
+    margin-right:2vw;
+}
+
+
+.contract-addresses-container{
+    background-color: #0000;
+    margin-left: 6vw;
+    margin-bottom: 5vw;
+}
+
+.contract-addresses-title{
+    display: inline-block;
+}
+
+.contract-addresses{
+    display: inline-block;
+    font-size: 1.3vw;
+    line-height: 2.5vw;
+    margin-left: 0vw;
+}

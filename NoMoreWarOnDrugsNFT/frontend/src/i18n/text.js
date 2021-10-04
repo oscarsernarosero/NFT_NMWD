@@ -1,5 +1,6 @@
 import { setTranslations, setLocale } from 'react-i18nify';
 import React, { Component }  from 'react';
+import { Link } from "react-router-dom";
 
 setTranslations({
   en: {
@@ -7,15 +8,15 @@ setTranslations({
           first:{
             title:"Be part of history",
             para1:<span>Stop-the-War-on-Drugs is not just an NFT project. It is a world-wide movement that gets stronger by the day and 
-            a projetc that is pioneering in the crypto space regarding political activism! In other words, these are not just NFTs;
+            a project that is pioneering in the crypto space regarding political activism! In other words, these are not just NFTs;
             These are very special tokens that represent your believes and your values with huge potential of growth in price once 
             the war on drugs starts being rolled back. </span>,
 
             para2:<span>But that is not it!
             By getting one or more of the Stop-The-War-On-Drugs NFTs, you are not only supporting a YouTube channel and the artists who create 
                 these art works, but you are also <b>immortalizing yourself in the Ethereum blockchain for ever!</b> These NFTs offer the opportunity
-                of writting a message against the nefarious <b>War On Drugs</b> directly into the blockchain without the possibility of being modified or deleted <b>ever!!! </b> 
-                In other words, your message will be immortal. We, together, will pioneer and make history in the blockchain political activism to end this horrendous War On Drugs that takes away our freedoms and rights,and you 
+                of writing a message against the nefarious <b>War On Drugs</b> directly into the blockchain without the possibility of being modified or deleted <b>ever!!! </b> 
+                In other words, your message will be immortal. We, together, will pioneer and make history in the blockchain political activism to end this horrendous War On Drugs that takes away our freedoms and rights, and you 
                 will be able to prove to your kids and grandkids that you were among those pioneers that changed the world. What are you waiting for?</span>
           },
           second:{
@@ -31,15 +32,16 @@ setTranslations({
             NFT creators. SWD has a standard 6.00% royalty for all NFTs, and, as a rule of thumb, SWD grants a percentage of 
             the total amount of royalties collected to <b>all</b> the artists who collaborate in the art creation. This percentage 
             can be somewhere between 20% and 55% depending on the preference of payment of the artist. To know more about
-            this, you can check out our artist partner program. </span>
+            this, you can check out our <Link to='/artist-partner'>artist partner program.</Link> </span>
           
-          }
+          },
+          contact_me:"Reach to us:"
         },
       overview:{
           first:{
-              title:"There is a finit amount of NFTs: 904",
+              title:"There is a finite amount of NFTs: 904",
               text:<span>SWD NFTs are really scarce. There will be only 904 SWDs ever which is hardcoded in the smart contract.
-              This finit amount of NFTs aims to make each token very special, and therefore gives it a high 
+              This finite amount of NFTs aims to make each token very special, and therefore gives it a high 
               value that increases over time. But these NFTs are not just any NFTs out there in the market.
               These NFTs are pieces of history that we are creating together.
 
@@ -57,7 +59,7 @@ setTranslations({
             modify it once it's set, so be careful! The amount of characters available for this message is 300,
             so there is enough space for you to elaborate on your idea. 
             <br/><br/>
-            You can "sign" the message with your name or a pseudoname  at the end of the message to make sure 
+            You can "sign" the message with your name or a pseudonym  at the end of the message to make sure 
             that people will know that it was you who set it.
             <br/><br/>
             The main idea of this message is to let the governments of the world know that we are 
@@ -71,9 +73,9 @@ setTranslations({
           title:"Why NFTs in 2 Languages?",
           text:<p>
           You might've noticed that a lot of the NFTs come in 2 versions: English and Spanish. This is because we believe that it is the
-          responsability of the Latinamerican people to speak up against the war that has devastated most of the poor communities 
+          responsibility of the Latin-American people to speak up against the war that has devastated most of the poor communities 
           in the world, but especially our Central and South American countries.
-          Therfore, this struggle must also be argued in Spanish. However, we understand that international affairs and the NFT community
+          Therefore, this struggle must also be argued in Spanish. However, we understand that international affairs and the NFT community
           are English-spoken circles, and this has led us to create our NFTs in these 2 flavors.
           </p>
         },
@@ -99,7 +101,7 @@ setTranslations({
           right: <p>
             If you are a curious person, the blog is for you. We have put together an extension
             of the YouTube Channel where we express our main ideas, and link it with different
-            videos that talk about those ideas. If you persue the truth, you have
+            videos that talk about those ideas. If you pursue the truth, you have
             come to the right place. If you like to live in a bubble, don't go there.
             </p>
         },
@@ -107,13 +109,13 @@ setTranslations({
           title:"The Artists",
           text:<p>
             This collection of NFTs have collaborated with different artists, mostly from
-            Latinamerica which is one of the areas that has been really
-            devastated by this War On Drugs. Cities like Cali, Cololombia, or Ciudad Juarez, 
+            Latin-America which is one of the areas that has been really
+            devastated by this War On Drugs. Cities like Cali, Colombia, or Ciudad Juarez, 
             México, are among the hometowns of these talented artists. One of the goals of 
             this project is to give visibility to the art from these beaten areas through the Ethereum 
             blockchain.
             Also, a percentage of the royalties of the NFTs goes to the artists directly, doing
-            our bit of impactsing positively these areas. 
+            our bit of impacting positively these areas. 
             </p>
         },
         sixth:{
@@ -126,7 +128,7 @@ setTranslations({
               We have an increasing drug addiction problem. We have an increasing number of deaths by ODs.
               What is even worse, today, the-War-On-Drugs victory looks further away than ever before! Maybe, we are fighting it wrong.
               But the question still remains, why hasn't anybody noticed? Or maybe people in power are looking to the other side?
-              What are those intesests behind the sham called War On Drugs?
+              What are those interests behind the sham called War On Drugs?
           
           </p>
           },
@@ -135,17 +137,23 @@ setTranslations({
               text:<p>
                 This collection of NFTs is born from the necessity of supporting my research on 
                 the War On Drugs which I share through my YouTube Channel. Even though my channel
-                has captured some attention before, YouTube quickly started to restric my videos,
+                has captured some attention before, YouTube quickly started to restrict my videos,
                 and even my ability to monetize some of them. These restrictions are so severe that
                 they killed the organic growth of my views, and therefore my profits from my channel. 
                 Instead of abandoning my initiative, I decided to combine all of my passions in this  
                 project: history, software development, blockchain technology, and politics. My idea is to
                 feed my YouTube channel from the NFT market, at the same time that I feed the NFT 
                 market from my YouTube Channel. In the process, I can finance my true passions, and 
-                beneffit the comunities I work with.
+                benefit the communities I work with.
         
                 </p>
 
+          },about_me:{
+            title:"About Me",
+            text:<p>
+              I'm a burger flipper immigrant during the day. At night, I'm a conflicted idealist soul, a coder,
+              a history bug, and a crypto punk that wants to do his bit in this world.
+              </p>
           }
       },
       filter:{
@@ -165,9 +173,9 @@ setTranslations({
       },
       mint:{
         title:<h2>Mint New NFTs</h2>,
-        text:<p>By minting new NFT you have the privilage of inmortalizing yourself
+        text:<p>By minting new NFT you have the privilege of immortalizing yourself
         in the blockchain by setting a message for your NFT. This message will live for
-        ever in the Ethereum netwrok. Don't miss this opportunity!</p>
+        ever in the Ethereum network. Don't miss this opportunity!</p>
       },
       imageNFT:{
         message:"Message",
@@ -186,11 +194,11 @@ setTranslations({
       },
       setMessage:{
         title:"Set The Message Of Your NFT",
-        text:"Congratulations! You, as the owner of a SWD NFT token, have the privilage of inmortalizing yourself with a message that will live for ever in the blockchain.\
+        text:"Congratulations! You, as the owner of a SWD NFT token, have the privilege of immortalizing yourself with a message that will live for ever in the blockchain.\
         Be careful though. This message cannot be changed ever again once you submit it. Also, take into account that the message cannot be longer than 100 characters.\
-        Welome to the inmortal phase of your thoughts!",
+        Welcome to the inmortal phase of your thoughts!",
         message:"Message",
-        welcome:"Welcome to inmortality",
+        welcome:"Welcome to immortality",
         setMessage:"Set Message"
       },
       changePrice:{
@@ -200,8 +208,8 @@ setTranslations({
         button:"Change Price"
       },
       transfer:{
-        title:"Tranfer your NFT to a different address",
-        warning:"Be careful! transfering the NFT to the wrong address can mean the permanent loss of your token.",
+        title:"Transfer your NFT to a different address",
+        warning:"Be careful! transferring the NFT to the wrong address can mean the permanent loss of your token.",
         to:"Transfer to Ethereum address:"
       },
       navItems:{
@@ -211,6 +219,97 @@ setTranslations({
         mint:"Mint",
         wallet:"Wallet",
         channel:"Channel"
+      },
+      artist_partner:{
+        title:"Artist-Partner Program",
+        subtitle1:"Intro",
+        paragraph1: <p>
+          Artists are at the heart of the Stop-The-War-On-Drugs NFT project, of course. To bootstrap this project, different 
+          artists were contacted to develop the first NFTs, and build the different art works together. Since there 
+          have been different NFTs already made, now artists can get the idea of what these NFTs are about more easily, and 
+          that's where the artist-partner program comes into play. 
+          <br/><br/>
+          In simple words, artists can now develop their own art for SWD without supervision from our side, and make money 
+          through their art in our platform. This, however, represents a risk for the artist of being rejected, or his/her 
+          NFT not getting sold. Therefore, SWD will reward the artists who decide to share this risk 
+          by not only granting a higher percentage in royalties, but also, a higher percentage on the first sale of his/her NFT.
+          </p>,
+        subtitle2:"What's the deal?",
+        paragraph2:<p> By being part of the artist-partner program, you as an artist will be entitled to 40% of the amount of ETH perceived 
+          by SWD marketplace during the minting of the NFT you created. But that's not even the best part. You will be entitled to
+          55% of the royalties earned in the future through that particular NFT. All payments are made in Ether.
+          <br/><br/>
+          The NFT royalty payment and split happens automatically through smart-contract mechanisms which code will be public in the blockchain for 
+          transparency purposes. The 40% of the first sale will be paid directly by the SWD team within a week of the sale.
+          <br/><br/>
+          However, there are some requirements that your art work has to meet in order for it 
+          to be part of this exclusive collection of NFTs.
+          </p>,
+        subtitle3:"Requirements",
+        paragraph3:<p> Meeting the requirements for SWD NFTs will put you at the door of being a partner with us. However,
+          meeting the requirements only is not enough. There will be only 904 NFTs ever in this collection, which means you 
+          are trying to be part of a very selected collection. Therefore, your art might be accepted or not. Obviously, the 
+          earlier in the project you apply, the higher the chances for you to be accepted. Even though the whole point of 
+          this program is to get some work load off the team, you still can email us to get some guidance. Just don't abuse
+          this resource. The minimum requirements for your NFT to be accepted are:
+          
+        <ul>
+          <li>First, the most obvious requirement is that the NFT must be against prohibition --the war on drugs.
+            If the piece is inspired by the ideas or history shown in the YouTube channel, it will have better chances of 
+            getting accepted.
+          </li>
+          <li>The format of the piece can be rectangular or square, vertical or horizontal. However, if rectngular, it cannot 
+            have a proportion higher than 2:1 or 1:2.
+          </li>
+          <li>The piece must have the name of the project somewhere in a readable manner. It doesn't have to be a big element, 
+            but it needs to be clear that the piece belongs to this project. This will be achieved by putting 
+            "stopthewarondrugs.eth" in your graphic work.
+          </li>
+          <li>The piece must be as small as any of the HD dimensions or as big as any of the 4K dimensions. </li>
+          <li>Cloud space is limmited, and NFTs are meant to be shown in a screen. So, even though we care a lot about 
+            high quality and pieces with good resolution, please don't make unnecessarily heavy files with quality that 
+            will be invisible to the eye.
+          </li>
+          <li>Your NFT may be animated or not, but the file must be a JPEG, PNG, GIF, or MP4.
+          </li>
+        </ul></p>,
+      subtitle4:"Once Your NFT Is Accepted",
+      paragraph4:<p>
+        Once your graphic piece is accepted to be part of this exclusive collection, you need to provide a couple more things 
+        for us to be able to make your graphic piece into an NFT:
+        <ul>
+          <li>The Ethereum address where you want to receive/claim your payments.</li>
+          <li>Your prefered artistic pseoudonym (you can also go anonymus).</li>
+          <li>Your webpage url (optional).</li>
+        </ul>
+      </p>,
+      subtitle5:"How Am I Going To Get My Payments?",
+      paragraph5:<p>
+        Your first payment will be issued by us directly to the Ethereum address you provided. Only you are responsible for 
+        the safety of your funds once they get to your address.
+        <br/><br/>
+        The royalty payments, however, will be stored in the royalty-splitter smart contract until you withdraw your funds 
+        from it. Therefore, you will have to withdraw your Ether from this smart contract yourself to get your royalties. 
+        Please take into account that this requires some Ether to pay for the gas fees of this operation.
+        <br/><br/>
+        The address of this smart contract will be given to you once we deploy it to the mainnet. If you have more 
+        than one NFT with us, this contract will be the same for all of your NFTs.
+      </p>
+      },
+      marketplace:{
+        title:"Important information about this marketplace",
+        text:<p className="small-info">
+        <b>Fees:</b> This market place applies a 0.8% fee on all transactions. One of the lowest in the market. We recommend to
+        transact your SWDs in this platform.
+        <br/><br/>
+        <b>Royalties:</b> This marketplace also enforces ERC2907 for royalty payments. Every SWD has a royalty of 5%. This menas that 
+        the final amount you will be paid will be 94.24% of the price that you set for your NFT once it is sold.
+        <br/><br/>
+        <b>Payments:</b> This marketplace is a non-custodial marketplace which means it doesn't hold any Ether on your behalf. If  
+        one of your NFTs is sold through this platform, then the marketplace will collect a fee, pay the royalties,  
+        and pay YOU in the same transaction.
+        
+    </p>
       }
 
   },
@@ -218,8 +317,8 @@ setTranslations({
       home: {
           first:{
             title:"Sé Parte de la Historia",
-            para1:<span>Stop-the-War-on-Drugs no es simplemente un proyecto de NFTs, sino que es un movmiento mundial
-              que se crece día a día, y que es pionero en la industria crypto con respecto al activismo político! En pocas palabras,
+            para1:<span>Stop-the-War-on-Drugs no es simplemente un proyecto de NFTs, sino que es un movimiento mundial
+              que crece día a día, y que es pionero en la industria crypto con respecto al activismo político! En pocas palabras,
               Estos no son simplemente NFTs, sino que son tokens muy especiales que representan tus convicciones y tus valores con gran 
               potencial de crecer en valor monetario a futuro, a medida que la guerra contra las drogas vaya siendo eliminada.
           
@@ -243,31 +342,32 @@ setTranslations({
 
             para2:<span>
               Pero eso no es todo.
-              Este es uno de los primeros proyetcos en implementar ERC2907 para el pago de royalties a los creadores de los NFTs. SWD aplica un 6%
+              Este es uno de los primeros proyectos en implementar ERC2907 para el pago de royalties a los creadores de los NFTs. SWD aplica un 6%
               de royalties a todos sus NFTs del cual, como ley y filosofía de este proyecto, un porcentaje es destinado al beneficio de los artistas
               creadores. Este porcentaje puede estar entre un 20% y un 55% dependiendo del método de pago preferido por el artista. Para saber más
-              acerca de las formas de pago a artistas, revisa el programa de artistas socios. </span>
+              acerca de las formas de pago a artistas, revisa el programa de <Link to='/artist-partner'>artistas socios.</Link> </span>
           
-            }
+            },
+            contact_me:"Contacto:"
         },
       overview:{
           first:{
               title:"Hay una cantidad finita de NFTs",
               text:<span>Los SWD NFTs son realmente escasos. Sólo existirán un total de 904 SWDs en toda la historia, lo cual está
-                condificado de esta forma en su smart contract. Este número finito de NFTs busca hacer que cada token sea muy especial,
+                codificado de esta forma en su smart contract. Este número finito de NFTs busca hacer que cada token sea muy especial,
                 lo cual a su vez le da un alto valor, que a futuro se podría traducir en valor monetario (alto precio). Pero estos
                 NFTs no son simplemente cualquier NFTs en el mercado. Estos tokens son piezas históricas que estamos creando juntos.
 
               <br/><br/>
               Sólo habrán 904 NFTs porque esta es la cantidad de líderes sociales asesinados en Colombia entre el primero de 
-              diciembre de 2016 y el 28 de febrero de 2021. La guera contra las drogas ha sido un detonador importante de esta violencia.
+              diciembre de 2016 y el 28 de febrero de 2021. La guerra contra las drogas ha sido un detonador importante de esta violencia.
               De esta forma, estos NFTs representan las millones de vidas perdidas en esta Guerra Contra Las Drogas.
               </span>
           },
           second:{
             title:"El mensaje",
             text:<p >
-              Un apecto muy importante de esta colección de NFTs es que tu puedes escribir un mensaje directamente en el NFT
+              Un aspecto muy importante de esta colección de NFTs es que tu puedes escribir un mensaje directamente en el NFT
               que vivirá para siempre en el blockchain. Este mensaje sólo puede ser escrito una vez, y no podrá ser modificado
               o eliminado nunca por ningún motivo. Así que escribe un buen mensaje! La cantidad de caracteres disponibles para 
               este mensaje son 300 para que tengas espacio suficiente para expresar tus valiosas ideas.
@@ -286,8 +386,8 @@ setTranslations({
         third:{
           title:"Por qué NFTs en 2 idiomas?",
           text:<p>
-            Porbablemente hayas notado que muchos de los NFTs vienen en 2 versiones: inglés y español. Esto se debe a que creemos que es
-            responsabilidad del pueblo latinoamericano de alzar la voz de protesta en contra de esta guerra que ha debastado la mayor parte
+            Probablemente hayas notado que muchos de los NFTs vienen en 2 versiones: inglés y español. Esto se debe a que creemos que es
+            responsabilidad del pueblo latinoamericano de alzar la voz de protesta en contra de esta guerra que ha devastado la mayor parte
             de las comunidades pobres del mundo, pero sobretodo nuestra región latinoamericana.
             Por este motivo, esta lucha debe ser argumentada en español. Sin embargo entendemos que los asuntos internacionales y la comunidad
             global de NFTs son comunidades de habla inglesa, lo cual nos ha llevado a crear estos NFTs en 2 versiones para llevar el mensaje a
@@ -297,8 +397,8 @@ setTranslations({
       fourth:{
         lefttitle:"Canal de YouTube",
         left:<p>
-          Este proyecto de NFTs es parte de un proyeto aún más grande cuyo objetivo es la de desmilitarizar
-          <b> la guerra contra las drogas</b>. Hasta ahora, el prinicipal componente de este proyecto ha 
+          Este proyecto de NFTs es parte de un proyecto aún más grande cuyo objetivo es la de desmilitarizar
+          <b> la guerra contra las drogas</b>. Hasta ahora, el principal componente de este proyecto ha 
           sido el canal de YouTube donde se estudia la farsa que ha sido esta guerra desde la historia y 
           otros campos del conocimiento como la economía. En este canal, mostramos cómo la <b>la guerra 
             contra las drogas</b> no ha sido más que una herramienta política y geopolítica empleada por
@@ -313,7 +413,7 @@ setTranslations({
           </p>,
         righttitle:"Blog",
         right: <p>
-          Si eres una persona curiosa, el blog es justo para tí. Hemos creado lo que se podría considerar
+          Si eres una persona curiosa, el blog es justo para ti. Hemos creado lo que se podría considerar
           como una extensión del canal de YouTube donde expresamos nuestras ideas más importantes, y las 
           relacionamos con los videos en YouTube. Si eres de los que persiguen la verdad, has venido al 
           lugar correcto. Si eres de los que prefiere vivir en una burbuja, huye. Una vez abres los ojos,
@@ -324,7 +424,7 @@ setTranslations({
         title:"Los Artistas",
         text:<p>
           Esta colección de NFTs ha colaborado con diferentes artistas, en su mayoría de Latinoamérica 
-          la cual es una de las regiones más azotada por <b>la guerra contra las drogas</b>. Países 
+          la cual es una de las regiones mas azotada por <b>la guerra contra las drogas</b>. Países 
           como Colombia, México y Perú son algunos de los lugares de origen de los artistas que han 
           colaborado en esta colección. Uno de los objetivos de este proyecto es el de visibilizar el
           arte de estas zonas devastadas a través de la red de Ethereum. Parte de los royalties colectados
@@ -342,11 +442,11 @@ setTranslations({
               completamente sesgadas que podrías encontrar, la verdad es que mientras más estricta sea la
               prohibición, peores son los problemas de drogadicción. La guerra contra las drogas ha fallado
               en cada uno de sus postulados: aún tenemos un constante flujo de drogas desde las calles.
-              Las muertes por sobredosis incluso han aumentado desdde la prohibición! y lo más triste de 
+              Las muertes por sobredosis incluso han aumentado desde la prohibición! y lo más triste de 
               todo, es que el fin de esta guerra se ve más lejos que nunca antes. Quizá estamos peleando
               esta guerra de la manera equivocada. Aunque una pregunta aún más importante surge: por qué 
               nadie ha notado este fracaso antes? o quizá la gente en el poder se están haciendo los de la
-              vista gorda? Cuáles son esos intereses detrás de una guerra  caótica, inutil y devastadora?
+              vista gorda? Cuáles son esos intereses detrás de una guerra  caótica, inútil y devastadora?
           
           </p>
           },
@@ -366,7 +466,13 @@ setTranslations({
                 mi canal de YouTube. En este proceso, puedo financiar mis verdaderas pasiones, y 
                 beneficiar las comunidades con las que trabajo.
                 </p>
-
+          },about_me:{
+            title:"Quién Soy?",
+            text:<p>
+              Durante el día, soy un inmigrante trabajando en un restuarante. Durante la noche, soy un alma idealista
+              clandestina, un aficionado a la historia, un desarrollador de software, y un amante del crypto que quiere aportar 
+              su granito de arena en este mundo.
+              </p>
           }
         
 
@@ -429,7 +535,7 @@ setTranslations({
       transfer:{
         title:"Envía tu NFT a otra dirección",
         warning:"Ten cuidado! enviar tu NFT a la dirección quivocada significa la perdida permanente de tu NFT.",
-        to:"Tranferir a dirección de Ethereum:"
+        to:"Transferir a dirección de Ethereum:"
       },
       navItems:{
         home:"Inicio",
@@ -438,8 +544,100 @@ setTranslations({
         mint:"Acuñar",
         wallet:"Billetera",
         channel:"Canal"
-      }
-  }
-});
-
-setLocale('es');
+      },
+      artist_partner:{
+        title:"Artist-Partner Program",
+        subtitle1:"Intro",
+        paragraph1: <p>
+          Artists are at the heart of Stop-The-War-On-Drugs NFT project, of course. To bootstrap this project, different 
+          artists were contacted to develop the first NFTs, and build the different art works together. Since there 
+          have been different NFTs already made, now artists can get the idea of what these NFTs are about more easily, and 
+          that's where the artist-partner program comes into play. 
+          <br/><br/>
+          In simple words, artists can now develop their own art for SWD without supervision from our side, and make money 
+          through their art in our platform. This, however, represents a risk for the artist of being rejected, or his/her 
+          NFT not getting sold. Therefore, SWD will reward the artists who decides to share this risk 
+          with not only a higher percentage in royalties, but also, a higher percentage on the first sale of his/her NFT.
+          </p>,
+        subtitle2:"What's the deal?",
+        paragraph2:<p>
+          By being part of the artist-partner program, you as an artist will be entitled to 40% of the amount of ETH perceived 
+          by SWD marketplace during the minting of the NFT you created. But that's not even the best part. You will be entitled to
+          55% of the royalties earned in the future through that particular NFT.
+          <br/><br/>
+          The NFT royalty split happens automatically through smart-contract mechanisms which code will be public in the blockchain for 
+          transparency purposes. The 40% of the first sale will be paid directly by the SWD team within a week of the sale.
+          <br/><br/>
+          But, before you get too excited about this, there are some requirements that your art work has to meet in order for it 
+          to be part of this exclusive collection of NFTs.
+          </p>,
+          subtitle3:"Requirements",
+          paragraph3:<p> Meeting the requirements for SWD NFTs will put you at the door of being a partner with us. However,
+            meeting the requirements only is not enough. There will be only 904 NFTs ever in this collection, which means you 
+            are trying to be part of a very selected collection. Therefore, your art might be accepted or not. Obviously, the 
+            earlier in the project you apply, the higher the chances for you to be accepted. Even though the whole point of 
+            this program is to get some work load off the team, you still can email us to get some guidance. Just don't abuse
+            this resource. The minimum requirements for your NFT to be accepted are:
+            
+          <ul>
+            <li>First, the most obvious requirement is that the NFT must be against prohibition --the war on drugs.
+              If the piece is inspired by the ideas or history shown in the YouTube channel, it will have better chances of 
+              getting accepted.
+            </li>
+            <li>The format of the piece can be rectangular or square, vertical or horizontal. However, if rectngular, it cannot 
+              have a proportion higher than 2:1 or 1:2.
+            </li>
+            <li>The piece must have the name of the project somewhere in a readable manner. It doesn't have to be a big element, 
+              but it needs to be clear that the piece belongs to this project. This will be achieved by putting 
+              "stopthewarondrugs.eth" in your graphic work.
+            </li>
+            <li>The piece must be as small as any of the HD dimensions or as big as any of the 4K dimensions. </li>
+            <li>Cloud space is limmited, and NFTs are meant to be shown in a screen. So, even though we care a lot about 
+              high quality and pieces with good resolution, please don't make unnecessarily heavy files with quality that 
+              will be invisible to the eye.
+            </li>
+            <li>Your NFT may be animated or not, but the file must be a JPEG, PNG, GIF, or MP4.
+            </li>
+          </ul></p>,
+        subtitle4:"Once Your NFT Is Accepted",
+        paragraph4:<p>
+          Once your graphic piece is accepted to be part of this exclusive collection, you need to provide a couple more things 
+          for us to be able to make your graphic piece into an NFT:
+          <ul>
+            <li>The Ethereum address where you want to receive/claim your payments.</li>
+            <li>Your prefered artistic pseoudonym (you can also go anonymus).</li>
+            <li>Your webpage url (optional).</li>
+          </ul>
+        </p>,
+        subtitle5:"How Am I Going To Get My Payments?",
+        paragraph5:<p>
+          Your first payment will be issued by us directly to the Ethereum address you provided. Only you are responsible for 
+          the safety of your funds once they get to your address.
+          <br/><br/>
+          The royalty payments, however, will be stored in the royalty-splitter smart contract until you withdraw your funds 
+          from it. Therefore, you will have to withdraw your Ether from this smart contract yourself to get your royalties. 
+          Please take into account that this requires some Ether to pay for the gas fees of this operation.
+          <br/><br/>
+          The address of this smart contract will be given to you once we deploy it to the mainnet. If you have more 
+          than one NFT with us, this contract will be the same for all of your NFTs.
+        </p>
+        },
+    marketplace:{
+      title:"Important information about this marketplace",
+      text:<p className="small-info">
+      <b>Taza:</b> Este marketplace aplica una taza del 0.8% por cada transacción. Una de las más bajas del mercado. Así que 
+      te recomendamos que trances tus SWD a través de esta plataforma.
+      <br/><br/>
+      <b>Regalías:</b> este marketplace también ejerce el ERC2907 para el pago de regalias (royalties). Cada SWD NFT tiene 
+      una regalía del 5%, lo que significa que la cantidad final de Ether que usted recivirá una vez halla vendido su NFT 
+      será del 94.24% del precio por el cual lo vendió.
+      <br/><br/>
+      <b>Pagos:</b> Este marketplace es no-custodio, lo que significa que éste no guarda ninguna cantidad de Ether que 
+      sea suyo. Si uno de sus NFTs es vendido a través de esta plataforma, entonces el marketplace va a recolectar la taza, 
+      va a pagar las regalías y le va a pagar a usted, todo en una misma transacción.
+  </p>
+    }}
+    
+  });
+  
+  setLocale('es');

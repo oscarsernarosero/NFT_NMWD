@@ -44,6 +44,9 @@ export class ImageNFT extends React.Component{
     //this didn't work
     this.reloadWallet = this.reloadWallet.bind(this);
     //console.log("props NFT image: ",this.props);
+    this.handler1=0;
+    this.handler2=0;
+    this.handler3=0;
     
   }
 
@@ -52,6 +55,12 @@ export class ImageNFT extends React.Component{
       const history = useHistory();
      history.push('/wallet');
     }
+
+  componentWillUnmount(){
+      clearTimeout(this.handler1);
+      clearTimeout(this.handler2);
+      clearTimeout(this.handler3);
+  }
   
 
   buyDisable(){
@@ -128,7 +137,7 @@ export class ImageNFT extends React.Component{
               this.setState({waiting: false});
               this.setState({successful: true});
               console.log("tx mined: ", tx);
-              const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+              const sleep = ms => new Promise(resolve => this.handler1=setTimeout(resolve, ms));
                const currentUrl = window.location.href;
               sleep(2000).then( () => window.location.href = currentUrl).catch( error => console.log("error while reloading:",error));
     
@@ -182,7 +191,7 @@ export class ImageNFT extends React.Component{
           this.setState({waiting: false});
           this.setState({successful: true});
           console.log("tx mined: ", tx);
-          const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+          const sleep = ms => new Promise(resolve => this.handler2=setTimeout(resolve, ms));
           const currentUrl = window.location.href;
           sleep(2000).then( () => window.location.href = currentUrl).catch( error => console.log("error while reloading:",error));
     
@@ -216,7 +225,7 @@ async setForSale()
       this.setState({successful: true});
       console.log("tx mined: ", tx.hash);
       console.log("changed forSale in tx: ",tx.hash);
-      const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+      const sleep = ms => new Promise(resolve => this.handler3=setTimeout(resolve, ms));
       const currentUrl = window.location.href;
       sleep(2000).then( () => window.location.href = currentUrl).catch( error => console.log("error while reloading:",error));
     

@@ -31,6 +31,7 @@ import { MyWallet} from "./MyWallet/MyWallet";
 import { SetMessage } from "./MyWallet/SetMessage";
 import { NewUri } from  "./NewUri/NewUri";
 import { Channel } from "./Channel/Channel"
+import { ArtistPartnerProgram } from "./Info/ArtistPartnerProgram";
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
 // Here's a list of network ids https://docs.metamask.io/guide/ethereum-provider.html#properties
@@ -116,13 +117,16 @@ export class Dapp extends React.Component {
               <Route path="/royalties"  
                   render= { 
                     (props)=><RoyaltyReceiver
-                    address={this.selectedAddress}
+                    address={this.state.selectedAddress}
                     waitForMinedConfirmation={ (tx_hash, func) => {
                       return this.waitForMinedConfirmation(tx_hash, func);
                         }
                       }
                     />}
                 />
+
+              <Route path="/artist-partner" exact 
+                component={ArtistPartnerProgram}/>
              
               <Route path="/overview"  
                 component={Overview}

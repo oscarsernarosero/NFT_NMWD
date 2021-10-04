@@ -1,5 +1,6 @@
 .channel{
-    height:400px;
+    height: 700px;
+  overflow: scroll;
     background-color:black;
 }
 
