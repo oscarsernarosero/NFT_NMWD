@@ -1,15 +1,22 @@
 import React from "react";
-import "../../style/channel.css"
+import "../../style/channel.css";
+import"./ContentEn";
+import"./ContentEs";
 import { ChannelIndex } from "./ChannelIndex";
 import { ChannelPost } from "./ChannelPost";
 import {
     useParams
   } from "react-router-dom";
-
+  import { getLocale} from 'react-i18nify';
 
 export function Channel(props){
 
-    const content = require("./Content");
+    var content;
+
+    const language = getLocale();
+
+    if (language=="en") content = require("./ContentEn");
+    else content = require("./ContentEs");
 
     let { post } = useParams();
     console.log(post);

@@ -46,6 +46,12 @@ export class Overview extends React.Component {
                 rightTitle={<Translate value='overview.fourth.righttitle'/>}
                 rightText={<Translate value='overview.fourth.right'/>}
             />
+            <LeftImage
+                src="https://i.pinimg.com/originals/30/64/8c/30648c7d2798558216aec8580c2746ee.png"
+                alt="image2"
+                title={<Translate value='home.artist_partner.title'/>}
+                text={ <Translate value='home.artist_partner.text' />}            
+            />
             <RightImage
                 src="https://i.pinimg.com/originals/30/64/8c/30648c7d2798558216aec8580c2746ee.png"
                 alt="image2"
@@ -54,6 +60,7 @@ export class Overview extends React.Component {
                 text={<Translate value='overview.fifth.text'/>}
                 
             />
+             
             <LeftImage
                 src="https://ih1.redbubble.net/image.285088426.9345/st,small,845x845-pad,1000x1000,f8f8f8.u1.jpg"
                 alt="image2"

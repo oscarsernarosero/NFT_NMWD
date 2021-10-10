@@ -32,6 +32,7 @@ import { SetMessage } from "./MyWallet/SetMessage";
 import { NewUri } from  "./NewUri/NewUri";
 import { Channel } from "./Channel/Channel"
 import { ArtistPartnerProgram } from "./Info/ArtistPartnerProgram";
+import { getLocale, setLocale } from "react-i18nify";
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
 // Here's a list of network ids https://docs.metamask.io/guide/ethereum-provider.html#properties
@@ -134,6 +135,12 @@ export class Dapp extends React.Component {
 
               <Route path="/channel/:post?"   
                 component={Channel}/>
+                <Route path="/channel/:post?"  
+                  render= { 
+                    (props)=><Channel
+                    language={getLocale()}
+                    />}
+                />
 
               <Route path="/nftbyid/:id"  
                 render= { 
@@ -447,6 +454,7 @@ export class Dapp extends React.Component {
   }
 
   async _initialize(userAddress) {
+
     // This method initializes the dapp
     await this.setState({network:network[window.ethereum.networkVersion]});
       console.log("this.state.network",this.state.network);

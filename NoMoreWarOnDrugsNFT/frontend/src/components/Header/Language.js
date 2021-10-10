@@ -8,7 +8,17 @@ export class ChangeLanguage extends React.Component{
     constructor(props){
         super(props);
 
-        this.state={language:getLocale()}
+        //before everything, let's check the language
+            const lan = navigator.language;
+            console.log("language: ",lan);
+
+            if(lan === "es-ES"){
+            setLocale('es');
+            }else{
+            setLocale('en');
+            }
+
+        this.state={language:getLocale()};
         this.changeLanguage = this.changeLanguage.bind(this);
     }
 

@@ -215,7 +215,7 @@ contract StopTheWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981
     function validateMsg(string memory _msg) public pure returns (bool){
         bytes memory b = bytes(_msg);
         if(b.length < 1) return false;
-        if(b.length > 200) return false; // Cannot be longer than 200 characters
+        if(b.length > 300) return false; // Cannot be longer than 300 characters
         return true;
     }
 

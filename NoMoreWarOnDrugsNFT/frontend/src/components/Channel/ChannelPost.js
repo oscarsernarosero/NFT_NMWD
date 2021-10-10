@@ -1,6 +1,6 @@
 import React from "react";
 import "../../style/channel.css"
-import {Playlists } from "./Content"
+import {Playlists } from "./ContentEn"
 import { VideoRight } from "../Generics/VideoRight";
 
 

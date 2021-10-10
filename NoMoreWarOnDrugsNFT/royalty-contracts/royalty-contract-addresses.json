@@ -50,5 +50,15 @@
       "contractAddress": "0x95685ABe7150E1a47aFb281C2B3F89D92F8B87c9",
       "dateCreated": "2021-9-29 17:2:18"
     }
+  },
+  "JuanPablo": {
+    "3807f3ca1453a0eb247912af37adc8930f31902086817b038a4ed4bb66906bf1": {
+      "artistAddress": "0x3a9B0EF0c968D59633F799dC1890f0290C811Bf9",
+      "SWDAddress": "0xC10042Fb78D4EA815aA29fCfb47d7D898Ab77559",
+      "artistPct": 5500,
+      "network": "ropsten",
+      "contractAddress": "0x3A85F6dF8aC7AbBC4a85492d75E9Dc839eB01580",
+      "dateCreated": "2021-10-7 15:13:24"
+    }
   }
 }

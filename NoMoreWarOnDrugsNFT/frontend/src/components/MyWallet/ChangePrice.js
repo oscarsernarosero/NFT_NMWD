@@ -33,6 +33,7 @@ export class ChangePrice extends React.Component{
         this.props.close();
     }
 
+
       async handleSubmit(event) {
         event.preventDefault();
 

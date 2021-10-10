@@ -25,6 +25,7 @@ export class Countdown extends Component {
         const time = Date.parse(deadline+" GMT") - Date.parse(new Date());
         if (time < 0) {
         this.setState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        this.props.setLaunched(true);
         } else {
         const seconds = Math.floor((time / 1000) % 60);
         const minutes = Math.floor((time / 1000 / 60) % 60);

@@ -25,9 +25,9 @@ async function main() {
   
     //#### MODIFY THIS WITH THE INFO #####
     const SWDAddress = "0xC10042Fb78D4EA815aA29fCfb47d7D898Ab77559";
-    const artistAddress = "0x8E8c90aafCc31E0545C00ea9662ccB4b6d1326bD";
+    const artistAddress = "0x3a9B0EF0c968D59633F799dC1890f0290C811Bf9";
     const artistPct = 5500; // magnified by 100: 10% = 1000; 50%=5000;
-    const artistName = "Luto";//Always capitals on initial letters, separated by _ in spaces.
+    const artistName = "JuanPablo";//Always capitals on initial letters, separated by _ in spaces.
     //### END OF INPUTS
 
     // first we create the hash of the info and check if it already exists

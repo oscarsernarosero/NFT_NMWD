@@ -41,6 +41,12 @@ export class Home extends React.Component {
                 </p>
                 }   
             />
+            <LeftImage
+                src="https://i.pinimg.com/originals/30/64/8c/30648c7d2798558216aec8580c2746ee.png"
+                alt="image2"
+                title={<Translate value='home.artist_partner.title'/>}
+                text={ <Translate value='home.artist_partner.text' />}            
+            />
             <ContactMe/>
             </div>
         );

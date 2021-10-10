@@ -9,6 +9,7 @@ export class ChannelIndex extends React.Component{
 
         constructor(props){
           super(props);
+          console.log("channel index props:",props);
           this.show = this.show.bind(this);
           this.state={categoryVisible: false};
         }

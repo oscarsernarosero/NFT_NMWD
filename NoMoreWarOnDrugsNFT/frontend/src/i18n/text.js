@@ -28,14 +28,27 @@ setTranslations({
 
             para2:<span>
               But that's not it.
-            This NFT project is one of the first ones to implement ERC2907 which aims to support royalties for
+            This NFT project is one of the first ones to implement ERC2981 which aims to support royalties for
             NFT creators. SWD has a standard 6.00% royalty for all NFTs, and, as a rule of thumb, SWD grants a percentage of 
             the total amount of royalties collected to <b>all</b> the artists who collaborate in the art creation. This percentage 
             can be somewhere between 20% and 55% depending on the preference of payment of the artist. To know more about
             this, you can check out our <Link to='/artist-partner'>artist partner program.</Link> </span>
           
           },
-          contact_me:"Reach to us:"
+          contact_me:"Reach to us:",
+          artist_partner:{
+            title:"If Your An Artist, You Can Be Our Partner",
+            text:<p>
+              We are in the minting phase. This means that artists from all around the globe can participate 
+              and express themselves against the war on drugs through this project.
+              If you are an artist, then you too can be part of this historical collection, so don't wait any longer. Create your 
+              best piece against the war on drugs and let's make money together by saving the world from this false crusade. 
+              You will get a sweet deal regarding royalties and comission over the first sale (minting). 
+              Check out our <Link to='/artist-partner'>Artist-Partner program</Link> to learn more. There will be only 904 NFTs in 
+              this collection, so don't waste any more time. Apply now.
+            </p>
+          
+          }
         },
       overview:{
           first:{
@@ -151,22 +164,26 @@ setTranslations({
           },about_me:{
             title:"About Me",
             text:<p><i>
-              "I'm an immigrant burger flipper during the day. At night, I'm a conflicted idealist soul, a coder,
-              a history bug, and a crypto punk that wants to do his bit in this world."</i>
+              "I'm an immigrant burger-flipper during the day. At night, I'm a conflicted idealist soul, a coder,
+              a history bug, and a crypto punk that wants to do his bit for this world."</i>
               </p>
           },
             id_cid:{
               title:"You Can Look Up The NFT In IPFS By Its ID",
               text:<p>
-                Every NFT comes with its ID which identifies it in the smart contract. This ID is in reality the hash 
-                of the URI file in IPFS. This means, that you can look up the URI file in IPFS yourself only with your 
-                NFT's ID. <br/><br/>
-                To do this, you simply have to build the CID by prepending "F01701220" to your NFT ID. In  
+                This project has been built as decentralized as possible. From hosting the site on IPFS, to the use 
+                of ENS for our domain (you can also look up this site by the domain stopthewarondrugs.eth.(link/limo)  
+                however this service is still not 100% reliable, so we made it available also with the more 
+                traditional .com). Following this philosophy,
+                every NFT's Id is in reality the hash of the URI file on IPFS, so you can look up this file
+                yourself only with the NFT's ID. <br/><br/>
+                To do this, you simply have to build the CID by prepending "F01701220" to the ID. In  
                 other words, your CID will be 'F01701220|YOUR-NFT-ID|'. So, for example, if you have 
                 access to an IPFS node, you can do something like  ipfs://F01701220|YOUR-NFT-ID|. Or you can do this 
                 through a public IPFS gateway such as Pinata or Fleek using the same CID. This is done this way to  
                 guaranty 100% authenticity of each NFT, and to acomplish self-describing IDs. <br/><br/>
-                The URI will hold all the information regarding the NFT including the image that represents it. 
+                The URI will hold most of the information regarding the NFT including the image that represents it. 
+                Some information such as the message are only available through the blockchain though.
               </p>
             }
           
@@ -327,7 +344,7 @@ setTranslations({
         <b>Fees:</b> This market place applies a 0.8% fee on all transactions. One of the lowest in the market. We recommend to
         transact your SWDs in this platform.
         <br/><br/>
-        <b>Royalties:</b> This marketplace also enforces ERC2907 for royalty payments. Every SWD has a royalty of 5%. This menas that 
+        <b>Royalties:</b> This marketplace also enforces ERC2981 for royalty payments. Every SWD has a royalty of 5%. This menas that 
         the final amount you will be paid will be 94.24% of the price that you set for your NFT once it is sold.
         <br/><br/>
         <b>Payments:</b> This marketplace is a non-custodial marketplace which means it doesn't hold any Ether on your behalf. If  
@@ -342,38 +359,54 @@ setTranslations({
       home: {
           first:{
             title:"Sé Parte de la Historia",
-            para1:<span>Stop-the-War-on-Drugs no es simplemente un proyecto de NFTs, sino que es un movimiento mundial
-              que crece día a día, y que es pionero en la industria crypto con respecto al activismo político! En pocas palabras,
-              Estos no son simplemente NFTs, sino que son tokens muy especiales que representan tus convicciones y tus valores con gran 
-              potencial de crecer en valor monetario a futuro, a medida que la guerra contra las drogas vaya siendo eliminada.
+            para1:<span>Stop-the-War-on-Drugs es probablemente el proyecto con mayor significado a futuro en el 
+              mundo de los NFTs. Esta colección no sólo tiene valor artístico y cultural, sino que también tiene un gran 
+              valor político e histórico. "No más guerra contra las drogas" es un movimiento mundial
+              que crece día a día y que aún se encuentra en su temprana infancia. Pero la guerra contra las drogas está 
+              destinada al fracaso, así como la prohibición de los 20s, y no dudamos de que esta horrenda guerra algún día acabará.
+              Esto quiere decir que SWD irá creciendo en valor a medida que la guerra contra las drogas vaya siendo eliminada, y que 
+              este movimiento vaya tomando mayor relevancia en la política mundial.
           
             </span>,
 
             para2:<span>Pero eso no es todo!
-            Al adquirir uno o más de estos Stop-The-War-On-Drugs NFTs, no sólo estas apoyando un canal de YouTube y a los artistas
-            que crearon estas grandiosas piezas artísticas, sino que también estás <b>inmortalizándote en la red de Ethereum para siempre!</b>.
+            Al adquirir uno o más de estos Stop-The-War-On-Drugs NFTs también estás <b>inmortalizándote en la red de Ethereum para siempre!</b>.
             Estos NFTs te ofrecen la oportunidad de escribir un mensaje en contra de la nefasta <b>Guerra Contra las Drogas</b> directamente
             en el blockchain sin la posibilidad de ser modificado o eliminado <b>nunca jamás!!! </b>. Es decir, tu mensaje será inmortal.
+            
             Nosotros, unidos, haremos historia en el mundo del blockchain mediante el activismo político para acabar con esta horrenda guerra 
             contra las drogas que nos vulnera nuestros derechos y libertades, y tú podrás demostrarle a tus nietos que tú fuiste parte de este
             movimiento que cambió al mundo. Qué estás esperando?</span>
           },
           second:{
-            title:"Estás apoyando a artistas y a un canal de YouTube",
+            title:"Estás apoyando a artistas",
             para1:<span>Uno de los objetivos principales de este proyecto es el de dar visibilidad a artistas provenientes de los mismos lugares
               en donde <b>La Guerra Contra Las Drogas</b> ha hecho el mayor daño. En otras palabras, artistas originarios de países como Colombia,
               México, Perú y Bolivia. Personas que han sufrido en carne propia la brutalidad de los carteles y la corrupción de sus gobiernos en sus
               vidas diarias (el resultado natural de la prohibición). Queremos convertir el dolor en arte.</span>,
 
             para2:<span>
-              Pero eso no es todo.
-              Este es uno de los primeros proyectos en implementar ERC2907 para el pago de royalties a los creadores de los NFTs. SWD aplica un 6%
+              
+              Este proyecto además implementa el ERC2981 para el pago de royalties a los creadores de los NFTs. SWD aplica un 5%
               de royalties a todos sus NFTs del cual, como ley y filosofía de este proyecto, un porcentaje es destinado al beneficio de los artistas
               creadores. Este porcentaje puede estar entre un 20% y un 55% dependiendo del método de pago preferido por el artista. Para saber más
               acerca de las formas de pago a artistas, revisa el programa de <Link to='/artist-partner'>artistas socios.</Link> </span>
           
             },
-            contact_me:"Contacto:"
+            contact_me:"Contacto:",
+            artist_partner:{
+              title:"Si Eres Artista, Puedes Ser Nuestro Socio",
+              text:<p>
+                Estamos en fase de acuñado. Esto quiere decir que, en estos momentos, 
+                artistas al rededor del mundo pueden participar y expresarse en contra de la guerra contra las drogas a través de 
+                este proyecto. Si eres un artista y deseas ser parte de esta colección histórica, no esperes más. Crea tu mejor 
+                pieza en contra de la guerra contra el narcotráfico y ganemos dinero juntos salvando al mundo 
+                de esta falsa cruzada. Te ofrecemos un buen trato con respecto a las regalías (royalties) y a la primera venta de 
+                tu arte (acuñado). Aprende más de nuestro programa de <Link to='/artist-partner'>artistas socios.</Link>. Sólo existirán
+                904 NFTs en esta colección, así que no pierdas más tiempo. Aplica ahora.
+              </p>
+            
+            }
         },
       overview:{
           first:{
@@ -386,7 +419,7 @@ setTranslations({
               <br/><br/>
               Sólo habrán 904 NFTs porque esta es la cantidad de líderes sociales asesinados en Colombia entre el primero de 
               diciembre de 2016 y el 28 de febrero de 2021. La guerra contra las drogas ha sido un detonador importante de esta violencia.
-              De esta forma, estos NFTs representan las millones de vidas perdidas en esta Guerra Contra Las Drogas.
+              De esta forma, estos NFTs simbolizan las millones de vidas perdidas en esta Guerra Contra Las Drogas.
               </span>
           },
           second:{
@@ -395,7 +428,7 @@ setTranslations({
               Un aspecto muy importante de esta colección de NFTs es que tu puedes escribir un mensaje directamente en el NFT
               que vivirá para siempre en el blockchain. Este mensaje sólo puede ser escrito una vez, y no podrá ser modificado
               o eliminado nunca por ningún motivo. Así que escribe un buen mensaje! La cantidad de caracteres disponibles para 
-              este mensaje son 300 para que tengas espacio suficiente para expresar tus valiosas ideas.
+              tu texto son 300 para que tengas espacio suficiente para expresar tus valiosas ideas.
 
             <br/><br/>
             Puedes incluso "firmar" al final del mensaje con tu nombre o alias para que estés seguro de que la gente va a 
@@ -471,8 +504,10 @@ setTranslations({
               todo, es que el fin de esta guerra se ve más lejos que nunca antes. Quizá estamos peleando
               esta guerra de la manera equivocada. Aunque una pregunta aún más importante surge: por qué 
               nadie ha notado este fracaso antes? o quizá la gente en el poder se están haciendo los de la
-              vista gorda? Cuáles son esos intereses detrás de una guerra  caótica, inútil y devastadora?
-          
+              vista gorda? Cuáles son esos intereses detrás de una guerra  caótica, inútil y devastadora? 
+              <br/><br/>
+              Si quieres saber más de por qué la guerra contra el narcotráfico ha sido una farsa desde su 
+              inicio, te invitamos a que visites nuestro <Link to='/channel'>canal</Link>.          
           </p>
           },
           seventh:{
@@ -480,7 +515,9 @@ setTranslations({
               text:<p>
                 Esta colección de NFTs nace de la necesidad de financiar mi investigación con
                 respecto a la Guerra Contra Las Drogas. Esta investigación es compartida a través
-                de mi canal de YouTube el cual ha logrado tener mucha atención anteriormente, sin 
+                de mi <a href="https://www.youtube.com/channel/UCxn8ktVoqqOEwBjNJHX2O-w" 
+                target="_blank" rel="noopener noreferrer">
+                canal de YouTube</a> el cual ha logrado tener mucha atención anteriormente, sin 
                 embargo YouTube empezó a restringir severamente mis videos por la temática del canal, 
                 lo cual
                 ha restringido bastante el crecimiento orgánico de mi audiencia y mi habilidad para 
@@ -494,24 +531,28 @@ setTranslations({
           },about_me:{
             title:"Quién Soy?",
             text:<p><i>
-              "Durante el día, soy un inmigrante trabajando en un restuarante. Durante la noche, soy un alma idealista
+              "Durante el día, soy un simple inmigrante con un trabajo mediocre. Durante la noche, soy un alma idealista
               clandestina, un aficionado a la historia, un desarrollador de software, y un amante del crypto que quiere aportar 
               su granito de arena en este mundo."</i>
               </p>
           },
           id_cid:{
             title:"Busca Tu NFT en IPFS Con Su ID",
-            text:<p>
-              Todo NFT tiene su propio ID el cual lo identifica en el smart contract. Este ID es en realidad el hash 
-              del archivo URI en IPFS. Esto significa que tú puedes buscar el archivo URI en IPFS usando sólamente 
+            text:<p>Este proyecto ha sido construído de la forma más descentralizada posible. Desde subir la página a 
+              IPFS hasta usar ENS para el dominio del sitio (también puedes acceder a esta página con 
+              stopthewarondrugs.eth.(link/limo) aunque este servicio aún está en fase experimental por lo cual hemos hecho
+              el sitio disponible con el tradicional .com).
+              Siguiendo esta misma filosofía, cada ID de los NFTs es en realidad el hash 
+              del archivo URI del NFT en IPFS para que tú puedas buscar este archivo usando sólamente 
               el ID del NFT. <br/><br/>
-              Para hacer esto, necesitas construir el CID colocando "F01701220" justo antes del ID del NFT. En 
+              Para hacer esto, simplemente necesitas construir el CID colocando "F01701220" justo antes del ID del NFT. En 
               otras palabras, el CID de tu NFT será 'F01701220|EL-ID-DE-TU-NFT|'. Por ejemplo, si tienes acceso a un 
               nodo de IPFS, puedes hacer algo como ipfs://F01701220|EL-ID-DE-TU-NFT|. O también puedes hacer lo mismo 
               a través de un gateway de IPFS público como el de Pinata o Fleek usando el CID que construíste. Estos 
               NFTs se crearon de esta forma para garantizar 100% su autenticidad y para lograr IDs autodescriptivos.
                 <br/><br/>
-              El archivo URI tendrá toda la información respecto al NFT incluyendo la imagen que lo representa.
+              El archivo URI tendrá la mayoría de la información del NFT, incluyendo la imagen que lo representa. Sin embargo, 
+              alguna información del NFT está disponible únicamente a través del blockchain, como el mensaje, por ejemplo.
             </p>
           }
         
@@ -594,7 +635,7 @@ setTranslations({
           los artistas ahora se pueden dar una idea más fácilmente de cuál es la idea principal de este proyecto y de 
           qué se trata. Aquí es cuando el programa de artistas socios entra en juego.
           <br/><br/>
-          En pocas palabras, los artistas ahora pueden desarrollar sus propios NFTs para SWD sin supervisión de nuestra 
+          En pocas palabras, los artistas ahora pueden desarrollar sus propios NFTs para SWD sin mucha supervisión de nuestra 
           parte, y ganar dinero con su arte através de nuestra plataforma. Sin embargo, esto representa un riesgo para el 
           artista ya que sus NFTs pueden ser rechazados o simplemente podrían no venderse. Por lo tanto, SWD va a recompensar 
           a los artistas que decidan hacer NFTs por su cuenta no sólo con un porcentage alto en los royalties, sino también 
@@ -604,12 +645,21 @@ setTranslations({
         paragraph2:<p>
           Al ser parte del programa de artistas socios, tú, como artista, tienes derecho al 40% de la cantidad de Ether 
           percibida por el marketplace de SWD durante el acuñado del NFT que tú creaste. Pero eso no es la mejor parte. Tú 
-          tendrás derecho al 55% de las regalías (royalties) ganados en el futuro a través de ese NFT en particular. Todos los 
+          tendrás derecho al 55% de las regalías (royalties) ganadas en el futuro a través de ese NFT en particular. Todos los 
           pagos serán realizados en la criptomoneda Ether.
           <br/><br/>
+          Las regalías (royalties) son una innovación del blockchain muy importante porque permite seguir percibiendo ganancias 
+          del arte producido incluso después de vendido. Algo así como lo que pasa con la industria de los libros, donde el autor 
+          sigue recolectando ganancias de por vida siempre y cuando sus libros se sigan vendiendo. Esto mismo se puede hacer con 
+          NFTs y nosotros hemos implementado este mecanismo para los artistas. Cabe aclarar que de estas regalías, una parte va 
+          para el artista y otra para SWD (55% y 45% respectivamente en este caso).
+          <br/><br/>
           El pago y la división de las regalías (royalties) sucede automáticamente en el blockchain através de mecanismos en smart 
-          contracts para mayor transparencia del proceso. Por otro lado, el 40% de la primera venta será pagado directamente por 
-          nosotros en máximo una semana después de la venta.
+          contracts para mayor transparencia del proceso. Es decir, SWD no tendrá la autoridad de cambiar estos mecanismo los 
+          cuales estarán en el blockchain por siempre para garantizar la total transparencia y descentralización de este proceso. 
+          El artista podrá verificar el código de estos mecanismos los cuales serán públicos en el blockchain.
+          Por otro lado, el 40% de la primera venta será pagado manual y directamente por 
+          nosotros en máximo una semana después de la venta. Todos los pagos serán en Ether.
           <br/><br/>
           Pero para ser socio de este proyecto y tener NFTs en esta exclusiva colección que hará historia, es necesario 
           cumplir con unos requisitos mínimos.
@@ -626,8 +676,8 @@ setTranslations({
             
           <ul>
             <li>Primero que todo, el requisito más obvio, tu NFT debe ser en contra de la prohibición o la farsa que es la 
-              guerra contra el narcotráfico. Si el NFT es inspirado en las ideas o la historia contada en el canal de 
-              YouTube, tendrá mejores posibilidades de ser aceptado.
+              guerra contra el narcotráfico. Si el NFT es inspirado en las ideas o la historia contada en el 
+              <Link to='/channel'> canal de YouTube</Link> , tendrá mejores posibilidades de ser aceptado.
             </li>
             <li>El formato de la pieza puede ser cuadrado, rectangular, horizontal o vertical. Sin embargo, si es rectangular, 
               debe tener una proporción menor o igual a 2:1 o 1:2.
@@ -648,10 +698,33 @@ setTranslations({
           </ul></p>,
         apply_title:"Cómo Aplicar?",
         apply_text:<p>
-          Aplicar para ser parte de este proyecto de NFTs que hará historia es muy fácil. Simplemente envíanos un e-mail a 
-          nft@stopthewarondrugs.com con tu arte, tu nombre, y opcionalmente una breve descripción de tu NFT. Nosotros 
-          consideraremos la posibilidad de incluir tu NFT en esta colección y te responderemos en un máximo de tres semanas 
-          a partir de tu aplicación.
+          Aplicar para ser parte de este proyecto de NFTs que hará historia es muy fácil. Sólo sigue los siguientes pasos:
+          <ol>
+            <li>
+            Primero, debes crear una carpeta en Google Drive en donde vas a subir tu arte.
+            </li>
+            <li>
+            Segundo, copia el link de la carpeta y asegúrate de que el link es público para cualquiera con el enlace.
+            </li>
+            <li>
+            Finalmente, envíanos un e-mail a apply@stopthewarondrugs.com con la siguiente información:
+            </li>
+            <ul>
+              <li>En <i>Asunto</i> debes poner "aplicación".</li>
+              <li>En el email debes poner tu nombre artístico, y el link de la carpeta en Google Drive que copiaste en el 
+                paso anterior.</li>
+              <li>Opcionalmente, puedes agregar una descripción de tus ilustraciones ya que así podríamos guiarte de una mejor 
+                forma si vemos potencial en la propuesta pero creemos que hay que corregir algún detalle.</li>
+            </ul>
+            </ol>
+            Por razones de seguridad, tu email será eliminado si:
+            <ul>
+            <li><b>El email contiene algún archivo adjunto</b>. Tu email <b>NO</b> debe contener ningún archivo adjunto
+             o de lo contrario será eliminado automáticamente. </li>
+             <li>Sólo debe existir un link en el email el cual debe direccionar a Google Drive, o de lo contrario será eliminado.</li>
+            </ul>
+           Nosotros consideraremos la posibilidad de incluir tu NFT en esta colección y te responderemos en un máximo de tres semanas 
+          a partir de tu aplicación. Buena suerte!.
         </p>,
         subtitle4:"Si Tu NFT Es Aceptado",
         paragraph4:<p>
@@ -684,7 +757,7 @@ setTranslations({
       <b>Taza:</b> Este marketplace aplica una taza del 0.8% por cada transacción. Una de las más bajas del mercado. Así que 
       te recomendamos que trances tus SWD a través de esta plataforma.
       <br/><br/>
-      <b>Regalías:</b> este marketplace también ejerce el ERC2907 para el pago de regalias (royalties). Cada SWD NFT tiene 
+      <b>Regalías:</b> este marketplace también ejerce el ERC2981 para el pago de regalias (royalties). Cada SWD NFT tiene 
       una regalía del 5%, lo que significa que la cantidad final de Ether que usted recivirá una vez halla vendido su NFT 
       será del 94.24% del precio por el cual lo vendió.
       <br/><br/>
@@ -696,4 +769,4 @@ setTranslations({
     
   });
   
-  setLocale('es');
+  //setLocale('es');
