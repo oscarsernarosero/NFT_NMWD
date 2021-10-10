@@ -9,7 +9,7 @@ import "./address-utils.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 
-contract NMWDMarketPlace is Owned, Context, Initializable{
+contract SWDMarketPlace is Owned, Context, Initializable{
 
     using AddressUtils for address;
 
@@ -25,6 +25,7 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
     string constant INSUFICIENT_BALANCE = "0510";
     string constant STILL_OWN_NFT_CONTRACT = "0511";
     string constant NFT_ALREADY_MINTED = "0512";
+    string constant PRICE_NOT_SET = "0513";
     
 
     event Sent(address indexed payee, uint amount);
@@ -40,7 +41,7 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
     mapping(uint => uint256) internal price;
 
     /**
-    * @dev Mapping from token ID to its pirce.
+    * @dev Mapping from token ID to royalty address.
     */
     mapping(uint => address) internal royaltyAddress;
 
@@ -90,7 +91,7 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
     function purchaseToken(uint _tokenId) external payable  {
         require(forSale[_tokenId], NOT_FOR_SALE);
         require(_msgSender() != address(0) && _msgSender() != address(this));
-        require(price[_tokenId] > 0);
+        require(price[_tokenId] > 0,PRICE_NOT_SET);
         require(msg.value >= price[_tokenId]);
         require(TokenContract.ownerOf(_tokenId) != address(0), NOT_VALID_NFT);
 
@@ -101,9 +102,6 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
 
         //avoid reentrancy
         forSale[_tokenId] = false;
-
-        //transfer the NFT to the buyer
-        TokenContract.safeTransferFrom(tokenSeller, _msgSender(), _tokenId);
 
         // this is the fee of the contract per transaction: 0.8%
         uint256 saleFee = (msg.value / 1000) * 8;
@@ -119,8 +117,11 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
 
         //paying the seller and the royalty recepient
         payable(tokenSeller).transfer( toPaySeller );
-        (bool success, ) =royaltyReceiver.call{value: royaltyAmount, gas: 100000}("");
+        (bool success, ) =royaltyReceiver.call{value: royaltyAmount, gas: 120000}("");
         require( success, "Paying Royalties failed");
+
+        //transfer the NFT to the buyer
+        TokenContract.safeTransferFrom(tokenSeller, _msgSender(), _tokenId);
         
 
         //notifying the blockchain
@@ -130,18 +131,19 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
     }
 
     /**
-    * @dev Purchase _tokenId
+    * @dev mint an NFT through the market place
+    * @param _to the address that will receive the freshly minted NFT
     * @param _tokenId uint token ID (painting number)
     */
     function mintThroughPurchase(address _to, uint _tokenId) external payable {
-        require(price[_tokenId] > 0);
+        require(price[_tokenId] > 0, PRICE_NOT_SET);
         require(msg.value >= price[_tokenId],NOT_EHOUGH_ETHER);
         require(_msgSender() != address(0) && _msgSender() != address(this));
 
         //we extract the royalty address from the mapping
         address royaltyRecipient = royaltyAddress[_tokenId];
-        //this is hardcoded 7.00% for all NFTs
-        uint royaltyValue = 700;
+        //this is hardcoded 5.0% for all NFTs
+        uint royaltyValue = 500;
 
         contractBalance += msg.value;
 
@@ -193,7 +195,7 @@ contract NMWDMarketPlace is Owned, Context, Initializable{
     /**
     * @dev Updates price for the _tokenId NFT before minting
     * @dev Throws if updating price to the same current price, or to negative
-    * value, or is not the owner of the marketplace.
+    * value, or if sender is not the owner of the marketplace.
     * @param _price the price in wei for the NFT
     * @param _tokenId uint token ID (painting number)
     * @param _royaltyAddress the address that will receive the royalties.
