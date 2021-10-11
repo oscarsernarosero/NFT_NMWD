@@ -344,6 +344,12 @@ contract NFToken is
 
     _addNFToken(_to, _tokenId);
 
+    if (_to.isContract())
+    {
+      bytes4 retval = ERC721TokenReceiver(_to).onERC721Received(msg.sender, address(0), _tokenId, "");
+      require(retval == MAGIC_ON_ERC721_RECEIVED, NOT_ABLE_TO_RECEIVE_NFT);
+    }
+
     emit Transfer(address(0), _to, _tokenId);
   }
 
@@ -466,5 +472,7 @@ contract NFToken is
       delete idToApproval[_tokenId];
     }
   }
+
+  
 
 }

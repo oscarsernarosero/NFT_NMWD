@@ -294,22 +294,6 @@ ERC2981PerTokenRoyalties {
         }
       }
 
-      /**
-    * @dev For ease of use. Returns boolean representing the ability of an address to transfer an NFT
-    * @param _tokenId of the NFT to look up.
-    * @param _address to check if able to transfer the NFT.
-    */
-      function getCanTransfer(uint _tokenId, address _address) external view returns (bool) { 
-        address tokenOwner = idToOwner[_tokenId];
-        if( tokenOwner ==_address
-            || idToApproval[_tokenId] ==_address
-            || ownerToOperators[tokenOwner][_address]){
-          return true;
-        }else{
-          return false;
-        }
-      }
-
 
 } 
 

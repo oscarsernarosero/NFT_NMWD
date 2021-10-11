@@ -54,6 +54,11 @@
       "address": "0x70ba51eb6d74038AeB3a739E9F3AC2974E0777a8",
       "txHash": "0x8dd6c7cb6d26d2217d4c0913fdd67d0a13ecd0b91e6004cfa1e45b16ef7b1e9b",
       "kind": "transparent"
+    },
+    {
+      "address": "0x9Fdd987e91ad27E4dab40b42a1C4DDcBABAc364e",
+      "txHash": "0x6256aef26959bdde48460f6f0376c76c0bdf47a062c349ba4d541cbd041f5c85",
+      "kind": "transparent"
     }
   ],
   "impls": {
@@ -232,36 +237,115 @@
           {
             "contract": "SWDMarketPlace",
             "label": "TokenContract",
-            "type": "t_contract(StopTheWarOnDrugs)1373",
-            "src": "contracts/NMWD/SWDMarketPlace.sol:36"
+            "type": "t_contract(StopTheWarOnDrugs)1367",
+            "src": "contracts/NMWD/SWDMarketPlace.sol:39"
           },
           {
             "contract": "SWDMarketPlace",
             "label": "price",
             "type": "t_mapping(t_uint256,t_uint256)",
-            "src": "contracts/NMWD/SWDMarketPlace.sol:41"
+            "src": "contracts/NMWD/SWDMarketPlace.sol:44"
           },
           {
             "contract": "SWDMarketPlace",
             "label": "royaltyAddress",
             "type": "t_mapping(t_uint256,t_address)",
-            "src": "contracts/NMWD/SWDMarketPlace.sol:46"
+            "src": "contracts/NMWD/SWDMarketPlace.sol:49"
           },
           {
             "contract": "SWDMarketPlace",
             "label": "forSale",
             "type": "t_mapping(t_uint256,t_bool)",
-            "src": "contracts/NMWD/SWDMarketPlace.sol:52"
+            "src": "contracts/NMWD/SWDMarketPlace.sol:55"
           },
           {
             "contract": "SWDMarketPlace",
             "label": "contractBalance",
             "type": "t_uint256",
-            "src": "contracts/NMWD/SWDMarketPlace.sol:57"
+            "src": "contracts/NMWD/SWDMarketPlace.sol:60"
           }
         ],
         "types": {
-          "t_contract(StopTheWarOnDrugs)1373": {
+          "t_contract(StopTheWarOnDrugs)1367": {
+            "label": "contract StopTheWarOnDrugs"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_uint256,t_bool)": {
+            "label": "mapping(uint256 => bool)"
+          },
+          "t_bool": {
+            "label": "bool"
+          }
+        }
+      }
+    },
+    "8379b40d6292a15f4532eb6125fd9fc03ba9e3f085fa1069bb732bffdca0d896": {
+      "address": "0xa87CA13E5D1eA57d03BCe6f579eD3968266a9e7b",
+      "txHash": "0x780acbfc7e6979f296cf88c9774dc24f8ed63a5ded663d99a52f2f2dfbe951f6",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Owned",
+            "label": "owner",
+            "type": "t_address",
+            "src": "contracts/NMWD/owned.sol:16"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:21"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:26"
+          },
+          {
+            "contract": "SWDMarketPlace",
+            "label": "TokenContract",
+            "type": "t_contract(StopTheWarOnDrugs)1374",
+            "src": "contracts/NMWD/SWDMarketPlace.sol:39"
+          },
+          {
+            "contract": "SWDMarketPlace",
+            "label": "price",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "contracts/NMWD/SWDMarketPlace.sol:44"
+          },
+          {
+            "contract": "SWDMarketPlace",
+            "label": "royaltyAddress",
+            "type": "t_mapping(t_uint256,t_address)",
+            "src": "contracts/NMWD/SWDMarketPlace.sol:49"
+          },
+          {
+            "contract": "SWDMarketPlace",
+            "label": "forSale",
+            "type": "t_mapping(t_uint256,t_bool)",
+            "src": "contracts/NMWD/SWDMarketPlace.sol:55"
+          },
+          {
+            "contract": "SWDMarketPlace",
+            "label": "contractBalance",
+            "type": "t_uint256",
+            "src": "contracts/NMWD/SWDMarketPlace.sol:60"
+          }
+        ],
+        "types": {
+          "t_contract(StopTheWarOnDrugs)1374": {
             "label": "contract StopTheWarOnDrugs"
           },
           "t_mapping(t_uint256,t_uint256)": {

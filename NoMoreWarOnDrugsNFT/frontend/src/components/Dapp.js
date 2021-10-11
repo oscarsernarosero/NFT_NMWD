@@ -718,10 +718,7 @@ export class Dapp extends React.Component {
         data["forSale"] = forSale;
         const nftOwner = await this.getOwnerOf(id);
         data["nftOwner"] = nftOwner;
-        const canTransfer = await this._nmwd.getCanTransfer(id, MarketPlaceAddress.Token);
-        data["approved"] = canTransfer;
         
-        console.log("canTransfer",canTransfer, id, MarketPlaceAddress.Token);
         return data
    }
 

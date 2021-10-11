@@ -119,9 +119,11 @@ Initializable{
         uint256 toPaySeller = netAmount - royaltyAmount;
 
         //paying the seller and the royalty recepient
-        payable(tokenSeller).transfer( toPaySeller );
-        (bool success, ) =royaltyReceiver.call{value: royaltyAmount, gas: 120000}("");
-        require( success, "Paying Royalties failed");
+        //payable(tokenSeller).transfer( toPaySeller );
+        (bool successSeller, ) =tokenSeller.call{value: toPaySeller, gas: 120000}("");
+        require( successSeller, "Paying seller failed");
+        (bool successRoyalties, ) =royaltyReceiver.call{value: royaltyAmount, gas: 120000}("");
+        require( successRoyalties, "Paying Royalties failed");
 
         //transfer the NFT to the buyer
         TokenContract.safeTransferFrom(tokenSeller, _msgSender(), _tokenId);

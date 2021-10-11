@@ -1,7 +1,7 @@
 // scripts/upgrade-box.js
 const { ethers, upgrades } = require("hardhat");
 
-async function main(MARKETPLACE_PROXY_ADDRESS) {
+async function main() {
     // This is just a convenience check
     if (network.name === "hardhat") {
         console.warn(
@@ -10,13 +10,14 @@ async function main(MARKETPLACE_PROXY_ADDRESS) {
             " option '--network localhost'"
         );
       }
-      
 
-  const MarketPlaceUpGraded = await ethers.getContractFactory("NMWDMarketPlace");
-  const marketPlace = await upgrades.upgradeProxy(MARKETPLACE_PROXY_ADDRESS, MarketPlaceUpGraded);
+  const MARKETPLACE_PROXY_ADDRESS=require("../frontend/src/contracts/"+network.name+"-contract-address-SWDMarketPlace.json");
+
+  const MarketPlaceUpGraded = await ethers.getContractFactory("SWDMarketPlace");
+  const marketPlace = await upgrades.upgradeProxy(MARKETPLACE_PROXY_ADDRESS.Token, MarketPlaceUpGraded);
   // We also save the contract's artifacts and address in the frontend directory
     //saveFrontendFiles(token, "token");
-    saveFrontendFiles(marketPlace, "NMWDMarketPlace");
+    saveFrontendFiles(marketPlace, "SWDMarketPlace");
   }
   
   function saveFrontendFiles(token, name) {
@@ -27,7 +28,7 @@ async function main(MARKETPLACE_PROXY_ADDRESS) {
       fs.mkdirSync(contractsDir);
     }
   
-    const TokenArtifact = artifacts.readArtifactSync("NMWDMarketPlace");
+    const TokenArtifact = artifacts.readArtifactSync("SWDMarketPlace");
     
     
     fs.writeFileSync(
@@ -38,7 +39,7 @@ async function main(MARKETPLACE_PROXY_ADDRESS) {
   }
   
 
-main(MARKETPLACE_PROXY_ADDRESS)
+main() //<<<<========= CHANGE THIS FOR THE MARKETPLACE ADDRESS (MAKE SURE ABOUT THE NETWORK)
 .then(() => process.exit(0))
   .catch((error) => {
     console.error(error);
