@@ -57,6 +57,8 @@ The full list of the errors are in the following list:
 | 0510 | INSUFICIENT_BALANCE | Your Ether balance is insuficient to withdraw the requested amount | 
 | 0511 | STILL_OWN_NFT_CONTRACT | operation not permitted while the marketplace owns the NFT contract. Simply make sure to transfer ownership of the NFT contract. |
 | 0512 | NFT_ALREADY_MINTED | Operation only permitted before minting |
+| 0513 | PRICE_NOT_SET | Operation disabled without a price being set before. |
+| 0514 | CONTRACT_BUSY | Reentrancy lock activated. |
 
 
 <br>

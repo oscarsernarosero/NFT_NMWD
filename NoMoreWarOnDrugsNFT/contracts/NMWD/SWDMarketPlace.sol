@@ -29,12 +29,12 @@ Initializable{
     string constant STILL_OWN_NFT_CONTRACT = "0511";
     string constant NFT_ALREADY_MINTED = "0512";
     string constant PRICE_NOT_SET = "0513";
+    string constant CONTRACT_BUSY = "0514";
     
 
     event Sent(address indexed payee, uint amount);
     event RoyaltyPaid(address indexed payee, uint amount);
     event SecurityWithdrawal(address indexed payee, uint amount);
-    event NFTSent(address indexed payer, uint tokenId, uint amount);
 
     StopTheWarOnDrugs public TokenContract;
 
@@ -58,6 +58,11 @@ Initializable{
     * @dev contract balance
     */
     uint internal contractBalance;
+
+    /**
+    * @dev reentrancy safe for minting and purchasing methods
+    */
+    bool internal lock;
 
 
     /**
@@ -104,7 +109,10 @@ Initializable{
                 NOT_APPROVED);
 
         //avoid reentrancy
+        //require(!lock,CONTRACT_BUSY);
+        //lock=true;
         forSale[_tokenId] = false;
+
 
         // this is the fee of the contract per transaction: 0.8%
         uint256 saleFee = (msg.value / 1000) * 8;
@@ -119,7 +127,6 @@ Initializable{
         uint256 toPaySeller = netAmount - royaltyAmount;
 
         //paying the seller and the royalty recepient
-        //payable(tokenSeller).transfer( toPaySeller );
         (bool successSeller, ) =tokenSeller.call{value: toPaySeller, gas: 120000}("");
         require( successSeller, "Paying seller failed");
         (bool successRoyalties, ) =royaltyReceiver.call{value: royaltyAmount, gas: 120000}("");
@@ -132,7 +139,7 @@ Initializable{
         //notifying the blockchain
         emit Sent(tokenSeller, toPaySeller);
         emit RoyaltyPaid(royaltyReceiver, royaltyAmount);
-        emit NFTSent(_msgSender(), _tokenId, msg.value);
+        //lock=false;
     }
 
     /**
@@ -144,6 +151,9 @@ Initializable{
         require(price[_tokenId] > 0, PRICE_NOT_SET);
         require(msg.value >= price[_tokenId],NOT_EHOUGH_ETHER);
         require(_msgSender() != address(0) && _msgSender() != address(this));
+        //avoid reentrancy. Only 1 token can be minted at a time.
+        require(!lock,CONTRACT_BUSY);
+        lock=true;
 
         //we extract the royalty address from the mapping
         address royaltyRecipient = royaltyAddress[_tokenId];
@@ -153,7 +163,8 @@ Initializable{
         contractBalance += msg.value;
 
         TokenContract.mint(_to, _tokenId, royaltyRecipient, royaltyValue);
-        emit NFTSent(_to, _tokenId, msg.value);
+        
+        lock=false;
     }
 
     /**
@@ -264,6 +275,19 @@ Initializable{
    */
     function burn(uint256 _tokenId ) external onlyOwner {
         TokenContract.burn( _tokenId);
+  }
+    /**
+   * @dev the receive method to avoid balance incongruence
+   */
+  receive() external payable{
+        contractBalance += msg.value;
+    }
+
+  /**
+   * @dev Releases the lock.
+   */
+    function releaseLock( ) external onlyOwner {
+        lock=false;
   }
 
 

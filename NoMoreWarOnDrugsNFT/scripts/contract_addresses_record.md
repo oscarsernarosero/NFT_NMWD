@@ -37,3 +37,10 @@ marketPlace address: 0xccc91f4818E4139cFC3ccFac70DE9e4A6d10b9d9,
 nmwdToken address: 0xD310D045b48309d3834983f84D2CdF6f4257B9E2
 marketPlace address: 0x70ba51eb6d74038AeB3a739E9F3AC2974E0777a8
 
+## October 11, 2021
+
+nmwdToken address: 0x8120B308a7358f11Db079472b4fE83b75908BB12
+marketPlace address: 0x9Fdd987e91ad27E4dab40b42a1C4DDcBABAc364e,
+
+
+
