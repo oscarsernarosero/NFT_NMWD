@@ -25,10 +25,10 @@ async function main(){
     const artist="Juan Melo";
     const artist_webpage="http://modernacontemporanea.com/meloJuan.html";
     const topics= [TOPIC.GEOPOLITICS, TOPIC.UK, TOPIC.US, TOPIC.GERMANY];
-    const _royaltyPct = "7.00"//%
+    const _royaltyPct = "5.00"//%
     const _royaltyAddress = "0xB85ea1C62FD5CC6F081F047eCA0BD5aFDd5c5cD5"
     //
-    const external_url="stopthewarondrugs.eth.link";
+    const external_url="www.stopthewarondrugs.com";
     //############################################################
 
     if(topics.length==0) 

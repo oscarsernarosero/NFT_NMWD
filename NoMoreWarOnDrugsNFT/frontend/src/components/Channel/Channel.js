@@ -16,7 +16,7 @@ export function Channel(props){
     const language = getLocale();
 
     if (language=="en") content = require("./ContentEn");
-    else content = require("./ContentEs");
+    else                content = require("./ContentEs");
 
     let { post } = useParams();
     console.log(post);

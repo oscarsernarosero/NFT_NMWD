@@ -27,7 +27,9 @@ export function Gallery(props){
                 <h4 style={{padding:"1vw", color:"yellow"}}>WARNING: This browser may cause unexpected behaviours in this app. We recommend to use Google Chrome or Brave for desktop.</h4>
               </div>
 
-          <div className={(!launched)? "not-visible":"gallery"}>
+          {/*<div className={(!launched)? "not-visible":"gallery"}>*/}
+          <div className="gallery">
+
           <PaginationNFTs
           page={page}
           findId={id}

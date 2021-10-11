@@ -37,20 +37,20 @@ import { getLocale, setLocale } from "react-i18nify";
 // This is the Hardhat Network id, you might change it in the hardhat.config.js
 // Here's a list of network ids https://docs.metamask.io/guide/ethereum-provider.html#properties
 // to use when deploying to other networks.
-const HARDHAT_NETWORK_ID = '31337';
+const HARDHAT_NETWORK_ID = '1337';
 const network = {
   "1":"mainnet",
   "3": "ropsten",
   "4": "rinkeby",
-  "31337":"localhost"
+  "1337":"localhost"
 }
 
 // We import the contract's artifacts and address here, as we are going to be
 // using them with ethers
 const NMWDArtifact =require("../contracts/Token_StopTheWarOnDrugs.json");
-const MarketPlaceArtifact =require("../contracts/Token_NMWDMarketPlace.json");
+const MarketPlaceArtifact =require("../contracts/Token_SWDMarketPlace.json");
 var NMWDAddress =require("../contracts/rinkeby-contract-address-StopTheWarOnDrugs.json");
-var MarketPlaceAddress =require("../contracts/rinkeby-contract-address-NMWDMarketPlace.json");
+var MarketPlaceAddress =require("../contracts/rinkeby-contract-address-SWDMarketPlace.json");
 
 
 
@@ -133,8 +133,7 @@ export class Dapp extends React.Component {
                 component={Overview}
                 />
 
-              <Route path="/channel/:post?"   
-                component={Channel}/>
+              
                 <Route path="/channel/:post?"  
                   render= { 
                     (props)=><Channel
@@ -461,7 +460,7 @@ export class Dapp extends React.Component {
 
     // First we check the network
     NMWDAddress =require("../contracts/"+network[window.ethereum.networkVersion]+"-contract-address-StopTheWarOnDrugs.json");
-    MarketPlaceAddress =require("../contracts/"+network[window.ethereum.networkVersion]+"-contract-address-NMWDMarketPlace.json");
+    MarketPlaceAddress =require("../contracts/"+network[window.ethereum.networkVersion]+"-contract-address-SWDMarketPlace.json");
 
 
     // We first store the user's address in the component's state
@@ -719,6 +718,10 @@ export class Dapp extends React.Component {
         data["forSale"] = forSale;
         const nftOwner = await this.getOwnerOf(id);
         data["nftOwner"] = nftOwner;
+        const canTransfer = await this._nmwd.getCanTransfer(id, MarketPlaceAddress.Token);
+        data["approved"] = canTransfer;
+        
+        console.log("canTransfer",canTransfer, id, MarketPlaceAddress.Token);
         return data
    }
 
@@ -944,7 +947,7 @@ export class Dapp extends React.Component {
   async _getTokenData() {
     //const name = await this._token.name();
     const name = "No More War On Drugs";
-    const symbol = "NMWD";
+    const symbol = "SWD";
 
    this.setState({ tokenData: { name: name, symbol: symbol } });
   }

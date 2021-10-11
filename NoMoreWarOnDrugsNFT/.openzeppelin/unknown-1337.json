@@ -7,7 +7,7 @@
       "hash": "0x93b3e192a8cb59a240ac3d9b56c48f9ec63c7c1f48cdbceaa0968ddae9034ee1",
       "type": 0,
       "accessList": null,
-      "blockHash": "0xafeb9b939c981ae5dfcf7bbcf4dea31223a505b0555f530937d8e97f2ad943e9",
+      "blockHash": "0xd5d197967f978faa1d5d8c98a838187675c4c752a8fbd480e64e04d6fdffd925",
       "blockNumber": 3,
       "transactionIndex": 0,
       "confirmations": 1,
@@ -37,14 +37,29 @@
   "proxies": [
     {
       "address": "0xD6466Ae5d8609b3433d32dB1D7224bff52a4099a",
-      "txHash": "0xff2ee4dfd967558dc17f95d55f5cc6c041188909b3e3ed989794d6547be92edb",
+      "txHash": "0x0e332089764f7e3e4251dca90235bab44b2034bbedb93a61cb1fef07f47b2067",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x474608684e3d994FBf028F9F32188105649Ab4a7",
+      "txHash": "0x18a77e968aea05160048fa5b153c19cb8057f65ead026ed9260b73bbf26da9ce",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xdDf1650e256Afb2649EAA05ba52BD7D0CEC370Dd",
+      "txHash": "0xd60c277d701a57a8d5a221e0968233036ca01b442c2d62720646ba3539565042",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x71656Ad7854cf379c47026a4C264326C79a280Da",
+      "txHash": "0x0264773e7452123c4f0bf4482e1ab316248169105484a7ca88864619ba3c63f6",
       "kind": "transparent"
     }
   ],
   "impls": {
-    "8888664006175a1505af456651d220a1d618e798b272d7b15dc6c3fe45c48530": {
+    "f3cddceb696a0cd6b2188ad4030d3c54ff3e37d23b06087d22deb45f9b0d4406": {
       "address": "0x6DA87462C860D1D9243c9f2542E60838322f68F0",
-      "txHash": "0xb25578b324d8334f4ff5f13bb1a81594e8d8dc9ef1771dabc58d704b7a90b42f",
+      "txHash": "0xa7f04787d8e67100af68654fd8c0eea84d4a1dc1c723012eb730ff9707744fba",
       "layout": {
         "storage": [
           {
@@ -66,32 +81,38 @@
             "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:26"
           },
           {
-            "contract": "NMWDMarketPlace",
+            "contract": "SWDMarketPlace",
             "label": "TokenContract",
-            "type": "t_contract(StopTheWarOnDrugs)1276",
-            "src": "contracts/NMWD/NMWDMarketPlace.sol:33"
+            "type": "t_contract(StopTheWarOnDrugs)1408",
+            "src": "contracts/NMWD/SWDMarketPlace.sol:36"
           },
           {
-            "contract": "NMWDMarketPlace",
+            "contract": "SWDMarketPlace",
             "label": "price",
             "type": "t_mapping(t_uint256,t_uint256)",
-            "src": "contracts/NMWD/NMWDMarketPlace.sol:38"
+            "src": "contracts/NMWD/SWDMarketPlace.sol:41"
           },
           {
-            "contract": "NMWDMarketPlace",
+            "contract": "SWDMarketPlace",
+            "label": "royaltyAddress",
+            "type": "t_mapping(t_uint256,t_address)",
+            "src": "contracts/NMWD/SWDMarketPlace.sol:46"
+          },
+          {
+            "contract": "SWDMarketPlace",
             "label": "forSale",
             "type": "t_mapping(t_uint256,t_bool)",
-            "src": "contracts/NMWD/NMWDMarketPlace.sol:44"
+            "src": "contracts/NMWD/SWDMarketPlace.sol:52"
           },
           {
-            "contract": "NMWDMarketPlace",
+            "contract": "SWDMarketPlace",
             "label": "contractBalance",
             "type": "t_uint256",
-            "src": "contracts/NMWD/NMWDMarketPlace.sol:49"
+            "src": "contracts/NMWD/SWDMarketPlace.sol:57"
           }
         ],
         "types": {
-          "t_contract(StopTheWarOnDrugs)1276": {
+          "t_contract(StopTheWarOnDrugs)1408": {
             "label": "contract StopTheWarOnDrugs"
           },
           "t_mapping(t_uint256,t_uint256)": {
@@ -100,14 +121,17 @@
           "t_uint256": {
             "label": "uint256"
           },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)"
+          },
+          "t_address": {
+            "label": "address"
+          },
           "t_mapping(t_uint256,t_bool)": {
             "label": "mapping(uint256 => bool)"
           },
           "t_bool": {
             "label": "bool"
-          },
-          "t_address": {
-            "label": "address"
           }
         }
       }

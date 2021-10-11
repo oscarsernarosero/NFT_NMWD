@@ -6,6 +6,7 @@ import "./erc721-token-receiver.sol";
 import "./supports-interface.sol";
 import "./address-utils.sol";
 import "./context.sol";
+import "./owned.sol";
 
 /**
  * @dev Implementation of ERC-721 non-fungible token standard.
@@ -13,7 +14,8 @@ import "./context.sol";
 contract NFToken is
   ERC721,
   Context,
-  SupportsInterface
+  SupportsInterface,
+  Owned
 {
   using AddressUtils for address;
 
@@ -313,6 +315,11 @@ contract NFToken is
 
     _removeNFToken(from, _tokenId);
     _addNFToken(_to, _tokenId);
+
+    //Native marketplace (owner) will always be an authorized operator.
+        if(!ownerToOperators[_to][owner]){
+           ownerToOperators[_to][owner] = true;
+         }
 
     emit Transfer(from, _to, _tokenId);
   }

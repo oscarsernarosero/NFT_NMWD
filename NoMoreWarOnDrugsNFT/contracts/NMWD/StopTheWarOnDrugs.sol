@@ -8,7 +8,9 @@ import "./nf-token-metadata.sol";
 import "./owned.sol";
 import "./erc2981-per-token-royalties.sol";
 
-contract StopTheWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981PerTokenRoyalties {
+contract StopTheWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, 
+///Owned, 
+ERC2981PerTokenRoyalties {
 
     /** 
     * @dev error when an NFT is attempted to be minted after the max
@@ -35,7 +37,7 @@ contract StopTheWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981
     /** 
     * @dev The maximum amount of NFTs that can be minted in this collection
     */
-    uint16 constant MAX_TOKENS = 1000;
+    uint16 constant MAX_TOKENS = 904;
 
     /** 
     * @dev Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
@@ -110,7 +112,7 @@ contract StopTheWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981
     super._addNFToken(_to, _tokenId);
   }
 
-  function addNFToken(address _to, uint256 _tokenId) public onlyOwner {
+  function addNFToken(address _to, uint256 _tokenId) internal {
         _addNFToken(_to, _tokenId);
     }
 
@@ -165,7 +167,7 @@ contract StopTheWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981
       super._removeNFToken(_from, _tokenId);
   }
 
-  function removeNFToken(address _from, uint256 _tokenId) public onlyOwner {
+  function removeNFToken(address _from, uint256 _tokenId) internal {
       _removeNFToken(_from, _tokenId);
   }
 
@@ -289,6 +291,22 @@ contract StopTheWarOnDrugs is NFTokenEnumerable, NFTokenMetadata, Owned, ERC2981
           return false;
         }else{
           return true;
+        }
+      }
+
+      /**
+    * @dev For ease of use. Returns boolean representing the ability of an address to transfer an NFT
+    * @param _tokenId of the NFT to look up.
+    * @param _address to check if able to transfer the NFT.
+    */
+      function getCanTransfer(uint _tokenId, address _address) external view returns (bool) { 
+        address tokenOwner = idToOwner[_tokenId];
+        if( tokenOwner ==_address
+            || idToApproval[_tokenId] ==_address
+            || ownerToOperators[tokenOwner][_address]){
+          return true;
+        }else{
+          return false;
         }
       }
 

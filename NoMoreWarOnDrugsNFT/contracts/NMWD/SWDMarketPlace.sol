@@ -9,7 +9,10 @@ import "./address-utils.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
 
-contract SWDMarketPlace is Owned, Context, Initializable{
+contract SWDMarketPlace is 
+Owned, 
+Context, 
+Initializable{
 
     using AddressUtils for address;
 

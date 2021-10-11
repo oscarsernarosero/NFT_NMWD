@@ -10,7 +10,7 @@ async function main() {
       );
     }
   
-    const MarketPlace = await ethers.getContractFactory("NMWDMarketPlace");
+    const MarketPlace = await ethers.getContractFactory("SWDMarketPlace");
     //const marketPlace = await MarketPlace.deploy(overrides);
     const marketPlace = await upgrades.deployProxy(MarketPlace);
     await marketPlace.deployed();
@@ -19,7 +19,7 @@ async function main() {
   
     // We also save the contract's artifacts and address in the frontend directory
     //saveFrontendFiles(token, "token");
-    saveFrontendFiles(marketPlace, "NMWDMarketPlace");
+    saveFrontendFiles(marketPlace, "SWDMarketPlace");
   }
   
   function saveFrontendFiles(token, name) {
@@ -44,8 +44,8 @@ async function main() {
       TokenArtifact = artifacts.readArtifactSync("NoMoreWarOnDrugs");
     }
   
-    else if(name == "NMWDMarketPlace"){
-      TokenArtifact = artifacts.readArtifactSync("NMWDMarketPlace");
+    else if(name == "SWDMarketPlace"){
+      TokenArtifact = artifacts.readArtifactSync("SWDMarketPlace");
     }
     
     fs.writeFileSync(
