@@ -24,6 +24,8 @@
 
 .form-container{
     background-color: #00000077;
+    width: 100%;
+    align-content: center;
 }
 
 .message-input{

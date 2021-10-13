@@ -6,25 +6,28 @@ setTranslations({
   en: {
       home: {
           first:{
-            title:"Be part of history",
-            para1:<span>Stop-the-War-on-Drugs is not just an NFT project. It is a world-wide movement that gets stronger by the day and 
-            a project that is pioneering in the crypto space regarding political activism! In other words, these are not just NFTs;
-            These are very special tokens that represent your believes and your values with huge potential of growth in price once 
-            the war on drugs starts being rolled back. </span>,
+            title:"Be part of the history",
+            para1:<span>Stop-The-War-On-Drugs is probably the biggest project with mayor relation to the future of the NFTs space.
+              This collection not only has an artistic and cultural value, but also a huge political and historical one. "Stop the war on drug" is a world-wide movement 
+              that grows by the day, which is still on its early stage. However, just like the prohibition
+              of the 1920's, our war on drugs is destined to fail, and WILL come to an end. This means that SWD will continue to increase its value
+              the more that the war on drugs approaches its end, and this movement becomes more relevant in the world politics.
+            </span>,
 
-            para2:<span>But that is not it!
-            By getting one or more of the Stop-The-War-On-Drugs NFTs, you are not only supporting a YouTube channel and the artists who create 
-                these art works, but you are also <b>immortalizing yourself in the Ethereum blockchain for ever!</b> These NFTs offer the opportunity
-                of writing a message against the nefarious <b>War On Drugs</b> directly into the blockchain without the possibility of being modified or deleted <b>ever!!! </b> 
-                In other words, your message will be immortal. We, together, will pioneer and make history in the blockchain political activism to end this horrendous War On Drugs that takes away our freedoms and rights, and you 
-                will be able to prove to your kids and grandkids that you were among those pioneers that changed the world. What are you waiting for?</span>
+            para2:<span>But that's not it!
+                By getting one or more of these SWD NFTs, you are also <b>immortalizing yourself in the Ethereum blockchain for ever! </b>  
+                These NFTs offer you the opportunity to write a message against the war on drugs directly into the blockchain without the 
+                possiblity of it getting modified or erased ever. This means your message will be immortal. Together, we will make history 
+                in the blockchain space through the political activism to end this horrific war on drugs that is taking our rights and 
+                freedoms away. This is the opportunity to be able to show your future generations that YOU were part of the movement 
+                that changed the world. WTF are you waiting for?</span>
           },
           second:{
             title:"You are supporting artists and my Youtube channel",
             para1:<span>One of the main goals of this project is to give visibility to some artists from the very same places that 
-            <b> War On Drugs</b> has done the most harm. In other words, artists from cities like Cali, Colombia or Culiacán, México.
+            <b> War On Drugs</b> has done the most harm. In other words, artists from countries like Colombia, México and Peru.
             People who suffer -through their skin- the cartels brutality and government corruption in their daily lives --the natural 
-            outcome of prohibition. We want to make the pain into art. </span>,
+            outcome of prohibition. We want to turn the pain into art. </span>,
 
             para2:<span>
               But that's not it.
@@ -41,8 +44,8 @@ setTranslations({
             text:<p>
               We are in the minting phase. This means that artists from all around the globe can participate 
               and express themselves against the war on drugs through this project.
-              If you are an artist, then you too can be part of this historical collection, so don't wait any longer. Create your 
-              best piece against the war on drugs and let's make money together by saving the world from this false crusade. 
+              If you are an artist, then you too can be part of this historical collection. So don't wait any longer, and create your 
+              best piece against the war on drugs. Let's make money together by saving the world from this false crusade. 
               You will get a sweet deal regarding royalties and comission over the first sale (minting). 
               Check out our <Link to='/artist-partner'>Artist-Partner program</Link> to learn more. There will be only 904 NFTs in 
               this collection, so don't waste any more time. Apply now.
@@ -52,16 +55,16 @@ setTranslations({
         },
       overview:{
           first:{
-              title:"There is a finite amount of NFTs: 904",
-              text:<span>SWD NFTs are really scarce. There will be only 904 SWDs ever which is hardcoded in the smart contract.
+              title:"There is a limited amount of NFTs: 904",
+              text:<span>SWD NFTs are really scarce. There will be only 904 SWDs ever, which is hardcoded in the smart contract.
               This finite amount of NFTs aims to make each token very special, and therefore gives it a high 
-              value that increases over time. But these NFTs are not just any NFTs out there in the market.
-              These NFTs are pieces of history that we are creating together.
+              value that increases over time (high price). However, these are not your regular NFTs.
+              These are pieces of history that we are creating together.
 
               <br/><br/>
               There are only 904 NFTs because that's the amount of <i>líderes sociales</i> -activists- murdered in Colombia between
-              Dic 1st, 2016 to Feb 28th, 2021. War on Drugs has to do a great deal in this matter. Therefore, they represent
-              the millions of fatal victims of the War On Drugs.
+              December 1st, 2016 through February 28th, 2021. The War on Drugs has to do a great deal in this matter. Therefore, these NFTs 
+              symbolize the millions of deceased victims of the War On Drugs.
               </span>
           },
           second:{
@@ -69,15 +72,15 @@ setTranslations({
             text:<p >
             A very important aspect of this collection of NFTs is that you can set a message that
             will live for ever in the blockchain. This message can be set only once, and you cannot
-            modify it once it's set, so be careful! The amount of characters available for this message is 300,
-            so there is enough space for you to elaborate on your idea. 
+            modify it once it's been set. So, choose wisely! The amount of characters available for this message is 300
+            total count, so there is enough room for you to elaborate on your valuable ideas. 
             <br/><br/>
-            You can "sign" the message with your name or a pseudonym  at the end of the message to make sure 
-            that people will know that it was you who set it.
+            You can even "sign" the message with your name or under a pseudonym at the end of the message to make sure 
+            that people will know that it was you who wrote it.
             <br/><br/>
             The main idea of this message is to let the governments of the world know that we are 
-            against the hypocrite <b>War On Drugs</b>, and that we are tired of state terrorism, and
-            we also want our freedoms back. However, these are not hard rules. You can literally write whatever
+            against the hypocrite <b>War On Drugs</b>. We're letting them know that we're tired of state terrorism, and 
+            we want our freedoms back. However, there are no rules. You can literally write whatever
             you want.  
         
         </p>
@@ -89,7 +92,7 @@ setTranslations({
           responsibility of the Latin-American people to speak up against the war that has devastated most of the poor communities 
           in the world, but especially our Central and South American countries.
           Therefore, this struggle must also be argued in Spanish. However, we understand that international affairs and the NFT community
-          are English-spoken circles, and this has led us to create our NFTs in these 2 flavors.
+          are English-spoken circles, and this has led us to create our NFTs in these 2 versions.
           </p>
         },
         fourth:{
@@ -98,7 +101,7 @@ setTranslations({
             This NFT project is part of a bigger project whose main goal is to demilitarize 
             the <b>War On Drugs</b>. The main part of this project has been so far the 
             YouTube channel that aims to study the development
-            of prohibition and drug trafficking from various perspective, and shedding 
+            of prohibition/drug trafficking from various perspectives, and shedding 
             light on the fact that the <b>War On Drugs</b> is nothing more than a geopolitical,
             and political tool. In other words, a means for power.
     
@@ -112,36 +115,40 @@ setTranslations({
             </p>,
           righttitle:"Blog",
           right: <p>
-            If you are a curious person, the blog is for you. We have put together an extension
+            If you are a curious person, the <Link to='/channel'>blog</Link> is for you. We have put together an extension
             of the YouTube Channel where we express our main ideas, and link it with different
-            videos that talk about those ideas. If you pursue the truth, you have
-            come to the right place. If you like to live in a bubble, don't go there.
+            videos that talk about those ideas. If you pursue the truth, you've
+            come to the right place. If you like to live in a bubble, run, because once you've opened 
+            your eyes, there is no going back.
             </p>
         },
         fifth:{
           title:"The Artists",
           text:<p>
-            This collection of NFTs have collaborated with different artists, mostly from
+            This collection of NFTs has collaborated with many different artists, mostly from
             Latin-America which is one of the areas that has been really
-            devastated by this War On Drugs. Cities like Cali, Colombia, or Ciudad Juarez, 
-            México, are among the hometowns of these talented artists. One of the goals of 
+            devastated by this War On Drugs. Counties like Colombia, 
+            Mexico, and Peru are among the hometowns of these talented artists. One of the goals of 
             this project is to give visibility to the art from these beaten areas through the Ethereum 
             blockchain.
             Also, a percentage of the royalties of the NFTs goes to the artists directly, doing
-            our bit of impacting positively these areas. 
+            our bit to impact positively these areas. 
             </p>
         },
         sixth:{
           title:"Why To Stop War On Drugs?",
           text:<p >
-              The question should be better why not? Simply try to think about one achievement of the
-              War On Drugs. Now, try to research and see if that achievement is actually true. Besides the
-              biased sources you might find, the truth is that the stricter the prohibition on drugs, the worse the drug problem
-              gets, and it has failed on all of it purposes. We still have a steady supply of drugs in the streets.
-              We have an increasing drug addiction problem. We have an increasing number of deaths by ODs.
-              What is even worse, today, the-War-On-Drugs victory looks further away than ever before! Maybe, we are fighting it wrong.
-              But the question still remains, why hasn't anybody noticed? Or maybe people in power are looking to the other side?
-              What are those interests behind the sham called War On Drugs?
+              The question should be, why not? Simply try to think about one achievement of the
+              War On Drugs. Now, do your research and see if that achievement is actually true. Besides the
+              biased sources you might find. The truth is that the more strict the prohibition on drugs is, the worse the drug problem
+              gets. This war has failed us on all of its purposes: We still have a steady supply of drugs in the streets,
+              an increasing drug abuse problem, and we still have an increasing number of deaths by ODs.
+              What is even worse is that today, the-War-On-Drugs victory looks further away than ever before! Maybe, we are just fighting it wrong.
+              Yet, the question still remains: why hasn't anybody noticed? Or maybe the people in power are choosing to look the other way?
+              What are the interests behind this chaotic, useless, and devastating war on drugs? 
+
+              If you'd like to learn more on why The War On Drugs has been a hoax from the very beginning, we encorage you to visit our channel
+              <Link to='/channel'> here.</Link>  
           
           </p>
           },
@@ -153,9 +160,9 @@ setTranslations({
                 has captured some attention before, YouTube quickly started to restrict my videos,
                 and even my ability to monetize some of them. These restrictions are so severe that
                 they killed the organic growth of my views, and therefore my profits from my channel. 
-                Instead of abandoning my initiative, I decided to combine all of my passions in this  
-                project: history, software development, blockchain technology, and politics. My idea is to
-                feed my YouTube channel from the NFT market, at the same time that I feed the NFT 
+                Instead of abandoning my initiative, I decided to put together all of my passions in this  
+                one project: history, software development, blockchain, and politics. My idea is to
+                feed my YouTube channel from the NFT market, all while I feed the NFT 
                 market from my YouTube Channel. In the process, I can finance my true passions, and 
                 benefit the communities I work with.
         
@@ -175,7 +182,7 @@ setTranslations({
                 of ENS for our domain (you can also look up this site by the domain stopthewarondrugs.eth.(link/limo)  
                 however this service is still not 100% reliable, so we made it available also with the more 
                 traditional .com). Following this philosophy,
-                every NFT's Id is in reality the hash of the URI file on IPFS, so you can look up this file
+                every NFT's ID is in reality the hash of the URI file on IPFS. So, you can look up this file
                 yourself only with the NFT's ID. <br/><br/>
                 To do this, you simply have to build the CID by prepending "F01701220" to the ID. In  
                 other words, your CID will be 'F01701220|YOUR-NFT-ID|'. So, for example, if you have 
@@ -183,7 +190,7 @@ setTranslations({
                 through a public IPFS gateway such as Pinata or Fleek using the same CID. This is done this way to  
                 guaranty 100% authenticity of each NFT, and to acomplish self-describing IDs. <br/><br/>
                 The URI will hold most of the information regarding the NFT including the image that represents it. 
-                Some information such as the message are only available through the blockchain though.
+                Some information such as the messages are only available through the blockchain though.
               </p>
             }
           

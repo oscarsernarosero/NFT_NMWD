@@ -12,7 +12,7 @@ export class SetMessage extends React.Component{
         super(props);
         console.log(props);
         
-        this.state = {msg: "", txHash: "", count:0,
+        this.state = {msg: "", txHash: "", count:0, image:"", animation:false,
         popupVisible: false, waiting:false, successful:false};
     
         this.handleChangeMsg = this.handleChangeMsg.bind(this);
@@ -24,9 +24,32 @@ export class SetMessage extends React.Component{
      
       }
 
-    //   componentDidMount(){
-    //     this.container.Style.Add("background-image", "");
-    //   }
+      async componentDidMount(){
+        let nft_data = await this.props.getNFTData(this.props.id);
+
+        let CID="";
+        let pinata_content_url;
+        let animation=false;
+        if (nft_data.animation_url!==undefined && nft_data.animation_url!==""){
+          animation=true;
+          CID = (nft_data.animation_url).substring(7);
+        }else{
+          CID = (nft_data.image).substring(7);
+        }
+        if(CID){
+          pinata_content_url = "https://ipfs.fleek.co/ipfs/"+CID;
+        }else{
+          if (animation){
+            pinata_content_url = "https://ipfs.fleek.co/ipfs/bafybeihj7gwt5cqj2pk35qkdthyt5dmvknstf2k4fqsrwgmpchd7ucypni";//change this for logo later
+      
+          }else{
+            pinata_content_url = "https://ipfs.fleek.co/ipfs/QmNZxE7QumQqD4WkvPBps7yfwW876Ns55dCf6tCbcFvF5a";//change this for logo later
+          }
+        }
+        await this.setState({image:pinata_content_url, animation:animation});
+
+        
+      }
       handleChangeMsg(event) {
         this.setState({msg: event.target.value, count: event.target.value.length});
         
@@ -75,14 +98,20 @@ export class SetMessage extends React.Component{
   
   render(){
     return (
-        <div style={
+        <div style={ 
             {backgroundImage: 
-                'url(' + this.props.imageUrl + ') ',
+                'url(' + this.state.image + ') ',
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundAttachment: "fixed"
             }
                 } >
+            {this.state.animation?<video autoplay muted loop id="myVideo"
+                                    style={{position:"absolute", width:"100%", zIndex:"-1"}}
+                                  >
+                          <source src={this.state.image} type="video/mp4"/>
+                        </video>:
+                        <div></div>}
             <div className="title justify-center">
                 {<Translate value='setMessage.title'/>}
                 </div>

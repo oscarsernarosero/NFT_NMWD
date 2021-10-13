@@ -62,7 +62,7 @@ Initializable{
     /**
     * @dev reentrancy safe for minting and purchasing methods
     */
-    bool internal lock;
+    bool internal lock=true;
 
 
     /**
@@ -151,14 +151,14 @@ Initializable{
         require(price[_tokenId] > 0, PRICE_NOT_SET);
         require(msg.value >= price[_tokenId],NOT_EHOUGH_ETHER);
         require(_msgSender() != address(0) && _msgSender() != address(this));
-        //avoid reentrancy. Only 1 token can be minted at a time.
+        //avoid reentrancy. Also locked before launch time.
         require(!lock,CONTRACT_BUSY);
         lock=true;
 
         //we extract the royalty address from the mapping
         address royaltyRecipient = royaltyAddress[_tokenId];
-        //this is hardcoded 5.0% for all NFTs
-        uint royaltyValue = 500;
+        //this is hardcoded 6.0% for all NFTs
+        uint royaltyValue = 600;
 
         contractBalance += msg.value;
 
@@ -287,6 +287,7 @@ Initializable{
    * @dev Releases the lock.
    */
     function releaseLock( ) external onlyOwner {
+        require(block.number >=1345490,"Not launched yet");
         lock=false;
   }
 

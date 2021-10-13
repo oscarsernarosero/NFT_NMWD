@@ -376,7 +376,9 @@ export class Dapp extends React.Component {
                     return this.setTokenMessage(_tokenId, _msg );
                   }}
                   id = {this.state.selectedId}
-                  imageUrl = {this.state.imageUrl}
+                  getNFTData={ (id) => {
+                    return this.getNFTData(id);
+                  }}
                   waitForMinedConfirmation={ (tx_hash, func) => {
                     return this.waitForMinedConfirmation(tx_hash, func);
                   }}
