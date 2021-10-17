@@ -8,6 +8,9 @@ export function MyWallet(props){
 
     let { page } = useParams();
     if (page===undefined)  page=1;
+
+    console.log("from mywallet. network:",props.network);
+
   
     return (
         <div >

@@ -172,7 +172,7 @@ export class NFTOnly extends React.Component{
                         <div className="royalty-nft">
                             <GiQueenCrown style={{verticalAlign:"middle"}}/>&nbsp;NFT-Royalty: &nbsp;
                             </div>
-                        <div className="royalty-value-nft"> 6.9%  </div>
+                        <div className="royalty-value-nft"> 6.00%  </div>
                     </div>
 
                     <div className={ "button-container"}>

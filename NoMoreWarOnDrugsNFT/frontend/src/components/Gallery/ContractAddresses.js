@@ -12,8 +12,8 @@ export function ContractAddresses(props){
             <Translate value='marketplace.contracts'/>  */}
             <div className="contract-addresses-title">Contract Addresses: &nbsp; &nbsp; </div>
             <p className="contract-addresses">
-            StopTheWarOnDrugsNFT: 0x1234567890abCdEF666DEW  &nbsp; &nbsp; 
-            Marketplace: 0x9999999990abCdEF666DEW
+            StopTheWarOnDrugsNFT: will be revealed soon  &nbsp; &nbsp; 
+            Marketplace: will be revealed soon
             </p>
             </div>
     );

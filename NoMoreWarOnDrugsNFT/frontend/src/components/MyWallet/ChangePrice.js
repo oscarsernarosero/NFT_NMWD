@@ -87,15 +87,15 @@ export class ChangePrice extends React.Component{
             <div className="title-price justify-center">
             {<Translate value='changePrice.title'/>}
                 </div>
-            <div className="paragraph-price">
+            <div className={!this.state.successful ? "paragraph-price" : "not-visible" }>
             {<Translate value='changePrice.current'/>}: {parseInt(this.props.price)/1000000000000000000} ETH
                 </div>
             <form onSubmit={this.handleSubmit} className="form-container-price">
                 <div >
-                    <div className="justify-center message-label-price">
+                    <div className={!this.state.successful ? "justify-center message-label-price" : "not-visible" }>
                     {<Translate value='changePrice.new'/>} (ETH):
                     </div>
-                    <div>
+                    <div className={!this.state.successful ? "" : "not-visible" }>
                         <input 
                             id="input"
                             className="price-input"
@@ -108,6 +108,7 @@ export class ChangePrice extends React.Component{
                     </div>
                     <div>
                         <LiveBlockchainStatus
+                            network={this.props.network}
                             txHash={this.state.txHash}
                             waiting={this.state.waiting}
                             successful = {this.state.successful}
@@ -129,7 +130,8 @@ export class ChangePrice extends React.Component{
                          */}
                 </div>
                 <div className="form-group-price">
-                    <button className="mybutton-price" type="submit">{<Translate value='changePrice.button'/>}</button>
+                    <button className= {!this.state.successful ? "mybutton-price" : "not-visible" }
+                     type="submit">{<Translate value='changePrice.button'/>}</button>
                 </div>
             </form>
             

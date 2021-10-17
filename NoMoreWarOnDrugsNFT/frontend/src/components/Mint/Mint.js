@@ -16,6 +16,7 @@ export function Mint(props){
     const [launched,setLaunched] = useState(false);
 
     const chrome = navigator.userAgent.indexOf("Chrome") > -1;
+    console.log("Mint NETWROK:",props.network);
       return (
         <div className="gallery">
           <Countdown deadline={"October, 20, 2021, 17:00"} setLaunched={setLaunched}/>

@@ -29,7 +29,7 @@ Initializable{
     string constant STILL_OWN_NFT_CONTRACT = "0511";
     string constant NFT_ALREADY_MINTED = "0512";
     string constant PRICE_NOT_SET = "0513";
-    string constant CONTRACT_BUSY = "0514";
+    string constant MINTING_LOCKED = "0514";
     
 
     event Sent(address indexed payee, uint amount);
@@ -60,9 +60,9 @@ Initializable{
     uint internal contractBalance;
 
     /**
-    * @dev reentrancy safe for minting and purchasing methods
+    * @dev reentrancy safe and control for minting method
     */
-    bool internal lock=true;
+    bool internal mintLock;
 
 
     /**
@@ -108,9 +108,6 @@ Initializable{
                 TokenContract.isApprovedForAll(tokenSeller, address(this)), 
                 NOT_APPROVED);
 
-        //avoid reentrancy
-        //require(!lock,CONTRACT_BUSY);
-        //lock=true;
         forSale[_tokenId] = false;
 
 
@@ -134,12 +131,11 @@ Initializable{
 
         //transfer the NFT to the buyer
         TokenContract.safeTransferFrom(tokenSeller, _msgSender(), _tokenId);
-        
 
         //notifying the blockchain
         emit Sent(tokenSeller, toPaySeller);
         emit RoyaltyPaid(royaltyReceiver, royaltyAmount);
-        //lock=false;
+        
     }
 
     /**
@@ -151,9 +147,9 @@ Initializable{
         require(price[_tokenId] > 0, PRICE_NOT_SET);
         require(msg.value >= price[_tokenId],NOT_EHOUGH_ETHER);
         require(_msgSender() != address(0) && _msgSender() != address(this));
-        //avoid reentrancy. Also locked before launch time.
-        require(!lock,CONTRACT_BUSY);
-        lock=true;
+        //avoid reentrancy. Also mintLocked before launch time.
+        require(!mintLock,MINTING_LOCKED);
+        mintLock=true;
 
         //we extract the royalty address from the mapping
         address royaltyRecipient = royaltyAddress[_tokenId];
@@ -164,7 +160,7 @@ Initializable{
 
         TokenContract.mint(_to, _tokenId, royaltyRecipient, royaltyValue);
         
-        lock=false;
+        mintLock=false;
     }
 
     /**
@@ -284,11 +280,11 @@ Initializable{
     }
 
   /**
-   * @dev Releases the lock.
+   * @dev locks/unlocks the mint method.
+   * @param _locked bool value to set.
    */
-    function releaseLock( ) external onlyOwner {
-        require(block.number >=1345490,"Not launched yet");
-        lock=false;
+    function setMintLock(bool _locked) external onlyOwner {
+        mintLock=_locked;
   }
 
 

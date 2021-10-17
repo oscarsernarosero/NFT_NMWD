@@ -60,5 +60,15 @@
       "contractAddress": "0x3A85F6dF8aC7AbBC4a85492d75E9Dc839eB01580",
       "dateCreated": "2021-10-7 15:13:24"
     }
+  },
+  "Juan_Pablo": {
+    "aaee36370cacc8a3fc59f2371cea61b602f81ef5cdd864d3f3e72c34cb03994b": {
+      "artistAddress": "0x3994C97E7b9558f3E12685320d9484fFFa7447F8",
+      "SWDAddress": "0x9C59BbAF880bA7aF3aAD16819cC7407E10B9620d",
+      "artistPct": 5500,
+      "network": "rinkeby",
+      "contractAddress": "0x60022D981CF5882A8D38e6EFae9d8e7CaC727AB5",
+      "dateCreated": "2021-10-15 14:34:35"
+    }
   }
 }

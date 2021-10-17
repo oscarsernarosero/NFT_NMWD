@@ -18,6 +18,7 @@ export class LiveBlockchainStatus extends React.Component{
         <div > 
                     <div className="tx-hash-price">
                         <ViewOnEtherscan
+                            network={this.props.network}
                             txHash={this.props.txHash}
                         />
                         

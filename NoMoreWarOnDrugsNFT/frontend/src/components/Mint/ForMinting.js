@@ -27,7 +27,7 @@ export class ForMinting extends React.Component{
   
 
   render(){
-
+    console.log("ForMinting NETWROK:",this.props.network);
     if(this.state.mounted){
       console.log("rendering from ForMinting");
       return (

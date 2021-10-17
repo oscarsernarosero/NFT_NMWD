@@ -17,8 +17,8 @@ export class Popup extends React.Component{
 
 
     render(){ return (
-        <div className = {this.props.visible ? "visible" : "not-visible" }> 
-         <div  className="change-price">
+        <div className = {this.props.visible ? "change-price" : "not-visible" }> 
+         
             <div className="close-button">
                 <button onClick={this.props.close} className="button-close-button">x</button>
             </div>
@@ -31,6 +31,7 @@ export class Popup extends React.Component{
                     
                     <div>
                         <LiveBlockchainStatus
+                            network={this.props.network}
                             txHash={this.props.txHash}
                             waiting={this.props.waiting}
                             successful = {this.props.successful}
@@ -40,7 +41,7 @@ export class Popup extends React.Component{
                 </div>
             </form>
             
-        </div>
+        
         </div>
 
     );}

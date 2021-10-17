@@ -101,6 +101,7 @@ export class ImageNFT extends React.Component{
   
     async mint() {
       console.log("minting...",this.props.uri.id);
+      console.log("imGENFT NETWROK:",this.props.network);
       const tokenId = this.props.uri.id;
       const price = this.props.uri.price;
       //const royalties = this.props.uri.royalties;
@@ -279,6 +280,15 @@ async setForSale()
       >
         {this.props.uri.name}
       </div>
+      <Popup 
+            network={this.props.network}
+            visible = {this.state.popupVisible}
+            txHash={this.state.txHash}
+            waiting={this.state.waiting}
+            successful = {this.state.successful}
+            close = {()=>{this.closePopup()}}
+          />
+
 
       <div className="imageContainer">
         <a href={url} target="_blank" rel="noopener noreferrer">
@@ -379,6 +389,7 @@ async setForSale()
         <button className="setPrice" onClick={this.changePrice}> 
         <HiCash style={{verticalAlign:"middle"}}/>&nbsp; {<Translate value='imageNFT.changePrice'/>}</button>
             <ChangePrice 
+            network={this.props.network}
               id = {this.props.uri.id}
               price = {this.props.uri.price}
               visible = {this.state.changePriceVisble}
@@ -409,6 +420,7 @@ async setForSale()
           <button className="transfer-button" onClick={this.transfer}> 
           <IoIosSend style={{verticalAlign:"middle"}}/>&nbsp;{<Translate value='imageNFT.transfer'/>}</button>
           <Transfer 
+          network={this.props.network}
             my_address={this.props.address}
             safeTransfer = {(owner, to, tokenId) => {
             return this.props.safeTransfer(owner, to, tokenId)}}
@@ -424,14 +436,7 @@ async setForSale()
         </div> 
       </div>
 
-          <Popup 
-            visible = {this.state.popupVisible}
-            txHash={this.state.txHash}
-            waiting={this.state.waiting}
-            successful = {this.state.successful}
-            close = {()=>{this.closePopup()}}
-          />
-
+          
 
     </div>
   );

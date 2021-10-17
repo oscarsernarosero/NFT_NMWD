@@ -2,13 +2,14 @@ require("@nomiclabs/hardhat-waffle");
 require('dotenv').config();
 require("@nomiclabs/hardhat-ethers");
 require('@openzeppelin/hardhat-upgrades');
+require("@nomiclabs/hardhat-etherscan");
 
 // The next line is part of the sample project, you don't need it in your
 // project. It imports a Hardhat task definition, that can be used for
 // testing the frontend.
 require("./tasks/faucet");
 
-const { API_URL, API_URL_MAINNET, RINKEBY_API_URL, PRIVATE_KEY, PRIVATE_KEY2 } = process.env;
+const { API_URL, API_URL_MAINNET, RINKEBY_API_URL, PRIVATE_KEY, PRIVATE_KEY2, ETHERSCAN_API_KEY } = process.env;
 
 module.exports = {
   solidity:{
@@ -18,6 +19,10 @@ module.exports = {
       },
       {
         version: "0.8.0",
+        settings: { } 
+      },
+      {
+        version: "0.8.2",
         settings: { } 
       }
     ]
@@ -38,10 +43,15 @@ module.exports = {
         url: RINKEBY_API_URL,
         accounts: [`0x${PRIVATE_KEY}`]
      }
-      // ,
-      // mainnet:{
-      //   url: API_URL_MAINNET,
-      //   accounts: [`0x${PRIVATE_KEY2}`]
-      // }
+      ,
+      mainnet:{
+        url: API_URL_MAINNET,
+        accounts: [`0x${PRIVATE_KEY2}`]
+      }
    },
+   etherscan: {
+    // Your API key for Etherscan
+    // Obtain one at https://etherscan.io/
+    apiKey: ETHERSCAN_API_KEY
+  }
 };

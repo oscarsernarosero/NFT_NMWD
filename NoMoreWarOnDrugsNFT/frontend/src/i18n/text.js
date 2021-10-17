@@ -394,7 +394,7 @@ setTranslations({
 
             para2:<span>
               
-              Este proyecto además implementa el ERC2981 para el pago de royalties a los creadores de los NFTs. SWD aplica un 5%
+              Este proyecto además implementa el ERC2981 para el pago de royalties a los creadores de los NFTs. SWD aplica un 6%
               de royalties a todos sus NFTs del cual, como ley y filosofía de este proyecto, un porcentaje es destinado al beneficio de los artistas
               creadores. Este porcentaje puede estar entre un 20% y un 55% dependiendo del método de pago preferido por el artista. Para saber más
               acerca de las formas de pago a artistas, revisa el programa de <Link to='/artist-partner'>artistas socios.</Link> </span>

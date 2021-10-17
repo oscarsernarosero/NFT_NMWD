@@ -50,3 +50,5 @@ main() //<<<<========= CHANGE THIS FOR THE MARKETPLACE ADDRESS (MAKE SURE ABOUT 
     //npx hardhat run --network localhost scripts/upgrade-marketplace.js
 
     //npx hardhat run --network ropsten scripts/upgrade-marketplace.js
+
+    //npx hardhat run --network rinkeby scripts/upgrade-marketplace.js

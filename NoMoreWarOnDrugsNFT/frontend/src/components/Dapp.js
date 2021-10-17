@@ -86,6 +86,7 @@ export class Dapp extends React.Component {
       transactionError: undefined,
       networkError: undefined,
       owner: undefined,
+      ownerMarketPlace: undefined,
       index_Id: undefined,
       nfts: undefined,
       initialized:false,
@@ -327,6 +328,7 @@ export class Dapp extends React.Component {
               <Route path="/wallet/:page?" exact
                 render={(props)=>
                   <MyWallet
+                  network={this.state.network}
                   provider_defaulted= {this.state.provider_defaulted}
                     getNFTsByAddress = {(address) => {
                       return this.getNFTsByAddress(address);
@@ -371,6 +373,7 @@ export class Dapp extends React.Component {
               <Route path="/setmessage" 
                 render={(props)=>
                   <SetMessage
+                  network={this.state.network}
                   address = {this.state.selectedAddress}
                   setTokenMessage={ (_tokenId, _msg ) => {
                     return this.setTokenMessage(_tokenId, _msg );
@@ -480,6 +483,7 @@ export class Dapp extends React.Component {
     await this.setState({initialized:true});
     console.log("initialized");
     await this.getContractOwner();
+    await this.getMarketplaceOwner()
     console.log("got contract owner");
     this._getTokenData();
     console.log("got token data");
@@ -551,7 +555,14 @@ export class Dapp extends React.Component {
 
   async getContractOwner(){
     const owner = await this._nmwd.getOwner();
+    console.log("token owner:,",owner);
     this.setState({ owner:  owner });
+  }
+
+  async getMarketplaceOwner(){
+    const owner = await this.marketPlace.getOwner();
+    console.log("marketplace owner:,",owner);
+    this.setState({ ownerMarketPlace:  owner });
   }
 
   async idToOwnerIndex(owner, index){

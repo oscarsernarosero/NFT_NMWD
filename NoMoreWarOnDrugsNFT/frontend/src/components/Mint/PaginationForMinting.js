@@ -250,6 +250,7 @@ import { Carousel } from "../Gallery/Carousel";
                     return <li className="galleryItem"
                     key={index}>
                         <ImageNFT
+                            network={this.props.network}
                             provider_defaulted= {this.props.provider_defaulted}
                             address = {this.props.address}
                             marketPlaceAddress = {this.props.marketPlaceAddress}
@@ -278,6 +279,7 @@ import { Carousel } from "../Gallery/Carousel";
                 </div>
                 <div className={this.state.view ? "not-visible":"" }>
                 <Carousel
+                    network={this.props.network}
                     provider_defaulted= {this.props.provider_defaulted}
                     page={this.state.page}
                     nfts={this.state.nfts}

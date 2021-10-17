@@ -24,7 +24,7 @@ async function main() {
   const SWDToken = await ethers.getContractFactory("StopTheWarOnDrugs");
   //const MarketPlace = await ethers.getContractFactory("NMWDMarketPlace");
   //const token = await Token.deploy();
-  const swdToken = await SWDToken.deploy("StopTheWarOnDrugs", "SWD",overrides );
+  const swdToken = await SWDToken.deploy("StopTheWarOnDrugs", "SWD" );
   //const marketPlace = await MarketPlace.deploy(overrides);
   //await token.deployed();
   await swdToken.deployed();

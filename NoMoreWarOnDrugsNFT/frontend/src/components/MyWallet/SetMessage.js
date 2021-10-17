@@ -106,25 +106,33 @@ export class SetMessage extends React.Component{
                 backgroundAttachment: "fixed"
             }
                 } >
-            {this.state.animation?<video autoplay muted loop id="myVideo"
-                                    style={{position:"absolute", width:"100%", zIndex:"-1"}}
+            {/* {this.state.animation?<video autoplay muted loop id="myVideo"
+                                    style={{position:"absolute", width:"100%", zIndex:"-1",backgroundColor:"#0000"}}
                                   >
                           <source src={this.state.image} type="video/mp4"/>
                         </video>:
-                        <div></div>}
+                        <img src={'url(' + this.state.image + ') '} style={  {width:"100%"} }></img>} */}
             <div className="title justify-center">
                 {<Translate value='setMessage.title'/>}
                 </div>
             <div className="paragraph">
                 {<Translate value='setMessage.text'/>}
                 </div>
+                <Popup 
+                  network={this.props.network}
+                  visible = {this.state.popupVisible}
+                  txHash={this.state.txHash}
+                  waiting={this.state.waiting}
+                  successful = {this.state.successful}
+                  close = {()=>{this.closePopup()}}
+                />
             <form onSubmit={this.handleSubmit} className="form-container">
                 <div className="set-message">
                     <div className="justify-center message-label">
                     {<Translate value='setMessage.message'/>}:
                     </div>
                     <div>
-                        <textarea rows = "4" cols = "70" maxLength = "250" placeholder="Welcome to immortality"
+                        <textarea rows = "5" cols = "70" maxLength = "300" placeholder="Welcome to immortality"
                             id="text-area"
                             className="message-input"
                             onChange={this.handleChangeMsg}
@@ -137,7 +145,7 @@ export class SetMessage extends React.Component{
                         <label >Tx Hash: {this.state.txHash}</label>
                         </div>
                         <div id="the-count">
-                            <span id="current" className="counter-text">{this.state.count}/250</span>
+                            <span id="current" className="counter-text">{this.state.count}/300</span>
                         </div>
                     </div>
                 </div>
@@ -146,13 +154,7 @@ export class SetMessage extends React.Component{
                 </div>
             </form>
 
-            <Popup 
-            visible = {this.state.popupVisible}
-            txHash={this.state.txHash}
-            waiting={this.state.waiting}
-            successful = {this.state.successful}
-            close = {()=>{this.closePopup()}}
-          />
+            
         </div>
         );
     }

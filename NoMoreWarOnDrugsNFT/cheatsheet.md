@@ -59,6 +59,31 @@ npx hardhat run --network mainnet scripts/deploy-marketplace-only.js
 
 Simply hit the initialize contract button. Then transfer the ownership of the market place to the gnosis multisignature safe address. That's it!
 
+## Lock up the minting method until official launch
+
+It is important to lock up the ability to mint until official launch to avoid undesired early
+minting of tokens.
+
+```
+[
+    {
+      "inputs": [
+        {
+          "internalType": "bool",
+          "name": "_locked",
+          "type": "bool"
+        }
+      ],
+      "name": "setMintLock",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+]
+
+
+```
+
 ## set prices of the NFTs
 
 Since now the marketplace is owned by the gnosis wallet. We have to do this from there. 

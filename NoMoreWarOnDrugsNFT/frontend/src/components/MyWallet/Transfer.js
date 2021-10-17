@@ -19,6 +19,8 @@ export class Transfer extends React.Component{
     
         this.toInput = React.createRef();
         this.container = React.createRef();
+
+        console.log("from transfer. network:",props.network);
      
       }
 
@@ -83,10 +85,11 @@ export class Transfer extends React.Component{
                 </div>
             <form onSubmit={this.handleSubmit} className="form-container-price">
                 <div >
-                    <div className="justify-center message-label-price">
+                    <div className={!this.state.successful ? "justify-center message-label-price" : "not-visible" }
+                    >
                     {<Translate value='transfer.to'/>}
                     </div>
-                    <div>
+                    <div className= {!this.state.successful ? "" : "not-visible" }>
                         <input 
                             id="input"
                             className="to"
@@ -98,6 +101,7 @@ export class Transfer extends React.Component{
                     </div>
                     <div>
                         <LiveBlockchainStatus
+                            network={this.props.network}
                             txHash={this.state.txHash}
                             waiting={this.state.waiting}
                             successful = {this.state.successful}
@@ -105,7 +109,8 @@ export class Transfer extends React.Component{
                     </div>
                 </div>
                 <div className="form-group-price">
-                    <input className="mybutton-price" type="submit" value="Transfer" />
+                    <input className= {!this.state.successful ? "mybutton-price" : "not-visible" }
+                    type="submit" value="Transfer" />
                 </div>
             </form>
             
