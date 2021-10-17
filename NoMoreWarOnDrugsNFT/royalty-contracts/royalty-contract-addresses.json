@@ -15,6 +15,14 @@
       "network": "ropsten",
       "contractAddress": "0x3F49cFD7d6df6A059441BA131cD59be3c50c8601",
       "dateCreated": "2021-9-29 15:56:43"
+    },
+    "b1010b41b5137bbf8d0da4cba0c3c9b1ac4248da49bda7d4b64e8e3a3fbf9d9a": {
+      "artistAddress": "0x4Ee9aB899421332A90B082abe3306Ecdb6a5Fd90",
+      "SWDAddress": "0x48ac7BC89FD29f2E771F62fd0D9574285Da1e766",
+      "artistPct": 2000,
+      "network": "mainnet",
+      "contractAddress": "0xE817F3186e527a77cFF6207dff977D7bE538de15",
+      "dateCreated": "2021-10-17 0:48:58"
     }
   },
   "Luto": {
@@ -49,6 +57,14 @@
       "network": "rinkeby",
       "contractAddress": "0x95685ABe7150E1a47aFb281C2B3F89D92F8B87c9",
       "dateCreated": "2021-9-29 17:2:18"
+    },
+    "9948dbcdb06fe67b085d7ea29d4399e7486207f3968a5a2f51b023483499777a": {
+      "artistAddress": "0x8E8c90aafCc31E0545C00ea9662ccB4b6d1326bD",
+      "SWDAddress": "0x3994C97E7b9558f3E12685320d9484fFFa7447F8",
+      "artistPct": 2000,
+      "network": "mainnet",
+      "contractAddress": "0x0665db5CD07b05Bef3d7B4F847695DfE413c317D",
+      "dateCreated": "2021-10-17 0:54:49"
     }
   },
   "JuanPablo": {
@@ -69,6 +85,36 @@
       "network": "rinkeby",
       "contractAddress": "0x60022D981CF5882A8D38e6EFae9d8e7CaC727AB5",
       "dateCreated": "2021-10-15 14:34:35"
+    }
+  },
+  "JP": {
+    "f052bdf0d5214b6b6c663c410887a606e20f591c786ab671f3b103619584000d": {
+      "artistAddress": "0x3a9B0EF0c968D59633F799dC1890f0290C811Bf9",
+      "SWDAddress": "0x48ac7BC89FD29f2E771F62fd0D9574285Da1e766",
+      "artistPct": 2000,
+      "network": "mainnet",
+      "contractAddress": "0xbcB5080C9297456760394c9FA2742edbcb7B7B20",
+      "dateCreated": "2021-10-17 0:56:47"
+    }
+  },
+  "El_Cerra'o_Cómics": {
+    "8317881c4863ad211878deae5874d8dee176338df807291bfbfe2d4ac1222365": {
+      "artistAddress": "0x2b84E62e4A3684B0c619fF0F5d9d778628C07454",
+      "SWDAddress": "0x3994C97E7b9558f3E12685320d9484fFFa7447F8",
+      "artistPct": 2000,
+      "network": "mainnet",
+      "contractAddress": "0x92b1fb7902779D5e40d9F4A749469Af321046a5F",
+      "dateCreated": "2021-10-17 0:58:6"
+    }
+  },
+  "AB.MC": {
+    "62f6ef0492566347d7dde4903ed66bb3c88f8004935dcacf990bee25117c2a3b": {
+      "artistAddress": "0xb6619b1deAA1e7204c6a0E0E4820227273D83935",
+      "SWDAddress": "0x48ac7BC89FD29f2E771F62fd0D9574285Da1e766",
+      "artistPct": 2000,
+      "network": "mainnet",
+      "contractAddress": "0xE7398Fb3e598B11DD988d8F6e56e5cee1283bfd3",
+      "dateCreated": "2021-10-17 1:34:31"
     }
   }
 }

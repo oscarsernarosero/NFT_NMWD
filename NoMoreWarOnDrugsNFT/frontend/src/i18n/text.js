@@ -7,34 +7,34 @@ setTranslations({
       home: {
           first:{
             title:"Be part of the history",
-            para1:<span>Stop-The-War-On-Drugs is probably the biggest project with mayor relation to the future of the NFTs space.
+            para1:<span>Stop-The-War-On-Drugs is probably the biggest project with major relation to the future of the NFTs space.
               This collection not only has an artistic and cultural value, but also a huge political and historical one. "Stop the war on drug" is a world-wide movement 
               that grows by the day, which is still on its early stage. However, just like the prohibition
               of the 1920's, our war on drugs is destined to fail, and WILL come to an end. This means that SWD will continue to increase its value
-              the more that the war on drugs approaches its end, and this movement becomes more relevant in the world politics.
+              the more that the war on drugs approaches its end, and this movement becomes more relevant in the international affairs.
             </span>,
 
             para2:<span>But that's not it!
                 By getting one or more of these SWD NFTs, you are also <b>immortalizing yourself in the Ethereum blockchain for ever! </b>  
                 These NFTs offer you the opportunity to write a message against the war on drugs directly into the blockchain without the 
-                possiblity of it getting modified or erased ever. This means your message will be immortal. Together, we will make history 
+                possiblity of it getting modified or erased ever, meaning your message will be immortal. Together, we will make history 
                 in the blockchain space through the political activism to end this horrific war on drugs that is taking our rights and 
                 freedoms away. This is the opportunity to be able to show your future generations that YOU were part of the movement 
                 that changed the world. WTF are you waiting for?</span>
           },
           second:{
-            title:"You are supporting artists and my Youtube channel",
+            title:"You are supporting artists",
             para1:<span>One of the main goals of this project is to give visibility to some artists from the very same places that 
             <b> War On Drugs</b> has done the most harm. In other words, artists from countries like Colombia, México and Peru.
-            People who suffer -through their skin- the cartels brutality and government corruption in their daily lives --the natural 
+            People who suffer through their own skin the cartels brutality and government corruption in their daily lives --the natural 
             outcome of prohibition. We want to turn the pain into art. </span>,
 
             para2:<span>
-              But that's not it.
-            This NFT project is one of the first ones to implement ERC2981 which aims to support royalties for
-            NFT creators. SWD has a standard 6.00% royalty for all NFTs, and, as a rule of thumb, SWD grants a percentage of 
+              But wait, there’s more.
+            This NFT project is one of the first ones to implement ERC2981, which aims to support royalties for
+            NFT creators. SWD has a standard 6% royalty for all NFTs, and, as a rule of thumb, SWD grants a percentage of 
             the total amount of royalties collected to <b>all</b> the artists who collaborate in the art creation. This percentage 
-            can be somewhere between 20% and 55% depending on the preference of payment of the artist. To know more about
+            can be somewhere between 20% and 55% depending on the preference of payment of the artist. To learn more about
             this, you can check out our <Link to='/artist-partner'>artist partner program.</Link> </span>
           
           },
@@ -45,10 +45,16 @@ setTranslations({
               We are in the minting phase. This means that artists from all around the globe can participate 
               and express themselves against the war on drugs through this project.
               If you are an artist, then you too can be part of this historical collection. So don't wait any longer, and create your 
-              best piece against the war on drugs. Let's make money together by saving the world from this false crusade. 
-              You will get a sweet deal regarding royalties and comission over the first sale (minting). 
+              best piece against the war on drugs. Let's make Ether together by saving the world from this false crusade. 
+              We will offer you a good deal regarding royalties* and comission over the first sale (minting). 
               Check out our <Link to='/artist-partner'>Artist-Partner program</Link> to learn more. There will be only 904 NFTs in 
-              this collection, so don't waste any more time. Apply now.
+              this collection, so don't waste any more time. Apply now.<br/><br/>
+              <i style={{fontSize:"1vw", lineHeight:"0.2vw"}}>*Disclaimer: At current moment, most marketplaces like Opensea and Rarible don't honor yet ERC2981, which means that royalties 
+                won't be perceived from those marketplaces by neither of us (the artist or SWD). Therefore, royalties can be only guarateed as 
+                long as sales happen in our native marketplace. We really hope that most marketplaces start implementing ERC2981 soon for the 
+                good of the whole Ethereum NFT ecosystem. We offer highly competitive market fees to compete and compensate this situation. Your 
+                voice is important to fix this problem. Speak up against those giants in the industry that haven't implemented ERC2981 yet.
+              </i>
             </p>
           
           }
@@ -348,15 +354,19 @@ setTranslations({
       marketplace:{
         title:"Important information about this marketplace",
         text:<p className="small-info">
-        <b>Fees:</b> This market place applies a 0.8% fee on all transactions. One of the lowest in the market. We recommend to
-        transact your SWDs in this platform.
+        <b>Fees:</b> This market place applies a 0.8% fee on all transactions. This is more than 3 times lower than Opensea
+        and almost 10 times lower than other marketplaces. We really suggest you to trade your SWD in this platform. Fees are 
+        collected to pay for this site maintance, and might even be lower in the near future.
         <br/><br/>
-        <b>Royalties:</b> This marketplace also enforces ERC2981 for royalty payments. Every SWD has a royalty of 5%. This menas that 
-        the final amount you will be paid will be 94.24% of the price that you set for your NFT once it is sold.
+        <b>Royalties:</b> This marketplace also enforces ERC2981 for royalty payments. Every SWD has a royalty of 6%. This menas that 
+        the final amount you will be paid as a seller will be 93.248% of the price that you set for your NFT once it is sold. We have 
+        NO buyer fee at all in contrast to other marketplaces which means that what you see is what you pay. So, we really suggest you to 
+        buy your SWDs in this platform.
         <br/><br/>
         <b>Payments:</b> This marketplace is a non-custodial marketplace which means it doesn't hold any Ether on your behalf. If  
-        one of your NFTs is sold through this platform, then the marketplace will collect a fee, pay the royalties,  
-        and pay YOU in the same transaction.
+        one of your NFTs is sold through this platform, then the marketplace will pay YOU, pay the royalties, and collect 
+        a fee all in the same transaction. You, the artist, and us get the money at the same time as soon as the blockchain 
+        confirms everything went ok.
         
     </p>
       }
@@ -410,7 +420,14 @@ setTranslations({
                 pieza en contra de la guerra contra el narcotráfico y ganemos dinero juntos salvando al mundo 
                 de esta falsa cruzada. Te ofrecemos un buen trato con respecto a las regalías (royalties) y a la primera venta de 
                 tu arte (acuñado). Aprende más de nuestro programa de <Link to='/artist-partner'>artistas socios.</Link>. Sólo existirán
-                904 NFTs en esta colección, así que no pierdas más tiempo. Aplica ahora.
+                904 NFTs en esta colección, así que no pierdas más tiempo. Aplica ahora.<br/><br/>
+              <i style={{fontSize:"1vw", lineHeight:"0.2vw"}}>*Aviso legal: en estos momentos, la mayoría de marketplaces como Opensea o
+              Rarible no han implementado el ERC2981, lo que significa que las regalías (royalties) no serán percibidas cuando el NFT sea 
+              tranzado desde estas plataformas. Realmente esperamos que esta situación cambie pronto por el bien de todo el ecosistema de 
+              NFTs en Ethereum. Por lo tanto, el pago de royalties puede ser únicamente garantizado siempre y cuadno la venta se realice 
+              a través de nuestro marketplace nativo. Nosotros ofrecemos muy bajos "fees" para competir y compensar esta situación. 
+              Sin embargo, tu vos es muy importante para generar un cambio. Exprésate en contra de los gigantes de la industria NFT que no 
+              han querido implementar ERC2981 para el pago de royalties.</i>
               </p>
             
             }
@@ -761,16 +778,20 @@ setTranslations({
     marketplace:{
       title:"Información Importante Acerca de Este Marketplace",
       text:<p className="small-info">
-      <b>Taza:</b> Este marketplace aplica una taza del 0.8% por cada transacción. Una de las más bajas del mercado. Así que 
-      te recomendamos que trances tus SWD a través de esta plataforma.
+      <b>Taza:</b> Este marketplace aplica una taza del 0.8% por cada transacción, lo cual es 3 veces más bajo que la de Opensea y 
+      10 veces más bajo que otros marketplaces. Realmente te recomendamos vender tus NFTs en esta plataforma. La taza recolectada 
+      es usada para el mantenimiento de esta página y podría a ser incluso más baja en el futuro cercano. 
       <br/><br/>
       <b>Regalías:</b> este marketplace también ejerce el ERC2981 para el pago de regalias (royalties). Cada SWD NFT tiene 
-      una regalía del 5%, lo que significa que la cantidad final de Ether que usted recivirá una vez halla vendido su NFT 
-      será del 94.24% del precio por el cual lo vendió.
+      una regalía del 6%, lo que significa que la cantidad final de Ether que usted recivirá una vez halla vendido su NFT 
+      será del 93.248% del precio por el cual lo vendió. Nosotros no aplicamos ninguna taza al comprador a diferencia de otros 
+      marketplaces, lo que significa que lo que usted paga exactamente el precio que usted ve. Nosotros realmente le recomendamos 
+      comprar sus SWDs aquí.
       <br/><br/>
       <b>Pagos:</b> Este marketplace es no-custodio, lo que significa que éste no guarda ninguna cantidad de Ether que 
       sea suyo. Si uno de sus NFTs es vendido a través de esta plataforma, entonces el marketplace va a recolectar la taza, 
-      va a pagar las regalías y le va a pagar a usted, todo en una misma transacción.
+      va a pagar las regalías y le va a pagar a usted, todo en una misma transacción. Usted, el artista y nosotros vamos a recibir 
+      el dinero tan pronto como el blockchain confirme que todo salió bien.
   </p>
     }}
     

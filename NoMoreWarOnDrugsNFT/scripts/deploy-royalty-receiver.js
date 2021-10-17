@@ -24,10 +24,10 @@ async function main() {
     };
   
     //#### MODIFY THIS WITH THE INFO #####
-    const SWDAddress = "0x9C59BbAF880bA7aF3aAD16819cC7407E10B9620d";
-    const artistAddress = "0x3994C97E7b9558f3E12685320d9484fFFa7447F8";
-    const artistPct = 5500; // magnified by 100: 10% = 1000; 50%=5000;
-    const artistName = "Juan_Pablo";//Always capitals on initial letters, separated by _ in spaces.
+    const SWDAddress = "0x48ac7BC89FD29f2E771F62fd0D9574285Da1e766";
+    const artistAddress = "0xb6619b1deAA1e7204c6a0E0E4820227273D83935";
+    const artistPct = 2000; // magnified by 100: 10% = 1000; 50%=5000;
+    const artistName = "AB.MC";//Always capitals on initial letters, separated by _ in spaces.
     //### END OF INPUTS
 
     // first we create the hash of the info and check if it already exists
@@ -57,7 +57,9 @@ async function main() {
 
     //if it doesn't exists, we continue to deploy the contract
     const RoyaltyReceiver = await ethers.getContractFactory("NMWDRoyaltyReceiver");
-    const royaltyReceiver = await RoyaltyReceiver.deploy(SWDAddress, artistAddress, artistPct, overrides );
+    const royaltyReceiver = await RoyaltyReceiver.deploy(SWDAddress, artistAddress, artistPct
+      //, overrides   //ENABLE THIS LINE FOR CUSTOM GAS FEES
+      );
     await royaltyReceiver.deployed();
     console.log("Royalty Receiver:", royaltyReceiver.address);
 
@@ -138,4 +140,6 @@ async function main() {
     //npx hardhat run --network rinkeby scripts/deploy-royalty-receiver.js
 
     //npx hardhat run --network ropsten scripts/deploy-royalty-receiver.js
+
+    //npx hardhat run --network mainnet scripts/deploy-royalty-receiver.js
   
