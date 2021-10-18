@@ -3,6 +3,7 @@ import { MyNFTs } from "./MyNFTs";
 import {
     useParams
   } from "react-router-dom";
+  import { Helmet } from "react-helmet";
 
 export function MyWallet(props){
 
@@ -14,6 +15,10 @@ export function MyWallet(props){
   
     return (
         <div >
+            <Helmet>
+                    <title>SWD Wallet</title>
+                    <meta name="description" content="Manage your SWD NFTs here. Set the message, change price, transfer, etc."/>
+                </Helmet>
             <MyNFTs 
                 page={page}
                 {...props}

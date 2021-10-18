@@ -6,6 +6,7 @@ import "../../style/gallery.css";
 import {
   useParams
 } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export function Mint(props){
 
@@ -19,7 +20,13 @@ export function Mint(props){
     console.log("Mint NETWROK:",props.network);
       return (
         <div className="gallery">
-          <Countdown deadline={"October, 20, 2021, 17:00"} setLaunched={setLaunched}/>
+          <Helmet>
+                    <title>Mint SWDs</title>
+                    <meta name="description" content="Mint fresh SWD NFTs, and take one of the most important NFTs \
+                    in the market with you today. They come with the opportunity of immortalizing your thoughts \
+                    in the Ethereum blockchain."/>
+                </Helmet>
+          <Countdown deadline={"October, 22, 2021, 17:00"} setLaunched={setLaunched}/>
            <div className={chrome? "not-visible":"gallery"}>
                 <h4 style={{padding:"1vw", color:"yellow"}}>WARNING: This browser may cause unexpected behaviours in this app. We recommend to use Google Chrome or Brave for desktop.</h4>
               </div>

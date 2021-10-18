@@ -7,6 +7,7 @@ import { Buttons } from "./Buttons";
 import { ContactMe } from "./ContactMe";
 import"../../i18n/text";
 import { Translate, Localize } from 'react-i18nify';
+import { Helmet } from "react-helmet";
 
 export class Home extends React.Component {
 
@@ -15,6 +16,11 @@ export class Home extends React.Component {
         
         return (
             <div className="home-container">
+                <Helmet>
+                    <title>StopTheWarOnDrugs Home</title>
+                    <meta name="description" content="StopTheWarOnDrugs.ETH NFT is a crypto project in Ethereum \
+                    that speaks up against the war on drugs through art and blockchain."/>
+                </Helmet>
             <LeftImage
                 //src="http://4.bp.blogspot.com/-Yq3Q5ex8chU/T0uKnKUhjcI/AAAAAAAAAEM/cDfeYY9cYQA/s1600/ebla_clay_tablet.png"
                 src="https://images.pexels.com/photos/3199399/pexels-photo-3199399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"

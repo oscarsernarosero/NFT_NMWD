@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import './Home.css'
 
 import { LeftImage } from "./LeftImage";
@@ -14,11 +15,16 @@ import codoLogo from "../../images/768px-Ipfs-logo-1024-ice-text.png"
 import crimeScene from "../../images/58888220bc2fc2ef3a186090.png"
 import ethereumLogo from "../../images/5a7593fc64538c292dec1bbf.png"
 
+
 export class Overview extends React.Component {
     render(){
         
         return (
             <div className="home-container">
+                <Helmet>
+                    <title>Overview StopTheWarOnDrugs</title>
+                    <meta name="description" content="Learn more about the details of the StopTheWarOnDrugs.ETH NFT project."/>
+                </Helmet>
             <LeftImage
                 src="https://www.pngmart.com/files/15/Diamond-Gemstone-Blue-PNG.png"
                 alt="image2"

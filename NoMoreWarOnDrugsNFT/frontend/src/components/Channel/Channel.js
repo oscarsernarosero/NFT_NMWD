@@ -8,6 +8,7 @@ import {
     useParams
   } from "react-router-dom";
   import { getLocale} from 'react-i18nify';
+  import { Helmet } from "react-helmet";
 
 export function Channel(props){
 
@@ -24,6 +25,10 @@ export function Channel(props){
 
     return(
         <div className="channel">
+            <Helmet>
+                    <title>Channel</title>
+                    <meta name="description" content="Learn more about why we must stop the war on drugs"/>
+                </Helmet>
             <div className="index" >
               <ChannelIndex
               categories={content}
