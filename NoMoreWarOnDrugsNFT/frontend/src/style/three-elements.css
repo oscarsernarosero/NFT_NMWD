@@ -6,7 +6,7 @@
 
 .element{
     display: block;
-    max-width:80%;
+    max-width:100%;
     padding: 1rem;
     margin-right: auto;
     margin-left: auto;
@@ -25,7 +25,7 @@
     background-color: #000000cc;
     color: white;
     display: grid;
-    grid-template-columns: [left] 33.3% [middle] 33.3% [right] 33.3% ;
+    grid-template-rows: [left] min-content [middle] min-content [right] min-content ;
 }
 
 

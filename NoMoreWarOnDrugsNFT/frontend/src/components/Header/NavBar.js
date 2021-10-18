@@ -3,6 +3,7 @@ import {NavItems} from "./NavItems";
 import '../../style/NavBar.css'
 
 import { Link} from "react-router-dom";
+import { BiMenu } from "react-icons/bi";
 
 export class NavBar extends React.Component{
 
@@ -17,12 +18,12 @@ export class NavBar extends React.Component{
             <nav className="NavItems">
                 <div className="neon">
                     <span className="title-header" data-text="">
-                        Stop The More War On Drugs</span>
+                        Stop The War On Drugs</span>
                     <span className="gradient"></span>
                     <span className="spotlight"></span>
                 </div>
                 <div className="menu-icon" onClick={this.handleClick}>
-                {this.state.clicked ? " X" : ". . ."}
+                {this.state.clicked ? "x" : <BiMenu />}
                 </div>
                 <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
                     {NavItems.map( (item, index) => {

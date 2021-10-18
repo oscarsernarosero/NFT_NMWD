@@ -1,10 +1,12 @@
 .video-container{
-    display: flex;
-    max-width: 100%;
-    max-height: 50%;
-    padding: 1.5rem;
+    display: block;
+    max-width: min-content;
+    max-height: min-content;
     align-items: center;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top:2vh;
     
 }
 
@@ -12,9 +14,10 @@
     display: block;
     width:99%;
     width:auto;
-    max-height: 250px;
+    max-height: max-content;
     border-bottom-style: solid;
-    border-color: #111;
+    border-color: #222;
+    border-width: 3px;
 }
 
 .right-video-text{

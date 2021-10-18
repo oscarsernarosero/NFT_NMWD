@@ -9,9 +9,9 @@
     position: absolute;
     margin:0;
     padding:0;
-    display: inline-block;
-    width: 23%;
-    height: 100%;
+    display: block;
+    width: 100%;
+    height: min-content;
     background-color: black;
     overflow: scroll;
     
@@ -28,7 +28,7 @@
     background-color: black;
     border-style: hidden;
     color: white;
-    font-size: 1.3vw;
+    font-size: 4.5vw;
     width: 100%;
     text-align: left;
     border-bottom-style: solid;
@@ -37,34 +37,117 @@
 }
 
 .blog-index-item{
-    background-color: #000;
+    background-color: #555;
     border-style: hidden;
     color: white;
-    font-size: 0.9vw;
+    font-size: 3.5vw;
     width: 100%;
     text-align: left;
     border-bottom-style: solid;
     border-bottom-color: #222;
     border-width: 1px;
-    padding:0.3vw;
+    padding:0.6vw;
 }
 
 .blog-content{
-    position: absolute;
-    margin-left:23%;
-    display: inline-block;
-    width: 77%;
-    height: 100%;
+    display: block;
     background-color: #001;
     overflow: scroll;
-    border-left-style: solid;
+    border-bottom-style: solid;
     border-color: #bbb;
     border-width: 1px;
+    padding:3vw;
+}
+
+.blog-post{
+    display: block;
+    height: max-content;
 }
 
 .blog-post-title{
     text-align: center;
     padding-top: 0.5vw;
-    margin-right:15vw;
-    font-size: 2vw;
+    margin-top:4vw;
+    margin-right:10vw;
+    font-size: 7vw;
+    text-decoration: underline;
+}
+
+.blog-post-description{
+    height:max-content
+}
+
+
+
+@media only screen and (min-width: 900px) {
+.channel{
+        height: 90vh;
+    overflow: scroll;
+        background-color:black;
+    }
+
+
+    .index{
+        position: absolute;
+        margin:0;
+        padding:0;
+        display: inline-block;
+        width: 23%;
+        height: 100%;
+        background-color: black;
+        overflow: scroll;
+        
+    }
+
+    .blog-category{
+        background-color: #111;
+        height: min-content;
+        font-size: 0;
+        padding: 0.2vw;
+    }
+
+    .category-button{
+        background-color: black;
+        border-style: hidden;
+        color: white;
+        font-size: 1.3vw;
+        width: 100%;
+        text-align: left;
+        border-bottom-style: solid;
+        border-bottom-color: #222;
+    
+    }
+
+    .blog-index-item{
+        background-color: #000;
+        border-style: hidden;
+        color: white;
+        font-size: 0.9vw;
+        width: 100%;
+        text-align: left;
+        border-bottom-style: solid;
+        border-bottom-color: #222;
+        border-width: 1px;
+        padding:0.3vw;
+    }
+
+    .blog-content{
+        position: absolute;
+        margin-left:23%;
+        display: inline-block;
+        width: 77%;
+        height: 100%;
+        background-color: #001;
+        overflow: scroll;
+        border-left-style: solid;
+        border-color: #bbb;
+        border-width: 1px;
+    }
+
+    .blog-post-title{
+        text-align: center;
+        padding-top: 0.5vw;
+        margin-right:15vw;
+        font-size: 2vw;
+    }
 }

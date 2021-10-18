@@ -54,40 +54,70 @@ p{
     display: grid;
     grid-template-columns: [left] 67% [right] 33%;
 }
-
 .home-buttons{
-    min-height:min-content;
-    padding: 7vw 7vw;
+    min-height:400px;
+    padding: 2vw 2vw;
     background-color:#08293baa;
     color: #ffffffff;
     align-content: center;
     display: grid;
     grid-template-columns: [left] 33% [middle] 33% [right] 33% ;
+    
+}
+
+.home-buttons-section{
+    display:grid;
+    height:200px;
+    grid-template-rows: [top] 15% [middle] 70%[right] 15%;
+
+}
+
+.button-section-icon{
+    align-content: center;
+    font-size: 7vw;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .explore-nft{
-    text-align: center;
-    padding: 2vw 5vw ;
-    margin: auto;
-    margin-bottom: 5vw;
-    max-width: 95%;
-    background-color: #222288aa;
-    font-size: 1rem;
+    text-align:  bottom;
+    margin: 0;
+    margin-left:auto;
+    margin-right:auto;
+    width: 70%;
+    background-color: #22228800;
+    font-size: 3.6vw;
+    text-align: justify;
 }
 
 .explore-nft-button{
-    padding: 1vw 5vw;
+    width: 100%;
+    padding:5vw;
+    padding-top: 0.2vw;
+    padding-bottom: 0.2vw;
+    bottom:0vw;
     text-align: center;
-    font-size: 1rem;
-    width:min-content;
-    border-radius: 15px;
+    font-size: 4vw;
+    width:max-content;
+    border-radius: 1vw;
     position: relative;
+    margin:0;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .test{
     display: grid;
     place-items: center;
     
+}
+
+.contact-me-container{
+        
+    background-color: #000;
+    padding:8vw;
+    text-align: center;
 }
 
 
@@ -98,6 +128,8 @@ p{
         background-size: cover;
         background-repeat: no-repeat;
     background-attachment: fixed;
+    height: 94vh;
+  overflow: scroll;
     
     }
 
@@ -148,8 +180,9 @@ p{
     }
 
     .home-buttons{
-        min-height:400px;
-        padding: 7vw 7vw;
+        height:500px;
+        max-height: max-content;
+        padding: 3vw 3vw;
         background-color:#08293baa;
         color: #ffffffff;
         align-content: center;
@@ -160,12 +193,14 @@ p{
 
     .home-buttons-section{
         display:grid;
-        grid-template-rows: [top] 25% [middle] 50%[right] 25%;
+        height:max-content;
+        grid-template-rows: [top] 40% [middle] 50%[right] 10%;
 
     }
 
     .button-section-icon{
         align-content: center;
+        vertical-align: top;
         font-size: 5vw;
         margin-left: auto;
         margin-right: auto;
@@ -173,10 +208,11 @@ p{
 
     .explore-nft{
         text-align:  bottom;
+        vertical-align: bottom;
         margin: 0;
         margin-left:auto;
         margin-right:auto;
-        width: 70%;
+        width: 75%;
         background-color: #22228800;
         font-size: 1.7vw;
         text-align: justify;
@@ -205,9 +241,12 @@ p{
     }
 
     .contact-me-container{
+        
         background-color: black;
+        overflow: scroll;
         align-content: center;
         padding:8vw;
         text-align: center;
     }
+
 }

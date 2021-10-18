@@ -17,7 +17,7 @@ export class Home extends React.Component {
             <div className="home-container">
             <LeftImage
                 //src="http://4.bp.blogspot.com/-Yq3Q5ex8chU/T0uKnKUhjcI/AAAAAAAAAEM/cDfeYY9cYQA/s1600/ebla_clay_tablet.png"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Stele_of_Vultures_detail_01-transparent.png/440px-Stele_of_Vultures_detail_01-transparent.png"
+                src="https://images.pexels.com/photos/3199399/pexels-photo-3199399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                 alt="image2"
                 title={<Translate value='home.first.title'/>}
                 text={<p>
@@ -42,7 +42,7 @@ export class Home extends React.Component {
                 }   
             />
             <LeftImage
-                src="https://i.pinimg.com/originals/30/64/8c/30648c7d2798558216aec8580c2746ee.png"
+                src="https://images.pexels.com/photos/3779014/pexels-photo-3779014.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                 alt="image2"
                 title={<Translate value='home.artist_partner.title'/>}
                 text={ <Translate value='home.artist_partner.text' />}            
