@@ -121,6 +121,50 @@ p{
 }
 
 
+.contact-us-buttons{
+
+    padding-top:3vw;
+    padding-bottom: 0.2vw;
+    display: grid;
+    grid-template-columns: [left] 33% [middle] 34% [right] 33%;
+    height: min-content;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+}
+
+.social-media-button{
+    background-color: #0000;
+    height: min-content;
+    width: min-content;
+    margin-right: auto;
+    margin-left: auto;
+    border-style: none;
+}
+
+.contact-us-legends{
+
+    padding-bottom:3vw;
+    padding-top:0;
+    display: grid;
+    grid-template-columns: [left] 33% [middle] 34% [right] 33%;
+    height: min-content;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+}
+
+.social-media-legend{
+    font-size: 2vw;
+    height: min-content;
+    width: max-content;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+
+
 @media only screen and (min-width: 900px) {
 
     .home-container{
@@ -248,5 +292,48 @@ p{
         padding:8vw;
         text-align: center;
     }
+
+    .contact-us-buttons{
+
+        padding:3vw;
+        padding-bottom: 0.2vw;
+        display: grid;
+        grid-template-columns: [left] 33% [middle] 34% [right] 33%;
+        height: min-content;
+        margin-left: auto;
+        margin-right: auto;
+        width:30%;
+    }
+
+    .social-media-button{
+        background-color: #0000;
+        height: min-content;
+        width: min-content;
+        margin-right: auto;
+        margin-left: auto;
+        border-style: none;
+    }
+
+    .contact-us-legends{
+
+        padding:3vw;
+        padding-top:0;
+        display: grid;
+        grid-template-columns: [left] 33% [middle] 34% [right] 33%;
+        height: min-content;
+        margin-left: auto;
+        margin-right: auto;
+        width:30%;
+    }
+
+    .social-media-legend{
+        font-size: 0.9vw;
+        height: min-content;
+        width: max-content;
+        margin-right: auto;
+        margin-left: auto;
+
+    }
+
 
 }

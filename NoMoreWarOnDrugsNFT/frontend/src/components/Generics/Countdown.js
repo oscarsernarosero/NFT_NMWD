@@ -48,7 +48,7 @@ export class Countdown extends Component {
                 <div className="Clock-label">Minutes</div>
                 <div className="Clock-label">Seconds</div>
             </div>
-            <div className="countdown-foot">The official launch of the project is October the 22th, 2021 17:00 GMT.</div>
+            <div className="countdown-foot">The official launch of the project is October the 22nd, 2021 17:00 GMT.</div>
         </div>
         );
     }
