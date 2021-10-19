@@ -11,7 +11,7 @@ export class ForMinting extends React.Component{
         const files = require("../../localDB/uri_files.json");
         let forMint = {};
 
-        if (Object.entries(files).length>0){
+        if (Object.entries(files).length>1){
           Object.entries(files).map( ([key,value],index) => {
             
               const uri = require("../../uris/"+value+".json");
