@@ -42,7 +42,7 @@
     border-radius: 20px;
     color: rgb(125, 225,255);
     transition: all 0.2s ease-out;
-    font-size: 37px;
+    font-size: 2rem;
 }
 
 .neon {
@@ -110,7 +110,7 @@
     }
 
     .nav-link:hover {
-        background-color: #222266;
+        background-color: #22224466;
         border-radius: 0;
     }
 

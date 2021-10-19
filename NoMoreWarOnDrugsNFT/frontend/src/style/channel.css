@@ -51,7 +51,6 @@
 
 .blog-content{
     display: block;
-    background-color: #001;
     overflow: scroll;
     border-bottom-style: solid;
     border-color: #bbb;
@@ -137,16 +136,17 @@
         display: inline-block;
         width: 77%;
         height: 100%;
-        background-color: #001;
         overflow: scroll;
         border-left-style: solid;
         border-color: #bbb;
         border-width: 1px;
+        padding:0;
     }
 
     .blog-post-title{
+        margin:0;
         text-align: center;
-        padding-top: 0.5vw;
+        padding-top: 1.5vw;
         margin-right:15vw;
         font-size: 2vw;
     }
