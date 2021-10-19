@@ -15,11 +15,13 @@ export class NFTOnly extends React.Component{
         const files = require("../../localDB/uri_files.json");
         let forMint = {};
 
-        Object.entries(files).map( ([key,value],index) => {
-            
-            const uri = require("../../uris/"+value+".json");
-            forMint[key]=uri;
-        });
+        if (Object.entries(files).length>0){
+            Object.entries(files).map( ([key,value],index) => {
+                
+                const uri = require("../../uris/"+value+".json");
+                forMint[key]=uri;
+            });
+        }
         this.state = {nftsForMint: forMint, mounted:false, uri:demo_NFT, minted:false, exists:false};
 
         this.seeInGallery = this.seeInGallery.bind(this);
