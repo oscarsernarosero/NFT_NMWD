@@ -247,7 +247,7 @@ render(){
                     >   
                         <option value={-1}>All</option>
                         {LANGUAGE.map((language, index)=>{
-                            return <option value={index}>{language}</option>
+                            return <option value={index} key={index}>{language}</option>
                         })}
                     </select>
                   </div>

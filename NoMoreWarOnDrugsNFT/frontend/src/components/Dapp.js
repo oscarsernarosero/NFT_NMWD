@@ -112,7 +112,7 @@ export class Dapp extends React.Component {
             network={this.state.network}
           />
           <div>
-            <switch>
+            
               <Route path="/" exact 
                 component={Home}/>
 
@@ -394,7 +394,7 @@ export class Dapp extends React.Component {
               render={(props)=>
                   <NewUri/>}
                   />
-            </switch>
+            
             </div>
           </div>
         </HashRouter>
