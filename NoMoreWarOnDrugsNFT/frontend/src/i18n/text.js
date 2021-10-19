@@ -49,7 +49,7 @@ setTranslations({
               We will offer you a good deal regarding royalties* and commission over the first sale (minting). 
               Check out our <Link to='/artist-partner'>Artist-Partner program</Link> to learn more. There will be only 904 NFTs in 
               this collection. So, don't waste any more time. Apply now.<br/><br/>
-              <i style={{fontSize:"1vw", lineHeight:"0.2vw"}}>*Disclaimer: At current moment, most marketplaces like Opensea and Rarible don't honor yet ERC2981, which means that royalties 
+              <i style={{fontSize:"1.8vh", lineHeight:"0.25vh"}}>*Disclaimer: At current moment, most marketplaces like Opensea and Rarible don't honor yet ERC2981, which means that royalties 
                 won't be perceived from those marketplaces by neither of us (the artist or SWD). Therefore, royalties can be only guaranteed as 
                 long as sales happen in our native marketplace. We really hope that most marketplaces start implementing ERC2981 soon for the 
                 good of the whole Ethereum NFT ecosystem. We offer highly competitive market fees to compete and compensate this situation. Your 
@@ -421,7 +421,7 @@ setTranslations({
                 de esta falsa cruzada. Te ofrecemos un buen trato con respecto a las regalías (royalties) y a la primera venta de 
                 tu arte (acuñado). Aprende más de nuestro programa de <Link to='/artist-partner'>artistas socios.</Link>. Sólo existirán
                 904 NFTs en esta colección, así que no pierdas más tiempo. Aplica ahora.<br/><br/>
-              <i style={{fontSize:"1vw", lineHeight:"0.2vw"}}>*Aviso legal: en estos momentos, la mayoría de marketplaces como Opensea o
+              <i style={{fontSize:"1.8vh", lineHeight:"0.25vh"}}>*Aviso legal: en estos momentos, la mayoría de marketplaces como Opensea o
               Rarible no han implementado el ERC2981, lo que significa que las regalías (royalties) no serán percibidas cuando el NFT sea 
               transado desde estas plataformas. Realmente esperamos que esta situación cambie pronto por el bien de todo el ecosistema de 
               NFTs en Ethereum. Por lo tanto, el pago de royalties puede ser únicamente garantizado siempre y cuando la venta se realice 
