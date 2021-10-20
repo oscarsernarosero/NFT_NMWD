@@ -22,8 +22,10 @@ export class Overview extends React.Component {
         return (
             <div className="home-container">
                 <Helmet>
+                    <meta charSet="utf-8" />
                     <title>Overview StopTheWarOnDrugs</title>
                     <meta name="description" content="Learn more about the details of the StopTheWarOnDrugs.ETH NFT project."/>
+                    <link rel="canonical" href="https://www.stopthewarondrugs.com/#/overview/" />
                 </Helmet>
             <LeftImage
                 src="https://www.pngmart.com/files/15/Diamond-Gemstone-Blue-PNG.png"

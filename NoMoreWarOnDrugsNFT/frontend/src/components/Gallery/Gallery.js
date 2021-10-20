@@ -24,8 +24,10 @@ export function Gallery(props){
     return (
       <div className="gallery">
         <Helmet>
+                    <meta charSet="utf-8" />
                     <title>Gallery SWD NFTs</title>
                     <meta name="description" content="Buy and sell your SWD NFTs in our native marketplace."/>
+                    <link rel="canonical" href="https://www.stopthewarondrugs.com/#/gallery/" />
                 </Helmet>
         <Countdown deadline={"October, 22, 2021, 17:00"} setLaunched={setLaunched}/>
         <div className={chrome? "not-visible":"gallery"}>

@@ -20,6 +20,10 @@ const TOPIC = {
     SCIENCE: 26,
     HISTORY: 27,
     SHAM: 28,
+    VIOLENCE: 29,
+    CRIME: 30,
+    CORRUPTION: 31,
+    VIETNAM: 32,
     //HISTORICAL CHARACTERS 40-59
     HARRY_ANSLINGER: 40,
     RICHARD_NIXON: 41,
@@ -32,7 +36,10 @@ const TOPIC = {
     CHINA: 65,
     UK: 66,
     FRANCE: 67,
-    ITALY: 68
+    ITALY: 68,
+    //AGENCIES
+    DEA:91,
+    CIA:92,
 }
 
 const LANGUAGE = {

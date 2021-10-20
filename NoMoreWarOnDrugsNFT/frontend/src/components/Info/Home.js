@@ -17,9 +17,11 @@ export class Home extends React.Component {
         return (
             <div className="home-container">
                 <Helmet>
+                    <meta charSet="utf-8" />
                     <title>StopTheWarOnDrugs Home</title>
                     <meta name="description" content="StopTheWarOnDrugs.ETH NFT is a crypto project in Ethereum \
                     that speaks up against the war on drugs through art and blockchain."/>
+                    <link rel="canonical" href="https://www.stopthewarondrugs.com/" />
                 </Helmet>
             <LeftImage
                 //src="http://4.bp.blogspot.com/-Yq3Q5ex8chU/T0uKnKUhjcI/AAAAAAAAAEM/cDfeYY9cYQA/s1600/ebla_clay_tablet.png"

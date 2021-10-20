@@ -21,10 +21,10 @@ async function main(){
     const description="Los primeros grandes narcos fueron farmacéuticas europeas o estadounidenses, o simplemente vendedores de droga como los británicos";
 
     const language = LANGUAGE.ES;
+    const topics= [TOPIC.RACISM];
     
     const artist="Juan Melo";
     const artist_webpage="http://modernacontemporanea.com/meloJuan.html";
-    const topics= [TOPIC.GEOPOLITICS, TOPIC.UK, TOPIC.US, TOPIC.GERMANY];
     const _royaltyPct = "6.00"//%
     const _royaltyAddress = "0xB85ea1C62FD5CC6F081F047eCA0BD5aFDd5c5cD5"
     //

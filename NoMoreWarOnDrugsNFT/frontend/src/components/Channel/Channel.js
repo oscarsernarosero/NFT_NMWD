@@ -26,8 +26,10 @@ export function Channel(props){
     return(
         <div className="channel">
             <Helmet>
+                    <meta charSet="utf-8" />
                     <title>Channel</title>
                     <meta name="description" content="Learn more about why we must stop the war on drugs"/>
+                    <link rel="canonical" href="https://www.stopthewarondrugs.com/#/channel/" />
                 </Helmet>
             <div className="index" >
               <ChannelIndex

@@ -21,10 +21,12 @@ export function Mint(props){
       return (
         <div className="gallery">
           <Helmet>
+                    <meta charSet="utf-8" />
                     <title>Mint SWDs</title>
                     <meta name="description" content="Mint fresh SWD NFTs, and take one of the most important NFTs \
                     in the market with you today. They come with the opportunity of immortalizing your thoughts \
                     in the Ethereum blockchain."/>
+                    <link rel="canonical" href="https://www.stopthewarondrugs.com/#/mint/" />
                 </Helmet>
           <Countdown deadline={"October, 22, 2021, 17:00"} setLaunched={setLaunched}/>
            <div className={chrome? "not-visible":"gallery"}>
