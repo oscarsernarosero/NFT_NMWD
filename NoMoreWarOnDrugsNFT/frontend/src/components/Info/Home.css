@@ -298,11 +298,11 @@ p{
         padding:3vw;
         padding-bottom: 0.2vw;
         display: grid;
-        grid-template-columns: [left] 33% [middle] 34% [right] 33%;
+        grid-template-columns: [left] 25% [middle] 25% [middle] 25% [right] 25%;
         height: min-content;
         margin-left: auto;
         margin-right: auto;
-        width:30%;
+        width:50%;
     }
 
     .social-media-button{
@@ -319,11 +319,11 @@ p{
         padding:3vw;
         padding-top:0;
         display: grid;
-        grid-template-columns: [left] 33% [middle] 34% [right] 33%;
+        grid-template-columns: [left] 25% [middle] 25% [middle] 25% [right] 25%;
         height: min-content;
         margin-left: auto;
         margin-right: auto;
-        width:30%;
+        width:50%;
     }
 
     .social-media-legend{

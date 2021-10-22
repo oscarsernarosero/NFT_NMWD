@@ -5,6 +5,7 @@ import"../../i18n/text";
 import { Translate } from 'react-i18nify';
 import discord  from '../../images/discord-logo-png-32874.png';
 import twitter from "../../images/2-27646_twitter-logo-png-transparent-background-logo-twitter-png.png"
+import youtube from "../../images/YouTube_play_button_circular_(2013-2017).svg.png"
 
 export class ContactMe extends React.Component{
 
@@ -14,6 +15,7 @@ export class ContactMe extends React.Component{
         this.twitterEs = this.twitterEs.bind(this);
         this.twitterEn = this.twitterEn.bind(this);
         this.discordChannel = this.discordChannel.bind(this);
+        this.youtubeLink = this.youtubeLink.bind(this);
     }
        
     twitterEs(){
@@ -28,6 +30,10 @@ export class ContactMe extends React.Component{
         window.open('https://discord.gg/ExnxG3qs', '_blank').focus();
     }
 
+    youtubeLink(){
+        window.open('https://www.youtube.com/channel/UCxn8ktVoqqOEwBjNJHX2O-w', '_blank').focus();
+    }
+
     render(){
         return(
             <div className="contact-me-container">
@@ -40,11 +46,14 @@ export class ContactMe extends React.Component{
                         <button className="social-media-button" onClick={this.twitterEn}>
                             <img src={twitter} width="60px"/>
                         </button>
+                        <button className="social-media-button" onClick={this.twitterEs}>
+                        <img src={twitter} width="60px" />
+                        </button>
                         <button className="social-media-button" onClick={this.discordChannel}>
                         <img src={discord} width="70px"/>
                         </button>
-                        <button className="social-media-button" onClick={this.twitterEs}>
-                        <img src={twitter} width="60px" />
+                        <button className="social-media-button" onClick={this.youtubeLink}>
+                        <img src={youtube} width="60px" />
                         </button>
                     </div>
                     <div className="contact-us-legends">
@@ -52,10 +61,13 @@ export class ContactMe extends React.Component{
                         Twitter English
                         </div>
                         <div className="social-media-legend">
+                            Twitter español
+                        </div>
+                        <div className="social-media-legend">
                             Discord Channel
                         </div>
                         <div className="social-media-legend">
-                            Twitter español
+                            Youtube Channel
                         </div>
                     </div>
                     

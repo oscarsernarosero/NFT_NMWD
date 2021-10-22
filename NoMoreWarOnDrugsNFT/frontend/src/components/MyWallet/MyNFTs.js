@@ -11,6 +11,11 @@ import "../../style/myNFTs.css";
                 <div className="title-my-nfts">
                     My NFTs
                 </div>
+
+                <p>You can see your NFTs here. Remember that your NFTs will be set as 'not for sale' once you buy/mint it. This is to give 
+                    you time to set the NFT price you think best fits its value. Once you have set the price, you can check the 'for sale'
+                    box to make it available in this native marketplace (gallery). 
+                </p>
                 {
                   this.props.provider_defaulted?
                   <span>You need to connect wallet</span>:
