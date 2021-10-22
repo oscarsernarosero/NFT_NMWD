@@ -83,7 +83,7 @@ export class Carousel extends React.Component {
                         },
                         '@media (min-width: 900px)': {
                           width: '1300px',
-                          height: '750px'
+                          height: '1000px'
                         }
                       }}
                     

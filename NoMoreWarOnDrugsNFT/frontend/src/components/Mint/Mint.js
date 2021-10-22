@@ -28,7 +28,9 @@ export function Mint(props){
                     in the Ethereum blockchain."/>
                     <link rel="canonical" href="https://www.stopthewarondrugs.com/#/mint/" />
                 </Helmet>
-          <Countdown deadline={"October, 22, 2021, 17:00"} setLaunched={setLaunched}/>
+            <div className={launched? "not-visible":""}>
+              <Countdown deadline={"October, 22, 2021, 17:00"} setLaunched={setLaunched}/>
+            </div>
            <div className={chrome? "not-visible":"gallery"}>
                 <h4 style={{padding:"1vw", color:"yellow"}}>WARNING: This browser may cause unexpected behaviours in this app. We recommend to use Google Chrome or Brave for desktop.</h4>
               </div>

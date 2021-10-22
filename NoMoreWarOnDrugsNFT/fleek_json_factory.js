@@ -15,18 +15,19 @@ async function main(){
 
 
     //############### MODIFY THE PARAMETERS HERE: ###############
-    const nftMediaPath="./nft_media/Melo/1 PRIMEROS NARCOS Español_x264.mp4";
-    const isAnimated = true;
-    const name="Primeros Narcos";
-    const description="Los primeros grandes narcos fueron farmacéuticas europeas o estadounidenses, o simplemente vendedores de droga como los británicos";
+    const nftMediaPath="./nft_media/AB.MC/DEA-GIF-final2 grande.gif";
+    const isAnimated = false;
+    const name="The Biggest Cartel";
+    const description="The DEA has been involved in several drug trafficking and money laundering scandals.";
 
-    const language = LANGUAGE.ES;
-    const topics= [TOPIC.RACISM];
+    const language = LANGUAGE.EN;
+
+    const topics= [TOPIC.SHAM, TOPIC.DEA];
     
-    const artist="Juan Melo";
-    const artist_webpage="http://modernacontemporanea.com/meloJuan.html";
+    const artist="AB.MC";
+    const artist_webpage="https://www.instagram.com/belenomas/";
     const _royaltyPct = "6.00"//%
-    const _royaltyAddress = "0xB85ea1C62FD5CC6F081F047eCA0BD5aFDd5c5cD5"
+    const _royaltyAddress = "0xE7398Fb3e598B11DD988d8F6e56e5cee1283bfd3"
     //
     const external_url="www.stopthewarondrugs.com";
     //############################################################

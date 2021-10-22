@@ -5,6 +5,7 @@ import { PaginationNFTs } from "./PaginationNFTs";
 import { Countdown } from "../Generics/Countdown";
 import { MarketInfo } from "./MarketInfo";
 import { ContractAddresses } from "./ContractAddresses";
+import { GoToMint } from "./GoToMint";
 import "../../style/gallery.css";
 import {
   useParams
@@ -29,7 +30,10 @@ export function Gallery(props){
                     <meta name="description" content="Buy and sell your SWD NFTs in our native marketplace."/>
                     <link rel="canonical" href="https://www.stopthewarondrugs.com/#/gallery/" />
                 </Helmet>
-        <Countdown deadline={"October, 22, 2021, 17:00"} setLaunched={setLaunched}/>
+        
+        <div className={launched? "not-visible":""}>
+              <Countdown deadline={"October, 22, 2021, 17:00"} setLaunched={setLaunched}/>
+            </div>
         <div className={chrome? "not-visible":"gallery"}>
                 <h4 style={{padding:"1vw", color:"yellow"}}>WARNING: This browser may cause unexpected behaviours in this app. We recommend to use Google Chrome or Brave for desktop.</h4>
               </div>
@@ -43,8 +47,9 @@ export function Gallery(props){
           mywallet = {false}
           {...props}
           />
-          
+          <GoToMint/>
           <MarketInfo/>
+          
           <ContractAddresses/>
           </div>
         </div>
