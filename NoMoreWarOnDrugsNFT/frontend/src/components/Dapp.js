@@ -505,14 +505,25 @@ export class Dapp extends React.Component {
   }
 
   async _intializeEthers() {
-    
+    console.log("initializing Ethers");
     // We first initialize ethers by creating a provider using window.ethereum
     try{
-      if (this.provider_defaulted) {
-        this._provider = new ethers.getDefaultProvider("mainnet");
-      }else{
+      
+        console.log("before contracts ELSE. this.provider_defaulted",this.provider_defaulted);
         this._provider = new ethers.providers.Web3Provider(window.ethereum);
-      }
+        console.log("before contracts after provider ELSE. this.this._provider ",this.this._provider );
+        this._nmwd = new ethers.Contract(
+          NMWDAddress.Token,
+          NMWDArtifact.abi,
+          this._provider.getSigner(0)//do I need this?
+        );
+    
+        this.marketPlace = new ethers.Contract(
+          MarketPlaceAddress.Token,
+          MarketPlaceArtifact.abi,
+          this._provider.getSigner(0)//do I need this?
+        );
+      
       
       console.log("provider",this._provider);
       
@@ -520,20 +531,6 @@ export class Dapp extends React.Component {
       this._provider = new ethers.getDefaultProvider("mainnet");
       console.log("defaulted provider",this._provider);
       await this.setState({provider_defaulted:true});
-    }
-    try{
-      this._nmwd = new ethers.Contract(
-        NMWDAddress.Token,
-        NMWDArtifact.abi,
-        this._provider.getSigner(0)//do I need this?
-      );
-  
-      this.marketPlace = new ethers.Contract(
-        MarketPlaceAddress.Token,
-        MarketPlaceArtifact.abi,
-        this._provider.getSigner(0)//do I need this?
-      );
-    }catch{
       this._nmwd = new ethers.Contract(
         NMWDAddress.Token,
         NMWDArtifact.abi,
