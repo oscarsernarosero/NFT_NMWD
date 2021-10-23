@@ -31,7 +31,7 @@ export function Gallery(props){
                     <link rel="canonical" href="https://www.stopthewarondrugs.com/#/gallery/" />
                 </Helmet>
         
-        <div className={chrome? "not-visible":"gallery"}>
+        <div className={chrome? "not-visible":""}>
                 <h4 style={{padding:"1vw", color:"yellow"}}>WARNING: This browser may cause unexpected behaviours in this app. We recommend to use Google Chrome or Brave for desktop.</h4>
               </div>
 
