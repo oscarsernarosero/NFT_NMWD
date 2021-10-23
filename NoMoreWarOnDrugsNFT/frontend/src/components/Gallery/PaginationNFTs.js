@@ -247,7 +247,7 @@ import { Carousel } from "../Gallery/Carousel";
       
       render(){
         return (
-            <div >
+            <div className="nfts-grid-view">
               <div>
                     <button onClick={this.listView} 
                     className={this.state.view ? "grid-active": "grid-inactive"}>
@@ -275,7 +275,7 @@ import { Carousel } from "../Gallery/Carousel";
                     forMint={false}
                   />
                 </div>
-               <div className={this.state.view ? "": "not-visible"}>
+               <div className={this.state.view ? "nfts-grid-view": "not-visible"}>
                <ul className="list">
                 {this.state.nfts.map((item,index)=>{
                     return <li className="galleryItem"

@@ -416,10 +416,12 @@ export class Dapp extends React.Component {
     // To connect to the user's wallet, we have to run this method.
     // It returns a promise that will resolve to the user's address.
     //try{
-      const [selectedAddress] = await window.ethereum.request({ method: 'eth_requestAccounts' }) 
+      await this.setState({provider_defaulted:true});
+      let [selectedAddress] = await window.ethereum.request({ method: 'eth_requestAccounts' }) 
       
       console.log("selected_address",selectedAddress);
       // Once we have the address, we can initialize the application.
+    
     this.setState({provider_defaulted:false});
   
       this._initialize(selectedAddress);
@@ -503,17 +505,22 @@ export class Dapp extends React.Component {
   }
 
   async _intializeEthers() {
-    console.log("provider beofre");
+    
     // We first initialize ethers by creating a provider using window.ethereum
     try{
-      this._provider = new ethers.providers.Web3Provider(window.ethereum);
+      if (this.provider_defaulted) {
+        this._provider = new ethers.getDefaultProvider("mainnet");
+      }else{
+        this._provider = new ethers.providers.Web3Provider(window.ethereum);
+      }
+      
       console.log("provider",this._provider);
+      
     }catch{
       this._provider = new ethers.getDefaultProvider("mainnet");
       console.log("defaulted provider",this._provider);
       await this.setState({provider_defaulted:true});
     }
-    console.log("dafaulted provider?",this.state.provider_defaulted);
     try{
       this._nmwd = new ethers.Contract(
         NMWDAddress.Token,

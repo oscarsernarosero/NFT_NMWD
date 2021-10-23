@@ -210,7 +210,7 @@ import { Carousel } from "../Gallery/Carousel";
       render(){
         console.log("rendering from PaginationForMinting");
         return (
-            <div >
+            <div className="nfts-grid-view">
                 <div>
                   {<Translate value='mint.title'/>}
                 </div>

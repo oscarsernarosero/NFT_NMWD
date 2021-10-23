@@ -33,7 +33,7 @@ export class ForMinting extends React.Component{
     if(this.state.mounted){
       console.log("rendering from ForMinting");
       return (
-        <div className="gallery">
+        <div >
             <PaginationForMinting
             nftsForMint={this.state.nftsForMint}
             {...this.props}

@@ -8,7 +8,6 @@ export class WalletStatus extends React.Component{
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this);
-      console.log("this.props.network",this.props.network);
         
       }
 
@@ -21,7 +20,6 @@ export class WalletStatus extends React.Component{
     
     async handleClick (){
         await this.props.connectWallet();
-        console.log("clicked");
     }
 
   render(){
