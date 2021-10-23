@@ -464,8 +464,8 @@ export class Dapp extends React.Component {
       console.log("this.state.network",this.state.network);
 
     // First we check the network
-    NMWDAddress =require("../contracts/"+this.network+"-contract-address-StopTheWarOnDrugs.json");
-    MarketPlaceAddress =require("../contracts/"+this.network+"-contract-address-SWDMarketPlace.json");
+    NMWDAddress =require("../contracts/"+network[window.ethereum.networkVersion]+"-contract-address-StopTheWarOnDrugs.json");
+    MarketPlaceAddress =require("../contracts/"+network[window.ethereum.networkVersion]+"-contract-address-SWDMarketPlace.json");
 
 
     // We first store the user's address in the component's state
