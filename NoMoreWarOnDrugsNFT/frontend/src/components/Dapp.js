@@ -49,8 +49,8 @@ const network = {
 // using them with ethers
 const NMWDArtifact =require("../contracts/Token_StopTheWarOnDrugs.json");
 const MarketPlaceArtifact =require("../contracts/Token_SWDMarketPlace.json");
-var NMWDAddress =require("../contracts/rinkeby-contract-address-StopTheWarOnDrugs.json");
-var MarketPlaceAddress =require("../contracts/rinkeby-contract-address-SWDMarketPlace.json");
+var NMWDAddress =require("../contracts/mainnet-contract-address-StopTheWarOnDrugs.json");
+var MarketPlaceAddress =require("../contracts/mainnet-contract-address-SWDMarketPlace.json");
 
 
 
@@ -91,7 +91,7 @@ export class Dapp extends React.Component {
       nfts: undefined,
       initialized:false,
       provider_defaulted: false,
-      network:"Network"
+      network:"mainnet"
     };
 
     this.state = this.initialState;
@@ -464,8 +464,8 @@ export class Dapp extends React.Component {
       console.log("this.state.network",this.state.network);
 
     // First we check the network
-    NMWDAddress =require("../contracts/"+network[window.ethereum.networkVersion]+"-contract-address-StopTheWarOnDrugs.json");
-    MarketPlaceAddress =require("../contracts/"+network[window.ethereum.networkVersion]+"-contract-address-SWDMarketPlace.json");
+    NMWDAddress =require("../contracts/"+this.network+"-contract-address-StopTheWarOnDrugs.json");
+    MarketPlaceAddress =require("../contracts/"+this.network+"-contract-address-SWDMarketPlace.json");
 
 
     // We first store the user's address in the component's state
@@ -509,7 +509,7 @@ export class Dapp extends React.Component {
       this._provider = new ethers.providers.Web3Provider(window.ethereum);
       console.log("provider",this._provider);
     }catch{
-      this._provider = new ethers.getDefaultProvider("rinkeby");
+      this._provider = new ethers.getDefaultProvider("mainnet");
       console.log("defaulted provider",this._provider);
       await this.setState({provider_defaulted:true});
     }
