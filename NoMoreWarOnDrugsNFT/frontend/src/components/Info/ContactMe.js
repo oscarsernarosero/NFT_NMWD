@@ -27,7 +27,7 @@ export class ContactMe extends React.Component{
     }
 
     discordChannel(){
-        window.open('https://discord.gg/ExnxG3qs', '_blank').focus();
+        window.open('https://discord.gg/8RUXtPdW', '_blank').focus();
     }
 
     youtubeLink(){
