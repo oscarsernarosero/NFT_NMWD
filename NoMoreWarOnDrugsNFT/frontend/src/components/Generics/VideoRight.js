@@ -15,7 +15,7 @@ export class VideoRight extends React.Component {
                         {this.props.data[1].text}
                     </div>
                     <div className="video-container">
-                        <iframe width="350" height="180" src={this.props.data[1].videoUrl}>
+                        <iframe width="300" height="150" src={this.props.data[1].videoUrl}>
                         </iframe>
                     </div>
                 </div>

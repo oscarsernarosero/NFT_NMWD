@@ -15,19 +15,19 @@ async function main(){
 
 
     //############### MODIFY THE PARAMETERS HERE: ###############
-    const nftMediaPath="./nft_media/AB.MC/DEA-GIF-final2 grande.gif";
+    const nftMediaPath="./nft_media/rito_sin_sermon/justice_es.jpeg";
     const isAnimated = false;
-    const name="The Biggest Cartel";
-    const description="The DEA has been involved in several drug trafficking and money laundering scandals.";
+    const name="Justicia en un mundo prohibicionista";
+    const description="Sin comentarios.";
 
-    const language = LANGUAGE.EN;
+    const language = LANGUAGE.ES;
 
-    const topics= [TOPIC.SHAM, TOPIC.DEA];
+    const topics= [TOPIC.POLITICS, TOPIC.SHAM];
     
-    const artist="AB.MC";
-    const artist_webpage="https://www.instagram.com/belenomas/";
+    const artist="Rito Sin Sermones";
+    const artist_webpage="www.ritosinsermones.com";
     const _royaltyPct = "6.00"//%
-    const _royaltyAddress = "0xE7398Fb3e598B11DD988d8F6e56e5cee1283bfd3"
+    const _royaltyAddress = "0x8640e39af1d29868E50117A5c83A1cBB6Ec5493D"
     //
     const external_url="www.stopthewarondrugs.com";
     //############################################################

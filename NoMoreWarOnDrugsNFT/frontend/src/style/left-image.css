@@ -9,8 +9,7 @@
 
 .left-image{
     display: block;
-    width:100%;
-    width:auto;
+    max-width:500px;
     max-height: 250px;
 }
 

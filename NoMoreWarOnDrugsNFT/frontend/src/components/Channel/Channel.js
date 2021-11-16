@@ -19,9 +19,16 @@ export function Channel(props){
     if (language=="en") content = require("./ContentEn");
     else                content = require("./ContentEs");
 
-    let { post } = useParams();
-    console.log(post);
-    if (post===undefined)  post="before_1914";
+    console.log("group beofre");
+    let { group,post } = useParams();
+    console.log("post",post);
+    console.log("group",group);
+    if (post===undefined) post="intro";
+    if (group==="0")    group="Playlists";
+    else if (group===undefined||group==="1") group="blog";
+
+    console.log("grouop contect",content.Content["blog"]);
+    
 
     return(
         <div className="channel">
@@ -33,13 +40,13 @@ export function Channel(props){
                 </Helmet>
             <div className="index" >
               <ChannelIndex
-              categories={content}
+              categories={content.Content}
               />
             </div>
             <div className="blog-content" >
             <ChannelPost 
-                post={content.Playlists[post]}
-                //post={content.Playlists.before_1914}
+                post={content.Content[group][post]}
+                group={group}
             
             />
             </div>

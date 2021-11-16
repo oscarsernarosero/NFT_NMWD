@@ -116,5 +116,35 @@
       "contractAddress": "0xE7398Fb3e598B11DD988d8F6e56e5cee1283bfd3",
       "dateCreated": "2021-10-17 1:34:31"
     }
+  },
+  "Marco_Tóxico": {
+    "d5e165547dd45f604689d8774fe2cda5e1c63d01364a2cacc243ee519741afca": {
+      "artistAddress": "0x237E0FD513886D1Bacb49c0FFB559Fc2f185394a",
+      "SWDAddress": "0x3994C97E7b9558f3E12685320d9484fFFa7447F8",
+      "artistPct": 2000,
+      "network": "mainnet",
+      "contractAddress": "0x394DafE5F2134f2B8fB798bDAA479DEE5Dc8e865",
+      "dateCreated": "2021-11-12 1:4:14"
+    }
+  },
+  "Royor_Samudio": {
+    "00a28d55c11f084855b6e853ce78514663a40b6fcea63d7246f5e59673e5a293": {
+      "artistAddress": "0x62De2A18168C6174C8d5af857566473745E86937",
+      "SWDAddress": "0x48ac7BC89FD29f2E771F62fd0D9574285Da1e766",
+      "artistPct": 2000,
+      "network": "mainnet",
+      "contractAddress": "0xba5a075235eFA92e858AeAeE76d1E88753aDdbB5",
+      "dateCreated": "2021-11-12 1:11:42"
+    }
+  },
+  "Rito_sin_sermones": {
+    "a051b7d2e0b220848b7c277ed40b717564f72b24b9022c86d7c7b97479e52af5": {
+      "artistAddress": "0xD6E5ABE412359566F9000149742b1De53Bf18E13",
+      "SWDAddress": "0x3994C97E7b9558f3E12685320d9484fFFa7447F8",
+      "artistPct": 2000,
+      "network": "mainnet",
+      "contractAddress": "0x8640e39af1d29868E50117A5c83A1cBB6Ec5493D",
+      "dateCreated": "2021-11-12 1:13:1"
+    }
   }
 }

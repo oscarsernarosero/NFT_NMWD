@@ -25,7 +25,7 @@ async function main(){
     const videoCID="QmTLs9Z9u2X8z2pf8DoTkcLRy2Fxu7NqMoXYw9aiG32fH5";
     const artist="Who Knows";
     const artist_webpage="https://youtu.be/vI2hT9lb1gY";
-    const topics= [TOPIC.CHINA, TOPIC.UK, TOPIC.GEOPOLITICS, TOPIC.HISTORY, TOPIC.OPIUM];
+    const topics= [TOPIC.POLITICS, TOPIC.CIA, TOPIC.SHAM, TOPIC.RONALD_REAGAN, TOPIC.US];
     const _royaltyPct = "8.00"//%
     const _royaltyAddress = "0xB85ea1C62FD5CC6F081F047eCA0BD5aFDd5c5cD5"
     //

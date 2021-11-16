@@ -476,26 +476,7 @@ CHECKED
 
  ??
 
- ## marco Tóxico
-
-```
-    const nftMediaPath="./nft_media/Tóxico/STOPTHEWARONDRUGS_mt_1a.jpg";
-    const isAnimated = false;
-    const name="";
-    const description="The DEA has been involved in several drug trafficking scandals. It is said in that the DEA is probably the biggest cartel in the world.";
-
-    const language = LANGUAGE.EN;
-
-    const topics= [TOPIC.SHAM, TOPIC.DEA];
-    
-    const artist="AB.MC";
-    const artist_webpage="https://www.instagram.com/belenomas/";
-    const _royaltyPct = "6.00"//%
-    const _royaltyAddress = ""
-    //
-    const external_url="www.stopthewarondrugs.com";
- ```
-
+ 
 
 ## AB.MC
 
@@ -517,3 +498,343 @@ CHECKED
     //
     const external_url="www.stopthewarondrugs.com";
  ```
+
+ ## marco Tóxico
+
+```
+    const nftMediaPath="./nft_media/Tóxico/STOPTHEWARONDRUGS_mt_1a.jpg";
+    const isAnimated = false;
+    const name="A Farmer Or A Criminal";
+    const description="The US market has historically over incentivized the production of cocaine while its government pursues the criminalization of growing coca bushes even in its native zones where it has been used for millennia by indigenous people.";
+
+    const language = LANGUAGE.EN;
+
+    const topics= [TOPIC.COCAINE, TOPIC.US, TOPIC.GEOPOLITICS, TOPIC.LATINAMERICA];
+    
+    const artist="Marco Tóxico";
+    const artist_webpage="https://www.instagram.com/marcotoxico";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0x394DafE5F2134f2B8fB798bDAA479DEE5Dc8e865"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+DONE
+
+
+```
+    const nftMediaPath="./nft_media/Tóxico/STOPTHEWARONDRUGS_mt_1b.jpg";
+    const isAnimated = false;
+    const name="Campesino o criminal";
+    const description="El mercado estadounidense ha sobreincentivado históricamente la producción de cocaína, mientras que su gobierno persigue la criminalización del cultivo de la mata de coca incluso en sus zonas nativas donde se ha utilizado durante milenios por comunidades indígenas.";
+
+    const language = LANGUAGE.ES;
+
+    const topics= [TOPIC.COCAINE, TOPIC.US, TOPIC.GEOPOLITICS, TOPIC.LATINAMERICA];
+    
+    const artist="Marco Tóxico";
+    const artist_webpage="https://www.instagram.com/marcotoxico";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0x394DafE5F2134f2B8fB798bDAA479DEE5Dc8e865"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+DONE
+
+```
+    const nftMediaPath="./nft_media/Tóxico/STOPTHEWARONDRUGS_mt_2a.jpg";
+    const isAnimated = false;
+    const name="Coca Jima";
+    const description="Prohibition has always been the means to colonization.";
+
+    const language = LANGUAGE.EN;
+
+    const topics= [TOPIC.COCA, TOPIC.US, TOPIC.GEOPOLITICS, TOPIC.LATINAMERICA];
+    
+    const artist="Marco Tóxico";
+    const artist_webpage="https://www.instagram.com/marcotoxico";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0x394DafE5F2134f2B8fB798bDAA479DEE5Dc8e865"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+DONE
+
+ ```
+    const nftMediaPath="./nft_media/Tóxico/STOPTHEWARONDRUGS_mt_2b.jpg";
+    const isAnimated = false;
+    const name="Coca Jima";
+    const description="La prohibición siempre ha sido un medio para la colonización.";
+
+    const language = LANGUAGE.ES;
+
+    const topics= [TOPIC.COCA, TOPIC.US,TOPIC.GEOPOLITICS, TOPIC.LATINAMERICA];
+    
+    const artist="Marco Tóxico";
+    const artist_webpage="https://www.instagram.com/marcotoxico";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0x394DafE5F2134f2B8fB798bDAA479DEE5Dc8e865"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+ DONE
+
+```
+    const nftMediaPath="./nft_media/Tóxico/STOPTHEWARONDRUGS_mt_3a.jpg";
+    const isAnimated = false;
+    const name="Life vs. Death";
+    const description="The war on drugs is a policy of death fighting against the resilience of life.";
+
+    const language = LANGUAGE.EN;
+
+    const topics= [TOPIC.VIOLENCE];
+    
+    const artist="Marco Tóxico";
+    const artist_webpage="https://www.instagram.com/marcotoxico";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0x394DafE5F2134f2B8fB798bDAA479DEE5Dc8e865"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+DONE
+
+ ```
+    const nftMediaPath="./nft_media/Tóxico/STOPTHEWARONDRUGS_mt_3a.jpg";
+    const isAnimated = false;
+    const name="Vida vs. muerte";
+    const description="La guerra contra las drogas es una política de muerte peleando contra la tenacidad de la vida.";
+
+    const language = LANGUAGE.ES;
+
+    const topics= [TOPIC.VIOLENCE];
+    
+    const artist="Marco Tóxico";
+    const artist_webpage="https://www.instagram.com/marcotoxico";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0x394DafE5F2134f2B8fB798bDAA479DEE5Dc8e865"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+DONE
+
+ ### Royor Samudio
+
+
+ ```
+    const nftMediaPath="./nft_media/Royor_Samudio/N1-2.png";
+    const isAnimated = false;
+    const name="An Alleged Drug Abuse To Justify A Brutal Abuse Of Authority";
+    const description="Prohibition is a means to legitimize wide-spread systemic abuse of power.";
+
+    const language = LANGUAGE.EN;
+
+    const topics= [TOPIC.VIOLENCE];
+    
+    const artist="Royor Samudio";
+    const artist_webpage="https://www.instagram.com/vagabundodelaidea";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0xba5a075235eFA92e858AeAeE76d1E88753aDdbB5"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+ DONE
+
+
+ ```
+    const nftMediaPath="./nft_media/Royor_Samudio/N1.png";
+    const isAnimated = false;
+    const name="Un supuesto abuso de drogas para justificar un brutal abuso de autoridad";
+    const description="La prohibición es un medio para legitimar abusos de autoridad sistemáticos sobre la población.";
+
+    const language = LANGUAGE.ES;
+
+    const topics= [TOPIC.VIOLENCE];
+    
+    const artist="Royor Samudio";
+    const artist_webpage="https://www.instagram.com/vagabundodelaidea";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0xba5a075235eFA92e858AeAeE76d1E88753aDdbB5"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+DONE
+
+ ```
+    const nftMediaPath="./nft_media/Royor_Samudio/N2-2.png";
+    const isAnimated = false;
+    const name="THE WAR FOR DRUGS";
+    const description="The war on drugs is in reality a war between drug cartels.";
+
+    const language = LANGUAGE.EN;
+
+    const topics= [TOPIC.VIOLENCE, TOPIC.SHAM, TOPIC.CORRUPTION, TOPIC.POLITICS];
+    
+    const artist="Royor Samudio";
+    const artist_webpage="https://www.instagram.com/vagabundodelaidea";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0xba5a075235eFA92e858AeAeE76d1E88753aDdbB5"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+ DONE
+
+
+ ```
+    const nftMediaPath="./nft_media/Royor_Samudio/N2.png";
+    const isAnimated = false;
+    const name="LA GUERRA POR LAS DROGAS";
+    const description="La guerra contra las drogas es en realidad en una guerra entre carteles.";
+
+    const language = LANGUAGE.EN;
+
+    const topics= [TOPIC.VIOLENCE, TOPIC.SHAM, TOPIC.CORRUPTION, TOPIC.POLITICS];
+    
+    const artist="Royor Samudio";
+    const artist_webpage="https://www.instagram.com/vagabundodelaidea";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0xba5a075235eFA92e858AeAeE76d1E88753aDdbB5"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+ DONE
+
+
+```
+    const nftMediaPath="./nft_media/Royor_Samudio/N3.png";
+    const isAnimated = false;
+    const name="Disinformation";
+    const description="The real bosses of drug cartels get to say what is told in the media.";
+
+    const language = LANGUAGE.EN;
+
+    const topics= [TOPIC.VIOLENCE, TOPIC.SHAM, TOPIC.CORRUPTION, TOPIC.POLITICS];
+    
+    const artist="Royor Samudio";
+    const artist_webpage="https://www.instagram.com/vagabundodelaidea";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0xba5a075235eFA92e858AeAeE76d1E88753aDdbB5"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+ DONE
+
+ ## Rito sin sermones
+
+
+
+```
+    const nftMediaPath="./nft_media/rito_sin_sermon/cia_en.jpeg";
+    const isAnimated = false;
+    const name="The CIA Drug Cartel";
+    const description="The CIA used American-tax-payer money to build a huge cocaine trade network that flooded the streets of the US with cocaine under Reagan admin. to finance a terrorist group in Nicaragua.";
+
+    const language = LANGUAGE.EN;
+
+    const topics= [TOPIC.POLITICS, TOPIC.CIA, TOPIC.SHAM, TOPIC.RONALD_REAGAN, TOPIC.US];
+    
+    const artist="Rito Sin Sermones";
+    const artist_webpage="www.ritosinsermones.com";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0x8640e39af1d29868E50117A5c83A1cBB6Ec5493D"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+DONE
+
+
+```
+    const nftMediaPath="./nft_media/rito_sin_sermon/cia_es.jpeg";
+    const isAnimated = false;
+    const name="El cartel de la CIA";
+    const description="La CIA montó una red gigante de narcotráfico con dinero de los contribuyentes bajo la administración Reagan, la cual inundó las calles estadounidenses con cocaína para poder financiar un grupo terrorista en Nicaragua.";
+
+    const language = LANGUAGE.ES;
+
+    const topics= [TOPIC.POLITICS, TOPIC.CIA, TOPIC.SHAM, TOPIC.RONALD_REAGAN, TOPIC.US];
+    
+    const artist="Rito Sin Sermones";
+    const artist_webpage="www.ritosinsermones.com";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0x8640e39af1d29868E50117A5c83A1cBB6Ec5493D"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+DONE
+
+```
+    const nftMediaPath="./nft_media/rito_sin_sermon/cycle_en.jpeg";
+    const isAnimated = false;
+    const name="The True Vicious Cycle";
+    const description="Politicians promise the end of drugs through useless policies and violence. They take some of our freedoms and privacy rights away in the name of a 'good cause'. Then, they fund armies which are given power to use violence at their discretion around the globe to fight this war. Meanwhile, mafias get instantly rich by operating the market that only they can operate for being an illegal market. The mafias then use this money to threaten and bribe politicians and armies that go after them. Corruption becomes untenable and obvious. New politicians rise with the same promises. Repeat.";
+
+    const language = LANGUAGE.EN;
+
+    const topics= [TOPIC.POLITICS, TOPIC.SHAM];
+    
+    const artist="Rito Sin Sermones";
+    const artist_webpage="www.ritosinsermones.com";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0x8640e39af1d29868E50117A5c83A1cBB6Ec5493D"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+ DONE
+
+```
+    const nftMediaPath="./nft_media/rito_sin_sermon/cycle_es.jpeg";
+    const isAnimated = false;
+    const name="El verdadero círculo vicioso";
+    const description="Políticos prometen acabar con el narcotráfico con políticas y violencia inútil. Nos quitan nuestras libertades y violentan nuestra privacidad en nombre de una 'buena causa'. Después financian ejércitos a quienes se les da el poder de usarla violencia a su discreción en el mundo entero para pelear esta guerra. Mientras tanto, las mafias se vuelven millonarias al operar el mercado que sólo ellos pueden operar por ser un mercado ilegal.Las mafias usan entonces su dinero para amenazar y corromper a políticos y ejércitos que los persiguen. La corrupción se vuelve inevitable y obvia. Nuevos políticos aparecen con las mismas promesas. Todo se repite.";
+
+    const language = LANGUAGE.ES;
+
+    const topics= [TOPIC.POLITICS, TOPIC.SHAM];
+    
+    const artist="Rito Sin Sermones";
+    const artist_webpage="www.ritosinsermones.com";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0x8640e39af1d29868E50117A5c83A1cBB6Ec5493D"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+ DONE
+ 
+
+
+```
+    const nftMediaPath="./nft_media/rito_sin_sermon/justice_en.jpeg";
+    const isAnimated = false;
+    const name="Justice In A Prohibitionist World";
+    const description="no comments needed.";
+
+    const language = LANGUAGE.EN;
+
+    const topics= [TOPIC.POLITICS, TOPIC.SHAM];
+    
+    const artist="Rito Sin Sermones";
+    const artist_webpage="www.ritosinsermones.com";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0x8640e39af1d29868E50117A5c83A1cBB6Ec5493D"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+ DONE
+
+
+```
+    const nftMediaPath="./nft_media/rito_sin_sermon/justice_es.jpeg";
+    const isAnimated = false;
+    const name="Justicia en un mundo prohibicionista";
+    const description="Sin comentarios.";
+
+    const language = LANGUAGE.ES;
+
+    const topics= [TOPIC.POLITICS, TOPIC.SHAM];
+    
+    const artist="Rito Sin Sermones";
+    const artist_webpage="www.ritosinsermones.com";
+    const _royaltyPct = "6.00"//%
+    const _royaltyAddress = "0x8640e39af1d29868E50117A5c83A1cBB6Ec5493D"
+    //
+    const external_url="www.stopthewarondrugs.com";
+ ```
+ DONE

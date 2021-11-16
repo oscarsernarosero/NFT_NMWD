@@ -8,6 +8,8 @@ To verify:
 npx hardhat verify --network mainnet DEPLOYED_CONTRACT_ADDRESS SWDAddress artistAddress artistPct
 ```
 
+if ```no such file or directory``` error shows up, then run ```npx hardhat clean```
+
 ### My Addresses:
 
 hardwallet 0x48ac7BC89FD29f2E771F62fd0D9574285Da1e766
@@ -83,3 +85,43 @@ checked
 deployed at: 0xE7398Fb3e598B11DD988d8F6e56e5cee1283bfd3
 date: Oct 17th, 2021, 01:34
 verified
+
+### Marco Tóxico
+
+```
+    const SWDAddress = "0x3994C97E7b9558f3E12685320d9484fFFa7447F8";
+    const artistAddress = "0x237E0FD513886D1Bacb49c0FFB559Fc2f185394a";
+    const artistPct = 2000; // magnified by 100: 10% = 1000; 50%=5000;
+    const artistName = "Marco_Tóxico";//Always capitals on initial letters, separated by _ in spaces.
+```
+checked
+deployed at: 0x394DafE5F2134f2B8fB798bDAA479DEE5Dc8e865
+date: Nov 12th, 2021, 01:06
+verified
+
+
+### Royor
+
+```
+    const SWDAddress = "0x48ac7BC89FD29f2E771F62fd0D9574285Da1e766";
+    const artistAddress = "0x62De2A18168C6174C8d5af857566473745E86937";
+    const artistPct = 2000; // magnified by 100: 10% = 1000; 50%=5000;
+    const artistName = "Royor_Samudio";//Always capitals on initial letters, separated by _ in spaces.
+```
+cehcked
+deployed at: 0xba5a075235eFA92e858AeAeE76d1E88753aDdbB5
+date: Nov 12th, 2021, 01:11
+verified
+
+### Rito Sin Sermones
+
+```
+    const SWDAddress = "0x3994C97E7b9558f3E12685320d9484fFFa7447F8";
+    const artistAddress = "0xD6E5ABE412359566F9000149742b1De53Bf18E13";
+    const artistPct = 2000; // magnified by 100: 10% = 1000; 50%=5000;
+    const artistName = "Rito_sin_sermones";//Always capitals on initial letters, separated by _ in spaces.
+```
+checked
+deployed at: 0x8640e39af1d29868E50117A5c83A1cBB6Ec5493D
+date: Nov 12th, 2021, 01:13
+

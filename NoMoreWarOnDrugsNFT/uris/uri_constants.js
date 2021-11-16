@@ -10,6 +10,7 @@ const TOPIC = {
     AMPHETAMINES: 8,
     METAMPHETAMINES: 9,
     LSD: 10,
+    COCA:11,
     //GENERIC TOPIS 20-39
     GEOPOLITICS: 20,
     RACISM: 21,
@@ -27,6 +28,7 @@ const TOPIC = {
     //HISTORICAL CHARACTERS 40-59
     HARRY_ANSLINGER: 40,
     RICHARD_NIXON: 41,
+    RONALD_REAGAN: 42,
     //COUNTRIES 60-99
     COLOMBIA: 60,
     MEXICO: 61,
@@ -37,6 +39,7 @@ const TOPIC = {
     UK: 66,
     FRANCE: 67,
     ITALY: 68,
+    LATINAMERICA:69,
     //AGENCIES
     DEA:91,
     CIA:92,

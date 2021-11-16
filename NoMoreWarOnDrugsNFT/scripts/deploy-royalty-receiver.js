@@ -24,10 +24,10 @@ async function main() {
     };
   
     //#### MODIFY THIS WITH THE INFO #####
-    const SWDAddress = "0x48ac7BC89FD29f2E771F62fd0D9574285Da1e766";
-    const artistAddress = "0xb6619b1deAA1e7204c6a0E0E4820227273D83935";
+    const SWDAddress = "0x3994C97E7b9558f3E12685320d9484fFFa7447F8";
+    const artistAddress = "0xD6E5ABE412359566F9000149742b1De53Bf18E13";
     const artistPct = 2000; // magnified by 100: 10% = 1000; 50%=5000;
-    const artistName = "AB.MC";//Always capitals on initial letters, separated by _ in spaces.
+    const artistName = "Rito_sin_sermones";//Always capitals on initial letters, separated by _ in spaces.
     //### END OF INPUTS
 
     // first we create the hash of the info and check if it already exists

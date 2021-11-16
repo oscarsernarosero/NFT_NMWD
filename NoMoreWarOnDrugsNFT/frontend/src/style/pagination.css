@@ -49,8 +49,15 @@
     }
 
     p{
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         margin: 0.5rem;
+    }
+
+    .nfts-grid-view{
+        height:max-content;
+        width:100%;
+        overflow:scroll;
+        margin-right:0;
     }
 
 @media only screen and (min-width: 900px) {

@@ -135,7 +135,7 @@ export class Dapp extends React.Component {
                 />
 
               
-                <Route path="/channel/:post?"  
+                <Route path="/channel/:group?/:post?"  
                   render= { 
                     (props)=><Channel
                     language={getLocale()}

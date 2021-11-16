@@ -26,6 +26,7 @@ export class ChannelIndex extends React.Component{
                                           return  <div key={index}>
                                                     <ChannelCategory 
                                                         category={key}
+                                                        group={index}
                                                     /> 
                                                   </div>
                                       })

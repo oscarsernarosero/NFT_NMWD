@@ -26,7 +26,7 @@ export class ChannelCategory extends React.Component{
             if (post===undefined)  post="before_1914";
             const currentUrl = window.location.href;
             let i = currentUrl.lastIndexOf('#/channel/');
-            const url=currentUrl.substr(0,i)+"#/channel/"+obj;
+            const url=currentUrl.substr(0,i)+"#/channel/"+this.props.group+"/"+obj;
             console.log(url)
             window.location.href = url;
         }
@@ -41,6 +41,7 @@ export class ChannelCategory extends React.Component{
                     </button>
                     <div className={this.state.categoryVisible? "": "dont-show"}>
                     {Object.entries(this.props.category[1]).map((item, index) => {
+                        console.log("item",item);
                                           return  <div key={index}>
                                                     <ChannelItem 
                                                         itemName={item}

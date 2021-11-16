@@ -1,7 +1,9 @@
 .video-container{
     display: block;
+    
     max-width: min-content;
     max-height: min-content;
+    
     align-items: center;
     justify-content: center;
     margin-left: auto;

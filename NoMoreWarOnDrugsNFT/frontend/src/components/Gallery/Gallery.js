@@ -2,7 +2,6 @@
 import React, {useState} from "react";
 import { Helmet } from "react-helmet";
 import { PaginationNFTs } from "./PaginationNFTs";
-import { Countdown } from "../Generics/Countdown";
 import { MarketInfo } from "./MarketInfo";
 import { ContractAddresses } from "./ContractAddresses";
 import { GoToMint } from "./GoToMint";

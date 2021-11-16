@@ -126,7 +126,7 @@ p{
     padding-top:3vw;
     padding-bottom: 0.2vw;
     display: grid;
-    grid-template-columns: [left] 33% [middle] 34% [right] 33%;
+    grid-template-columns: [left] 25% [middle] 25% [middle] 25% [right] 25%;
     height: min-content;
     margin-left: auto;
     margin-right: auto;
@@ -140,6 +140,7 @@ p{
     margin-right: auto;
     margin-left: auto;
     border-style: none;
+    padding:1%;
 }
 
 .contact-us-legends{
@@ -147,7 +148,7 @@ p{
     padding-bottom:3vw;
     padding-top:0;
     display: grid;
-    grid-template-columns: [left] 33% [middle] 34% [right] 33%;
+    grid-template-columns: [left] 25% [middle] 25% [middle] 25% [right] 25%;
     height: min-content;
     margin-left: auto;
     margin-right: auto;

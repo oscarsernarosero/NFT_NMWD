@@ -27,17 +27,18 @@
 
 .contract-addresses-container{
     background-color: #0000;
-    margin-left: 6vw;
+    width: 100%;
     margin-bottom: 5vw;
 }
 
 .contract-addresses-title{
     display: inline-block;
+    
 }
 
 .contract-addresses{
     display: inline-block;
-    font-size: 3.5vw;
+    font-size: 2.9vw;
     line-height: 2.5vw;
     margin-left: 0vw;
 }
