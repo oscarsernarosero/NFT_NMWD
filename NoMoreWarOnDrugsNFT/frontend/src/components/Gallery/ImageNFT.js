@@ -293,7 +293,7 @@ async setForSale()
       <div className="imageContainer">
         <a href={url} target="_blank" rel="noopener noreferrer">
           {animation? 
-            <video loop controls muted playsinline autoPlay
+            <video loop controls muted playsInline autoPlay
               style={{width:"94%",height:"min-content"}}
               >
               <source src={pinata_content_url} type="video/mp4"/>

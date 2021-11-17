@@ -8,6 +8,10 @@ import { ContactMe } from "./ContactMe";
 import"../../i18n/text";
 import { Translate, Localize } from 'react-i18nify';
 import { Helmet } from "react-helmet";
+import tablet from "../../images/60acd1b2d10a660004f3d0d1.png";
+import homeVideo from "./video.mp4";
+import ReactPlayer from 'react-player'
+
 
 export class Home extends React.Component {
 
@@ -23,9 +27,27 @@ export class Home extends React.Component {
                     that speaks up against the war on drugs through art and blockchain."/>
                     <link rel="canonical" href="https://www.stopthewarondrugs.com/" />
                 </Helmet>
+                <div className="home-start-container">
+                    <div className="home-video">
+                        <video loop muted autoPlay playsInline
+                            style={{width:"94%"}}
+                            >
+                            <source src="https://storageapi.fleek.co/oscarsernarosero-team-bucket/My%20Movie%201.mp4" type="video/mp4"/>
+                            </video>
+                        
+                    </div>
+                    <div className="home-video-text">
+                        <h1>Only for woke people</h1>
+                        <br/><br/>
+                        <p>Be part of the movement that will change the world, and become part of the world's history that is yet 
+                            to be written. 
+                        </p>
+                    </div>
+
+                </div>
             <LeftImage
                 //src="http://4.bp.blogspot.com/-Yq3Q5ex8chU/T0uKnKUhjcI/AAAAAAAAAEM/cDfeYY9cYQA/s1600/ebla_clay_tablet.png"
-                src="https://images.pexels.com/photos/3199399/pexels-photo-3199399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                src={tablet}
                 alt="image2"
                 title={<Translate value='home.first.title'/>}
                 text={<p>

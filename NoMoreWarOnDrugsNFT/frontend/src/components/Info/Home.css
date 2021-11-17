@@ -178,6 +178,25 @@ p{
     
     }
 
+    .home-start-container{
+        max-height: fit-content;
+        min-height: 90vh;
+        background-color: black;
+        display: grid;
+        grid-template-columns: 60% 40%;
+    }
+
+    .home-video{
+        margin: auto;
+        padding: 5%;
+    }
+
+    .home-video-text{
+        padding-top: 14%;
+        padding-right: 10%;
+        text-align: center;
+    }
+
     .history-image{
         display: inline-block;
         max-height: 100%;
